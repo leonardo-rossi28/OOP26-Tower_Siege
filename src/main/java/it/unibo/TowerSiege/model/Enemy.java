@@ -15,7 +15,7 @@ public class Enemy {
 
     private boolean alive;
     private int slowDurationTicks;
-    private double slowMultipleyer;
+    private double slowMultiplier;
     private int hitFlashTicks;
     private boolean reachedEnd = false;
     private boolean coinAwarded = false;
@@ -27,7 +27,7 @@ public class Enemy {
         this.reward=type.getReward();
         this.alive=true;
         this.slowDurationTicks=0;
-        this.slowMultipleyer= 1.0;
+        this.slowMultiplier= 1.0;
         this.hitFlashTicks=0;
         this.currentWaypointIndex=1;
     }
@@ -67,15 +67,20 @@ public class Enemy {
         return hitFlashTicks;
     }
 
+    public void applySlow(double multiplier, int durationTicks) {
+        this.slowMultiplier = multiplier;
+        this.slowDurationTicks = slowDurationTicks;
+    }
+    
     public void updateStatus() {
         if(slowDurationTicks > 0) {
             slowDurationTicks--;
-            if (slowDurationTicks == 0) slowMultipleyer = 1.0;
+            if (slowDurationTicks == 0) slowMultiplier = 1.0;
         }
     }
 
     public double getEffectiveSpeed() {
-        return baseSpeed * slowMultipleyer;
+        return baseSpeed * slowMultiplier;
     }
 
     
