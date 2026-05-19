@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.model;
+package it.unibo.TowerSiege.model.tower;
 
 public enum TowerType {
     BASIC(50,5, 3, 60,"Torre Cristallo"),

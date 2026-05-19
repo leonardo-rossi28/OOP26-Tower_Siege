@@ -1,11 +1,12 @@
 package it.unibo.TowerSiege.model;
 
 import it.unibo.TowerSiege.commons.GameConstants;
+import it.unibo.TowerSiege.model.tower.impl.TowerImpl;
 
 public class BuildingSpots {
     private final int col;
     private final int row;
-    private Tower tower;
+    private TowerImpl tower;
 
     public BuildingSpots(int col, int row){
         this.col = col;
@@ -32,11 +33,11 @@ public class BuildingSpots {
         return tower != null;
     }
 
-    public Tower getTower() {
+    public TowerImpl getTower() {
         return tower;
     }
 
-    public void setTower(Tower tower) {
+    public void setTower(TowerImpl tower) {
         this.tower = tower;
         if (tower != null) {
             tower.setPosition(getPixelCenterX(), getPixelCenterY());

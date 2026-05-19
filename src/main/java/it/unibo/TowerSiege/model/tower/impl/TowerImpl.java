@@ -1,8 +1,9 @@
-package it.unibo.TowerSiege.model;
+package it.unibo.TowerSiege.model.tower.impl;
 
+import it.unibo.TowerSiege.model.Enemy;
+import it.unibo.TowerSiege.model.tower.TowerType;
 
-
-public class Tower {
+public class TowerImpl {
     
     private final TowerType type;
     private double pixelX;
@@ -11,7 +12,7 @@ public class Tower {
     private boolean alive;
     private int cooldownTicks; 
 
-    public Tower(TowerType type) {  
+    public TowerImpl(TowerType type) {  
         this.type=type;
         this.level=1;  
         this.alive=true;
