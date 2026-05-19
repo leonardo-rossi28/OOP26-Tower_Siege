@@ -1,5 +1,7 @@
-package it.unibo.TowerSiege.model;
+package it.unibo.TowerSiege.model.enemy.impl;
 import java.util.List;
+
+import it.unibo.TowerSiege.model.enemy.EnemyType;
 
 public class Enemy {
     

@@ -1,4 +1,8 @@
-package it.unibo.TowerSiege.model;
+package it.unibo.TowerSiege.model.projectile.impl;
+
+import it.unibo.TowerSiege.model.enemy.impl.Enemy;
+import it.unibo.TowerSiege.model.tower.TowerType;
+import it.unibo.TowerSiege.model.tower.impl.TowerImpl;
 
 /**
  * This class represent a projectile that moves towards the target
@@ -6,7 +10,7 @@ package it.unibo.TowerSiege.model;
  * projectile continues to move.
  */
 public class Projectile {
-    private final Tower source;
+    private final TowerImpl source;
     private final Enemy target;
     private double x;
     private double y;
@@ -14,7 +18,7 @@ public class Projectile {
     private boolean alive=true;
 
 
-    public Projectile(Tower source, Enemy target){
+    public Projectile(TowerImpl source, Enemy target){
         this.source=source;
         this.target=target;
         this.x=source.getPixelX();
