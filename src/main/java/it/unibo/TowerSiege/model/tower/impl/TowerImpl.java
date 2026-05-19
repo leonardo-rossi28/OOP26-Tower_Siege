@@ -1,6 +1,6 @@
 package it.unibo.TowerSiege.model.tower.impl;
 
-import it.unibo.TowerSiege.model.enemy.impl.Enemy;
+import it.unibo.TowerSiege.model.enemy.impl.EnemyImpl;
 import it.unibo.TowerSiege.model.tower.TowerType;
 
 public class TowerImpl {
@@ -30,7 +30,7 @@ public class TowerImpl {
         }
     }
 
-    public boolean isEnemyInRange(Enemy enemy){
+    public boolean isEnemyInRange(EnemyImpl enemy){
         double dx= enemy.getPixelX()-pixelX;
         double dy= enemy.getPiexelY() - pixelY;
         double distSq= dx*dx + dy*dy;
