@@ -10,7 +10,7 @@ import it.unibo.TowerSiege.model.projectile.api.Projectile;
  * The projectile hit if the enemy is in the same pixel otherwise the 
  * projectile continues to move.
  */
-public class ProjectileImpl {
+public class ProjectileImpl implements Projectile{
     private final TowerImpl source;
     private final Enemy target;
     private double x;

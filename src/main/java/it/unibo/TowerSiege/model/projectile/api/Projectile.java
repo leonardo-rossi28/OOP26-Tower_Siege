@@ -22,7 +22,7 @@ public interface Projectile {
     /**
      * @return source tower type
      */
-    TowerType getSourcTowerType();
+    TowerType getSourceTowerType();
 
 
     /**
