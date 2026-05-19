@@ -1,12 +1,16 @@
-package it.unibo.TowerSiege.model;
+package it.unibo.TowerSiege.model.gamemap.impl;
 
 import it.unibo.TowerSiege.commons.GameConstants;
+import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
+import it.unibo.TowerSiege.model.buildingspot.impl.BuildingSpotImpl;
+import it.unibo.TowerSiege.model.gamemap.api.GameMap;
+import it.unibo.TowerSiege.model.tower.api.Tower;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Map {
+public class GameMapImpl implements GameMap{
     private final int width;
     private final int height;
     private final String backgroundPath;
@@ -16,7 +20,15 @@ public class Map {
 
     private final int[][] grid;
 
-    public Map(int width, int height, String backgroundPath, List<double[]> pathGridCoords, List <double[]> spotGridCoords){
+    /**
+     * Consturct a GameMap from the grid-coordinate data
+     * @param width map width
+     * @param height map height
+     * @param backgroundPath background path image
+     * @param pathGridCoords [col][row] waypoints for enemy path
+     * @param spotGridCoords [col][row] list for building spots
+     */
+    public GameMapImpl(int width, int height, String backgroundPath, List<double[]> pathGridCoords, List <double[]> spotGridCoords){
         this.width = width;
         this.height = height;
         this.backgroundPath = backgroundPath != null ? backgroundPath : "";
@@ -47,32 +59,65 @@ public class Map {
 
                 if (col >= 0 && col < GameConstants.COLS && row >= 0 && row < GameConstants.ROWS) {
                     grid[row][col] = 2;
-                    buildingSpots.add(new BuildingSpot(col, row));
+                    buildingSpots.add(new BuildingSpotImpl(col, row));
                 }
             }
         }
     }
 
+    /**
+     * {@inheritDOc}
+     */
+    @Override
     public int getWidth() {
         return width;
     }
+
+    /**
+     * {@inheritDOc}
+     */
+    @Override
     public int getHeight() {
         return height;
     }
+
+    /**
+     * {@inheritDOc}
+     */
+    @Override
     public String getBackgroundPath() {
         return backgroundPath;
     }
 
+
+    /**
+     * {@inheritDOc}
+     */
+    @Override
     public List<double[]> getWaypoints() {
         return pixelWaypoints;
     }
+
+    /**
+     * {@inheritDOc}
+     */
+    @Override
     public List<BuildingSpot> getBuildingSpots() {
         return buildingSpots;
     }
+
+    /**
+     * {@inheritDOc}
+     */
+    @Override
     public int[][] getGrid() {
         return grid;
     }
 
+    /**
+     * {@inheritDOc}
+     */
+    @Override
     public List<Tower> getTowers() {
         return buildingSpots.stream()
         .filter(BuildingSpot::isOccupied)
@@ -80,6 +125,10 @@ public class Map {
         .collect(Collectors.toList());
     }
 
+    /**
+     * {@inheritDOc}
+     */
+    @Override
     public BuildingSpot getSpotAt(int col, int row) {
         if (col < 0 || col >= GameConstants.COLS || row < 0 || row >= GameConstants.ROWS) return null;
         for (BuildingSpot spot : buildingSpots) {
@@ -90,6 +139,10 @@ public class Map {
         return null;
     }
 
+    /**
+     * {@inheritDOc}
+     */
+    @Override
     public boolean addTowerToSpot(Tower tower, BuildingSpot spot) {
         if (!spot.isOccupied()) {
             spot.setTower(tower);
@@ -98,18 +151,14 @@ public class Map {
         return false;
     }
     
-    public boolean removeTower(Tower tower) {
-        for (BuildingSpot spot : buildingSpots) {
-            if (spot.getTower() == tower) {
-                spot.setTower(null);
-                return true;
-            }
+    /**
+     * {@inheritDOc}
+     */
+    @Override
+    public void removeTowerFromSpot(final BuildingSpot spot) {
+        if (spot != null) {
+            spot.setTower(null);
         }
-        return false;
-    }
-
-    public void removeTowerFromSpot(BuildingSpot spot) {
-        if (spot != null) spot.setTower(null);
     }
 }
 
