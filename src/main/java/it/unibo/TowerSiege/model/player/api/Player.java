@@ -19,15 +19,24 @@ public interface Player {
 
     /**
      * 
-     * That's a comment
+     * TDrops down the base health according with the given damage amount
      * @param damage
      */
 
     void takeBaseDamage(int damage);
 
+    /**
+    * Resets base health and coins to the starting value
+    */
     void reset();
 
+
     int getCoins();
+
+    /**
+     * Returns the current health of the player's base
+     * @return
+     */
 
     int getBaseHealth();
 
