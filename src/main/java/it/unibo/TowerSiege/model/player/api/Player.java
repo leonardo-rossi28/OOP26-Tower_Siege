@@ -17,6 +17,12 @@ public interface Player {
 
     boolean spendCoins(int amount);
 
+    /**
+     * 
+     * That's a comment
+     * @param damage
+     */
+
     void takeBaseDamage(int damage);
 
     void reset();
