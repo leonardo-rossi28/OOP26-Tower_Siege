@@ -1,6 +1,14 @@
 package it.unibo.TowerSiege.model.player.api;
 
 public interface Player {
+
+    /**
+     * Updates the player's balance by adding or subtracting the specified amount.
+     *
+     * @param amount the number of coins to add (positive) or deduct (negative)
+     */
+
+
     void addCoins(int amount);
 
     /*

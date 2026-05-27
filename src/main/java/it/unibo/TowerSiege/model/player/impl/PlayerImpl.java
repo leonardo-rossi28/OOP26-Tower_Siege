@@ -1,7 +1,7 @@
-package it.unibo.towerdefense.model.player.impl;
+package it.unibo.TowerSiege.model.player.impl;
 
-import it.unibo.towerdefense.commons.gameconstants.GameConstants;
-import it.unibo.towerdefense.model.player.api.Player;
+import it.unibo.TowerSiege.commons.gameconstants.GameConstants;
+import it.unibo.TowerSiege.model.player.api.Player;
 
 /**
  * it represents the player state: coins and base health
