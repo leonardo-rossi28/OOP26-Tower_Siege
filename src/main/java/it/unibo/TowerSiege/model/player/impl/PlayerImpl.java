@@ -31,7 +31,7 @@ public class PlayerImpl implements Player {
     @Override
     public boolean spendCoins( final int amount ){
         if (this.coins >= amount){
-            this.coiins -= amount;
+            this.coins -= amount;
             return true;
 
         }
