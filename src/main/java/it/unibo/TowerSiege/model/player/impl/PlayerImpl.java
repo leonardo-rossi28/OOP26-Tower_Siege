@@ -62,7 +62,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public int getBaseHealth(){
-
+        return baseHealth;
 
     }
 
