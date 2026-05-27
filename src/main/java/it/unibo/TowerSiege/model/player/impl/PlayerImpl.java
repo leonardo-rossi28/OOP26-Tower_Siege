@@ -1,6 +1,6 @@
 package it.unibo.TowerSiege.model.player.impl;
 
-import it.unibo.TowerSiege.commons.gameconstants.GameConstants;
+import it.unibo.TowerSiege.commons.GameConstants;
 import it.unibo.TowerSiege.model.player.api.Player;
 
 /**
@@ -17,6 +17,12 @@ public class PlayerImpl implements Player {
         reset();
     }
 
+
+    @Override
+    public void reset(){
+        this.coins = GameConstants.STARTING_COINS;
+        this.baseHealth = GameConstants.BASE_HEALTH;
+    }
 
     /**
      * {@inheritDoc}
@@ -41,8 +47,23 @@ public class PlayerImpl implements Player {
 
 
     @Override
+    public void takeBaseDamage(final int damage){
+
+        this.baseHealth -= damage;
+    }
+
+
+
+
+    @Override
     public int getCoins(){
         return coins;
+    }
+
+    @Override
+    public int getBaseHealth(){
+
+
     }
 
     @Override
