@@ -1,5 +1,7 @@
 package it.unibo.TowerSiege.model.gamemodel.impl;
 
-public class GameModelImpl {
+import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
+
+public class GameModelImpl implements GameModel {
     
 }
