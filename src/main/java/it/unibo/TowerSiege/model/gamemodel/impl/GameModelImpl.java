@@ -1,22 +1,48 @@
 package it.unibo.TowerSiege.model.gamemodel.impl;
 
+import it.unibo.TowerSiege.commons.mapdata.MapData;
 import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
-import it.unibo.TowerSiege.model.buildingspot.impl.BuildingSpotImpl;
+import it.unibo.TowerSiege.model.enemy.api.Enemy;
+import it.unibo.TowerSiege.model.gamemap.api.GameMap;
+import it.unibo.TowerSiege.model.gamemap.impl.GameMapImpl;
 import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.model.gamemodel.impl.GameModelImpl;
-import it.unibo.TowerSiege.model.projectile.api.Projectile;
-import it.unibo.TowerSiege.model.projectile.impl.ProjectileImpl;
-import it.unibo.TowerSiege.model.tower.api.Tower;
-import it.unibo.TowerSiege.model.tower.impl.TowerImpl;
+import it.unibo.TowerSiege.model.gamestate.GameState;
 import it.unibo.TowerSiege.model.player.api.Player;
 import it.unibo.TowerSiege.model.player.impl.PlayerImpl;
-import it
+import it.unibo.TowerSiege.model.projectile.api.Projectile;
+import it.unibo.TowerSiege.model.tower.api.Tower;
+import it.unibo.TowerSiege.model.wave.api.Wave;
+import it.unibo.TowerSiege.model.wave.impl.WaveImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameModelImpl implements GameModel {
     private final List<Projectile> projectile;
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void update(){
+        //Update projectiles
+        projectile.removeIf(p -> { p.update(); return !p.isAlive();});
+
+        //Towers attack
+        for (final Tower tower : map.getTowers()) {
+            tower.tick();
+            if(!tower.isAlive()) { continue; }
+            for (final Enemy enemy : activeEnemies) {
+                if(enemy.isAlive()) {
+                    final Projectile p = tower.attack(enemy);
+                    if(p != null) {
+                        projectile.add(p);
+                    }
+                }
+            }
+        }
+    }
 
     /**
      * {@inheritDoc}
@@ -29,5 +55,38 @@ public class GameModelImpl implements GameModel {
                 return true;
             }
         }
+        return false;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean upgradeTower(final Tower tower){
+        final int cost = tower.getType().getCost() / 2;
+        if (player.getCoins() >= cost && tower.getLevel() < 3) {
+            player.addCoins(-cost);
+            tower.upgrade();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean sellTower(final BuildingSpot spot) {
+        if (spot == null || !spot.isOccupied()) {
+            return false;
+        }
+        final Tower tower = spot.getTower();
+        final int refund = tower.getType().getCost() / 2;
+        player.addCoins(refund);
+        map.removeTowerFromSpot(spot);
+        return true;  
+    }
+
+    @Override
+    public List<Projectile> getProjectiles() { return new ArrayList<>(projectile); }
 }

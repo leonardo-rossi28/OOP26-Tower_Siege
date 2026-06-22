@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.commons;
+package it.unibo.TowerSiege.commons.gameconstants;
 
 public final class GameConstants {
     private GameConstants(){}

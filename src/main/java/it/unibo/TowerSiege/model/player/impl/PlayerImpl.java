@@ -1,6 +1,6 @@
 package it.unibo.TowerSiege.model.player.impl;
 
-import it.unibo.TowerSiege.commons.GameConstants;
+import it.unibo.TowerSiege.commons.gameconstants.GameConstants;
 import it.unibo.TowerSiege.model.player.api.Player;
 
 /**

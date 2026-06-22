@@ -1,6 +1,6 @@
 package it.unibo.TowerSiege.model.gamemap.impl;
 
-import it.unibo.TowerSiege.commons.GameConstants;
+import it.unibo.TowerSiege.commons.gameconstants.GameConstants;
 import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
 import it.unibo.TowerSiege.model.buildingspot.impl.BuildingSpotImpl;
 import it.unibo.TowerSiege.model.gamemap.api.GameMap;
