@@ -19,6 +19,7 @@ import java.util.List;
 
 public class GameModelImpl implements GameModel {
 
+    private GameState state;
     private final Wave wave;
     private final List<Enemy> activeEnemies;
     private final List<Enemy> spawnQueue;
@@ -26,6 +27,12 @@ public class GameModelImpl implements GameModel {
     private int  spawnCooldownTicks;
     private int currentWaveIndex;
     private boolean waveInProgress;
+    private int fireCooldownTicks;
+    private int freezeCooldownTicks;
+    private static final int FIRE_COOLDOWN = 900; //15 seconds
+    private static final int FREEZE_COOLDOWN = 600; //10 seconds
+    private int fireAnimTicks;
+    private int freezeAnimTicks;
     
     /**
      * {@inheritDoc}
@@ -106,6 +113,84 @@ public class GameModelImpl implements GameModel {
         }
     }
 
+    /**
+     * Counts the number of enemies alive.
+     * 
+     * @return count alive enemy
+     */
+    private int getAliveEnemyCount() {
+        int count = 0;
+        for (final Enemy e : activeEnemies) {
+            if(e.isAlive()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void castRainOfFire() {
+        if (fireCooldownTicks > 0 || state != GameState.PLAYING) {return; }
+        for (final Enemy e : activeEnemies) {
+            e.takeDamage(50);
+        }
+        fireCooldownTicks = FIRE_COOLDOWN;
+        fireAnimTicks = 60;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    {
+        public void castGlobalFreeze() {
+            if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { return;}
+            for  (final Enemy e : activeEnemies) {
+                e.applySlow(0.3, 180);
+            }
+            freezeCooldownTicks = FREEZE_COOLDOWN;
+            freezeAnimTicks = 60;
+        }
+    }
+
+
     @Override
     public List<Projectile> getProjectiles() { return new ArrayList<>(projectile); }
+
+    /**{@inheritDoc} */
+    @Override
+    public List<Enemy> getActiveEnemies() { return new ArrayList<>(activeEnemies);}
+
+    /**{@inheritDoc} */
+    @Override
+    public int getCurrentWave() { return currentWaveIndex; }
+
+    /**{@inheritDoc} */
+    @Override
+    public int getTotalWaves() { return wave.getTotalWaves(); }
+
+    /**{@inheritDoc} */
+    @Override
+    public boolean isWaveInProgress() { return waveInProgress; }
+
+    /**{@inheritDoc} */
+    @Override
+    public int getFireCooldown() { return fireCooldownTicks; }
+
+    /**{@inheritDoc} */
+    @Override
+    public int getFreezeCooldown() { return freezeCooldownTicks; }
+
+    /**{@inheritDoc} */
+    @Override
+    public int getFireAnimTicks() { return fireAnimTicks; }
+
+    /**{@inheritDoc} */
+    @Override
+    public int getFreezeAnimTicks() { return freezeAnimTicks; }
+
+
 }

@@ -63,4 +63,41 @@ public interface GameModel {
      * fires towers, resolves projectiles and check game conditions.
      */
     void update();
+
+    /**
+     * Returns the index of the last wave.
+     */
+    int getCurrentWave();
+
+    /**
+     * Return the total wave.
+     */
+    int getTotalWaves();
+
+    /**
+     * Returns if a wave is in progress.
+     */
+    boolean isWaveInProgress();
+
+    /**
+     * Returns the remaining ticks of fire ability. 
+     */
+    int getFireCooldown();
+
+    /**
+     * Return the remaining ticks of freeze ability.
+     */
+    int getFreezeCooldown();
+
+    /**
+     * Returns the remaining animation for the fire visual.
+     */
+    int getFireAnimTicks();
+
+    /**
+     * Returns the remaining animation for the freee visual.
+     */
+    int getFreezeAnimTicks();
+
+
 }
