@@ -18,9 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameModelImpl implements GameModel {
+
+    private final Wave wave;
+    private final List<Enemy> activeEnemies;
+    private final List<Enemy> spawnQueue;
     private final List<Projectile> projectile;
-
-
+    private int  spawnCooldownTicks;
+    private int currentWaveIndex;
+    private boolean waveInProgress;
+    
     /**
      * {@inheritDoc}
      */
@@ -85,6 +91,19 @@ public class GameModelImpl implements GameModel {
         player.addCoins(refund);
         map.removeTowerFromSpot(spot);
         return true;  
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void startNextWave() {
+        if(!waveInProgress && currentWaveIndex < wave.getTotalWaves()) {
+            currentWaveIndex++;
+            spawnQueue.addAll(wave.generateWave(currentWaveIndex));
+            waveInProgress = true;
+            spawnCooldownTicks = 30;
+        }
     }
 
     @Override
