@@ -23,6 +23,14 @@ public class ScoreImpl implements Score {
 
 
     @Override
+    public void addPoints(final int points) {
+        if (points > 0) {
+            this.total += points;
+
+        }
+    }
+
+    @Override
     public int getTotal() {
         return total;
     }
@@ -38,7 +46,7 @@ public class ScoreImpl implements Score {
 
     @Override
     public String toString() {
-        return "Score : " + total;
+        return "Score: " + total;
     }
 
 }
