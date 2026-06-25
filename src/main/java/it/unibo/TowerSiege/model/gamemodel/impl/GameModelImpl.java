@@ -145,7 +145,6 @@ public class GameModelImpl implements GameModel {
      * {@inheritDoc}
      */
     @Override
-    {
         public void castGlobalFreeze() {
             if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { return;}
             for  (final Enemy e : activeEnemies) {
@@ -154,7 +153,6 @@ public class GameModelImpl implements GameModel {
             freezeCooldownTicks = FREEZE_COOLDOWN;
             freezeAnimTicks = 60;
         }
-    }
 
 
     @Override
