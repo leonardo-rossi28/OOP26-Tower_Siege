@@ -62,13 +62,16 @@ public final class SaveManager {
     }
 
 
-    public static int loadBestScore(){
-        return loadBestScore(DEFAULT_SAVE_PATH);
-    }
+    
 
     public static boolean saveExists(){
         return saveExists(DEFAULT_SAVE_PATH);
     }
+
+    public static  boolean saveExists(final String path){
+        return new File(path).exists();
+    }
+
 
     public static void deleteSave(){
 
