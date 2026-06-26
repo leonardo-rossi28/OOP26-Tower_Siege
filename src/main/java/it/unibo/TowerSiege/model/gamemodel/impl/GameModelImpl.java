@@ -13,6 +13,8 @@ import it.unibo.TowerSiege.model.projectile.api.Projectile;
 import it.unibo.TowerSiege.model.tower.api.Tower;
 import it.unibo.TowerSiege.model.wave.api.Wave;
 import it.unibo.TowerSiege.model.wave.impl.WaveImpl;
+import it.unibo.TowerSiege.model.score.api.Score;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.List;
 public class GameModelImpl implements GameModel {
 
     private GameState state;
+    private GameMap map;
+    private final Player player;
     private final Wave wave;
     private final List<Enemy> activeEnemies;
     private final List<Enemy> spawnQueue;
@@ -33,7 +37,11 @@ public class GameModelImpl implements GameModel {
     private static final int FREEZE_COOLDOWN = 600; //10 seconds
     private int fireAnimTicks;
     private int freezeAnimTicks;
-    
+    private int victoryDelayTicks=-1;
+
+    private int currentLevel;
+    private int maxUnlockedLevel;
+    private final Score score;
     /**
      * {@inheritDoc}
      */
@@ -55,6 +63,33 @@ public class GameModelImpl implements GameModel {
                 }
             }
         }
+
+        //Win / lose check
+        if(!player.isBaseAlive()){
+            state=GameState.DEFEAT;
+        } else if (waveInProgress && spawnQueue.isEmpty() && getAliveEnemyCount()==0) {
+            waveInProgress=false;
+            if(currentWaveIndex >= wave.getTotalWaves()){
+                state= GameState.VICTORY;
+                victoryDelayTicks=180; 
+                if(currentLevel < 3 && currentLevel >= maxUnlockedLevel){
+                    maxUnlockedLevel = currentLevel + 1;
+                }
+            }
+        }
+
+        //collect rewards and remove dead enemies
+        activeEnemies.removeIf(e->{
+            if(!e.isAlive()){
+                if(!e.isReachedEnd() && !e.isCoinAwarded()){
+                    player.addCoins(e.getReward());
+                    score.addPoints(e.getReward()*10);
+                    e.setCoinAwarded(true);
+                }
+                return true;
+            }
+            return false;
+        });
     }
 
     /**
