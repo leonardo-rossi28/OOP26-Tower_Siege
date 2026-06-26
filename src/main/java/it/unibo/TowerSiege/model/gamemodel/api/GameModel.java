@@ -4,6 +4,9 @@ import it.unibo.TowerSiege.model.tower.api.Tower;
 import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
 import it.unibo.TowerSiege.model.projectile.api.Projectile;
 import it.unibo.TowerSiege.model.enemy.api.Enemy;
+import it.unibo.TowerSiege.model.gamestate.GameState;
+import it.unibo.TowerSiege.model.score.api.Score;
+import it.unibo.TowerSiege.model.player.api.Player;
 
 import java.util.List;
 
@@ -99,5 +102,39 @@ public interface GameModel {
      */
     int getFreezeAnimTicks();
 
+    /**
+     * Starts(or restarts) the game: resets all entities and begins in PLAYING state.
+     */
+    void start();
+
+    /**
+     * Pause the game (only from PLYING state)
+     */
+    void pause();
+
+    /**
+     * Resumes the game(only from PAUSED state)
+     */
+    void resume();
+
+    /**
+     * Return curretn game state
+     */
+    GameState getState();
+
+    /**
+     * Sets the gamestate directly
+     */
+    void setState(GameState state);
+
+    /**
+     * Returns the score tracker for the current session
+     */
+    Score getScore();
+
+    /**
+     * Returns the Player
+     */
+    Player getPlayer();
 
 }
