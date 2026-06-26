@@ -34,7 +34,7 @@ public final class SaveManager {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))){
             writer.write("maxLevel=" + maxUnlockedLevel);
             writer.newLine();
-            writer.write("bestScore =" + bestScore);
+            writer.write("bestScore=" + bestScore);
             writer.newLine();
         } catch (IOException e){
             System.err.println("SaveManager: impossibile  salvare - " + e.getMessage());
@@ -50,6 +50,15 @@ public final class SaveManager {
     public static int loadMaxLevel(final String path){
 
         return readField(path, "maxLevel", 1);
+    }
+
+
+    public static int loadBestScore(){
+        return loadBestScore(DEFAULT_SAVE_PATH);
+    }
+
+    public static int loadBestScore(final String path){
+        return readField(path, "bestScore", 0);
     }
 
 
@@ -77,8 +86,8 @@ public final class SaveManager {
                     return Integer.parseInt(line.split("=")[1].trim());
                 }
             }
-        }catch (IOEXCEPTION | NumberFormatException e){
-            System.err.prinln("SaveManager: errore lettura campo " + field + " - " + e.getMessage());
+        }catch (IOException | NumberFormatException e){
+            System.err.println("SaveManager: errore lettura campo " + field + " - " + e.getMessage());
         }
 
         return fallback;
