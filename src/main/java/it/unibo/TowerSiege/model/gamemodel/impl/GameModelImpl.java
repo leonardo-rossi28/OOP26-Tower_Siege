@@ -14,7 +14,7 @@ import it.unibo.TowerSiege.model.tower.api.Tower;
 import it.unibo.TowerSiege.model.wave.api.Wave;
 import it.unibo.TowerSiege.model.wave.impl.WaveImpl;
 import it.unibo.TowerSiege.model.score.api.Score;
-
+import it.unibo.TowerSiege.model.score.impl.ScoreImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +42,57 @@ public class GameModelImpl implements GameModel {
     private int currentLevel;
     private int maxUnlockedLevel;
     private final Score score;
+
+
+
+
+
+
+
+
+
+
+    /** Stefano's code */
+
+
+
+
+
+    /** Creates a GameModelImpl with no preset map path. */
+    public GameModelImpl(){
+        this(null);
+    }
+
+
+
+
+    /**
+     * 
+     * @param mapPath optional filesystem path to a custtom map JSON (may be null)
+     */
+
+    public GameModelImpl(final String mapPath){
+        this.player = new PlayerImpl();
+        this.wave = new WaveImpl();
+        this.score = new ScoreImpl();
+        this.state = GameState.MENU;
+        this.activeEnemies = new ArrayList<>();
+        this.spawnQueue = new ArrayList<>();
+        this.projectiles = new ArrayList<>();
+        this.maxUnlockedLevel = SaveManager.loadMaxLevel();
+        loadLevel(1);
+    }
+
+
+    /** Stefano's code */
+
+
+
+
+
+
+
+
     /**
      * {@inheritDoc}
      */
