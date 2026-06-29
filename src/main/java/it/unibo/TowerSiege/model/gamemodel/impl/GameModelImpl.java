@@ -138,7 +138,7 @@ public class GameModelImpl implements GameModel {
      * {@inheritDoc}
      */
     @Override
-    public boolean upgradeTower(final Tower tower){
+    public boolean upgradeTower(final Tower tower) {
         final int cost = tower.getType().getCost() / 2;
         if (player.getCoins() >= cost && tower.getLevel() < 3) {
             player.addCoins(-cost);
@@ -208,14 +208,14 @@ public class GameModelImpl implements GameModel {
      * {@inheritDoc}
      */
     @Override
-        public void castGlobalFreeze() {
-            if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { return;}
-            for  (final Enemy e : activeEnemies) {
-                e.applySlow(0.3, 180);
-            }
-            freezeCooldownTicks = FREEZE_COOLDOWN;
-            freezeAnimTicks = 60;
+    public void castGlobalFreeze() {
+        if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { return;}
+        for  (final Enemy e : activeEnemies) {
+            e.applySlow(0.3, 180);
         }
+        freezeCooldownTicks = FREEZE_COOLDOWN;
+        freezeAnimTicks = 60;
+    }
 
 
     @Override
