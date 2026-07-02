@@ -22,6 +22,18 @@ public interface GameModel {
      * @param spot
      * @return true if the tower was placed successfully
      */
+
+    void loadLevel(int levelNum);
+
+    void start();
+
+    void startNextWave();
+
+    void update();
+
+    
+
+
     boolean buildTowerOnSpot(Tower tower, BuildingSpot spot);
 
     /**
