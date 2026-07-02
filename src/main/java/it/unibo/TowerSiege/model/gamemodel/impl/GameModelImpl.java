@@ -38,6 +38,8 @@ public class GameModelImpl implements GameModel {
     private int fireAnimTicks;
     private int freezeAnimTicks;
     private int victoryDelayTicks=-1;
+    private static final int SPAWN_DELAY_TICKS = 60; //1 second at 60fps
+    private static final int BASE_DAMAGE_PER_ENEMY = 10;
 
     private int currentLevel;
     private int maxUnlockedLevel;
@@ -141,6 +143,32 @@ public class GameModelImpl implements GameModel {
             }
             return false;
         });
+
+        //gradual spawn of the enemy
+        if(spawnCooldownTicks > 0) {
+            spawnCooldownTicks--;
+        } else if (!spawnQueue.isEmpty()) {
+            final Enemy newEnemy = spawnQueue.remove(0);
+            if(!map.getWaypoints().isEmpty()) {
+                final double[] start = map.getWaypoints().get(0);
+                newEnemy.setPosition(start[0], start[1]);
+            }
+            activeEnemies.add(newEnemy);
+            spawnCooldownTicks = SPAWN_DELAY_TICKS;
+        }
+
+        //move the enemies
+        for (final Enemy enemy : activeEnemies) {
+            if (!enemy.isAlive()) { continue; }
+            enemy.tickVisuals();
+            enemy.updateStatus();
+            final boolean reachedEnd = enemy.moveAlongPath(map.getWaypoints());
+            if (reachedEnd) {
+                player.takeBaseDamage(BASE_DAMAGE_PER_ENEMY);
+                enemy.setReachedEnd(true);
+                enemy.takeDamage(enemy.getHealth()+999);
+            }
+        }
     }
 
     /**
@@ -161,7 +189,7 @@ public class GameModelImpl implements GameModel {
      * {@inheritDoc}
      */
     @Override
-    public boolean upgradeTower(final Tower tower){
+    public boolean upgradeTower(final Tower tower) {
         final int cost = tower.getType().getCost() / 2;
         if (player.getCoins() >= cost && tower.getLevel() < 3) {
             player.addCoins(-cost);
@@ -231,14 +259,14 @@ public class GameModelImpl implements GameModel {
      * {@inheritDoc}
      */
     @Override
-        public void castGlobalFreeze() {
-            if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { return;}
-            for  (final Enemy e : activeEnemies) {
-                e.applySlow(0.3, 180);
-            }
-            freezeCooldownTicks = FREEZE_COOLDOWN;
-            freezeAnimTicks = 60;
+    public void castGlobalFreeze() {
+        if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { return;}
+        for  (final Enemy e : activeEnemies) {
+            e.applySlow(0.3, 180);
         }
+        freezeCooldownTicks = FREEZE_COOLDOWN;
+        freezeAnimTicks = 60;
+    }
 
 
     @Override
