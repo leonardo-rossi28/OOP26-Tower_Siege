@@ -7,6 +7,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Manages the persistence of core game progression data into a text-based file.
+ * This class is responsible for tracking the highest level unlocked and the top score achieved.
+ */
+
+
 public final class SaveManager {
     private static final String DEFAULT_SAVE_PATH = "save.txt";
 
@@ -15,9 +21,9 @@ public final class SaveManager {
     }
 
     /**
-     * Saves the max unlocked level and best score to a file.
-     * 
-     * @param maxUnlockedLevel
+     * Persists the current game progression data to the storage file.
+     * * @param maxUnlockedLevel the furthest level the player has access to
+     * @param bestScore        the highest record score obtained by the player
      */
 
     public static void save(final int maxUnlockedLevel, final int bestScore){
