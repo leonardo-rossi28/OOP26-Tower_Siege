@@ -8,6 +8,8 @@ import it.unibo.TowerSiege.model.gamestate.GameState;
 import it.unibo.TowerSiege.model.score.api.Score;
 import it.unibo.TowerSiege.model.player.api.Player;
 
+import it.unibo.TowerSiege.model.gamemap.api.GameMap;
+
 import java.util.List;
 
 public interface GameModel {
