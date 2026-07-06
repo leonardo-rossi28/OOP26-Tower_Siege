@@ -89,15 +89,14 @@ public class GameModelImpl implements GameModel {
                 data.getBackground(),
                 data.getWaypoints(),
                 data.getBuildingSpots());
-            ) else{
+            } else{
                 final List<double[]> wp = new ArrayList<>();
                 wp.add(new double[]{0, 300});
-                wp.add(new double[]}{800, 300});
+                wp.add(new double[]{800, 300});
                 this.map = new GameMapImpl(800, 600, "", wp, new ArrayList<>());
 
             }
         }
-    }
 
     /**
      * {@inheritDoc}
@@ -307,7 +306,7 @@ public class GameModelImpl implements GameModel {
 
 
     @Override
-    public List<Projectile> getProjectiles() { return new ArrayList<>(projectile); }
+    public List<Projectile> getProjectiles() { return new ArrayList<>(projectiles); }
 
     /**{@inheritDoc} */
     @Override
@@ -340,6 +339,4 @@ public class GameModelImpl implements GameModel {
     /**{@inheritDoc} */
     @Override
     public int getFreezeAnimTicks() { return freezeAnimTicks; }
-
-
 }
