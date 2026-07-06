@@ -54,7 +54,7 @@ public class GameModelImpl implements GameModel {
 
 
 
-    /** Stefano's code */
+
 
 
 
@@ -86,14 +86,61 @@ public class GameModelImpl implements GameModel {
     }
 
 
-    /** Stefano's code */
+
+    @Override
+    public void loadLevel(final int levelNum){
+        this.currentLevel = levelNum;
+        final MapLoader loader = new MapLoader();
+        MapData data = loader.loadFromCllasspath("maps/level" + levelNum + ".json");
+        if (data == null){
+            data = loader.loadFromClasspath("maps/map.json");
+        }
+
+        if (data != null){
+            this.map = new GameMapImpl(
+                data.getWidth(),
+                data.getHeight(),
+                data.getBackGround(),
+                data.getWayPoints(),
+                data.getBuildingSpots());
+            ), else{
+                final List<double[]> wp = new ArrayList<>();
+                wp.add(new double[]{0, 300});
+                wd.add(new double[]}{800, 300});
+                this.map = new GameMapImpl(800, 600, "", wp, new ArrayList<>());
+
+            }
+        }
+    }
 
 
 
+    @Override
+    public void start(){
+        this.state = GameState.PLAYING;
+        this.currentWaveIndex = 0;
+        this.activeEnemies.clear();
+        this.spawnQueue.clear();
+        this.projectiles.clear();
+        this.waveInProgress = false;
+        this.player.reset();
+        this.score.reset();
+        for (final BuildingSpot spot : map.getBuildingSpots()){
+            spot.setTower(null);
+        }
+    }
 
 
-
-
+    @Override
+    public void  startNextWave(){
+        if(!waveInProgress && currentWaveIndex < wave.getTotalWaves()){
+            currentWaveIndex++;
+            spawnQueue.addAll(wave.generateWave(currentWaveIndex));
+            waveInProgress = true;
+            spawnCooldownTicks = 30;
+        }
+    
+    }
 
     /**
      * {@inheritDoc}
