@@ -54,7 +54,7 @@ public class GameModelImpl implements GameModel {
 
 
 
-    /** Stefano's code */
+
 
 
 
@@ -86,7 +86,6 @@ public class GameModelImpl implements GameModel {
     }
 
 
-    /** Stefano's code */
 
     @Override
     public void loadLevel(final int levelNum){
