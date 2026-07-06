@@ -15,6 +15,29 @@ import java.util.List;
 public interface GameModel {
 
     /**
+     * Loads the map and configuration for the given level number.
+     * 
+     * @param levelNum level to load (1-based)
+     */
+    void loadLevel(int levelNum);
+
+    /**
+     * Starts(or restarts) the game: resets all entities and begins in PLAYING state.
+     */
+    void start();
+
+    /**
+     * Turn on the next enemy wave if no one is in progress.
+     */
+    void startNextWave();
+
+    /**
+     * Advance the game; spawn enemies, move them,
+     * fires towers, resolves projectiles and check game conditions.
+     */
+    void update();
+
+    /**
      * Attempts to build the given tower on the given spot.
      * Deducts cost from player coins on success.
      * 
@@ -22,18 +45,6 @@ public interface GameModel {
      * @param spot
      * @return true if the tower was placed successfully
      */
-
-    void loadLevel(int levelNum);
-
-    void start();
-
-    void startNextWave();
-
-    void update();
-
-    
-
-
     boolean buildTowerOnSpot(Tower tower, BuildingSpot spot);
 
     /**
@@ -52,14 +63,6 @@ public interface GameModel {
      */
     boolean sellTower(BuildingSpot spot);
 
-    /** Returns a snapshot of currently active enemies. */
-    List<Projectile> getProjectiles();
-
-    /**
-     * Turn on the next enemy wave if no one is in progress.
-     */
-    void startNextWave();
-
     /**
      * Activate the rain of fire ability.
      * Only in the playing state.
@@ -72,14 +75,21 @@ public interface GameModel {
      */
     void castGlobalFreeze();
 
+    /**
+     * Pause the game (only from PLYING state)
+     */
+    void pause();
+
+    /**
+     * Resumes the game(only from PAUSED state)
+     */
+    void resume();
+
     /**Return a copy of currently active enemies.*/
     List<Enemy> getActiveEnemies();
 
-    /**
-     * Advance the game; spawn enemies, move them,
-     * fires towers, resolves projectiles and check game conditions.
-     */
-    void update();
+    /** Returns a snapshot of currently active enemies. */
+    List<Projectile> getProjectiles();
 
     /**
      * Returns the index of the last wave.
@@ -115,21 +125,6 @@ public interface GameModel {
      * Returns the remaining animation for the freee visual.
      */
     int getFreezeAnimTicks();
-
-    /**
-     * Starts(or restarts) the game: resets all entities and begins in PLAYING state.
-     */
-    void start();
-
-    /**
-     * Pause the game (only from PLYING state)
-     */
-    void pause();
-
-    /**
-     * Resumes the game(only from PAUSED state)
-     */
-    void resume();
 
     /**
      * Return curretn game state
