@@ -16,6 +16,7 @@ import it.unibo.TowerSiege.model.wave.api.Wave;
 import it.unibo.TowerSiege.model.wave.impl.WaveImpl;
 import it.unibo.TowerSiege.model.score.api.Score;
 import it.unibo.TowerSiege.model.score.impl.ScoreImpl;
+import it.unibo.TowerSiege.commons.savemanager.SaveManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -203,6 +204,10 @@ public class GameModelImpl implements GameModel {
                 if(currentLevel < 3 && currentLevel >= maxUnlockedLevel){
                     maxUnlockedLevel = currentLevel + 1;
                 }
+                SaveManager.save(
+                    maxUnlockedLevel,
+                    Math.max(score.getTotal(), SaveManager.loadBestScore())
+                );
             }
         }
 
@@ -339,4 +344,30 @@ public class GameModelImpl implements GameModel {
     /**{@inheritDoc} */
     @Override
     public int getFreezeAnimTicks() { return freezeAnimTicks; }
+
+    /**{@inheritDoc} */
+    @Override public GameState getState(){ return state;}
+
+    /**{@inheritDoc} */
+    @Override public void setState(final GameState s ){ this.state=s;}
+
+    /**{@inheritDoc} */
+    @Override public void pause(){ 
+        if(state=GameState.PLAYING){
+            state=GameState.PAUSED;
+        }
+    }
+
+    /**{@inheritDoc} */
+    @Override public void resume(){
+        if(state==GameState.PAUSED){
+            state=GameState.PLAYING;
+        }
+    }
+
+     /**{@inheritDoc} */
+    @Override public Score getScore(){return score;}
+
+     /**{@inheritDoc} */
+    @Override public Player getPlayer(){return player;}
 }
