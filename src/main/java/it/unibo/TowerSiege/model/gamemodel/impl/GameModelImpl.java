@@ -1,6 +1,7 @@
 package it.unibo.TowerSiege.model.gamemodel.impl;
 
 import it.unibo.TowerSiege.commons.mapdata.MapData;
+import it.unibo.TowerSiege.commons.maploader.MapLoader;
 import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
 import it.unibo.TowerSiege.commons.savemanager.SaveManager;
 import it.unibo.TowerSiege.model.enemy.api.Enemy;
@@ -16,7 +17,6 @@ import it.unibo.TowerSiege.model.wave.api.Wave;
 import it.unibo.TowerSiege.model.wave.impl.WaveImpl;
 import it.unibo.TowerSiege.model.score.api.Score;
 import it.unibo.TowerSiege.model.score.impl.ScoreImpl;
-import it.unibo.TowerSiege.commons.savemanager.SaveManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +78,7 @@ public class GameModelImpl implements GameModel {
     public void loadLevel(final int levelNum){
         this.currentLevel = levelNum;
         final MapLoader loader = new MapLoader();
-        MapData data = loader.loadFromCllasspath("maps/level" + levelNum + ".json");
+        MapData data = loader.loadFromClasspath("maps/level" + levelNum + ".json");
         if (data == null){
             data = loader.loadFromClasspath("maps/map.json");
         }
@@ -351,9 +351,12 @@ public class GameModelImpl implements GameModel {
     /**{@inheritDoc} */
     @Override public void setState(final GameState s ){ this.state=s;}
 
+    /** {@inheritDoc} */
+    @Override public GameMap getMap()   { return map; }
+
     /**{@inheritDoc} */
     @Override public void pause(){ 
-        if(state=GameState.PLAYING){
+        if(state==GameState.PLAYING){
             state=GameState.PAUSED;
         }
     }
@@ -366,8 +369,20 @@ public class GameModelImpl implements GameModel {
     }
 
      /**{@inheritDoc} */
-    @Override public Score getScore(){return score;}
+    @Override public Score getScore()   { return score; }
 
      /**{@inheritDoc} */
-    @Override public Player getPlayer(){return player;}
+    @Override public Player getPlayer() { return player; }
+
+    /** {@inheritDoc} */
+    @Override public boolean isVictoryRedirectReady() {
+        return state == GameState.VICTORY && victoryDelayTicks == 0;
+    }
+
+    /** {@inheritDoc} */
+    @Override public int getCurrentLevel()  { return currentLevel; }
+
+    /** {@inheritDoc} */
+    @Override public int getMaxUnlockedLevel()  { return maxUnlockedLevel; }
+
 }

@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ import java.util.stream.Collectors;
 public class MapLoader {
     
     public MapData loadMap(final String filePath) throws IOException {
-        final String content = new String(Files.readAllBytes(Path.get(filePath)), StandardCharsets.UTF_8);
+        final String content = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
         return parseJson(content);
     }
 

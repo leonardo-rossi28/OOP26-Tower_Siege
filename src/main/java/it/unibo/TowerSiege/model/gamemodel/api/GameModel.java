@@ -4,11 +4,10 @@ import it.unibo.TowerSiege.model.tower.api.Tower;
 import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
 import it.unibo.TowerSiege.model.projectile.api.Projectile;
 import it.unibo.TowerSiege.model.enemy.api.Enemy;
+import it.unibo.TowerSiege.model.gamemap.api.GameMap;
 import it.unibo.TowerSiege.model.gamestate.GameState;
 import it.unibo.TowerSiege.model.score.api.Score;
 import it.unibo.TowerSiege.model.player.api.Player;
-
-import it.unibo.TowerSiege.model.gamemap.api.GameMap;
 
 import java.util.List;
 
@@ -146,7 +145,23 @@ public interface GameModel {
      */
     Player getPlayer();
 
+    /**
+     * Returns the current map
+     */
+    GameMap getMap();
 
+    /**
+     * Returns true when the game is VICTORY state and redirect countdown has expired
+     */
+    boolean isVictoryRedirectReady();
 
-    
+    /**
+     * Returns the currently loaded level number
+     */
+    int getCurrentLevel();
+
+    /**
+     * Returns the highest level the player has unlocked
+     */
+    int getMaxUnlockedLevel();
 }
