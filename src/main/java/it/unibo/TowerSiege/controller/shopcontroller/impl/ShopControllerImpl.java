@@ -6,8 +6,8 @@ import it.unibo.TowerSiege.model.tower.TowerType;
 public class ShopControllerImpl implements ShopController {
     private TowerType selectedTowerType=TowerType.BASIC;
 
-    @override
-    publi void setSelectedTowerType(TowerType type){
+    @Override
+    public void setSelectedTowerType(TowerType type){
         if(type != null){
             this.selectedTowerType=type;
         }
