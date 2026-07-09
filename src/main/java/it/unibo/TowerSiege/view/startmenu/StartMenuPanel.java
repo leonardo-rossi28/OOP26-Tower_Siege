@@ -54,7 +54,7 @@ public class StartMenuPanel extends JPanel {
         add(Box.createRigidArea(new Dimension(0, 10)));
         add(rules);
         add(Box.createRigidArea(new Dimension(0, 10)));
-        add(exit)
+        add(exit);
     }
     
     @Override
