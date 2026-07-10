@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.view.pausemenu.gameover;
+package it.unibo.TowerSiege.view.gameover;
 
 import it.unibo.TowerSiege.model.gamestate.GameState;
 
