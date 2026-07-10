@@ -76,6 +76,54 @@ public class LevelSelectPanel extends JPanel {
         }
 
         //Winding path
-        g2.setColor
+        g2.setColor(new Color(180, 150, 100));
+        g2.setStroke(new BasicStroke(18, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        drawPathLines(g2);
+
+        g2.setColor(new Color(210, 195, 155));
+        g2.setStoke(new BasicStroke(19, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        drawPathLines(g2);
+        g2.setStroke(new BasicStroke(1));
+
+        //Title
+        g2.setFont(new Font("Serif", Font.BOLD, 34));
+        g2.setColor(new Color(0, 0, 0, 140));
+        g2.drawString("MAPPA DEI LIVELLI", 222, 52);
+        g2.setColor(C_GOLD);+
+        g2.drawString("MAPPA DEI LIVELLI", 220, 50);
+
+        //Level nodes
+        final String[] names = {"Foresta", "Pianura", "Montagna"};
+        final String[] diff = {"Facile", "Medio", "Difficile"};
+        final Color[] cols = {new Color(40, 180, 80), new Color(200, 160, 40), new Color(200, 60, 60) };
+        final int maxU = model.getMaxUnlockedLevel()MatchException
+
+        for (int i = 0; i < 3; i++) {
+            final int cx = lvlPos[i][0];
+            final int cy = lvlPos[i][1];
+            final boolean unlocked = (i + 1) <= maxU;
+
+            if(unlocked) {
+                g2.setColor(new Color(cols[i].getRed(), cols[i].getGreen(), cols[i].getBlue(), 40));
+                g2.fillOval(cx - 50,  cy - 50, 100, 100);
+            }
+
+            g2.setColor(new Color(0, 0, 0, 60));
+            g2.fillOval( cx - 37, cy - 33, 74, 70);
+            g2.setColor(unlocked ? new Color(60, 50, 35) : new Color(50, 50, 50));
+            g2.fillOval( cx -35, cy - 35, 70, 70);
+            g2.setColor(unlocked ? cols[i] : new Color(80, 80, 80));
+            g2.setStroke(new BasicStroke(3));
+            g2.drawOval(cx - 35, cy - 35, 70, 70);
+            g2.setStroke(new BasicStroke(1));
+
+            g2.setFont(new Font("Serif", Font.BOLD, 36));
+            g2.setColor(unlocked ? C_GOLD : new Color(100, 100, 100));
+            FontMetrics fm = g2.getFontMetrics();
+            g2.drawString(names[i], cx - fm.stringWidth(names[i]) / 2, cy + 52);
+
+            
+
+        }
     }
 }
