@@ -40,6 +40,9 @@ public class PauseMenuDialog {
         btnResume.addActionListener(e -> gc.togglePause());
 
         final JButton btnRestart = createBtn("TORNA AL MENU", new Color(180, 40, 40));
+        btnRestart.addActionListener(e -> mc.backToMenu());
+
+        final JButton btnMenu = createBtn("TORNA AL MENU", new Color(180, 40, 40));
         btnMenu.addActionListener(e -> mc.backToMenu());
 
         p.add(Box.createRigidArea(new Dimension(0, 30)));
@@ -52,6 +55,17 @@ public class PauseMenuDialog {
         p.add(btnMenu);
 
         dialog.add(p);
+    }
+
+    private JButton createBtn(final String text, final Color bg) {
+        final JButton b = new JButton(text);
+        b.setFont(new Font("SansSerif", Font.BOLD, 14));
+        b.setForeground(Color.WHITE);
+        b.setBackground(bg);
+        b.setFocusPainted(false);
+        b.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+        b.setMaximumSize(new Dimension(200, 40));
+        return b;
     }
 
     public void show(){
