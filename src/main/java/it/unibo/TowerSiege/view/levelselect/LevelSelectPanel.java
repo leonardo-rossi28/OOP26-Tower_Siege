@@ -81,7 +81,7 @@ public class LevelSelectPanel extends JPanel {
         drawPathLines(g2);
 
         g2.setColor(new Color(210, 195, 155));
-        g2.setStoke(new BasicStroke(19, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        g2.setStroke(new BasicStroke(19, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         drawPathLines(g2);
         g2.setStroke(new BasicStroke(1));
 
@@ -118,12 +118,41 @@ public class LevelSelectPanel extends JPanel {
             g2.setStroke(new BasicStroke(1));
 
             g2.setFont(new Font("Serif", Font.BOLD, 36));
-            g2.setColor(unlocked ? C_GOLD : new Color(100, 100, 100));
+            g2.setColor(unlocked ? Color.WHITE : new Color(100, 100, 100));
             FontMetrics fm = g2.getFontMetrics();
+            g2.drawString("" + (i + 1), cx - fm.stringWidth("" + (i + 1)) / 2, cy + 12);
+
+            g2.setFont(new Font("Serif", Font.BOLD, 14));
+            g2.setColor(unlocked ? C_GOLD : new Color(100, 100, 100));
+            fm = g2.getFontMetrics();
             g2.drawString(names[i], cx - fm.stringWidth(names[i]) / 2, cy + 52);
 
-            
+            g2.setFont(new Font("Serif", Font.BOLD, 11));
+            g2.setColor(unlocked ? C_GOLD : new Color(100, 100, 100));
+            fm = g2.getFontMetrics();
+            g2.drawString(diff[i], cx - fm.stringWidth(diff[i]) / 2, cy + 66));
 
+            if (!unlocked) {
+                g2.setColor(new Color(160, 160, 160, 200));
+                g2.setFont(new Font("Serif", Font.BOLD, 28));
+                fm = g2.getFontMetrics();
+                g2.drawString("X", cx - fm.stringWidth("X") / 2, cy + 8);
+            }
         }
+
+        g2.setFont(new Font("Serif", Font.PLAIN, 12));
+        g2.setColor(new Color(200, 200, 200, 150));
+        g2.drawString("Clicca su un livello per giocare", w / 2 - 100, h - 20);
+    }
+
+    private void drawPathLines(final Graphics2D g2) {
+        g2.drawLine(lvlPos[0][0], lvlPos[0][1], 220, 380);
+        g2.drawLine(220, 380, 280, 300);
+        g2.drawLine(280, 300, 340, 270);
+        g2.drawLine(340, 270, lvlPos[1][0], lvlPos[1][1]);
+        g2.drawLine(lvlPos[1][0], lvlPos[1][1], 480, 270);
+        g2.drawLine(480, 380, 280, 300);
+        g2.drawLine(540, 380, 280, 300);
+        g2.drawLine(600, 370, lvlPos[2][0], lvlPos[2][1]);
     }
 }
