@@ -12,5 +12,5 @@ import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
 import it.unibo.TowerSiege.model.gamestate.GameState;
 
 public class MainControllerImpl implements MainController {
-
+    
 }
