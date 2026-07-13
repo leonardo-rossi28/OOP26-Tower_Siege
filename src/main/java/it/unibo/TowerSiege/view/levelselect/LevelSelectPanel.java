@@ -89,14 +89,14 @@ public class LevelSelectPanel extends JPanel {
         g2.setFont(new Font("Serif", Font.BOLD, 34));
         g2.setColor(new Color(0, 0, 0, 140));
         g2.drawString("MAPPA DEI LIVELLI", 222, 52);
-        g2.setColor(C_GOLD);+
+        g2.setColor(C_GOLD);
         g2.drawString("MAPPA DEI LIVELLI", 220, 50);
 
         //Level nodes
         final String[] names = {"Foresta", "Pianura", "Montagna"};
         final String[] diff = {"Facile", "Medio", "Difficile"};
         final Color[] cols = {new Color(40, 180, 80), new Color(200, 160, 40), new Color(200, 60, 60) };
-        final int maxU = model.getMaxUnlockedLevel()MatchException
+        final int maxU = model.getMaxUnlockedLevel();
 
         for (int i = 0; i < 3; i++) {
             final int cx = lvlPos[i][0];
@@ -130,7 +130,7 @@ public class LevelSelectPanel extends JPanel {
             g2.setFont(new Font("Serif", Font.BOLD, 11));
             g2.setColor(unlocked ? C_GOLD : new Color(100, 100, 100));
             fm = g2.getFontMetrics();
-            g2.drawString(diff[i], cx - fm.stringWidth(diff[i]) / 2, cy + 66));
+            g2.drawString(diff[i], cx - fm.stringWidth(diff[i]) / 2, cy + 66);
 
             if (!unlocked) {
                 g2.setColor(new Color(160, 160, 160, 200));
