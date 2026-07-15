@@ -5,6 +5,10 @@ plugins {
     id("org.danilopianini.gradle-java-qa") version "1.188.0"
 }
 
+repositories { // Where to search for dipendencies
+    mavenCentral()
+}
+
 tasks.withType<Javadoc>().configureEach {
     isFailOnError = false
 }
