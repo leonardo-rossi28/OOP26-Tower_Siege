@@ -9,6 +9,13 @@ repositories { // Where to search for dipendencies
     mavenCentral()
 }
 
+dependencies {
+    compileOnly("com.github.spotbugs:spotbugs-annotations:4.9.8")
+    val jUnitVersion = "5.11.1"
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+}
+
 tasks.withType<Javadoc>().configureEach {
     isFailOnError = false
 }
