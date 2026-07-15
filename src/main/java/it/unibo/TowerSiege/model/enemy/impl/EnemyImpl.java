@@ -4,6 +4,9 @@ import java.util.List;
 import it.unibo.TowerSiege.model.enemy.api.Enemy;
 import it.unibo.TowerSiege.model.enemy.EnemyType;
 
+/**
+ * Enemy with waypoint movement.
+ */
 public class EnemyImpl implements Enemy {
     
     private final EnemyType type;
@@ -24,13 +27,14 @@ public class EnemyImpl implements Enemy {
     private boolean coinAwarded;
 
     /**
+     * Creates a new EnemyImpl of the given type scaled to the given number.
      * 
      * @param type enemy type
      * @param waveNumber number of the current wave
      */
     public EnemyImpl(EnemyType type, int waveNumber) {
         this.type = type;
-        this.maxHealth = type.getHealth() + (waveNumber *8);
+        this.maxHealth = type.getHealth() + (waveNumber * 8);
         this.health = this.maxHealth;
         this.baseSpeed = type.getSpeed() * 1.0;
         this.reward = type.getReward();
@@ -139,7 +143,7 @@ public class EnemyImpl implements Enemy {
      * 
      * @return speed for ticks
      */
-    public double getEffectiveSpeed() {
+    private double getEffectiveSpeed() {
         return baseSpeed * slowMultiplier;
     }
 

@@ -32,7 +32,7 @@ public class WaveImpl implements Wave {
     public List<Enemy> generateWave(int waveNumber) {
         final List<Enemy> enemies = new ArrayList<>();
         final int numEnemies = 4 + waveNumber * 3;
-        for(int i = 0; i < numEnemies; i++) {
+        for (int i = 0; i < numEnemies; i++) {
             EnemyType type = EnemyType.BASIC;
             if(waveNumber >= 2 && i % 3 == 0) {
                 type = EnemyType.FAST;

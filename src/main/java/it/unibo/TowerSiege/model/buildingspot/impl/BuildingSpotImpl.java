@@ -21,7 +21,7 @@ public class BuildingSpotImpl implements BuildingSpot{
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
     public int getCol() {
@@ -29,7 +29,7 @@ public class BuildingSpotImpl implements BuildingSpot{
     }
 
      /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
     public int getRow() {
@@ -37,7 +37,7 @@ public class BuildingSpotImpl implements BuildingSpot{
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
     public double getPixelCenterX() {
@@ -45,7 +45,7 @@ public class BuildingSpotImpl implements BuildingSpot{
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
     public double getPixelCenterY() {
@@ -53,7 +53,7 @@ public class BuildingSpotImpl implements BuildingSpot{
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
     public boolean isOccupied() {
@@ -61,7 +61,7 @@ public class BuildingSpotImpl implements BuildingSpot{
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
     public Tower getTower() {
@@ -69,7 +69,7 @@ public class BuildingSpotImpl implements BuildingSpot{
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
     public void setTower(Tower tower) {

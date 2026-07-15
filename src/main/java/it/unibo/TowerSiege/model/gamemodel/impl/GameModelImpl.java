@@ -36,7 +36,7 @@ public class GameModelImpl implements GameModel {
     private int fireCooldownTicks;
     private int freezeCooldownTicks;
     private static final int FIRE_COOLDOWN = 900; //15 seconds
-    private static final int FREEZE_COOLDOWN = 600; //10 seconds
+    private static final int FREEZE_COOLDOWN = 480; //10 seconds
     private int fireAnimTicks;
     private int freezeAnimTicks;
     private int victoryDelayTicks=-1;
@@ -188,6 +188,7 @@ public class GameModelImpl implements GameModel {
                     final Projectile p = tower.attack(enemy);
                     if(p != null) {
                         projectiles.add(p);
+                        break;
                     }
                 }
             }
@@ -216,7 +217,7 @@ public class GameModelImpl implements GameModel {
             if(!e.isAlive()){
                 if(!e.isReachedEnd() && !e.isCoinAwarded()){
                     player.addCoins(e.getReward());
-                    score.addPoints(e.getReward()*10);
+                    score.addPoints(e.getReward() * 10);
                     e.setCoinAwarded(true);
                 }
                 return true;
@@ -302,7 +303,7 @@ public class GameModelImpl implements GameModel {
     @Override
     public void castGlobalFreeze() {
         if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { return;}
-        for  (final Enemy e : activeEnemies) {
+        for (final Enemy e : activeEnemies) {
             e.applySlow(0.3, 180);
         }
         freezeCooldownTicks = FREEZE_COOLDOWN;

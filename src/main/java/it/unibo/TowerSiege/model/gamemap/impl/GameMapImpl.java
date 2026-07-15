@@ -130,7 +130,9 @@ public class GameMapImpl implements GameMap{
      */
     @Override
     public BuildingSpot getSpotAt(int col, int row) {
-        if (col < 0 || col >= GameConstants.COLS || row < 0 || row >= GameConstants.ROWS) return null;
+        if (col < 0 || col >= GameConstants.COLS || row < 0 || row >= GameConstants.ROWS) {
+            return null;
+        }
         for (BuildingSpot spot : buildingSpots) {
             if (spot.getCol() == col && spot.getRow() == row) {
                 return spot;

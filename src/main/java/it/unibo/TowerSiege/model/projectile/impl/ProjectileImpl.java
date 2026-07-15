@@ -16,7 +16,7 @@ public class ProjectileImpl implements Projectile{
     private final Enemy target;
     private double x;
     private double y;
-    private static final double speed=15.0;
+    private static final double SPEED = 15.0;
     private boolean alive=true;
 
 
@@ -49,15 +49,15 @@ public class ProjectileImpl implements Projectile{
         final double dy=ty-y;
         final double dist = Math.sqrt(dx*dx + dy*dy);
 
-        if( dist <= speed){
+        if( dist <= SPEED){
             target.takeDamage(source.getDamage());
             if(source.getType()==TowerType.ICE){
                 target.applySlow(0.5,20);
             }
             this.alive=false;
         }else{
-            this.x +=(dx/dist)*speed;
-            this.y +=(dy/dist)*speed;
+            this.x +=(dx/dist)*SPEED;
+            this.y +=(dy/dist)*SPEED;
         }
         
         

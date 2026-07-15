@@ -119,7 +119,7 @@ public class TowerImpl implements Tower{
      */
     @Override
      public int getDamage(){
-        return type.getDamage() + (level -1)*2;
+        return type.getDamage() + (level -1) * 2;
      }
     
     /**
