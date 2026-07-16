@@ -329,7 +329,7 @@ public class GamePanel extends JPanel {
 
         g2.setFont(new Font("SansSerif", Font.PLAIN, 12));
         g2.setColor(Color.LIGHT_GRAY);
-        g2.drawString("W=Avvia Ondata | F=Fuoco (" + (model.getFireCooldown() / 60) + "s) | G=Gelo (" + (model.getFreezeCooldown() / 60) + "s) | ESC=Pausa", 20, 25);
+        g2.drawString("W=Avvia Ondata | F=Fuoco (" + (model.getFireCooldown() / 60) + "s) | G=Gelo (" + (model.getFreezeCooldown() / 60) + "s) | ESC=Pausa", 20, 55);
         
         // Shop
         final TowerType[] types = TowerType.values();

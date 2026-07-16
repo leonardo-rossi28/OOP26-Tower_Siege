@@ -36,7 +36,7 @@ public class LevelSelectPanel extends JPanel {
                 for (int i = 0; i < 3; i++) {
                     final int dx = e.getX() - lvlPos[i][0];
                     final int dy = e.getY() - lvlPos[i][1];
-                    if (dx * dx + dy < 40 * 40 && (i + 1) <= model.getMaxUnlockedLevel()) {
+                    if (dx * dx + dy * dy < 40 * 40 && (i + 1) <= model.getMaxUnlockedLevel()) {
                         controller.startLevel(i + 1);
                         break;
                     }
@@ -151,8 +151,8 @@ public class LevelSelectPanel extends JPanel {
         g2.drawLine(280, 300, 340, 270);
         g2.drawLine(340, 270, lvlPos[1][0], lvlPos[1][1]);
         g2.drawLine(lvlPos[1][0], lvlPos[1][1], 480, 270);
-        g2.drawLine(480, 380, 280, 300);
-        g2.drawLine(540, 380, 280, 300);
+        g2.drawLine(480, 270, 540, 300);
+        g2.drawLine(540, 320, 600, 370);
         g2.drawLine(600, 370, lvlPos[2][0], lvlPos[2][1]);
     }
 }

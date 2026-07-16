@@ -29,7 +29,7 @@ public class ImageLoader {
         if (loaded) return;
         try {
             final ClassLoader c1 = ImageLoader.class.getClassLoader();
-            final String b = "Imafe/Imafes pack/Assets/";
+            final String b = "Images/Images pack/Assets/";
 
             spTowerBasic    = loadImg(c1, b + "Structures/Towers/magic_crystal_tower.png");
             spTowerSniper   = loadImg(c1,b + "Characters/Heroes/knight_hero.png");
@@ -41,8 +41,9 @@ public class ImageLoader {
             spEnemyTank     = loadImg(c1, b + "Enemies/Orcs/orc_brute.png");
 
             imgTree = loadImg(c1, b + "Props/Nature/pine_tree.png");
-            imgBush = loadImg(c1, b + "Props/Nature/bush-round.png");
+            imgBush = loadImg(c1, b + "Props/Nature/bush_round.png");
             imgRock = loadImg(c1, b + "Props/Nature/rock_bush_cluster.png");
+            imgRockBush = loadImg(c1, b + "Props/Nature/rock_bush_cluster.png");
             loaded = true;
 
         } catch (Exception e) {

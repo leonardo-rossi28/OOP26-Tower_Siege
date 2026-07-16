@@ -50,7 +50,7 @@ public class PauseMenuDialog {
         p.add(Box.createRigidArea(new Dimension(0, 40)));
         p.add(btnResume);
         p.add(Box.createRigidArea(new Dimension(0, 15)));
-        p.add(btnResume);
+        p.add(btnRestart);
         p.add(Box.createRigidArea(new Dimension(0, 15)));
         p.add(btnMenu);
 
