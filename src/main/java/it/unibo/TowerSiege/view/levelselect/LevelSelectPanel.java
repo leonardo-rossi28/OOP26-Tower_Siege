@@ -36,7 +36,7 @@ public class LevelSelectPanel extends JPanel {
                 for (int i = 0; i < 3; i++) {
                     final int dx = e.getX() - lvlPos[i][0];
                     final int dy = e.getY() - lvlPos[i][1];
-                    if (dx * dx + dy * dy < 40 * 40 && (i + 1) <= model.getMaxUnlockedLevel()) {
+                    if (dx * dx + dy * dy < 40 * 40) {
                         controller.startLevel(i + 1);
                         break;
                     }
@@ -96,48 +96,36 @@ public class LevelSelectPanel extends JPanel {
         final String[] names = {"Foresta", "Pianura", "Montagna"};
         final String[] diff = {"Facile", "Medio", "Difficile"};
         final Color[] cols = {new Color(40, 180, 80), new Color(200, 160, 40), new Color(200, 60, 60) };
-        final int maxU = model.getMaxUnlockedLevel();
-
         for (int i = 0; i < 3; i++) {
             final int cx = lvlPos[i][0];
             final int cy = lvlPos[i][1];
-            final boolean unlocked = (i + 1) <= maxU;
 
-            if(unlocked) {
-                g2.setColor(new Color(cols[i].getRed(), cols[i].getGreen(), cols[i].getBlue(), 40));
-                g2.fillOval(cx - 50,  cy - 50, 100, 100);
-            }
+            g2.setColor(new Color(cols[i].getRed(), cols[i].getGreen(), cols[i].getBlue(), 40));
+            g.fillOval(cx - 50, cy - 50, 100, 100);
 
             g2.setColor(new Color(0, 0, 0, 60));
             g2.fillOval( cx - 37, cy - 33, 74, 70);
-            g2.setColor(unlocked ? new Color(60, 50, 35) : new Color(50, 50, 50));
+            g2.setColor(new Color(60, 50, 35));
             g2.fillOval( cx -35, cy - 35, 70, 70);
-            g2.setColor(unlocked ? cols[i] : new Color(80, 80, 80));
+            g2.setColor(cols[i]);
             g2.setStroke(new BasicStroke(3));
             g2.drawOval(cx - 35, cy - 35, 70, 70);
             g2.setStroke(new BasicStroke(1));
 
             g2.setFont(new Font("Serif", Font.BOLD, 36));
-            g2.setColor(unlocked ? Color.WHITE : new Color(100, 100, 100));
+            g2.setColor(Color.WHITE);
             FontMetrics fm = g2.getFontMetrics();
             g2.drawString("" + (i + 1), cx - fm.stringWidth("" + (i + 1)) / 2, cy + 12);
 
             g2.setFont(new Font("Serif", Font.BOLD, 14));
-            g2.setColor(unlocked ? C_GOLD : new Color(100, 100, 100));
+            g2.setColor(C_GOLD);
             fm = g2.getFontMetrics();
             g2.drawString(names[i], cx - fm.stringWidth(names[i]) / 2, cy + 52);
 
             g2.setFont(new Font("Serif", Font.BOLD, 11));
-            g2.setColor(unlocked ? C_GOLD : new Color(100, 100, 100));
+            g2.setColor(cols[i]);
             fm = g2.getFontMetrics();
             g2.drawString(diff[i], cx - fm.stringWidth(diff[i]) / 2, cy + 66);
-
-            if (!unlocked) {
-                g2.setColor(new Color(160, 160, 160, 200));
-                g2.setFont(new Font("Serif", Font.BOLD, 28));
-                fm = g2.getFontMetrics();
-                g2.drawString("X", cx - fm.stringWidth("X") / 2, cy + 8);
-            }
         }
 
         g2.setFont(new Font("Serif", Font.PLAIN, 12));
