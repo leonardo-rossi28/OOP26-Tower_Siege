@@ -3,9 +3,9 @@ package it.unibo.TowerSiege.commons.savemanager;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 /**
  * Manages the persistence of core game progression data into a text-based file.
