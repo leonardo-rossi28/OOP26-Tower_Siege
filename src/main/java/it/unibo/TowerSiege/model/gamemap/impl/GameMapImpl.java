@@ -17,6 +17,7 @@ public class GameMapImpl implements GameMap{
 
     private final List<double[]> pixelWaypoints;
     private final List<BuildingSpot> buildingSpots;
+    private final List<double[]> decorations;
 
     private final int[][] grid;
 
@@ -27,6 +28,7 @@ public class GameMapImpl implements GameMap{
      * @param backgroundPath background path image
      * @param pathGridCoords [col][row] waypoints for enemy path
      * @param spotGridCoords [col][row] list for building spots
+     * @param decorationCoords list of [col,row,type] positions for decorations
      */
     public GameMapImpl(int width, int height, String backgroundPath, List<double[]> pathGridCoords, List <double[]> spotGridCoords){
         this.width = width;
@@ -36,6 +38,7 @@ public class GameMapImpl implements GameMap{
         this.grid = new int[GameConstants.ROWS][GameConstants.COLS];
         this.pixelWaypoints = new ArrayList<>();
         this.buildingSpots = new ArrayList<>();
+        this.decorations= decorationCoords != null ? new ArrayList<>(decorationCoords):new ArrayList<>();
 
         if (pathGridCoords != null) {
             for (double[] coord : pathGridCoords) {
@@ -161,6 +164,14 @@ public class GameMapImpl implements GameMap{
         if (spot != null) {
             spot.setTower(null);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List <double[]> getDecorations(){
+        return decorations;
     }
 }
 

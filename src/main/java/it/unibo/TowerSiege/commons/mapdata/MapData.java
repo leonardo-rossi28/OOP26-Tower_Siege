@@ -8,6 +8,7 @@ public class MapData {
     private String background;
     private List<double[]> waypoints = new ArrayList<>();
     private List<double[]> buildingSpots = new ArrayList<>();
+    private List<double[]> decorations = new ArrayList<>();
 
     public MapData() {}
     public int getWidth() {
@@ -43,5 +44,12 @@ public class MapData {
     }
     public void setBuildingSpots(List<double[]> buildingSpots){
         this.buildingSpots = buildingSpots;
+    }
+
+    public List<double[]> getDecorations(){ 
+        return decorations;
+    }
+    public void setDecorations(List<double[]> decorations){
+        this.decorations=decorations;
     }
 }

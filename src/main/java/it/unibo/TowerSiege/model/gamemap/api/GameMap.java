@@ -43,6 +43,14 @@ public interface GameMap {
     */
     List<BuildingSpot> getBuildingSpots();
 
+
+
+    /**
+     * Returns the list of all decorations on this map.
+     * Each decaration is represented as [col,row,type] where type: 0=tree, 1=bush, 2 rock, 3=rock_bush
+     * @return decorations list 
+     */
+    List<double[]> getDecorations();
     /**
      * Returns the grid pattern
      * Values: 0 = grass, 1= path, 2= buildable spot.

@@ -17,6 +17,7 @@ import it.unibo.TowerSiege.model.wave.api.Wave;
 import it.unibo.TowerSiege.model.wave.impl.WaveImpl;
 import it.unibo.TowerSiege.model.score.api.Score;
 import it.unibo.TowerSiege.model.score.impl.ScoreImpl;
+import it.unibo.TowerSiege.commons.soundmanager.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +91,7 @@ public class GameModelImpl implements GameModel {
                 data.getBackground(),
                 data.getWaypoints(),
                 data.getBuildingSpots());
+                data.getDecorations();
             } else{
                 final List<double[]> wp = new ArrayList<>();
                 wp.add(new double[]{0, 300});
@@ -197,10 +199,12 @@ public class GameModelImpl implements GameModel {
         //Win / lose check
         if(!player.isBaseAlive()){
             state=GameState.DEFEAT;
+            SoundManager.playDefeat();
         } else if (waveInProgress && spawnQueue.isEmpty() && getAliveEnemyCount()==0) {
             waveInProgress=false;
             if(currentWaveIndex >= wave.getTotalWaves()){
                 state= GameState.VICTORY;
+                SoundManager.playVictory();
                 victoryDelayTicks=180; 
                 if(currentLevel < 3 && currentLevel >= maxUnlockedLevel){
                     maxUnlockedLevel = currentLevel + 1;
@@ -219,6 +223,7 @@ public class GameModelImpl implements GameModel {
                     player.addCoins(e.getReward());
                     score.addPoints(e.getReward() * 10);
                     e.setCoinAwarded(true);
+                    soundManager.playEnemyKilled();
                 }
                 return true;
             }

@@ -50,7 +50,7 @@ public class MapLoader {
 
         mapData.setWaypoints(extractDoubleArray2D(content, "waypoints"));
         mapData.setBuildingSpots(extractDoubleArray2D(content, "buildingSpots"));
-
+        mapData.setDecorations(extractDoubleArray2D(content,"decorations"));
         return mapData;
     }
 
