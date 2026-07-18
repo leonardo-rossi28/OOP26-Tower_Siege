@@ -67,7 +67,7 @@ public class LevelSelectPanel extends JPanel {
         for (int i = 0; i < 25; i++) {
             final int dx = r.nextInt(w - 40) + 20;
             final int dy = r.nextInt(h - 60) + 20;
-            final Image[] imgs = { ImageLoader.imgTree, ImageLoader.imgBush, ImageLoader.imgRock, ImageLoader.imgRockBush };
+            final Image[] imgs = { ImageLoader.getImgTree(), ImageLoader.getImgBush(), ImageLoader.getImgRock(), ImageLoader.getImgRockBush() };
             final Image di = imgs[r.nextInt(4)];
             final int ds = 25 + r.nextInt(20);
             if (di != null) {

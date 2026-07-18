@@ -201,11 +201,11 @@ public class GamePanel extends JPanel {
             g2.setColor(new Color(0, 0, 0, 80));
             g2.fillOval(cx -20, cy -10, 40, 20);
 
-            Image img = ImageLoader.spTowerBasic;
+            Image img = ImageLoader.getSpTowerBasic();
             switch (t.getType()) {
-                case SNIPER: img = ImageLoader.spTowerSniper; break;
-                case RAPID: img = ImageLoader.spTowerRapid; break;
-                case ICE: img = ImageLoader.spTowerIce; break;
+                case SNIPER: img = ImageLoader.getSpTowerSniper(); break;
+                case RAPID: img = ImageLoader.getSpTowerRapid(); break;
+                case ICE: img = ImageLoader.getSpTowerIce(); break;
                 default: break;
             }
 
@@ -232,10 +232,10 @@ public class GamePanel extends JPanel {
             g2.setColor(new Color(0, 0, 0, 80));
             g2.fillOval(ex + 10, ey + 40, 30, 15);
 
-            Image img = ImageLoader.spEnemyBasic;
+            Image img = ImageLoader.getSpEnemyBasic();
             switch (e.getType()) {
-                case FAST: img = ImageLoader.spEnemyFast; break;
-                case TANK: img = ImageLoader.spEnemyTank; break;
+                case FAST: img = ImageLoader.getSpEnemyFast(); break;
+                case TANK: img = ImageLoader.getSpEnemyTank(); break;
                 default: break;
             }
 
