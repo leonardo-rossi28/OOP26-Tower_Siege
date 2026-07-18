@@ -122,5 +122,6 @@ public final class ImageLoader {
     /** @return rock image */
     public static Image getImgRock() { return imgRock;}
     /** @return rock bush image */
+    public static Image getImgRockBush() { return imgRockBush; }
     
 }
