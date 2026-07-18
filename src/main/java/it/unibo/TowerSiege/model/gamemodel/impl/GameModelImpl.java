@@ -90,13 +90,13 @@ public class GameModelImpl implements GameModel {
                 data.getHeight(),
                 data.getBackground(),
                 data.getWaypoints(),
-                data.getBuildingSpots());
-                data.getDecorations();
+                data.getBuildingSpots(),
+                data.getDecorations());
             } else{
                 final List<double[]> wp = new ArrayList<>();
                 wp.add(new double[]{0, 300});
                 wp.add(new double[]{800, 300});
-                this.map = new GameMapImpl(800, 600, "", wp, new ArrayList<>());
+                this.map = new GameMapImpl(800, 600, "", wp, new ArrayList<>(), new ArrayList<>());
 
             }
         }
@@ -223,7 +223,7 @@ public class GameModelImpl implements GameModel {
                     player.addCoins(e.getReward());
                     score.addPoints(e.getReward() * 10);
                     e.setCoinAwarded(true);
-                    soundManager.playEnemyKilled();
+                    SoundManager.playEnemyKilled();
                 }
                 return true;
             }

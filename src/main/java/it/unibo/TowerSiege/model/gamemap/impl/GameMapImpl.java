@@ -10,15 +10,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Represents the grid-based game map containing the enemy path,
+ * building spots and placed towers
+ */
+
 public class GameMapImpl implements GameMap{
+    
     private final int width;
     private final int height;
     private final String backgroundPath;
 
+    /** Pixel-center waypoints for enemy movements. */
     private final List<double[]> pixelWaypoints;
     private final List<BuildingSpot> buildingSpots;
     private final List<double[]> decorations;
 
+    /** Grid: 0 = Grass, 1 = Path, 2 = Buildable Spot. */
     private final int[][] grid;
 
     /**
@@ -30,7 +38,7 @@ public class GameMapImpl implements GameMap{
      * @param spotGridCoords [col][row] list for building spots
      * @param decorationCoords list of [col,row,type] positions for decorations
      */
-    public GameMapImpl(int width, int height, String backgroundPath, List<double[]> pathGridCoords, List <double[]> spotGridCoords){
+    public GameMapImpl(final int width, final int height, final String backgroundPath, final List<double[]> pathGridCoords, final List <double[]> spotGridCoords, final List<double[]> decorationCoords){
         this.width = width;
         this.height = height;
         this.backgroundPath = backgroundPath != null ? backgroundPath : "";
