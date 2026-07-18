@@ -39,8 +39,8 @@ public class PauseMenuDialog {
         final JButton btnResume = createBtn("RIPRENDI", new Color(40, 160, 60));
         btnResume.addActionListener(e -> gc.togglePause());
 
-        final JButton btnRestart = createBtn("TORNA AL MENU", new Color(180, 40, 40));
-        btnRestart.addActionListener(e -> mc.backToMenu());
+        final JButton btnRestart = createBtn("RIAVVIA LIVELLO", new Color(180, 40, 40));
+        btnRestart.addActionListener(e -> gc.restartGame());
 
         final JButton btnMenu = createBtn("TORNA AL MENU", new Color(180, 40, 40));
         btnMenu.addActionListener(e -> mc.backToMenu());

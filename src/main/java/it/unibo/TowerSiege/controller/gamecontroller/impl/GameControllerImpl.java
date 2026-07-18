@@ -39,9 +39,7 @@ public class GameControllerImpl implements GameController{
     }
 
     public void startLoop() {
-        if (!gameLoop.isRunning()) {
             gameLoop.start();
-        }
     }
 
     public void stopLoop() {
