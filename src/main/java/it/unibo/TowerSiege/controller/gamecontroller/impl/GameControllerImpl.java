@@ -10,15 +10,23 @@ import it.unibo.TowerSiege.model.gamestate.GameState;
 import it.unibo.TowerSiege.view.gameview.api.GameView;
 import javax.swing.Timer;
 
-public class GameControllerImpl implements GameController{
+/**
+ * GameControllerImpl
+ */
+public final class GameControllerImpl implements GameController{
     private static final int TICK_DELAY_MS = 16;
     private final GameModel model;
     private final GameView view;
     private final MainController mainController;
 
-    private Timer gameLoop;
+    private final Timer gameLoop;
 
-    public GameControllerImpl(GameModel model, GameView view, MainController mainController, MapController mapController, ShopController shopController, AbilityController abilityController) {
+    public GameControllerImpl(final GameModel model,
+                              final GameView view,
+                              final MainController mainController,
+                              final MapController mapController,
+                              final ShopController shopController,
+                              final AbilityController abilityController) {
         this.model = model;
         this.view = view;
         this.mainController = mainController;
@@ -38,16 +46,25 @@ public class GameControllerImpl implements GameController{
         });
     }
 
+    /**
+     * Starts the loop.
+     */
     public void startLoop() {
             gameLoop.start();
     }
 
+    /**
+     * Stops the loop.
+     */
     public void stopLoop() {
         if (!gameLoop.isRunning()) {
             gameLoop.start();
         }
     }
 
+    /**
+     * toggles the game pause.
+     */
     @Override
     public void togglePause() {
         if (model.getState() == GameState.PLAYING) {
@@ -59,6 +76,9 @@ public class GameControllerImpl implements GameController{
         }
     }
 
+    /**
+     * Restarts the game.
+     */
     @Override
     public void restartGame() {
         model.start();

@@ -168,8 +168,8 @@ public class EnemyImpl implements Enemy {
             currentWaypointIndex++;
             return currentWaypointIndex >= waypoints.size();
         } else {
-            pixelX += (dx/dist) * step;
-            pixelY += (dy/dist) * step;
+            pixelX += dx/dist * step;
+            pixelY += dy/dist * step;
         }
         return false;
     }

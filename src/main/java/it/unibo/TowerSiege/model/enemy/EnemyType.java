@@ -10,7 +10,7 @@ public enum EnemyType {
     private final int reward;
     private final String description;
 
-    EnemyType(int health, int speed, int reward, String description) {
+    EnemyType(final int health, final int speed, final int reward, final String description) {
         this.health = health;
         this.speed = speed;
         this.reward = reward;

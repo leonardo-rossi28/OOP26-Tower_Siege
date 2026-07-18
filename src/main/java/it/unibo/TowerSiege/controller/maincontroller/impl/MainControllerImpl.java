@@ -12,7 +12,10 @@ import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
 import it.unibo.TowerSiege.model.gamestate.GameState;
 import it.unibo.TowerSiege.view.gameview.api.GameView;
 
-public class MainControllerImpl implements MainController {
+/**
+ * MainControllerImpl
+ */
+public final class MainControllerImpl implements MainController {
 
     private final GameModel model;
     private final GameView view;
@@ -21,7 +24,12 @@ public class MainControllerImpl implements MainController {
     private final ShopController shopController;
     private final AbilityController abilityController;
 
-    public MainControllerImpl(GameModel model, GameView view) {
+    /**
+     * Main Controller cunstructor.
+     * @param model the game model
+     * @param view the game view
+     */
+    public MainControllerImpl(final GameModel model, final GameView view) {
         this.model = model;
         this.view = view;
         this.shopController = new ShopControllerImpl();
@@ -30,19 +38,27 @@ public class MainControllerImpl implements MainController {
         this.gameControllerImpl = new GameControllerImpl(model, view, this, mapController, shopController, abilityController);
     }
 
+    /**
+     * Starts the game.
+     */
     @Override
     public void start() {
         view.displayWelcome();
         view.showStartMenu(this);
     }
 
+    /**
+     * Begins the game
+     */
     @Override
     public void beginGame() {
         view.closeGameFrame();
         model.setState(GameState.LEVEL_SELECT);
         view.showLevelSelect(this, model);
     }
-
+    /**
+     * Starts the level
+     */
     @Override
     public void startLevel(int level) {
         model.loadLevel(level);
@@ -51,6 +67,9 @@ public class MainControllerImpl implements MainController {
         gameControllerImpl.startLoop();
     }
 
+    /**
+     * Bring back to menu.
+     */
     @Override
     public void backToMenu() {
         gameControllerImpl.stopLoop();
@@ -59,6 +78,9 @@ public class MainControllerImpl implements MainController {
         view.showStartMenu(this);
     }
 
+    /**
+     * Brings back to level selection.
+     */
     @Override
     public void backToLevelSelect() {
         gameControllerImpl.stopLoop();

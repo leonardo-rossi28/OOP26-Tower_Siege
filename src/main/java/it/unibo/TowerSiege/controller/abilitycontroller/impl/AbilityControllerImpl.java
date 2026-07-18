@@ -4,11 +4,15 @@ import it.unibo.TowerSiege.controller.abilitycontroller.api.AbilityController;
 import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
 import it.unibo.TowerSiege.model.gamestate.GameState;
 
-public class AbilityControllerImpl implements AbilityController {
+public final class AbilityControllerImpl implements AbilityController {
 
     private final GameModel model;
 
-    public AbilityControllerImpl(GameModel model) {
+    /**
+     * Constructs a new AbilityControllerImpl
+     * @param model the game model
+     */
+    public AbilityControllerImpl(final GameModel model) {
         this.model = model;
     }
 

@@ -8,20 +8,31 @@ import it.unibo.TowerSiege.model.gamestate.GameState;
 import it.unibo.TowerSiege.model.tower.api.Tower;
 import it.unibo.TowerSiege.model.tower.impl.TowerImpl;
 
-public class MapControllerImpl implements MapController{
+public final class MapControllerImpl implements MapController{
     private final GameModel model;
     private final ShopController shopController;
     
-    public MapControllerImpl(GameModel model, ShopController shopController){
+    /**
+     * MapController constructor.
+     * @param model the game model
+     * @param shopController the game shopcontroller
+     */
+    public MapControllerImpl(final GameModel model, final ShopController shopController){
         this.model = model;
         this.shopController = shopController;
     }
     
+    /**
+     * Interacts with a given spot
+     * @param spot the spot
+     */
     @Override
-    public void interactWithSpot(BuildingSpot spot){
-        if (model.getState() != GameState.PLAYING || spot == null) { return; }
+    public void interactWithSpot(final BuildingSpot spot){
+        if (model.getState() != GameState.PLAYING || spot == null) { 
+            return; 
+        }
         if (!spot.isOccupied()) {
-            Tower t = new TowerImpl(shopController.getSelectedTowerType());
+            final Tower t = new TowerImpl(shopController.getSelectedTowerType());
             model.buildTowerOnSpot(t, spot);
         }  
         else
@@ -30,9 +41,15 @@ public class MapControllerImpl implements MapController{
         }
     }
 
+    /**
+     * Sells a tower in a given spot.
+     * @param spot the spot
+     */
     @Override
-    public void sellTowerAtSpot(BuildingSpot spot){
-        if (model.getState() != GameState.PLAYING || spot == null) { return; }
+    public void sellTowerAtSpot(final BuildingSpot spot){
+        if (model.getState() != GameState.PLAYING || spot == null) {
+            return;
+        }
         if (spot.isOccupied()) {
             model.sellTower(spot);
         }

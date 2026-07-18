@@ -5,12 +5,17 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * Utility Class for managing and playing sound effects.
  */
 public final class SoundManager {
     
+    private static final Logger LOGGER = Logger.getLogger(SoundManager.class.getName())
     private static final float DEFAULT_VOLUME = 0.5f;
     private static float volume = DEFAULT_VOLUME;
 
@@ -41,8 +46,8 @@ public final class SoundManager {
 
                 clip.start();
             }
-        } catch (Exception e) {
-            // Silent fail if sound cannot be played
+        } catch (final UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            LOGGER.fine("Could not play sound " + resourcePath + ": " + e.getMessage());
         }
     }
 
