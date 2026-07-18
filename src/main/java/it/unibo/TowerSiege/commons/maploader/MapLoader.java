@@ -1,6 +1,7 @@
 package it.unibo.TowerSiege.commons.maploader;
 
 import it.unibo.TowerSiege.commons.mapdata.MapData;
+import it.unibo.TowerSiege.commons.gameconstants.GameConstants;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,32 +22,47 @@ import java.util.stream.Collectors;
  */
 
 public class MapLoader {
+
+    private static final Logger LOGGER = Logger.getLogger(MapLoader.class.getName());
+
+    /**
+     * Loads a map from a file path
+     * @param filePath the path to the map file
+     * @return the parsed map data
+     * @throws IOException if an error occurs reading the file
+     */
     
     public MapData loadMap(final String filePath) throws IOException {
         final String content = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
         return parseJson(content);
     }
 
+    /**
+     * Loads a map from the classpath
+     * @param resourcePath the path to the resource
+     * @return the parsed map data, or null if not found
+     */
+
     public MapData loadFromClasspath(final String resourcePath) {
         try (InputStream is = getClass().getClassLoader().getResourceAsStream(resourcePath)) {
             if (is == null) {
-                System.err.println("Resource not found on classpath: " + resourcePath);
+               LOGGER.severe("Resource not found on classpath:" + resourcePath);
                 return null;
             }
             final String content = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))
                 .lines()
                 .collect(Collectors.joining("\n"));
             return parseJson(content);
-        }   catch (IOException e) {
-            System.err.println("Error reading classpath resource " + e.getMessage());
+        } catch (final IOException e) {
+            LOGGER.severe("Error reading classpath resource: " + e.getMessage());
             return null;
         }
     }
 
     private MapData parseJson(final String content) {
         final MapData mapData = new MapData();
-        mapData.setWidth(extractInt(content, "mapwidth", 800));
-        mapData.setheight(extractInt(content, "mapheight", 600));
+        mapData.setWidth(extractInt(content, "mapwidth", GameConstants.MAP_WIDTH));
+        mapData.setheight(extractInt(content, "mapheight", GameConstants.MAP_HEIGHT));
         mapData.setBackground(extractStringField(content, "background"));
 
         mapData.setWaypoints(extractDoubleArray2D(content, "waypoints"));
@@ -70,15 +87,19 @@ public class MapLoader {
     }
 
     private List<double[]> extractDoubleArray2D(final String json, final String field) {
-        List <double[]> result = new ArrayList<>();
+        final List<double[]> result = new ArrayList<>();
         final Pattern arrayStartPattern = Pattern.compile("\"" + field + "\"\\s*:\\s*\\[");
         final Matcher arrayStartMatcher = arrayStartPattern.matcher(json);
 
-        if(!arrayStartMatcher.find()) return result;
+        if(!arrayStartMatcher.find()) {
+            return result;
+        }
 
-        int startIdx = arrayStartMatcher.end() - 1;
-        String arrayContent = extractBalancedArray(json, startIdx);
-        if(arrayContent == null) return result;
+        final int startIdx = arrayStartMatcher.end() - 1;
+        final String arrayContent = extractBalancedArray(json, startIdx);
+        if(arrayContent == null) {
+            return result;
+        }
 
         //Extract [ x, y ]
         final Pattern pairPattern = Pattern.compile("\\[\\s*([\\d.]+)\\s*,\\s*([\\d.]+)\\s*\\]");
@@ -86,10 +107,10 @@ public class MapLoader {
 
         while (pairMatcher.find()) {
             try {
-                double x = Double.parseDouble(pairMatcher.group(1));
-                double y = Double.parseDouble(pairMatcher.group(2));
+                final double x = Double.parseDouble(pairMatcher.group(1));
+                final double y = Double.parseDouble(pairMatcher.group(2));
                 result.add(new double[]{x, y});
-            }   catch (NumberFormatException ignored) {}
+            }   catch (final NumberFormatException ignored) {}
         }
         return result;
     }
@@ -112,5 +133,5 @@ public class MapLoader {
         }
         return null;
     }
-
 }
+
