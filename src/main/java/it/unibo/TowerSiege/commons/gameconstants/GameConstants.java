@@ -1,7 +1,8 @@
 package it.unibo.TowerSiege.commons.gameconstants;
-
+/**
+ * GameConstants
+ */
 public final class GameConstants {
-    private GameConstants(){}
         public static final int MAP_WIDTH = 800;
         public static final int MAP_HEIGHT = 600;
 
@@ -15,4 +16,6 @@ public final class GameConstants {
 
         public static final int STARTING_COINS = 250;
         public static final int BASE_HEALTH = 100;
+
+        private GameConstants(){ }
 }

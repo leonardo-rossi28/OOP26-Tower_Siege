@@ -7,10 +7,18 @@ import it.unibo.TowerSiege.model.gamemodel.impl.GameModelImpl;
 import it.unibo.TowerSiege.view.gameview.api.GameView;
 import it.unibo.TowerSiege.view.gameview.impl.GameViewImpl;
 
-public class TowerSiege {
+/**
+ * Main entry point fort the TowerSiege game.
+ */
 
+public final class TowerSiege {
+   private TowerSiege(){ 
+   }
+   /**
+    * Starts the game
+    * @param args
+    */
    public static void main(final String[] args) {
-    System.out.println("Tower Defense Game Starting...");
     final String mapPath = args.length > 0 ? args[0] : null;
     final GameModel model = new GameModelImpl(mapPath);
     final GameView view = new GameViewImpl();
@@ -18,3 +26,4 @@ public class TowerSiege {
     controller.start();
    }
 }
+
