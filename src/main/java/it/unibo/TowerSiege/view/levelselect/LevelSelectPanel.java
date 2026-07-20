@@ -139,7 +139,7 @@ public class LevelSelectPanel extends JPanel {
         g2.drawLine(280, 300, 340, 270);
         g2.drawLine(340, 270, lvlPos[1][0], lvlPos[1][1]);
         g2.drawLine(lvlPos[1][0], lvlPos[1][1], 480, 270);
-        g2.drawLine(480, 270, 540, 320);
+        g2.drawLine(480, 270, 540, 300);
         g2.drawLine(540, 320, 600, 370);
         g2.drawLine(600, 370, lvlPos[2][0], lvlPos[2][1]);
     }
