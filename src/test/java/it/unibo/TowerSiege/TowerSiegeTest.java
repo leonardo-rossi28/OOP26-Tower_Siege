@@ -1,12 +1,14 @@
 package it.unibo.TowerSiege;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import it.unibo.TowerSiege.application.TowerSiege;
 import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
 import it.unibo.TowerSiege.model.gamemodel.impl.GameModelImpl;
 import it.unibo.TowerSiege.model.gamestate.GameState;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for TowerSiege
@@ -21,7 +23,7 @@ class TowerSiegeTest {
 
     @Test
     void testGameModelInitialization() {
-        GameModel model = new GameModelImpl();
+        final GameModel model = new GameModelImpl();
         assertNotNull(model);
         assertEquals(GameState.MENU, model.getState());
         assertEquals(0, model.getCurrentWave());

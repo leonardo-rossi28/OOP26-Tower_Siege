@@ -7,7 +7,7 @@ import it.unibo.TowerSiege.model.score.api.Score;
  */
 
 
-public class ScoreImpl implements Score {
+public final class ScoreImpl implements Score {
 
     private int total;
 
@@ -43,6 +43,9 @@ public class ScoreImpl implements Score {
     public void reset() {
         this.total = 0;
     }
+    /**
+     * {@inheritDoc}
+     */
 
     @Override
     public String toString() {

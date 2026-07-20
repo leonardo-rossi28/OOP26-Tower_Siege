@@ -17,20 +17,38 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+/** 
+ * Main panel shown at the start of the game
+ */
+
 public class StartMenuPanel extends JPanel {
 
     private static final Color C_GOLD = new Color(255, 215, 0);
+
+    private static final int TITLE_SIZE=52;
+    private static final int SUBTITLE_SIZE=18;
+    private static final int INFO_SIZE= 13;
+    private static final int BUTTON_FONT_SIZE= 18;
+    private static final int BUTTON_HEIGHT=50;
+    private static final int BUTTON_WIDTH=250;
+
+    /**
+     * Creates the start menu panel.
+     * 
+     * @param controller main controller
+     * @param parentFrame parent frame
+     */
 
     public StartMenuPanel(final MainController controller, final JFrame parentFrame) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
 
-        final JLabel title = mkLabel("TOWERSIEGE", new Font("Serif", Font.BOLD, 52), C_GOLD);
-        final JLabel sub = mkLabel("Difendi la base dalle ondate nemiche!", new Font("Serif", Font.ITALIC, 18),
+        final JLabel title = mkLabel("TOWERSIEGE", new Font("Serif", Font.BOLD, TITLE_SIZE), C_GOLD);
+        final JLabel sub = mkLabel("Difendi la base dalle ondate nemiche!", new Font("Serif", Font.ITALIC, SUBTITLE_SIZE),
                 new Color(220, 200, 160));
-        final JLabel i1 = mkLabel("Click sx = piazza/potenzia | Click dx = vendi torre", new Font("Serif", Font.PLAIN,13),
+        final JLabel i1 = mkLabel("Click sx = piazza/potenzia | Click dx = vendi torre", new Font("Serif", Font.PLAIN,INFO_SIZE),
                 new Color(180, 180, 180));
-        final JLabel i2 = mkLabel("W = ondata | F = Fuoco | G = Gelo | ESC = Pausa", new Font("Serif", Font.PLAIN,13),
+        final JLabel i2 = mkLabel("W = ondata | F = Fuoco | G = Gelo | ESC = Pausa", new Font("Serif", Font.PLAIN,INFO_SIZE),
                 new Color(180, 180, 180));
 
         final JButton start = btn("INIZIA PARTITA", new Color(30, 150, 80));
@@ -56,7 +74,10 @@ public class StartMenuPanel extends JPanel {
         add(Box.createRigidArea(new Dimension(0, 10)));
         add(exit);
     }
-    
+
+    /**
+     * {@InheritDoc}
+    */
     @Override
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
@@ -75,12 +96,12 @@ public class StartMenuPanel extends JPanel {
 
     private JButton btn(final String text, final Color bg) {
         final JButton b = new JButton(text);
-        b.setFont(new Font("SansSerif", Font.BOLD, 18));
+        b.setFont(new Font("SansSerif", Font.BOLD, BUTTON_FONT_SIZE));
         b.setForeground(Color.WHITE);
         b.setBackground(bg);
         b.setFocusPainted(false);
         b.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
-        b.setMaximumSize(new Dimension(250, 50));
+        b.setMaximumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         return b;
     }
 }

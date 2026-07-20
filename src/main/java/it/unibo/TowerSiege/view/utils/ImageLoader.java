@@ -5,12 +5,21 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 /*
 * Utility class designed for loading and managing the game image assets
  */
 public final class ImageLoader {
     
+    private static final int DEFAULT_SIZE=128;
+    private static final float TINT_ALPHA = 0.5f;
+    private static final int TINT_RED=100;
+    private static final int TINT_GREEN=180;
+    private static final int TINT_BLUE = 255;
+    private static final int TINT_ALPHA_VALUE = 120;
+
+
     private static Image spTowerBasic;
     private static Image spTowerSniper;
     private static Image spTowerRapid;
@@ -101,27 +110,79 @@ public final class ImageLoader {
         return t;
     }
 
-    /** @return basic tower image */
-    public static Image getSpTowerBasic() { return spTowerBasic; }
-    /** @return sniper tower image */
-    public static Image getSpTowerSniper() { return spTowerSniper; }
-    /** @return rapid tower image */
-    public static Image getSpTowerRapid() { return spTowerRapid; }
-    /** @return ice tower image */
-    public static Image getSpTowerIce() { return spTowerIce; }
-    /** @return basic enemy image */
-    public static Image getSpEnemyBasic() { return spEnemyBasic; }
-    /** @return fast enemy image */
-    public static Image getSpEnemyFast() { return spEnemyFast; }
-    /** @return tank enemy image */
-    public static Image getSpEnemyTank() { return spEnemyTank; }
-    /** @return tree image */
-    public static Image getImgTree() { return imgTree; }
-    /** @return bush image */
-    public static Image getImgBush() { return imgBush; }
-    /** @return rock image */
-    public static Image getImgRock() { return imgRock;}
-    /** @return rock bush image */
-    public static Image getImgRockBush() { return imgRockBush; }
+    /** @return 
+     * basic tower image 
+    */
+    public static Image getSpTowerBasic() {
+         return spTowerBasic; 
+    }
+
+    /** 
+     * @return sniper tower image 
+     * */
+    public static Image getSpTowerSniper() { 
+        return spTowerSniper; 
+    }
+
+    /** 
+     * @return rapid tower image
+    */
+    public static Image getSpTowerRapid() {
+         return spTowerRapid; 
+    }
+
+    /** 
+     * @return ice tower image
+    */
+    public static Image getSpTowerIce() { 
+        return spTowerIce; 
+    }
+    /**
+     *  @return basic enemy image 
+    */
+    public static Image getSpEnemyBasic() { 
+        return spEnemyBasic; 
+    }
+
+    /**
+     *  @return fast enemy image 
+     * */
+    public static Image getSpEnemyFast() {
+         return spEnemyFast; 
+        }
+    /** 
+     * @return tank enemy image 
+     * */
+    public static Image getSpEnemyTank() { 
+        return spEnemyTank; 
+    }
+
+    /** 
+     * @return tree image 
+    */
+    public static Image getImgTree() {
+         return imgTree; 
+    }
+
+    /** 
+     * @return bush image 
+    */
+    public static Image getImgBush() { 
+        return imgBush; 
+    }
+
+    /** 
+     * @return rock image 
+    */
+    public static Image getImgRock() {
+         return imgRock;
+    }
+
+    /** 
+     * @return rock bush image
+    */
+    public static Image getImgRockBush() {
+         return imgRockBush; 
+    }
     
 }

@@ -12,7 +12,7 @@ public enum TowerType {
     private final int cooldown;
     private final String description;
 
-    TowerType(int cost, int damage, int range, int cooldown, String description){
+    TowerType(final int  cost, final int damage, final int range, final int cooldown, final String description){
         this.cost=cost;
         this.damage=damage;
         this.range=range;
@@ -20,18 +20,42 @@ public enum TowerType {
         this.description=description;
     }
 
+    /**
+     * Return the cost of the tower
+     * @return
+     */
     public int getCost(){
         return cost;
     }
+
+    /**
+     * Return the damage per attack
+     * @return
+     */
     public int getDamage(){
         return damage;
     }
+
+    /**
+     * Return the attack range
+     * @return
+     */
     public int getRange(){
         return range;
     }
+
+    /**
+     * Return the cooldown in ticks
+     * @return
+     */
     public int getCooldown(){
         return cooldown;
     }
+
+    /**
+     * Return the description of the tower
+     * @return
+     */
     public String getDescription(){
         return description;
     }

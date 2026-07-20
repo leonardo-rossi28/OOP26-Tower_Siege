@@ -22,12 +22,10 @@ import java.util.Random;
 public class LevelSelectPanel extends JPanel {
 
     private static final Color C_GOLD = new Color(255, 215, 0);
-    private final GameModel model;
     private final int[][] lvlPos = { { 140, 440 }, { 400, 250 }, { 660, 400 } };
     private final long randomSeed = 99L;
 
     public LevelSelectPanel(final MainController controller, final GameModel model) {
-        this.model = model;
         setPreferredSize(new Dimension(800, 600));
 
         addMouseListener(new MouseAdapter() {

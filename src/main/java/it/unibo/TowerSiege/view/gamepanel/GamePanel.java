@@ -25,6 +25,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+/**
+ * Main panel used to draw the game scene and handle UI interactions
+ */
+
 public class GamePanel extends JPanel {
 
     private static final Color C_UI = new Color(20, 15, 10, 210);
@@ -134,6 +138,30 @@ public class GamePanel extends JPanel {
                     g2.fillRect(c * 50, r * 50, 50, 50);
                 }
             }
+        }
+    }
+
+    private void drawDecoration(final Graphics g2){
+        final List<double[]> decorations=model.getMap().getDecorations();
+        for(final double[] dec : decorations){
+            final int col = (int) dec[0];
+            final int row = (int) dec[1];
+            final int type = (int) dec[2];
+            final int px = col * 50;
+            final int py = row *50;
+
+            Image img=null;
+            switch (type){
+                case 0: img = ImageLoader.getImgTree(); break;
+                case 1: img= ImageLoader.getImgBush(); break;
+                case 2: img=ImageLoader.getImgRock(); break;
+                case 3: img=ImageLoader.getImgRockBush(); break;
+            }
+
+            if(img != null){
+                g2.drawImage(img, px + 5, py + 5, 40, 40, null);
+            }
+
         }
     }
 
