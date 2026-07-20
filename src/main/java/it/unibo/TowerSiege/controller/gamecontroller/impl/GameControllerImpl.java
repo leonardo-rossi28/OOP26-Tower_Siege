@@ -19,7 +19,7 @@ public final class GameControllerImpl implements GameController{
     private final GameView view;
     private final MainController mainController;
 
-    private final Timer gameLoop;
+    private Timer gameLoop;
 
     public GameControllerImpl(final GameModel model,
                               final GameView view,
