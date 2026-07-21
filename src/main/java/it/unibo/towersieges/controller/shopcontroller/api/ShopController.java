@@ -1,0 +1,18 @@
+package it.unibo.towersieges.controller.shopcontroller.api;
+
+import it.unibo.towersieges.model.tower.TowerType;
+
+public interface ShopController {
+
+    /**
+     * Sets a selected Tower given its type.
+     * @param type the type
+     */
+    void setSelectedTowerType(TowerType type);
+    
+    /**
+     * Gets the selected tower type
+     * @return selectedTowerType the type
+     */
+    TowerType getSelectedTowerType();
+}

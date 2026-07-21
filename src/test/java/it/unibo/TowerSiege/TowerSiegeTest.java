@@ -2,10 +2,10 @@ package it.unibo.TowerSiege;
 
 import org.junit.jupiter.api.Test;
 
-import it.unibo.towersiege.application.TowerSiege;
-import it.unibo.towersiege.model.gamemodel.api.GameModel;
-import it.unibo.towersiege.model.gamemodel.impl.GameModelImpl;
-import it.unibo.towersiege.model.gamestate.GameState;
+import it.unibo.towersieges.application.TowerSiege;
+import it.unibo.towersieges.model.gamemodel.api.GameModel;
+import it.unibo.towersieges.model.gamemodel.impl.GameModelImpl;
+import it.unibo.towersieges.model.gamestate.GameState;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
