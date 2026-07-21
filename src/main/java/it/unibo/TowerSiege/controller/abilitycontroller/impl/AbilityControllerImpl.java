@@ -1,8 +1,8 @@
-package it.unibo.TowerSiege.controller.abilitycontroller.impl;
+package it.unibo.towersiege.controller.abilitycontroller.impl;
 
-import it.unibo.TowerSiege.controller.abilitycontroller.api.AbilityController;
-import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.model.gamestate.GameState;
+import it.unibo.towersiege.controller.abilitycontroller.api.AbilityController;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import it.unibo.towersiege.model.gamestate.GameState;
 
 public final class AbilityControllerImpl implements AbilityController {
 

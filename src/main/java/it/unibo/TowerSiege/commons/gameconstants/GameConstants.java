@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.commons.gameconstants;
+package it.unibo.towersiege.commons.gameconstants;
 
 /**
  * GameConstants

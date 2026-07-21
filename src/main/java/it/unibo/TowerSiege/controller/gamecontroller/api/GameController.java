@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.controller.gamecontroller.api;
+package it.unibo.towersiege.controller.gamecontroller.api;
 
 /**
  * Controller for the game.

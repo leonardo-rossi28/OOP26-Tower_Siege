@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.commons.soundmanager;
+package it.unibo.towersiege.commons.soundmanager;
 
 import java.io.InputStream;
 import javax.sound.sampled.AudioInputStream;

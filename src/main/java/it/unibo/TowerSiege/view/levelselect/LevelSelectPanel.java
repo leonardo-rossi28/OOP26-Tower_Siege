@@ -1,10 +1,11 @@
-package it.unibo.TowerSiege.view.levelselect;
-
-import it.unibo.TowerSiege.controller.maincontroller.api.MainController;
-import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.view.utils.ImageLoader;
+package it.unibo.towersiege.view.levelselect;
 
 import javax.swing.JPanel;
+
+import it.unibo.towersiege.controller.maincontroller.api.MainController;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import it.unibo.towersiege.view.utils.ImageLoader;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;

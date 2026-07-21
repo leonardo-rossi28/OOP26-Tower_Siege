@@ -1,6 +1,6 @@
-package it.unibo.TowerSiege.model.buildingspot.api;
+package it.unibo.towersiege.model.buildingspot.api;
 
-import it.unibo.TowerSiege.model.tower.api.Tower;
+import it.unibo.towersiege.model.tower.api.Tower;
 
 public interface BuildingSpot {
     

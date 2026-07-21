@@ -1,7 +1,4 @@
-package it.unibo.TowerSiege.commons.maploader;
-
-import it.unibo.TowerSiege.commons.gameconstants.GameConstants;
-import it.unibo.TowerSiege.commons.mapdata.MapData;
+package it.unibo.towersiege.commons.maploader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +13,9 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import it.unibo.towersiege.commons.gameconstants.GameConstants;
+import it.unibo.towersiege.commons.mapdata.MapData;
 
 /**
  * Loader for custom JSON map format with waypoints and building spots

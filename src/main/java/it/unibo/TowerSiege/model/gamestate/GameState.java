@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.model.gamestate;
+package it.unibo.towersiege.model.gamestate;
 
 public enum GameState {
     MENU,

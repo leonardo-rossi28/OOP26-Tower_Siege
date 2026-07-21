@@ -1,6 +1,6 @@
-package it.unibo.TowerSiege.controller.mapcontroller.api;
+package it.unibo.towersiege.controller.mapcontroller.api;
 
-import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
+import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
 
 public interface MapController {
     /**

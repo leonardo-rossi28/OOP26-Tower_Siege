@@ -1,6 +1,6 @@
-package it.unibo.TowerSiege.controller.shopcontroller.api;
+package it.unibo.towersiege.controller.shopcontroller.api;
 
-import it.unibo.TowerSiege.model.tower.TowerType;
+import it.unibo.towersiege.model.tower.TowerType;
 
 public interface ShopController {
 

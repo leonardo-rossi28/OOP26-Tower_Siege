@@ -1,6 +1,6 @@
-package it.unibo.TowerSiege.model.projectile.api;
+package it.unibo.towersiege.model.projectile.api;
 
-import it.unibo.TowerSiege.model.tower.TowerType;
+import it.unibo.towersiege.model.tower.TowerType;
 
 public interface Projectile {
 

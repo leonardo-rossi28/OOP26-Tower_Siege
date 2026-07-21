@@ -1,14 +1,14 @@
-package it.unibo.TowerSiege.model.gamemap.impl;
-
-import it.unibo.TowerSiege.commons.gameconstants.GameConstants;
-import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
-import it.unibo.TowerSiege.model.buildingspot.impl.BuildingSpotImpl;
-import it.unibo.TowerSiege.model.gamemap.api.GameMap;
-import it.unibo.TowerSiege.model.tower.api.Tower;
+package it.unibo.towersiege.model.gamemap.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import it.unibo.towersiege.commons.gameconstants.GameConstants;
+import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
+import it.unibo.towersiege.model.buildingspot.impl.BuildingSpotImpl;
+import it.unibo.towersiege.model.gamemap.api.GameMap;
+import it.unibo.towersiege.model.tower.api.Tower;
 
 /**
  * Represents the grid-based game map containing the enemy path,

@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.commons.mapdata;
+package it.unibo.towersiege.commons.mapdata;
 
 import java.util.*;
 

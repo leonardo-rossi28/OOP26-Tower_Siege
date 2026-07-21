@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.view.rules;
+package it.unibo.towersiege.view.rules;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;

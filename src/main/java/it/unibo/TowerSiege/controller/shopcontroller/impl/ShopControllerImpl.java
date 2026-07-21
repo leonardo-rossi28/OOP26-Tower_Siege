@@ -1,7 +1,7 @@
-package it.unibo.TowerSiege.controller.shopcontroller.impl;
+package it.unibo.towersiege.controller.shopcontroller.impl;
 
-import it.unibo.TowerSiege.controller.shopcontroller.api.ShopController;
-import it.unibo.TowerSiege.model.tower.TowerType;
+import it.unibo.towersiege.controller.shopcontroller.api.ShopController;
+import it.unibo.towersiege.model.tower.TowerType;
 
 public final class ShopControllerImpl implements ShopController {
     private TowerType selectedTowerType=TowerType.BASIC;

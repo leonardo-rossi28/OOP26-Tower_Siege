@@ -1,10 +1,10 @@
-package it.unibo.TowerSiege.model.tower;
+package it.unibo.towersiege.model.tower;
 
 public enum TowerType {
     BASIC(50,5, 3, 60,"Torre Cristallo"),
     SNIPER(120, 15, 5, 120,"Cavaliere"),
     RAPID(80,2,3,20,"Mago"),
-    ICE(90,3,3,60,"Torre Ghisccio");
+    ICE(90,3,3,60,"Torre Ghiaccio");
 
     private final int cost;
     private final int damage;

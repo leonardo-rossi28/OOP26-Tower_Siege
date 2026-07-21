@@ -1,26 +1,26 @@
-package it.unibo.TowerSiege.model.gamemodel.impl;
-
-import it.unibo.TowerSiege.commons.mapdata.MapData;
-import it.unibo.TowerSiege.commons.maploader.MapLoader;
-import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
-import it.unibo.TowerSiege.commons.savemanager.SaveManager;
-import it.unibo.TowerSiege.model.enemy.api.Enemy;
-import it.unibo.TowerSiege.model.gamemap.api.GameMap;
-import it.unibo.TowerSiege.model.gamemap.impl.GameMapImpl;
-import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.model.gamestate.GameState;
-import it.unibo.TowerSiege.model.player.api.Player;
-import it.unibo.TowerSiege.model.player.impl.PlayerImpl;
-import it.unibo.TowerSiege.model.projectile.api.Projectile;
-import it.unibo.TowerSiege.model.tower.api.Tower;
-import it.unibo.TowerSiege.model.wave.api.Wave;
-import it.unibo.TowerSiege.model.wave.impl.WaveImpl;
-import it.unibo.TowerSiege.model.score.api.Score;
-import it.unibo.TowerSiege.model.score.impl.ScoreImpl;
-import it.unibo.TowerSiege.commons.soundmanager.SoundManager;
+package it.unibo.towersiege.model.gamemodel.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import it.unibo.towersiege.commons.mapdata.MapData;
+import it.unibo.towersiege.commons.maploader.MapLoader;
+import it.unibo.towersiege.commons.savemanager.SaveManager;
+import it.unibo.towersiege.commons.soundmanager.SoundManager;
+import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
+import it.unibo.towersiege.model.enemy.api.Enemy;
+import it.unibo.towersiege.model.gamemap.api.GameMap;
+import it.unibo.towersiege.model.gamemap.impl.GameMapImpl;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import it.unibo.towersiege.model.gamestate.GameState;
+import it.unibo.towersiege.model.player.api.Player;
+import it.unibo.towersiege.model.player.impl.PlayerImpl;
+import it.unibo.towersiege.model.projectile.api.Projectile;
+import it.unibo.towersiege.model.score.api.Score;
+import it.unibo.towersiege.model.score.impl.ScoreImpl;
+import it.unibo.towersiege.model.tower.api.Tower;
+import it.unibo.towersiege.model.wave.api.Wave;
+import it.unibo.towersiege.model.wave.impl.WaveImpl;
 
 public class GameModelImpl implements GameModel {
 

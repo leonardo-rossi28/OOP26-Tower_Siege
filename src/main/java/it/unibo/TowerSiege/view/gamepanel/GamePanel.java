@@ -1,18 +1,19 @@
-package it.unibo.TowerSiege.view.gamepanel;
-
-import it.unibo.TowerSiege.controller.mapcontroller.api.MapController;
-import it.unibo.TowerSiege.controller.shopcontroller.api.ShopController;
-import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
-import it.unibo.TowerSiege.model.enemy.api.Enemy;
-import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.model.gamestate.GameState;
-import it.unibo.TowerSiege.model.player.api.Player;
-import it.unibo.TowerSiege.model.projectile.api.Projectile;
-import it.unibo.TowerSiege.view.utils.ImageLoader;
-import it.unibo.TowerSiege.model.tower.api.Tower;
-import it.unibo.TowerSiege.model.tower.TowerType;
+package it.unibo.towersiege.view.gamepanel;
 
 import javax.swing.JPanel;
+
+import it.unibo.towersiege.controller.mapcontroller.api.MapController;
+import it.unibo.towersiege.controller.shopcontroller.api.ShopController;
+import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
+import it.unibo.towersiege.model.enemy.api.Enemy;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import it.unibo.towersiege.model.gamestate.GameState;
+import it.unibo.towersiege.model.player.api.Player;
+import it.unibo.towersiege.model.projectile.api.Projectile;
+import it.unibo.towersiege.model.tower.TowerType;
+import it.unibo.towersiege.model.tower.api.Tower;
+import it.unibo.towersiege.view.utils.ImageLoader;
+
 import java.awt.Color;
 import java.awt.BasicStroke;
 import java.awt.Font;

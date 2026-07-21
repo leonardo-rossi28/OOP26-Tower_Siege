@@ -1,8 +1,9 @@
-package it.unibo.TowerSiege.model.enemy.impl;
+package it.unibo.towersiege.model.enemy.impl;
 
 import java.util.List;
-import it.unibo.TowerSiege.model.enemy.api.Enemy;
-import it.unibo.TowerSiege.model.enemy.EnemyType;
+
+import it.unibo.towersiege.model.enemy.EnemyType;
+import it.unibo.towersiege.model.enemy.api.Enemy;
 
 /**
  * Enemy with waypoint movement.

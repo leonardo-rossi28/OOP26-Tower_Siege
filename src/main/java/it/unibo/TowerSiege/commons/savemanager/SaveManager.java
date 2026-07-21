@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.commons.savemanager;
+package it.unibo.towersiege.commons.savemanager;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

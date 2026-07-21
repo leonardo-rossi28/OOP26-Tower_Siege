@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.view.utils;
+package it.unibo.towersiege.view.utils;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;

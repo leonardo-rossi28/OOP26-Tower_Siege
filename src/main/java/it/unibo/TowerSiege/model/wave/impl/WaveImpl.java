@@ -1,11 +1,12 @@
-package it.unibo.TowerSiege.model.wave.impl;
+package it.unibo.towersiege.model.wave.impl;
 
-import it.unibo.TowerSiege.model.enemy.api.Enemy;
-import it.unibo.TowerSiege.model.enemy.EnemyType;
-import it.unibo.TowerSiege.model.enemy.impl.EnemyImpl;
-import it.unibo.TowerSiege.model.wave.api.Wave;
 import java.util.ArrayList;
 import java.util.List;
+
+import it.unibo.towersiege.model.enemy.EnemyType;
+import it.unibo.towersiege.model.enemy.api.Enemy;
+import it.unibo.towersiege.model.enemy.impl.EnemyImpl;
+import it.unibo.towersiege.model.wave.api.Wave;
 
 public class WaveImpl implements Wave {
 

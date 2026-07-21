@@ -1,11 +1,11 @@
-package it.unibo.TowerSiege.application;
+package it.unibo.towersiege.application;
 
-import it.unibo.TowerSiege.controller.maincontroller.api.MainController;
-import it.unibo.TowerSiege.controller.maincontroller.impl.MainControllerImpl;
-import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.model.gamemodel.impl.GameModelImpl; 
-import it.unibo.TowerSiege.view.gameview.api.GameView;
-import it.unibo.TowerSiege.view.gameview.impl.GameViewImpl;
+import it.unibo.towersiege.controller.maincontroller.api.MainController;
+import it.unibo.towersiege.controller.maincontroller.impl.MainControllerImpl;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import it.unibo.towersiege.model.gamemodel.impl.GameModelImpl;
+import it.unibo.towersiege.view.gameview.api.GameView;
+import it.unibo.towersiege.view.gameview.impl.GameViewImpl;
 
 /**
  * Main entry point for the Tower Defense game.

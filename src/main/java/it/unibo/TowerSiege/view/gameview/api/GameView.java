@@ -1,12 +1,12 @@
-package it.unibo.TowerSiege.view.gameview.api;
+package it.unibo.towersiege.view.gameview.api;
 
-import it.unibo.TowerSiege.controller.gamecontroller.api.GameController;
-import it.unibo.TowerSiege.controller.maincontroller.api.MainController;
-import it.unibo.TowerSiege.controller.mapcontroller.api.MapController;
-import it.unibo.TowerSiege.controller.shopcontroller.api.ShopController;
-import it.unibo.TowerSiege.controller.abilitycontroller.api.AbilityController;
-import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.model.gamestate.GameState;
+import it.unibo.towersiege.controller.abilitycontroller.api.AbilityController;
+import it.unibo.towersiege.controller.gamecontroller.api.GameController;
+import it.unibo.towersiege.controller.maincontroller.api.MainController;
+import it.unibo.towersiege.controller.mapcontroller.api.MapController;
+import it.unibo.towersiege.controller.shopcontroller.api.ShopController;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import it.unibo.towersiege.model.gamestate.GameState;
 
 /**
  * Interface representing the game view.

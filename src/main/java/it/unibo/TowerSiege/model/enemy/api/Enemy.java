@@ -1,7 +1,8 @@
-package it.unibo.TowerSiege.model.enemy.api;
+package it.unibo.towersiege.model.enemy.api;
 
-import it.unibo.TowerSiege.model.enemy.EnemyType;
 import java.util.List;
+
+import it.unibo.towersiege.model.enemy.EnemyType;
 
 public interface Enemy {
     

@@ -1,8 +1,8 @@
-package it.unibo.TowerSiege.model.tower.api;
+package it.unibo.towersiege.model.tower.api;
 
-import it.unibo.TowerSiege.model.projectile.api.Projectile;
-import it.unibo.TowerSiege.model.enemy.api.Enemy;
-import it.unibo.TowerSiege.model.tower.TowerType;
+import it.unibo.towersiege.model.enemy.api.Enemy;
+import it.unibo.towersiege.model.projectile.api.Projectile;
+import it.unibo.towersiege.model.tower.TowerType;
 
 
 

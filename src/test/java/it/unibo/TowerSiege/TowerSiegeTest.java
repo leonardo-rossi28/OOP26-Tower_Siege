@@ -1,14 +1,16 @@
 package it.unibo.TowerSiege;
 
 import org.junit.jupiter.api.Test;
+
+import it.unibo.towersiege.application.TowerSiege;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import it.unibo.towersiege.model.gamemodel.impl.GameModelImpl;
+import it.unibo.towersiege.model.gamestate.GameState;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import it.unibo.TowerSiege.application.TowerSiege;
-import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.model.gamemodel.impl.GameModelImpl;
-import it.unibo.TowerSiege.model.gamestate.GameState;
 import org.junit.jupiter.api.Test;
 
 /**

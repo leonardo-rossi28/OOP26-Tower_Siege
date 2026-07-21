@@ -1,18 +1,4 @@
-package it.unibo.TowerSiege.view.gameview.impl;
-
-import it.unibo.TowerSiege.controller.gamecontroller.api.GameController;
-import it.unibo.TowerSiege.controller.maincontroller.api.MainController;
-import it.unibo.TowerSiege.controller.mapcontroller.api.MapController;
-import it.unibo.TowerSiege.controller.shopcontroller.api.ShopController;
-import it.unibo.TowerSiege.controller.abilitycontroller.api.AbilityController;
-import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.model.gamestate.GameState;
-import it.unibo.TowerSiege.view.gameover.GameOverPanel;
-import it.unibo.TowerSiege.view.gamepanel.GamePanel;
-import it.unibo.TowerSiege.view.gameview.api.GameView;
-import it.unibo.TowerSiege.view.levelselect.LevelSelectPanel;
-import it.unibo.TowerSiege.view.pausemenu.PauseMenuDialog;
-import it.unibo.TowerSiege.view.startmenu.StartMenuPanel;
+package it.unibo.towersiege.view.gameview.impl;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -21,6 +7,21 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.KeyStroke;
+
+import it.unibo.towersiege.controller.abilitycontroller.api.AbilityController;
+import it.unibo.towersiege.controller.gamecontroller.api.GameController;
+import it.unibo.towersiege.controller.maincontroller.api.MainController;
+import it.unibo.towersiege.controller.mapcontroller.api.MapController;
+import it.unibo.towersiege.controller.shopcontroller.api.ShopController;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import it.unibo.towersiege.model.gamestate.GameState;
+import it.unibo.towersiege.view.gameover.GameOverPanel;
+import it.unibo.towersiege.view.gamepanel.GamePanel;
+import it.unibo.towersiege.view.gameview.api.GameView;
+import it.unibo.towersiege.view.levelselect.LevelSelectPanel;
+import it.unibo.towersiege.view.pausemenu.PauseMenuDialog;
+import it.unibo.towersiege.view.startmenu.StartMenuPanel;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 

@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.model.enemy;
+package it.unibo.towersiege.model.enemy;
 
 public enum EnemyType {
     BASIC(80, 1, 10, "Basic Ogre"),

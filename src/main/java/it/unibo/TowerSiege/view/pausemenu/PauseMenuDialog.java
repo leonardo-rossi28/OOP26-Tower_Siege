@@ -1,7 +1,4 @@
-package it.unibo.TowerSiege.view.pausemenu;
-
-import it.unibo.TowerSiege.controller.gamecontroller.api.GameController;
-import it.unibo.TowerSiege.controller.maincontroller.api.MainController;
+package it.unibo.towersiege.view.pausemenu;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -11,6 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import it.unibo.towersiege.controller.gamecontroller.api.GameController;
+import it.unibo.towersiege.controller.maincontroller.api.MainController;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;

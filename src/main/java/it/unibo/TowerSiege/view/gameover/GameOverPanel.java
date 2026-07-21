@@ -1,6 +1,4 @@
-package it.unibo.TowerSiege.view.gameover;
-
-import it.unibo.TowerSiege.model.gamestate.GameState;
+package it.unibo.towersiege.view.gameover;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
+
+import it.unibo.towersiege.model.gamestate.GameState;
 
 /**
  * Overplay panel swhown when the game reaches a terminal state

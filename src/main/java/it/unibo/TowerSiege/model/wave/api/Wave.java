@@ -1,7 +1,8 @@
-package it.unibo.TowerSiege.model.wave.api;
+package it.unibo.towersiege.model.wave.api;
 
-import it.unibo.TowerSiege.model.enemy.api.Enemy;
 import java.util.List;
+
+import it.unibo.towersiege.model.enemy.api.Enemy;
 
 public interface Wave {
     

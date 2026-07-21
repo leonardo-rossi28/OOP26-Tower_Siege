@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.controller.maincontroller.api;
+package it.unibo.towersiege.controller.maincontroller.api;
 
 public interface MainController {
 

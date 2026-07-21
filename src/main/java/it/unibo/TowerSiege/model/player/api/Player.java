@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.model.player.api;
+package it.unibo.towersiege.model.player.api;
 
 public interface Player {
 

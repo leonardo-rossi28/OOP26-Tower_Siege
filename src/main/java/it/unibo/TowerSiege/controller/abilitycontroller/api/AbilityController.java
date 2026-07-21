@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.controller.abilitycontroller.api;
+package it.unibo.towersiege.controller.abilitycontroller.api;
 
 /**
  * Controller for managing abilities.

@@ -1,12 +1,12 @@
-package it.unibo.TowerSiege.controller.mapcontroller.impl;
+package it.unibo.towersiege.controller.mapcontroller.impl;
 
-import it.unibo.TowerSiege.controller.shopcontroller.api.ShopController;
-import it.unibo.TowerSiege.controller.mapcontroller.api.MapController;
-import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
-import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.model.gamestate.GameState;
-import it.unibo.TowerSiege.model.tower.api.Tower;
-import it.unibo.TowerSiege.model.tower.impl.TowerImpl;
+import it.unibo.towersiege.controller.mapcontroller.api.MapController;
+import it.unibo.towersiege.controller.shopcontroller.api.ShopController;
+import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import it.unibo.towersiege.model.gamestate.GameState;
+import it.unibo.towersiege.model.tower.api.Tower;
+import it.unibo.towersiege.model.tower.impl.TowerImpl;
 
 public final class MapControllerImpl implements MapController{
     private final GameModel model;

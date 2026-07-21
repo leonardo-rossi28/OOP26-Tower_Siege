@@ -1,15 +1,15 @@
-package it.unibo.TowerSiege.model.gamemodel.api;
-
-import it.unibo.TowerSiege.model.tower.api.Tower;
-import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
-import it.unibo.TowerSiege.model.projectile.api.Projectile;
-import it.unibo.TowerSiege.model.enemy.api.Enemy;
-import it.unibo.TowerSiege.model.gamemap.api.GameMap;
-import it.unibo.TowerSiege.model.gamestate.GameState;
-import it.unibo.TowerSiege.model.score.api.Score;
-import it.unibo.TowerSiege.model.player.api.Player;
+package it.unibo.towersiege.model.gamemodel.api;
 
 import java.util.List;
+
+import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
+import it.unibo.towersiege.model.enemy.api.Enemy;
+import it.unibo.towersiege.model.gamemap.api.GameMap;
+import it.unibo.towersiege.model.gamestate.GameState;
+import it.unibo.towersiege.model.player.api.Player;
+import it.unibo.towersiege.model.projectile.api.Projectile;
+import it.unibo.towersiege.model.score.api.Score;
+import it.unibo.towersiege.model.tower.api.Tower;
 
 public interface GameModel {
 

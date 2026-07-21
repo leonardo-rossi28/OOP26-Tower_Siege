@@ -1,4 +1,4 @@
-package it.unibo.TowerSiege.model.score.api;
+package it.unibo.towersiege.model.score.api;
 
 /**
  * Defines the contract for managing the player's current score

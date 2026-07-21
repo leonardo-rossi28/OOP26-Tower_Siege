@@ -1,5 +1,5 @@
-package it.unibo.TowerSiege.model.score.impl;
-import it.unibo.TowerSiege.model.score.api.Score;
+package it.unibo.towersiege.model.score.impl;
+import it.unibo.towersiege.model.score.api.Score;
 
 /**
  * Defines the contract for managinng the player's current score

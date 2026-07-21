@@ -1,9 +1,9 @@
-package it.unibo.TowerSiege.model.gamemap.api;
-
-import it.unibo.TowerSiege.model.buildingspot.api.BuildingSpot;
-import it.unibo.TowerSiege.model.tower.api.Tower;
+package it.unibo.towersiege.model.gamemap.api;
 
 import java.util.List;
+
+import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
+import it.unibo.towersiege.model.tower.api.Tower;
 
 public interface GameMap {
 

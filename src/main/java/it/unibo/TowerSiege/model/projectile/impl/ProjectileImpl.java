@@ -1,9 +1,9 @@
-package it.unibo.TowerSiege.model.projectile.impl;
+package it.unibo.towersiege.model.projectile.impl;
 
-import it.unibo.TowerSiege.model.enemy.api.Enemy;
-import it.unibo.TowerSiege.model.tower.TowerType;
-import it.unibo.TowerSiege.model.tower.api.Tower;
-import it.unibo.TowerSiege.model.projectile.api.Projectile;
+import it.unibo.towersiege.model.enemy.api.Enemy;
+import it.unibo.towersiege.model.projectile.api.Projectile;
+import it.unibo.towersiege.model.tower.TowerType;
+import it.unibo.towersiege.model.tower.api.Tower;
 
 /**
  * This class represent a projectile that moves towards the target

@@ -1,16 +1,16 @@
-package it.unibo.TowerSiege.controller.maincontroller.impl;
+package it.unibo.towersiege.controller.maincontroller.impl;
 
-import it.unibo.TowerSiege.controller.maincontroller.api.MainController;
-import it.unibo.TowerSiege.controller.abilitycontroller.api.AbilityController;
-import it.unibo.TowerSiege.controller.abilitycontroller.impl.AbilityControllerImpl;
-import it.unibo.TowerSiege.controller.gamecontroller.impl.GameControllerImpl;
-import it.unibo.TowerSiege.controller.mapcontroller.api.MapController;
-import it.unibo.TowerSiege.controller.mapcontroller.impl.MapControllerImpl;
-import it.unibo.TowerSiege.controller.shopcontroller.api.ShopController;
-import it.unibo.TowerSiege.controller.shopcontroller.impl.ShopControllerImpl;
-import it.unibo.TowerSiege.model.gamemodel.api.GameModel;
-import it.unibo.TowerSiege.model.gamestate.GameState;
-import it.unibo.TowerSiege.view.gameview.api.GameView;
+import it.unibo.towersiege.controller.abilitycontroller.api.AbilityController;
+import it.unibo.towersiege.controller.abilitycontroller.impl.AbilityControllerImpl;
+import it.unibo.towersiege.controller.gamecontroller.impl.GameControllerImpl;
+import it.unibo.towersiege.controller.maincontroller.api.MainController;
+import it.unibo.towersiege.controller.mapcontroller.api.MapController;
+import it.unibo.towersiege.controller.mapcontroller.impl.MapControllerImpl;
+import it.unibo.towersiege.controller.shopcontroller.api.ShopController;
+import it.unibo.towersiege.controller.shopcontroller.impl.ShopControllerImpl;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import it.unibo.towersiege.model.gamestate.GameState;
+import it.unibo.towersiege.view.gameview.api.GameView;
 
 /**
  * MainControllerImpl
