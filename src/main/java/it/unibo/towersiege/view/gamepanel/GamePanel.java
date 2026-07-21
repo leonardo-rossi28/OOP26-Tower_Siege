@@ -14,6 +14,8 @@ import it.unibo.towersiege.model.tower.TowerType;
 import it.unibo.towersiege.model.tower.api.Tower;
 import it.unibo.towersiege.view.utils.ImageLoader;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.awt.Color;
 import java.awt.BasicStroke;
 import java.awt.Font;
@@ -31,14 +33,24 @@ import java.util.List;
  */
 public class GamePanel extends JPanel {
 
+    private static final long serialVersionUID = 1L;
     private static final Color C_UI = new Color(20, 15, 10, 210);
     private static final Color C_GOLD = new Color(255, 215, 0);
+    private static final String FONT_SANSSERIF = "SansSerif";
 
     private GameModel model;
     private MapController mapController;
     private ShopController shopController;
     private BuildingSpot hoverSpot;
 
+    /**
+     * 
+     * @param m the game model
+     * @param mapC the map controller
+     * @param shopC the shop controller
+     */
+
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public GamePanel(final GameModel m, final MapController mapC, final ShopController shopC) {
         this.model = m;
         this.mapController = mapC;
@@ -47,16 +59,29 @@ public class GamePanel extends JPanel {
         setupMouse();
     }
     
+    /**
+     * Sets the game model
+     * 
+     * @param m the game model
+     */
+    
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public void setModel(final GameModel m) {
         this.model = m;
     }
 
-    public void setMapController(final MapController c) {
-        this.mapController = c;
+    /**
+     * Sets the map controller
+     * 
+     * @param c the map controller
+     */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
+    public void setShopController(final ShopController c){
+        this.shopController = c;
     }
 
-    public void setShopController(final ShopController c) {
-        this.shopController = c;
+    public void setMapController(final MapController c) {
+        this.mapController = c;
     }
 
     private void setupMouse() {
@@ -195,12 +220,12 @@ public class GamePanel extends JPanel {
             if (!hoverSpot.isOccupied() && selected != null) {
                 final int rPx = selected.getRange() * 40;
                 g2.setColor(new Color(255, 255, 255, 30));
-                g2.fillOval((hx + 25) -rPx, (hy+25) - rPx, rPx * 2, rPx * 2);
+                g2.fillOval(hx +  25 - rPx, hy + 25 - rPx, rPx * 2, rPx *2);
                 g2.setColor(new Color(255, 255, 255, 100));
-                g2.drawOval((hx + 25) -rPx, (hy+25) - rPx, rPx * 2, rPx * 2);
+                g2.drawOval(hx + 25 - rPx, hy + 25 - rPx, rPx * 2, rPx *2);
 
                 g2.setColor(Color.WHITE);
-                g2.setFont(new Font("SansSerif", Font.BOLD, 12));
+                g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, 12));
                 g2.drawString(selected.getCost() + "g", hx + 10, hy - 5);
             } else if (hoverSpot.isOccupied()) {
                 final Tower t = hoverSpot.getTower();
@@ -213,7 +238,7 @@ public class GamePanel extends JPanel {
                 final int upCost = t.getType().getCost() / 2;
                 final int sellCost = t.getType().getCost() / 2;
                 g2.setColor(Color.GREEN);
-                g2.setFont(new Font("SansSerif", Font.BOLD, 11));
+                g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, 11));
                 g2.drawString("Up: " + upCost, hx, hy - 16);
                 g2.setColor(Color.RED);
                 g2.drawString("Sell: " + sellCost, hx, hy - 4);
