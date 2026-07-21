@@ -12,10 +12,10 @@ import javax.imageio.ImageIO;
  */
 public final class ImageLoader {
     
-    private static final int DEFAULT_SIZE=128;
+    private static final int DEFAULT_SIZE = 128;
     private static final float TINT_ALPHA = 0.5f;
-    private static final int TINT_RED=100;
-    private static final int TINT_GREEN=180;
+    private static final int TINT_RED = 100;
+    private static final int TINT_GREEN = 180;
     private static final int TINT_BLUE = 255;
     private static final int TINT_ALPHA_VALUE = 120;
 
@@ -50,7 +50,7 @@ public final class ImageLoader {
             spTowerBasic = loadImg(c1, b + "Structures/Towers/magic_crystal_tower.png");
             spTowerSniper = loadImg(c1,b + "Characters/Heroes/knight_hero.png");
             spTowerRapid = loadImg(c1, b + "Characters/Heroes/mage_hero.png");
-            spTowerIce = tintImg(spTowerBasic, new Color(100, 180, 255, 120));
+            spTowerIce = tintImg(spTowerBasic, new Color(TINT_RED, TINT_GREEN, TINT_BLUE, TINT_ALPHA_VALUE));
 
             spEnemyBasic = loadImg(c1, b + "Enemies/Orcs/orc_brute.png");
             spEnemyFast = loadImg(c1, b + "Enemies/Orcs/orc_raider.png");
@@ -68,7 +68,6 @@ public final class ImageLoader {
     }
 
     /**
-     * 
      * @param c1 classloader
      * @param path file path
      * @return the loaded image
@@ -97,13 +96,13 @@ public final class ImageLoader {
         int h = src.getHeight(null);
 
         if (w <= 0 || h <= 0) {
-            w = 128;
-            h = 128;
+            w = DEFAULT_SIZE;
+            h = DEFAULT_SIZE;
         }
         final BufferedImage t = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         final Graphics2D g = t.createGraphics();
         g.drawImage(src, 0, 0, w, h, null);
-        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.5f));
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, TINT_ALPHA));
         g.setColor(tint);
         g.fillRect(0, 0, w, h);
         g.dispose();
@@ -149,7 +148,8 @@ public final class ImageLoader {
      * */
     public static Image getSpEnemyFast() {
          return spEnemyFast; 
-        }
+    }
+
     /** 
      * @return tank enemy image 
      * */
