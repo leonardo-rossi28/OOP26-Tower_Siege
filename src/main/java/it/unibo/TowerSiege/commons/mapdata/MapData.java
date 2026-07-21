@@ -17,10 +17,13 @@ public final class MapData {
     /**
      * Constructor for MapData.
      */
-    public MapData() { }
+    public MapData() { 
+        //Default constructor
+    }
 
     /**
      * Gets the width.
+     * 
      * @return the width
      */
     public int getWidth() {
@@ -29,6 +32,7 @@ public final class MapData {
 
     /**
      * Sets the width.
+     * 
      * @param width the width
      */
     public void setWidth(final int width){
@@ -37,6 +41,7 @@ public final class MapData {
 
     /**
      * Gets the height.
+     * 
      * @return the height 
      */
     public int getHeight(){
@@ -45,6 +50,7 @@ public final class MapData {
 
     /**
      * Sets the height.
+     * 
      * @param height the height
      */
     public void setheight(final int height){
@@ -53,6 +59,7 @@ public final class MapData {
 
     /**
      * Gets the background.
+     * 
      * @return the background
      */
     public String getBackground(){
@@ -61,6 +68,7 @@ public final class MapData {
 
     /**
      * Sets the background.
+     * 
      * @param background the backgound
      */
     public void setBackground(final String background){
@@ -69,49 +77,55 @@ public final class MapData {
 
     /**
      * Gets the waypoints.
+     * 
      * @return the waypoints
      */
     public List<double[]> getWaypoints() {
-        return waypoints;
+        return new ArrayList<>(this.waypoints);
     }
 
     /**
      * Sets the waypoints.
+     * 
      * @param waypoints the waypoints
      */
     public void setWaypoints(final List<double[]> waypoints){
-        this.waypoints = waypoints;
+        this.waypoints = new ArrayList<>(waypoints);
     }
 
     /**
      * Gets the building spots.
+     * 
      * @return the building spots
      */
     public List<double[]> getBuildingSpots() {
-        return buildingSpots;
+        return new ArrayList<>(this.buildingSpots);
     }
 
     /**
      * Sets the building spots.
+     * 
      * @param buildingSpots the building spots
      */
     public void setBuildingSpots(final List<double[]> buildingSpots){
-        this.buildingSpots = buildingSpots;
+        this.buildingSpots = new ArrayList<>(buildingSpots);
     }
 
     /**
      * Gets the decorations.
+     * 
      * @return the decorations
      */
     public List<double[]> getDecorations(){ 
-        return decorations;
+        return new ArrayList<>(this.decorations);
     }
 
     /**
      * Sets the decoration.
+     * 
      * @param decorations the decorations
      */
     public void setDecorations(final List<double[]> decorations){
-        this.decorations=decorations;
+        this.decorations = new ArrayList<>(decorations);
     }
 }
