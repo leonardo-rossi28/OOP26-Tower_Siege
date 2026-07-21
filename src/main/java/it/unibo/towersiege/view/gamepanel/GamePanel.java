@@ -49,8 +49,6 @@ public class GamePanel extends JPanel {
      * @param mapC the map controller
      * @param shopC the shop controller
      */
-
-    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public GamePanel(final GameModel m, final MapController mapC, final ShopController shopC) {
         this.model = m;
         this.mapController = mapC;
@@ -64,8 +62,6 @@ public class GamePanel extends JPanel {
      * 
      * @param m the game model
      */
-    
-    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public void setModel(final GameModel m) {
         this.model = m;
     }
@@ -75,7 +71,6 @@ public class GamePanel extends JPanel {
      * 
      * @param c the map controller
      */
-    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public void setShopController(final ShopController c){
         this.shopController = c;
     }

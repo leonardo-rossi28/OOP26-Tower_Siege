@@ -22,8 +22,6 @@ import it.unibo.towersiege.model.tower.api.Tower;
 import it.unibo.towersiege.model.wave.api.Wave;
 import it.unibo.towersiege.model.wave.impl.WaveImpl;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 public class GameModelImpl implements GameModel {
 
     private static final int BASE_DAMAGE_PER_ENEMY = 10;
@@ -392,7 +390,6 @@ public class GameModelImpl implements GameModel {
 
      /**{@inheritDoc} */
     @Override 
-    @SuppressFBWarnings("EI_EXPOSE_REP")
     public Score getScore(){
         return score;
     }
