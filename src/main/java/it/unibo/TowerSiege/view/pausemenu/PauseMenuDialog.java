@@ -14,37 +14,34 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+
 /**
  * Dialog shown when the game is paused
  */
-
 public class PauseMenuDialog {
     
-    private final static int DIALOG_WIDTH=300;
-    private final static int DIALOG_HEIGHT=350;
-    private final static int TITLE_SIZE=36;
-    private final static int SPACING_TOP=30;
-    private final static int SPACING_MIDDLE=40;
-    private final static int BUTTON_WIDTH=200;
-    private final static int SPACING_SMALL=15;
-    private final static int BUTTON_HEIGHT=40;
-    private final static int BUTTON_FONT_SIZE=14;
-
+    private final static int DIALOG_WIDTH = 300;
+    private final static int DIALOG_HEIGHT = 350;
+    private final static int TITLE_SIZE = 36;
+    private final static int SPACING_TOP = 30;
+    private final static int SPACING_MIDDLE = 40;
+    private final static int BUTTON_WIDTH = 200;
+    private final static int SPACING_SMALL = 15;
+    private final static int BUTTON_HEIGHT = 40;
+    private final static int BUTTON_FONT_SIZE = 14;
     private final JDialog dialog;
+
     /**
      * Creates the pause dialog.
-     * 
      * @param parentFrame parent frame
      * @param mc main controller
      * @param gc game controller
      */
-
     public PauseMenuDialog(JFrame parentFrame, final MainController mc, final GameController gc){
         dialog = new JDialog(parentFrame, "Pausa", true);
         dialog.setUndecorated(true);
         dialog.setSize(DIALOG_WIDTH, DIALOG_HEIGHT);
         dialog.setLocationRelativeTo(parentFrame);
-
 
         final JPanel p = new JPanel();
         p.setBackground(new Color(20, 20, 20, 240));
@@ -73,7 +70,6 @@ public class PauseMenuDialog {
         p.add(btnRestart);
         p.add(Box.createRigidArea(new Dimension(0, SPACING_SMALL)));
         p.add(btnMenu);
-
         dialog.add(p);
     }
 
