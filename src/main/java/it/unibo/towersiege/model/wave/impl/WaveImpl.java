@@ -13,7 +13,7 @@ public class WaveImpl implements Wave {
     private static final int TOTAL_WAVES = 5;
 
     public WaveImpl() {
-
+        // Default constructor
     }
 
     /**

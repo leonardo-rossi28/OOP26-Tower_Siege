@@ -22,7 +22,23 @@ import it.unibo.towersiege.model.tower.api.Tower;
 import it.unibo.towersiege.model.wave.api.Wave;
 import it.unibo.towersiege.model.wave.impl.WaveImpl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 public class GameModelImpl implements GameModel {
+
+    private static final int BASE_DAMAGE_PER_ENEMY = 10;
+    private static final int SPAWN_DELAY_TICKS = 60; //1 second at 60fps
+    private static final int FIRE_COOLDOWN = 900; //15 seconds
+    private static final int FREEZE_COOLDOWN = 480; // 8 SECONDS
+    private static final int DEFAULT_MAP_WIDTH = 800;
+    private static final int DEFAULT_MAP_HEIGHT = 600;
+    private static final int DEFAULT_WAYPOINT_Y = 300;
+    private static final int INITIAL_SPAWN_COOLDOWN = 30;
+    private static final int FATAL_DAMAGE = 999;
+    private static final int FIRE_RAIN_DAMAGE = 50;
+    private static final int ANIMATION_DURATION = 60;
+    private static final int FREEZE_DURATION = 180;
+    private static final double FREEZE_SLOW_FACTOR = 0.3;
 
     private GameState state;
     private GameMap map;
@@ -36,13 +52,9 @@ public class GameModelImpl implements GameModel {
     private boolean waveInProgress;
     private int fireCooldownTicks;
     private int freezeCooldownTicks;
-    private static final int FIRE_COOLDOWN = 900; //15 seconds
-    private static final int FREEZE_COOLDOWN = 480; //10 seconds
     private int fireAnimTicks;
     private int freezeAnimTicks;
     private int victoryDelayTicks=-1;
-    private static final int SPAWN_DELAY_TICKS = 60; //1 second at 60fps
-    private static final int BASE_DAMAGE_PER_ENEMY = 10;
 
     private int currentLevel;
     private int maxUnlockedLevel;
@@ -76,7 +88,7 @@ public class GameModelImpl implements GameModel {
      * {@inheritDoc}
      */
     @Override
-    public void loadLevel(final int levelNum){
+    public final void loadLevel(final int levelNum){
         this.currentLevel = levelNum;
         final MapLoader loader = new MapLoader();
         MapData data = loader.loadFromClasspath("maps/level" + levelNum + ".json");
@@ -94,9 +106,9 @@ public class GameModelImpl implements GameModel {
                 data.getDecorations());
             } else{
                 final List<double[]> wp = new ArrayList<>();
-                wp.add(new double[]{0, 300});
-                wp.add(new double[]{800, 300});
-                this.map = new GameMapImpl(800, 600, "", wp, new ArrayList<>(), new ArrayList<>());
+                wp.add(new double[]{0, DEFAULT_WAYPOINT_Y});
+                wp.add(new double[]{DEFAULT_MAP_WIDTH, DEFAULT_WAYPOINT_Y});
+                this.map = new GameMapImpl(DEFAULT_MAP_WIDTH, DEFAULT_MAP_HEIGHT, "", wp, new ArrayList<>(), new ArrayList<>());
 
             }
         }
@@ -128,7 +140,7 @@ public class GameModelImpl implements GameModel {
             currentWaveIndex++;
             spawnQueue.addAll(wave.generateWave(currentWaveIndex));
             waveInProgress = true;
-            spawnCooldownTicks = 30;
+            spawnCooldownTicks = INITIAL_SPAWN_COOLDOWN;
         }
     
     }
@@ -174,25 +186,18 @@ public class GameModelImpl implements GameModel {
             if(reachedEnd) {
                 player.takeBaseDamage(BASE_DAMAGE_PER_ENEMY);
                 enemy.setReachedEnd(true);
-                enemy.takeDamage(enemy.getHealth() + 999);
+                enemy.takeDamage(enemy.getHealth() + FATAL_DAMAGE);
             }
         }
 
         //Update projectiles
         projectiles.removeIf(p -> { p.update(); return !p.isAlive();});
 
-        //Towers attack
+        //Fire towers
         for (final Tower tower : map.getTowers()) {
-            tower.tick();
-            if(!tower.isAlive()) { continue; }
-            for (final Enemy enemy : activeEnemies) {
-                if(enemy.isAlive()) {
-                    final Projectile p = tower.attack(enemy);
-                    if(p != null) {
-                        projectiles.add(p);
-                        break;
-                    }
-                }
+            final Projectile proj = tower.updateAndTarget(activeEnemies);
+            if (proj != null){
+                projectiles.add(proj);
             }
         }
 
@@ -375,7 +380,11 @@ public class GameModelImpl implements GameModel {
     }
 
      /**{@inheritDoc} */
-    @Override public Score getScore()   { return score; }
+    @Override 
+    @SuppressFBWarnings("EI_EXPOSE_REP")
+    public Score getScore(){
+        return score;
+    }
 
      /**{@inheritDoc} */
     @Override public Player getPlayer() { return player; }

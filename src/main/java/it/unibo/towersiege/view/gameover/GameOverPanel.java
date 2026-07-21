@@ -16,6 +16,7 @@ import it.unibo.towersiege.model.gamestate.GameState;
 
 public class GameOverPanel extends JPanel {
     
+    private static final long serialVersionUID = 1L;
     private static final int TITLE_SIZE=72;
     private static final int SUBTITLE_SIZE=24;
     private static final int TITLE_Y_OFFSET=20;
@@ -25,14 +26,20 @@ public class GameOverPanel extends JPanel {
     private static final int GOLDISH=215;
     private static final int RED=200;
     private static final int RED_DARK=50;
-    private static final int WHITE=50;
+    
 
 
     private final GameState state;
 
+    /**
+     * Constructor a new GameOverPanel.
+     * 
+     * @param state the terminal game state
+     */
+
     public GameOverPanel(final GameState state){
         this.state = state;
-        setOpaque(false); // So it draws over the GamePanel properly
+        super.setOpaque(false); // So it draws over the GamePanel properly
     }
 
     @Override

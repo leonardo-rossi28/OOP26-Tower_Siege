@@ -58,8 +58,8 @@ public class ProjectileImpl implements Projectile{
             }
             this.alive = false;
         }else{
-            this.x += (dx/dist) * SPEED;
-            this.y += (dy/dist) * SPEED;
+            this.x += dx / dist * SPEED;
+            this.y += dy / dist * SPEED;
         }
         
         
