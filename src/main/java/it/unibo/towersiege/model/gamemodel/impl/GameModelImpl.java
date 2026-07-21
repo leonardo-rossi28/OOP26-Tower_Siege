@@ -44,12 +44,15 @@ public class GameModelImpl implements GameModel {
     private GameMap map;
     private final Player player;
     private final Wave wave;
+
     private final List<Enemy> activeEnemies;
     private final List<Enemy> spawnQueue;
     private final List<Projectile> projectiles;
+
     private int  spawnCooldownTicks;
     private int currentWaveIndex;
     private boolean waveInProgress;
+
     private int fireCooldownTicks;
     private int freezeCooldownTicks;
     private int fireAnimTicks;
@@ -58,6 +61,7 @@ public class GameModelImpl implements GameModel {
 
     private int currentLevel;
     private int maxUnlockedLevel;
+
     private final Score score;
 
     /** Creates a GameModelImpl with no preset map path. */
@@ -66,7 +70,7 @@ public class GameModelImpl implements GameModel {
     }
 
     /**
-     * Creates a GameModelImpl
+     * Creates a GameModelImpl.
      * 
      * @param mapPath optional filesystem path to a custtom map JSON (may be null)
      */
@@ -159,12 +163,20 @@ public class GameModelImpl implements GameModel {
             return;
         }
 
-        if(fireCooldownTicks > 0) { fireCooldownTicks--; }
-        if(freezeCooldownTicks > 0) { freezeCooldownTicks--; }
-        if(fireAnimTicks > 0) { fireAnimTicks--; }
-        if(freezeAnimTicks > 0) { freezeAnimTicks--; }
+        if(fireCooldownTicks > 0) {
+            fireCooldownTicks--; 
+        }
+        if(freezeCooldownTicks > 0) {
+            freezeCooldownTicks--;
+        }
+        if(fireAnimTicks > 0) {
+            fireAnimTicks--;
+        }
+        if(freezeAnimTicks > 0) {
+            freezeAnimTicks--;
+        }
 
-        //Gradual spawn: one enemy per second
+        // Gradual spawn: one enemy per second
         if(spawnCooldownTicks > 0) {
             spawnCooldownTicks--;
         } else if (!spawnQueue.isEmpty()) {
@@ -177,7 +189,7 @@ public class GameModelImpl implements GameModel {
             spawnCooldownTicks = SPAWN_DELAY_TICKS;
         }
 
-        //Move Enemies
+        // Move Enemies
         for (final Enemy enemy : activeEnemies) {
             if (!enemy.isAlive()) { continue; }
             enemy.tickVisuals();
@@ -190,10 +202,10 @@ public class GameModelImpl implements GameModel {
             }
         }
 
-        //Update projectiles
+        // Update projectiles
         projectiles.removeIf(p -> { p.update(); return !p.isAlive();});
 
-        //Fire towers
+        // Fire towers
         for (final Tower tower : map.getTowers()) {
             final Projectile proj = tower.updateAndTarget(activeEnemies);
             if (proj != null){
@@ -201,47 +213,48 @@ public class GameModelImpl implements GameModel {
             }
         }
 
-        //Win / lose check
-        if(!player.isBaseAlive()){
-            state=GameState.DEFEAT;
-            SoundManager.playDefeat();
-        } else if (waveInProgress && spawnQueue.isEmpty() && getAliveEnemyCount()==0) {
-            waveInProgress=false;
-            if(currentWaveIndex >= wave.getTotalWaves()){
-                state= GameState.VICTORY;
-                SoundManager.playVictory();
-                victoryDelayTicks=180; 
-                if(currentLevel < 3 && currentLevel >= maxUnlockedLevel){
-                    maxUnlockedLevel = currentLevel + 1;
-                }
-                SaveManager.save(
-                    maxUnlockedLevel,
-                    Math.max(score.getTotal(), SaveManager.loadBestScore())
-                );
+        // Award rewards for killed enemis
+        for (final Enemy enemy : activeEnemies) {
+            if (!enemy.isAlive() && !enemy.isReachedEnd() && !enemy.isCoinAwarded()) {
+                enemy.setCoinAwarded(true);
+                player.addCoins(enemy.getReward());
+                score.addKilledEnemy(enemy.getType());
+                SoundManager.playEnemyKilled();
             }
         }
 
-        //Collect rewards and remove dead enemies
-        activeEnemies.removeIf(e->{
-            if(!e.isAlive()){
-                if(!e.isReachedEnd() && !e.isCoinAwarded()){
-                    player.addCoins(e.getReward());
-                    score.addPoints(e.getReward() * 10);
-                    e.setCoinAwarded(true);
-                    SoundManager.playEnemyKilled();
-                }
-                return true;
+        // Remove dead enemies
+        activeEnemies.removeIf(e -> !e.isAlive());
+
+        // Check lose condition
+        if(player.getBaseHealth() <= 0){
+            state=  GameState.GAME_OVER;
+            SoundManager.playDefeat();
+            return;
+        }
+
+        // Check victory condition
+        if(waveInProgress && spawnQueue.isEmpty() && activeEnemies.isEmpty()) {
+            waveInProgress = false;
+            if(currentWaveIndex >= wave.getTotalWaves()){
+                state= GameState.VICTORY;
+                SoundManager.playVictory();
+                score.setBaseHealthRemaining(player.getBaseHealth());
+                score.setCoinsRemaining(player.getCoins());
+                final int levelScore = score.calculateTotalScore();
+                SaveManager.save(currentLevel + 1, levelScore);
+                this.maxUnlockedLevel = SaveManager.loadMaxLevel();
+                victoryDelayTicks = 50;
             }
-            return false;
-        });
+        }
     }
 
-       /**
-     * Counts the number of enemies alive.
+    /**
+     * Returns the count of active (alive) enemis.
      * 
-     * @return count alive enemy
+     * @return count of active enemies
      */
-    private int getAliveEnemyCount() {
+    public int getAliveEnemyCount() {
         int count = 0;
         for (final Enemy e : activeEnemies) {
             if(e.isAlive()) {
@@ -256,11 +269,9 @@ public class GameModelImpl implements GameModel {
      */
     @Override
     public boolean buildTowerOnSpot(final Tower tower, final BuildingSpot spot) {
-        if (player.getCoins() >= tower.getType().getCost() && !spot.isOccupied()) {
-            if(map.addTowerToSpot(tower, spot)) {
-                player.addCoins(-tower.getType().getCost());
-                return true;
-            }
+        if (player.getCoins() >= tower.getType().getCost() && !spot.isOccupied() && map.addTowerToSpot(tower, spot)) {
+            player.addCoins(-tower.getType().getCost());
+            return true;
         }
         return false;
     }
@@ -301,10 +312,10 @@ public class GameModelImpl implements GameModel {
     public void castRainOfFire() {
         if (fireCooldownTicks > 0 || state != GameState.PLAYING) {return; }
         for (final Enemy e : activeEnemies) {
-            e.takeDamage(50);
+            e.takeDamage(FIRE_RAIN_DAMAGE);
         }
         fireCooldownTicks = FIRE_COOLDOWN;
-        fireAnimTicks = 60;
+        fireAnimTicks = ANIMATION_DURATION;
     }
 
     /**
@@ -314,10 +325,10 @@ public class GameModelImpl implements GameModel {
     public void castGlobalFreeze() {
         if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { return;}
         for (final Enemy e : activeEnemies) {
-            e.applySlow(0.3, 180);
+            e.applySlow(FREEZE_SLOW_MULTIPLIER, FREEZE_DURATION);
         }
         freezeCooldownTicks = FREEZE_COOLDOWN;
-        freezeAnimTicks = 60;
+        freezeAnimTicks = ANIMATION_DURATION;
     }
 
 
