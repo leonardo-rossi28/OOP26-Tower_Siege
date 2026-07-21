@@ -14,8 +14,6 @@ import it.unibo.towersiege.model.tower.TowerType;
 import it.unibo.towersiege.model.tower.api.Tower;
 import it.unibo.towersiege.view.utils.ImageLoader;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 import java.awt.Color;
 import java.awt.BasicStroke;
 import java.awt.Font;
