@@ -19,5 +19,4 @@ public final class GameConstants {
     public static final int STARTING_COINS = 250;
     public static final int BASE_HEALTH = 100;
 
-    private GameConstants() { }
 }

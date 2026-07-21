@@ -4,6 +4,7 @@ import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
 
 /** Interface for map interaction controller. */
 public interface MapController {
+    
     /**
      * Interacts with a building spot.
      * 

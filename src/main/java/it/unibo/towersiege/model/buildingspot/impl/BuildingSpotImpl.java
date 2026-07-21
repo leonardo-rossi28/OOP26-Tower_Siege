@@ -10,7 +10,8 @@ public class BuildingSpotImpl implements BuildingSpot{
     private Tower tower;
 
     /**
-     * Creates a new BuildingSpot at the given coordinates
+     * Creates a new BuildingSpot at the given coordinate
+     * 
      * @param col
      * @param row
      */

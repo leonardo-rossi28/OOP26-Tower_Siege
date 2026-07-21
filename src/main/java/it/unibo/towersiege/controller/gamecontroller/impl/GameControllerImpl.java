@@ -11,7 +11,7 @@ import it.unibo.towersiege.view.gameview.api.GameView;
 import javax.swing.Timer;
 
 /** Implementation of the main game controller. */
-public final class GameControllerImpl implements GameController{
+public final class GameControllerImpl implements GameController {
     private static final int TICK_DELAY_MS = 16;
     private final GameModel model;
     private final GameView view;
@@ -29,7 +29,6 @@ public final class GameControllerImpl implements GameController{
      * @param shopController the shop contoller
      * @param abilityController the abilty controller
      */
-
     public GameControllerImpl(final GameModel model,
                               final GameView view,
                               final MainController mainController,
