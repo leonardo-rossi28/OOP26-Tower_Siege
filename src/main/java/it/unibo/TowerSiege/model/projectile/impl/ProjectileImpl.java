@@ -17,63 +17,59 @@ public class ProjectileImpl implements Projectile{
     private static final double SLOW_FACTOR=0.5;
     private static final int SLOW_DURATION=20;
 
-   
     private final Tower source;
     private final Enemy target;
     private double x;
     private double y;
     private boolean alive=true;
 
-
-
     /**
      * 
      * @param source
      * @param target
      */
-    public ProjectileImpl(final Tower source, final Enemy target){
-        this.source=source;
-        this.target=target;
-        this.x=source.getPixelX();
-        this.y=source.getPixelY();
+    public ProjectileImpl(final Tower source, final Enemy target) {
+        this.source = source;
+        this.target = target;
+        this.x = source.getPixelX();
+        this.y = source.getPixelY();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void update(){
-        if(!target.isAlive()){
+    public void update() {
+        if(!target.isAlive()) {
             this.alive=false;
             return;
         }
 
-        final double tx=target.getPixelX()+OFFSET;
-        final double ty=target.getPixelY()+OFFSET;
-        final double dx=tx-x;
-        final double dy=ty-y;
-        final double dist = Math.sqrt(dx*dx + dy*dy);
+        final double tx = target.getPixelX() + OFFSET;
+        final double ty = target.getPixelY() + OFFSET;
+        final double dx = tx - x;
+        final double dy = ty - y;
+        final double dist = Math.sqrt(dx * dx + dy * dy);
 
         if( dist <= SPEED){
             target.takeDamage(source.getDamage());
-            if(source.getType()==TowerType.ICE){
-                target.applySlow(SLOW_FACTOR,SLOW_DURATION);
+            if(source.getType() == TowerType.ICE){
+                target.applySlow(SLOW_FACTOR, SLOW_DURATION);
             }
-            this.alive=false;
+            this.alive = false;
         }else{
-            this.x +=(dx/dist)*SPEED;
-            this.y +=(dy/dist)*SPEED;
+            this.x += (dx/dist) * SPEED;
+            this.y += (dy/dist) * SPEED;
         }
         
         
     }
 
-
     /**
      * {@inheritDoc}
      */
     @Override
-    public double getX(){
+    public double getX() {
         return x;
     }
     
@@ -81,7 +77,7 @@ public class ProjectileImpl implements Projectile{
      * {@inheritDoc}
      */
     @Override
-    public double getY(){
+    public double getY() {
         return y;
     }
 
@@ -89,7 +85,7 @@ public class ProjectileImpl implements Projectile{
      * {@inheritDoc}
      */
     @Override
-    public TowerType getSourceTowerType(){
+    public TowerType getSourceTowerType() {
         return source.getType();
     }
 
@@ -97,7 +93,7 @@ public class ProjectileImpl implements Projectile{
      * {@inheritDoc}
      */
     @Override
-    public boolean isAlive(){
+    public boolean isAlive() {
         return alive;
     }
 

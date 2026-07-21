@@ -28,7 +28,6 @@ import java.util.List;
 /**
  * Main panel used to draw the game scene and handle UI interactions
  */
-
 public class GamePanel extends JPanel {
 
     private static final Color C_UI = new Color(20, 15, 10, 210);
@@ -153,9 +152,9 @@ public class GamePanel extends JPanel {
             Image img=null;
             switch (type){
                 case 0: img = ImageLoader.getImgTree(); break;
-                case 1: img= ImageLoader.getImgBush(); break;
-                case 2: img=ImageLoader.getImgRock(); break;
-                case 3: img=ImageLoader.getImgRockBush(); break;
+                case 1: img = ImageLoader.getImgBush(); break;
+                case 2: img = ImageLoader.getImgRock(); break;
+                case 3: img = ImageLoader.getImgRockBush(); break;
             }
 
             if(img != null){

@@ -32,7 +32,7 @@ public final class GameControllerImpl implements GameController{
         this.mainController = mainController;
 
         this.gameLoop = new Timer(TICK_DELAY_MS, e -> {
-            final Timer currentLoop =(Timer) e.getSource();
+            final Timer currentLoop = (Timer) e.getSource();
             if (model.getState() == GameState.PLAYING || model.getState() == GameState.VICTORY) {
                 model.update();
             }
