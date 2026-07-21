@@ -30,7 +30,8 @@ public class GameMapImpl implements GameMap{
     private final int[][] grid;
 
     /**
-     * Consturct a GameMap from the grid-coordinate data
+     * Consturct a GameMap from the grid-coordinate data.
+     * 
      * @param width map width
      * @param height map height
      * @param backgroundPath background path image
@@ -57,7 +58,7 @@ public class GameMapImpl implements GameMap{
                     grid[row][col] = 1;
                     pixelWaypoints.add(new double[]{
                         (col * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 2.0),
-                        (row * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 2.0)
+                        (row * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 2.0),
                     });
                 }
             }
@@ -76,9 +77,7 @@ public class GameMapImpl implements GameMap{
         }
     }
 
-    /**
-     * {@inheritDOc}
-     */
+    /** {@inheritDOc} */
     @Override
     public int getWidth() {
         return width;
@@ -92,37 +91,32 @@ public class GameMapImpl implements GameMap{
         return height;
     }
 
-    /**
-     * {@inheritDOc}
-     */
+    /** {@inheritDOc} */
     @Override
     public String getBackgroundPath() {
         return backgroundPath;
     }
 
-
-    /**
-     * {@inheritDOc}
-     */
+    /** {@inheritDOc} */
     @Override
     public List<double[]> getWaypoints() {
         return pixelWaypoints;
     }
 
-    /**
-     * {@inheritDOc}
-     */
+    /** {@inheritDOc} */
     @Override
     public List<BuildingSpot> getBuildingSpots() {
         return buildingSpots;
     }
 
-    /**
-     * {@inheritDOc}
-     */
+    /** {@inheritDOc} */
     @Override
     public int[][] getGrid() {
-        return grid;
+        final int[][] copy = new int[grid.length][];
+        for (int i = 0; i < grid.length; i++) {
+            copy[i] = grid[i].clone();
+        }
+        return copy;
     }
 
     /**

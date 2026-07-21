@@ -17,18 +17,38 @@ public enum EnemyType {
         this.description = description;
     }
 
+    /**
+     * Gets the base healt.
+     * 
+     * @return healt
+     */
     public int getHealth() {
         return health;
     }
 
+    /**
+     * Gets the movement speed.
+     * 
+     * @return speed
+     */
     public int getSpeed() {
         return speed;
     }
 
+    /**
+     * Gets the gold reward.
+     * 
+     * @return reward
+     */
     public int getReward() {
         return reward;
     }
 
+    /**
+     * Gets the enemy description.
+     * 
+     * @return description
+     */
     public String StringDescription() {
         return description;
     }

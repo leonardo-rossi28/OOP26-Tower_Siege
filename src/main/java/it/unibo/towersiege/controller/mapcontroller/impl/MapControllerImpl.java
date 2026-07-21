@@ -8,14 +8,16 @@ import it.unibo.towersiege.model.gamestate.GameState;
 import it.unibo.towersiege.model.tower.api.Tower;
 import it.unibo.towersiege.model.tower.impl.TowerImpl;
 
+/** Implementation of the map controller. */
 public final class MapControllerImpl implements MapController{
     private final GameModel model;
     private final ShopController shopController;
     
     /**
-     * MapController constructor.
+     * Constructs a new MapControllerImpl.
+     * 
      * @param model the game model
-     * @param shopController the game shopcontroller
+     * @param shopController the gshop controller
      */
     public MapControllerImpl(final GameModel model, final ShopController shopController){
         this.model = model;
@@ -23,7 +25,8 @@ public final class MapControllerImpl implements MapController{
     }
     
     /**
-     * Interacts with a given spot
+     * Interacts with a given spot.
+     * 
      * @param spot the spot
      */
     @Override
@@ -43,6 +46,7 @@ public final class MapControllerImpl implements MapController{
 
     /**
      * Sells a tower in a given spot.
+     * 
      * @param spot the spot
      */
     @Override

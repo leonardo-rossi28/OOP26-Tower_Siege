@@ -1,30 +1,24 @@
 package it.unibo.towersiege.controller.maincontroller.api;
 
+/** Interface for the main application controller */
 public interface MainController {
 
-    /**
-     * Starts the game.
-     */
+    /**Starts the application. */
     void start();
 
-    /**
-     * Begins the game.
-     */
+    /** Begins the game. */
     void beginGame();
 
     /**
-     * Starts the level.
+     * Starts a specific level.
+     * 
      * @param level the level
      */
     void startLevel(int level);
 
-    /**
-     * Brings back to menu.
-     */
+    /** Returns to the main menu. */
     void backToMenu();
 
-    /**
-     * Brings back to LevelSelectPanel.
-     */
+    /** Returns to the level selection screen.*/
     void backToLevelSelect();
 }

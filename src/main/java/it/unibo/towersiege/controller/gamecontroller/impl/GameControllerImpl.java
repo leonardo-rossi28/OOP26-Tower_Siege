@@ -1,7 +1,5 @@
 package it.unibo.towersiege.controller.gamecontroller.impl;
 
-import javax.swing.Timer;
-
 import it.unibo.towersiege.controller.abilitycontroller.api.AbilityController;
 import it.unibo.towersiege.controller.gamecontroller.api.GameController;
 import it.unibo.towersiege.controller.maincontroller.api.MainController;
@@ -10,17 +8,27 @@ import it.unibo.towersiege.controller.shopcontroller.api.ShopController;
 import it.unibo.towersiege.model.gamemodel.api.GameModel;
 import it.unibo.towersiege.model.gamestate.GameState;
 import it.unibo.towersiege.view.gameview.api.GameView;
+import javax.swing.Timer;
 
-/**
- * GameControllerImpl
- */
+/** Implementation of the main game controller. */
 public final class GameControllerImpl implements GameController{
     private static final int TICK_DELAY_MS = 16;
     private final GameModel model;
     private final GameView view;
     private final MainController mainController;
 
-    private Timer gameLoop;
+    private final Timer gameLoop;
+
+    /**
+     * Constructs a new GameControllerImpl.
+     * 
+     * @param model the game model
+     * @param view the game view
+     * @param mainController the main controller
+     * @param mapController the map controller
+     * @param shopController the shop contoller
+     * @param abilityController the abilty controller
+     */
 
     public GameControllerImpl(final GameModel model,
                               final GameView view,

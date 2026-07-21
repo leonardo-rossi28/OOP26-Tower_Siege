@@ -48,8 +48,7 @@ public class EnemyImpl implements Enemy {
         this.coinAwarded = false;
     }
 
-    /**
-     * 
+    /** 
      * {@inheritDoc}
      */
     @Override
@@ -63,63 +62,6 @@ public class EnemyImpl implements Enemy {
     }
 
     /**
-     * 
-     * {@inheritDoc}
-     */
-    @Override
-    public void setReachedEnd(final boolean val) {
-        this.reachedEnd = val;
-    }
-
-    /**
-     * 
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isReachedEnd() {
-        return reachedEnd;
-    }
-
-    /**
-     * 
-     * {@inheritDoc}
-     */
-    @Override
-    public void setCoinAwarded(final boolean val) {
-        this.coinAwarded=val;
-    }
-
-    /**
-     * 
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isCoinAwarded() {
-        return coinAwarded;
-    }
-
-    /**
-     * 
-     * {@inheritDoc}
-     */
-    @Override
-    public void tickVisuals() {
-        if( hitFlashTicks > 0) {
-            hitFlashTicks--;
-        }
-    }
-
-    /**
-     * 
-     * {@inheritDoc}
-     */
-    @Override
-    public int getHitFlashTicks() {
-        return hitFlashTicks;
-    }
-
-    /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -129,7 +71,6 @@ public class EnemyImpl implements Enemy {
     }
 
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -141,15 +82,25 @@ public class EnemyImpl implements Enemy {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void tickVisuals() {
+        if( hitFlashTicks > 0) {
+            hitFlashTicks--;
+        }
+    }
+
+    /**
+     * Returns the effective movement speed (base speed * slow multiplier).
      * 
-     * @return speed for ticks
+     * @return effective speed
      */
     private double getEffectiveSpeed() {
         return baseSpeed * slowMultiplier;
     }
 
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -176,61 +127,81 @@ public class EnemyImpl implements Enemy {
     }
 
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
-    public EnemyType getType() { return type; }
+    public void setReachedEnd(final boolean val) {
+        this.reachedEnd = val;
+    }
 
     /**
      * 
      * {@inheritDoc}
      */
     @Override
-    public int getMaxHealth() { return maxHealth; }
+    public boolean isReachedEnd() {
+        return reachedEnd;
+    }
 
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
-    public int getHealth() { return health; }
+    public void setCoinAwarded(final boolean val) {
+        this.coinAwarded=val;
+    }
 
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
-    public int getReward() { return reward; }
+    public boolean isCoinAwarded() {
+        return coinAwarded;
+    }
 
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
-    public boolean isAlive() { return alive; }
+    public int getHitFlashTicks() {
+        return hitFlashTicks;
+    }
 
-    /**
-     * 
-     * {@inheritDoc}
-     */
-    @Override
-    public double getPixelX() { return pixelX; }
-
-    /**
-     * 
-     * {@inheritDoc}
-     */
-    @Override
-    public double getPixelY() { return pixelY; }
-
-    /**
-     * 
-     * {@inheritDoc}
+    /** 
+     * {@inheritDoc} 
      */
     @Override
     public void setPosition(double x,double y) {
         this.pixelX = x;
         this.pixelY = y;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public EnemyType getType() { return type; }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getMaxHealth() { return maxHealth; }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getHealth() { return health; }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getReward() { return reward; }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isAlive() { return alive; }
+
+    /** {@inheritDoc} */
+    @Override
+    public double getPixelX() { return pixelX; }
+
+    /** {@inheritDoc} */
+    @Override
+    public double getPixelY() { return pixelY; }
+
 }

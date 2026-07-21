@@ -9,7 +9,8 @@ public final class AbilityControllerImpl implements AbilityController {
     private final GameModel model;
 
     /**
-     * Constructs a new AbilityControllerImpl
+     * Constructs a new AbilityControllerImpl.
+     * 
      * @param model the game model
      */
     public AbilityControllerImpl(final GameModel model) {

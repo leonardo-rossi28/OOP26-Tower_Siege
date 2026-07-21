@@ -38,6 +38,7 @@ public final class SaveManager {
 
     /**
      * Saves to a custom path (useful for testing).
+     * 
      * @param maxUnlockedLevel the max unlocked level
      * @param bestScore the best score
      * @param path the path to save 
@@ -58,6 +59,7 @@ public final class SaveManager {
     /**
      * Loads the max unlocked level from the save file.
      * Returns 1 if no save file exists.
+     * 
      * @return the max unlocked level
      */
     public static int loadMaxLevel(){
@@ -65,7 +67,8 @@ public final class SaveManager {
     }
 
     /**
-     * Loads the max level from a custom path
+     * Loads the max level from a custom path.
+     * 
      * @param path the path to load from
      * @return the max unlocked level
      */
@@ -77,6 +80,7 @@ public final class SaveManager {
     /**
      * Loads the best score from the save file.
      * Returns 0 if no save file exists.
+     * 
      * @return the best score
      */
     public static int loadBestScore(){
@@ -85,6 +89,7 @@ public final class SaveManager {
 
     /**
      * Loads the best score from a custom path.
+     * 
      * @param path the path to load from
      * @return the best score
      */
@@ -93,7 +98,8 @@ public final class SaveManager {
     }
 
     /**
-     * Return true if a save file exists at the default path
+     * Return true if a save file exists at the default path.
+     * 
      * @return true if save exists
      */
     public static boolean saveExists(){
@@ -102,6 +108,7 @@ public final class SaveManager {
 
     /**
      * Return true if save file exists at a custom path.
+     * 
      * @param path the path
      * @return true if save file exists
      */

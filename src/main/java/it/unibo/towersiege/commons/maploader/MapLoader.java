@@ -24,9 +24,18 @@ import it.unibo.towersiege.commons.mapdata.MapData;
 public class MapLoader {
 
     private static final Logger LOGGER = Logger.getLogger(MapLoader.class.getName());
+    private static final String QUOTE = "\"";
+
+    /**
+     * Default constructor for MapLoader.
+     */
+    public MapLoader() {
+        // Default constructor
+    }
 
     /**
      * Loads a map from a file path
+     * 
      * @param filePath the path to the map file
      * @return the parsed map data
      * @throws IOException if an error occurs reading the file
@@ -39,6 +48,7 @@ public class MapLoader {
 
     /**
      * Loads a map from the classpath
+     * 
      * @param resourcePath the path to the resource
      * @return the parsed map data, or null if not found
      */
@@ -72,7 +82,7 @@ public class MapLoader {
     }
 
     private int extractInt(final String json, final String field, final int fallback) {
-        final Pattern p = Pattern.compile("\"" + field + "\"\\s*:\\s*(\\d+)");
+        final Pattern p = Pattern.compile(QUOTE + field + QUOTE + "\\s*:\\s*(\\d+)");
         final Matcher m = p.matcher(json);
         if(m.find()) {
             return Integer.parseInt(m.group(1));
@@ -81,14 +91,14 @@ public class MapLoader {
     }
 
     private String extractStringField(final String json, final String field) {
-        final Pattern p = Pattern.compile("\"" + field + "\"\\s*:\\s*\"([^\"]*)\"");
+        final Pattern p = Pattern.compile(QUOTE + field + QUOTE + "\\s*:\\s*\"([^\"]*)\"");
         final Matcher m = p.matcher(json);
         return m.find() ? m.group(1) :null;
     }
 
     private List<double[]> extractDoubleArray2D(final String json, final String field) {
         final List<double[]> result = new ArrayList<>();
-        final Pattern arrayStartPattern = Pattern.compile("\"" + field + "\"\\s*:\\s*\\[");
+        final Pattern arrayStartPattern = Pattern.compile(QUOTE + field + QUOTE + "\\s*:\\s*\\[");
         final Matcher arrayStartMatcher = arrayStartPattern.matcher(json);
 
         if(!arrayStartMatcher.find()) {

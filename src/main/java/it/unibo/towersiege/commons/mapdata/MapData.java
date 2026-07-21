@@ -15,10 +15,10 @@ public final class MapData {
     private List<double[]> decorations = new ArrayList<>();
 
     /**
-     * Constructor for MapData.
+     * Default Constructor for MapData.
      */
     public MapData() { 
-        //Default constructor
+        //Default constructor for deserialization
     }
 
     /**

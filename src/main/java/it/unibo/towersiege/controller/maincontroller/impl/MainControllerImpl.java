@@ -12,9 +12,7 @@ import it.unibo.towersiege.model.gamemodel.api.GameModel;
 import it.unibo.towersiege.model.gamestate.GameState;
 import it.unibo.towersiege.view.gameview.api.GameView;
 
-/**
- * MainControllerImpl
- */
+/** Implementation of the main controller. */
 public final class MainControllerImpl implements MainController {
 
     private final GameModel model;
@@ -25,7 +23,8 @@ public final class MainControllerImpl implements MainController {
     private final AbilityController abilityController;
 
     /**
-     * Main Controller cunstructor.
+     * Constructs a new MainControllerImpl.
+     * 
      * @param model the game model
      * @param view the game view
      */
