@@ -12,10 +12,10 @@ import it.unibo.TowerSiege.model.projectile.api.Projectile;
  */
 public class ProjectileImpl implements Projectile{
 
-    private static final double SPEED=15.0;
-    private static final double OFFSET=20.0;
-    private static final double SLOW_FACTOR=0.5;
-    private static final int SLOW_DURATION=20;
+    private static final double SPEED = 15.0;
+    private static final double OFFSET = 20.0;
+    private static final double SLOW_FACTOR = 0.5;
+    private static final int SLOW_DURATION = 20;
 
     private final Tower source;
     private final Enemy target;

@@ -13,29 +13,25 @@ import java.awt.Insets;
 /**
  * Dialog that shows the game rules.
  */
-
 public class RulesDialog {
 
-    private static final int DIALOG_WIDTH=520;
-    private static final int DIALOG_HEIGHT=420;
-    private static final int DIALOG_FONT_SIZE=14;
-    private static final int TEXT_MARGIN=15;
-    private static final int TEXT_AREA_BG_RED=40;
-    private static final int TEXT_AREA_BG_GREEN=35;
-    private static final int TEXT_AREA_BG_BLUE=30;
-    private static final int TEXT_AREA_FG_RED=230;
-    private static final int TEXT_AREA_FG_GREEN=220;
-    private static final int TEXT_AREA_FG_BLUE=200;
+    private static final int DIALOG_WIDTH = 520;
+    private static final int DIALOG_HEIGHT = 420;
+    private static final int DIALOG_FONT_SIZE = 14;
+    private static final int TEXT_MARGIN = 15;
+    private static final int TEXT_AREA_BG_RED = 40;
+    private static final int TEXT_AREA_BG_GREEN = 35;
+    private static final int TEXT_AREA_BG_BLUE = 30;
+    private static final int TEXT_AREA_FG_RED = 230;
+    private static final int TEXT_AREA_FG_GREEN = 220;
+    private static final int TEXT_AREA_FG_BLUE = 200;
 
-    
     private final JDialog dialog;
 
     /**
      * Creates the rules dialog.
-     * 
      * @param parent parent frame
      */
-
     public RulesDialog(final JFrame parent) {
         dialog = new JDialog(parent, "Regolamento", true);
         dialog.setSize(DIALOG_WIDTH, DIALOG_HEIGHT);
