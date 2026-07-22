@@ -18,6 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ProjectileImplTest {
     
+    private static final int TARGET_X = 30;
+    private static final int MAX_TICKS = 20;
+    private static final int FATAL_DAMAGE = 1000;
+
     private Tower source;
     private Enemy target;
     private Projectile projectile;
@@ -28,7 +32,7 @@ class ProjectileImplTest {
         source.setPosition(0, 0);
 
         target = new EnemyImpl(EnemyType.BASIC, 1);
-        target.setPosition(30, 0); //Speed is 15.0, distance is 30.0 + 20.0 offset
+        target.setPosition(TARGET_X, 0); //Speed is 15.0, distance is 30.0 + 20.0 offset
 
         projectile = new ProjectileImpl(source, target);
     }
@@ -43,18 +47,14 @@ class ProjectileImplTest {
 
     @Test
     void testUpdateAndImpact() {
-        int initialHealth = target.getHealth();
-
-        //Target is at 30, offset is 20, so target center is at 50
-        //Speed is 15.0 per tick
+        final int initialHealth = target.getHealth();
 
         projectile.update();
         assertTrue(projectile.isAlive());
         assertEquals(initialHealth, target.getHealth());
 
-        //Loop until impact
         int ticks = 0;
-        while (projectile.isAlive() && ticks < 20) {
+        while (projectile.isAlive() && ticks < MAX_TICKS) {
             projectile.update();
             ticks++;
         }
@@ -65,8 +65,8 @@ class ProjectileImplTest {
 
     @Test
     void testDeadTarget() {
-        target.takeDamage(1000); //Kill target
+        target.takeDamage(FATAL_DAMAGE);
         projectile.update();
-        assertFalse(projectile.isAlive()); //Projectile should die
+        assertFalse(projectile.isAlive());
     }
 }
