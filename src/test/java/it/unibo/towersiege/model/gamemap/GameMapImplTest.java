@@ -20,59 +20,69 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 class GameMapImplTest {
+
+    private static final int MAP_W = 800;
+    private static final int MAP_H = 600;
+    private static final int PATH_VAL = 1;
+    private static final int SPOT_VAL = 2;
+    private static final int GRASS_VAL = 0;
+    private static final int COORD_5 = 5;
+    private static final int COORD_2 = 2;
+    private static final int COORD_3 = 3;
+    private static final int NEG_COORD = -1;
+
     private GameMap map;
 
     @BeforeEach
     void setUp() {
-        List<double[]> pathCoords = new ArrayList<>();
+        final List<double[]> pathCoords = new ArrayList<>();
         pathCoords.add(new double[]{0, 0});
         pathCoords.add(new double[]{1, 0});
 
-        List<double[]> spotCoords = new ArrayList<>();
-        spotCoords.add(new double[]{2, 2});
-        spotCoords.add(new double[]{3, 3});
+        final List<double[]> spotCoords = new ArrayList<>();
+        spotCoords.add(new double[]{COORD_2, COORD_2});
+        spotCoords.add(new double[]{COORD_3, COORD_3});
 
-        map = new GameMapImpl(800, 600, "bg.jpg", pathCoords, spotCoords, new ArrayList<>());
+        map = new GameMapImpl(MAP_W, MAP_H, "bg.jpg", pathCoords, spotCoords, new ArrayList<>());
     }
 
     @Test
     void testInitialState() {
-        assertEquals(800, map.getWidth());
-        assertEquals(600, map.getHeight());
+        assertEquals(MAP_W, map.getWidth());
+        assertEquals(MAP_H, map.getHeight());
         assertEquals("bg.jpg", map.getBackgroundPath());
 
         assertEquals(2, map.getWaypoints().size());
         assertEquals(2, map.getBuildingSpots().size());
 
-        int[][] grid = map.getGrid();
-        assertEquals(1, grid[0][0]); //path
-        assertEquals(1, grid[0][1]); //path
-        assertEquals(2, grid[2][2]); //spot
-        assertEquals(0, grid[5][5]); //grass
+        final int[][] grid = map.getGrid();
+        assertEquals(PATH_VAL, grid[0][0]); //path
+        assertEquals(PATH_VAL, grid[0][1]); //path
+        assertEquals(SPOT_VAL, grid[2][2]); //spot
+        assertEquals(GRASS_VAL, grid[5][5]); //grass
     }
 
     @Test
     void testGetSpotAt() {
-        BuildingSpot spot = map.getSpotAt(2, 2);
+        final BuildingSpot spot = map.getSpotAt(2, 2);
         assertNotNull(spot);
-        assertEquals(2, spot.getCol());
-        assertEquals(2, spot.getRow());
+        assertEquals(COORD_2, spot.getCol());
+        assertEquals(COORD_2, spot.getRow());
 
-        assertNull(map.getSpotAt(5, 5));
-        assertNull(map.getSpotAt(-1, -1));
+        assertNull(map.getSpotAt(COORD_5, COORD_5));
+        assertNull(map.getSpotAt(NEG_COORD, NEG_COORD));
     }
 
     @Test
     void testAddAndRemoveTower() {
-        BuildingSpot spot = map.getSpotAt(2, 2);
-        Tower tower = new TowerImpl(TowerType.BASIC);
+        final BuildingSpot spot = map.getSpotAt(2, 2);
+        final Tower tower = new TowerImpl(TowerType.BASIC);
 
         assertTrue(map.addTowerToSpot(tower, spot));
         assertTrue(spot.isOccupied());
         assertEquals(1, map.getTowers().size());
 
-        //Cannot add to an already occupied spot 
-        Tower tower2 = new TowerImpl(TowerType.SNIPER);
+        final Tower tower2 = new TowerImpl(TowerType.SNIPER);
         assertFalse(map.addTowerToSpot(tower2, spot));
 
         map.removeTowerFromSpot(spot);

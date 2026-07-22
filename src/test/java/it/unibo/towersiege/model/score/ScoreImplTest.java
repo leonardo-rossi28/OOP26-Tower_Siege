@@ -10,6 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScoreImplTest {
     
+    private static final int PTS_10 = 10;
+    private static final int PTS_NEG_5 = -5;
+    private static final int PTS_50 = 50;
+    
     private Score score;
 
     @BeforeEach
@@ -24,17 +28,16 @@ class ScoreImplTest {
 
     @Test
     void testAddPoints() {
-        score.addPoints(10);
-        assertEquals(10, score.getTotal());
+        score.addPoints(PTS_10);
+        assertEquals(PTS_10, score.getTotal());
 
-        // Negative points should not be added
-        score.addPoints(-5);
-        assertEquals(10, score.getTotal());
+        score.addPoints(PTS_NEG_5);
+        assertEquals(PTS_10, score.getTotal());
     }
 
     @Test
     void testReset() {
-        score.addPoints(50);
+        score.addPoints(PTS_50);
         score.reset();
         assertEquals(0, score.getTotal());
     }

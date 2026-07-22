@@ -18,62 +18,69 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class TowerImplTest {
     
+    private static final int INITIAL_POS_X = 100;
+    private static final int INITIAL_POS_Y = 100;
+    private static final int INITIAL_LEVEL = 1;
+    private static final int LEVEL_2 = 2;
+    private static final int BASE_DAMAGE = 5;
+    private static final int DAMAGE_INCREASE = 2;
+    private static final int ENEMY_IN_RANGE_Y = 150;
+    private static final int ENEMY_OUT_RANGE_X = 300;
+    private static final int BASIC_COOLDOWN_TICKS = 60;
+    private static final int WAVE = 1;
+
     private Tower tower;
 
     @BeforeEach
     void setUp() {
         tower = new TowerImpl(TowerType.BASIC);
-        tower.setPosition(100, 100);
+        tower.setPosition(INITIAL_POS_X, INITIAL_POS_Y);
     }
 
     @Test
     void testInitialState() {
         assertEquals(TowerType.BASIC, tower.getType());
-        assertEquals(1, tower.getLevel());
+        assertEquals(INITIAL_LEVEL, tower.getLevel());
         assertTrue(tower.isAlive());
-        assertEquals(100, tower.getPixelX());
-        assertEquals(100, tower.getPixelY());
-        assertEquals(5, tower.getDamage());
+        assertEquals(INITIAL_POS_X, tower.getPixelX());
+        assertEquals(INITIAL_POS_Y, tower.getPixelY());
+        assertEquals(BASE_DAMAGE, tower.getDamage());
     }
 
     @Test
     void testUpgrade() {
         tower.upgrade();
-        assertEquals(2, tower.getLevel());
-        assertEquals(5 + 2, tower.getDamage()); // damage = base + (level - 1) * 2
+        assertEquals(LEVEL_2, tower.getLevel());
+        assertEquals(BASE_DAMAGE + DAMAGE_INCREASE, tower.getDamage());
     }
 
     @Test
     void testIsEnemyInRange() {
-        Enemy enemy = new EnemyImpl(EnemyType.BASIC, 1);
+        final Enemy enemy = new EnemyImpl(EnemyType.BASIC, 1);
 
-        // Range for BASIC is 3 tiles = 120 pixels
-        enemy.setPosition(100, 150); // dist = 50
+        enemy.setPosition(INITIAL_POS_X, ENEMY_IN_RANGE_Y);
         assertTrue(tower.isEnemyInRange(enemy));
 
-        enemy.setPosition(300, 100); // dist = 200
+        enemy.setPosition(ENEMY_OUT_RANGE_X, INITIAL_POS_Y);
         assertFalse(tower.isEnemyInRange(enemy));
     }
 
     @Test
     void testAttackAndCooldown() {
-        Enemy enemy = new EnemyImpl(EnemyType.BASIC, 1);
-        enemy.setPosition(100, 150);
+        final Enemy enemy = new EnemyImpl(EnemyType.BASIC, 1);
+        enemy.setPosition(INITIAL_POS_X, ENEMY_IN_RANGE_Y);
 
-        // Attack when off cooldown
-        Projectile proj = tower.attack(enemy);
+        final Projectile proj = tower.attack(enemy);
         assertNotNull(proj);
 
-        //Attack when on cooldown
-        Projectile proj2 = tower.attack(enemy);
+        final Projectile proj2 = tower.attack(enemy);
         assertNull(proj2);
 
-        // Tick until cooldown is over (BASIC cooldown is 60)
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < BASIC_COOLDOWN_TICKS; i++) {
             tower.tick();
         }
 
-        Projectile proj3 = tower.attack(enemy);
+        final Projectile proj3 = tower.attack(enemy);
         assertNotNull(proj3);
     }
 }

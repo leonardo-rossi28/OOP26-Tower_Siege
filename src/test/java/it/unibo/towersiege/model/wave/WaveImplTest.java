@@ -15,6 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WaveImplTest {
     
+    private static final int TOTAL_WAVES = 5;
+    private static final int WAVE_1 = 1;
+    private static final int WAVE_3 = 3;
+    private static final int WAVE_1_SIZE = 7;
+    private static final int WAVE_3_SIZE = 13;
+
     private Wave wave;
 
     @BeforeEach
@@ -24,28 +30,28 @@ class WaveImplTest {
 
     @Test
     void testTotalWaves() {
-        assertEquals(5, wave.getTotalWaves());
+        assertEquals(TOTAL_WAVES, wave.getTotalWaves());
     }
 
     @Test
     void testGenerateWave1() {
-        List<Enemy> enemies = wave.generateWave(1);
-        assertEquals(4 + 3, enemies.size()); // 4 + 1 * 3 = 7
+        final List<Enemy> enemies = wave.generateWave(WAVE_1);
+        assertEquals(4 + 3, enemies.size());
 
-        for (Enemy e : enemies) {
+        for (final Enemy e : enemies) {
             assertEquals(EnemyType.BASIC, e.getType());
         }
     }
 
     @Test
     void testGenerateWave3() {
-        List<Enemy> enemies = wave.generateWave(3);
-        assertEquals(4 + 9, enemies.size()); // 4 + 3 * 3 = 13
+        final List<Enemy> enemies = wave.generateWave(WAVE_3);
+        assertEquals(WAVE_3_SIZE, enemies.size());
 
         boolean hasFast = false;
         boolean hasTank = false;
 
-        for (Enemy e : enemies) {
+        for (final Enemy e : enemies) {
             if (e.getType() == EnemyType.FAST) {
                 hasFast = true;
             }
