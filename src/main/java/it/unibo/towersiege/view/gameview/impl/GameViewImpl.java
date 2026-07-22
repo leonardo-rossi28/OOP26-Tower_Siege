@@ -25,7 +25,12 @@ import it.unibo.towersiege.view.startmenu.StartMenuPanel;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
-public class GameViewImpl implements GameView{
+/**
+ * Implementation of the GameView interface.
+ * Manages the Swing UI frames and panels for the game.
+ */
+
+public final class GameViewImpl implements GameView{
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
@@ -38,11 +43,13 @@ public class GameViewImpl implements GameView{
     private GameOverPanel gameOverPanel;
     private PauseMenuDialog pauseDialog;
 
+    /** {@inheritDoc} */
     @Override
     public void displayWelcome() {
         //Optional startup effect
     }
 
+    /** {@inheritDoc} */
     @Override
     public void showStartMenu(final MainController c) {
         if (menuFrame != null) {
@@ -59,6 +66,7 @@ public class GameViewImpl implements GameView{
         menuFrame.setVisible(true);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void showLevelSelect(final MainController c, final GameModel model) {
         if (levelFrame != null) {
@@ -75,8 +83,11 @@ public class GameViewImpl implements GameView{
         levelFrame.setVisible(true);
     }
 
+    /** {@inheritDoc} */
     @Override
-    public void displayGameState(final GameModel model, final GameController gc, final MapController mapC, final ShopController sc, final AbilityController ac) {
+    public void displayGameState(final GameModel model,
+            final GameController gc, final MapController mapC,
+            final ShopController sc, final AbilityController ac) {
         if (gameFrame == null) {
             initGui(model, gc, mapC, sc, ac);
         } else {
@@ -85,7 +96,8 @@ public class GameViewImpl implements GameView{
             gamePanel.setShopController(sc);
             gamePanel.repaint();
 
-            if (model.getState() == GameState.DEFEAT || model.getState() == GameState.VICTORY) {
+            if (model.getState() == GameState.DEFEAT
+                    || model.getState() == GameState.VICTORY) {
                 if (gameOverPanel == null) {
                     displayEndGame(model.getState());
                 }
@@ -99,7 +111,9 @@ public class GameViewImpl implements GameView{
         }
     }
 
-    private void initGui(final GameModel model, final GameController gc, final MapController mapC, final ShopController sc, final AbilityController ac) {
+    private void initGui(final GameModel model, final GameController gc,
+        final MapController mapC, final ShopController sc,
+        final AbilityController ac) {
         gameFrame = new JFrame("TowerSiege - Livello " + model.getCurrentLevel());
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameFrame.setResizable(false);
@@ -113,7 +127,8 @@ public class GameViewImpl implements GameView{
 
         gameFrame.add(layeredPane);
 
-        final InputMap im = gameFrame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        final InputMap im = gameFrame.getRootPane()
+                .getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         final ActionMap am = gameFrame.getRootPane().getActionMap();
 
         im.put(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0), "p");
@@ -140,6 +155,7 @@ public class GameViewImpl implements GameView{
         };
     }
 
+    /** {@inheritDoc} */
     @Override
     public void displayEndGame(final GameState state) {
         if (gameFrame == null || gameOverPanel != null) {
@@ -151,15 +167,19 @@ public class GameViewImpl implements GameView{
         gameFrame.getLayeredPane().repaint();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void showPauseMenu(final MainController mc, final GameController gc) {
-        if (gameFrame == null) return;
+        if (gameFrame == null) {
+            return;
+        }
         if (pauseDialog == null) {
             pauseDialog = new PauseMenuDialog(gameFrame, mc, gc);
         }
         pauseDialog.show();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void hidePauseMenu() {
         if (pauseDialog != null) {
@@ -168,6 +188,7 @@ public class GameViewImpl implements GameView{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void closeGameFrame() {
         if (gameFrame != null) {
