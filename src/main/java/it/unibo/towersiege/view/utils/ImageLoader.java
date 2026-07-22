@@ -21,8 +21,6 @@ public final class ImageLoader {
     private static final int TINT_BLUE = 255;
     private static final int TINT_ALPHA_VALUE = 255;
     private static final int PIXEL_MASK_ALPHA = 0xFF000000;
-    private static final int PIXEL_MASK_RGB = 0x00FFFFFF;
-
     private static boolean loaded;
 
     private static Image spTowerBasic;
