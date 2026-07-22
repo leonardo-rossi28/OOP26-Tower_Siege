@@ -37,6 +37,7 @@ public class GameModelImpl implements GameModel {
     private static final int ANIMATION_DURATION = 60;
     private static final int FREEZE_DURATION = 180;
     private static final double FREEZE_SLOW_MULTIPLIER = 0.3;
+    private static final int VICTORY_DELAY_TICKS = 50;
 
     private GameState state;
     private GameMap map;
@@ -251,7 +252,7 @@ public class GameModelImpl implements GameModel {
                 final int levelScore = score.getTotal();
                 SaveManager.save(currentLevel + 1, levelScore);
                 this.maxUnlockedLevel = SaveManager.loadMaxLevel();
-                victoryDelayTicks = 50;
+                victoryDelayTicks = VICTORY_DELAY_TICKS;
             }
         }
     }

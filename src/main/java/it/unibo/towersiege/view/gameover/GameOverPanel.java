@@ -14,7 +14,7 @@ import it.unibo.towersiege.model.gamestate.GameState;
  * Overplay panel swhown when the game reaches a terminal state
  */
 
-public class GameOverPanel extends JPanel {
+public final class GameOverPanel extends JPanel {
     
     private static final long serialVersionUID = 1L;
     private static final int TITLE_SIZE=72;

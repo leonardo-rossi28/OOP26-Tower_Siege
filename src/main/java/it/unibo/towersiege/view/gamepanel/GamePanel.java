@@ -32,8 +32,92 @@ import java.util.List;
 public class GamePanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
+    private static final int CELL_SIZE = 50;
+    private static final int HUD_BAR_HEIGHT = 40;
+    private static final int SHOP_CARD_WIDTH = 100;
+    private static final int SHOP_CARD_HEIGHT = 70;
+    private static final int SHOP_GAP = 8;
+    private static final int SHOP_MARGIN = 12;
+    private static final int SHOP_ROUND_INNER = 8;
+    private static final int SHOP_SELECTION_EXTRA = 4;
+    private static final int SHOP_TEXT_Y_NAME = 18;
+    private static final int SHOP_TEXT_Y_COST = 36;
+    private static final int SHOP_TEXT_Y_DMG = 50;
+    private static final int SHOP_TEXT_Y_RNG = 62;
+    private static final int SHOP_TEXT_X_OFFSET = 5;
+    private static final int FONT_SIZE_HUD = 16;
+    private static final int FONT_SIZE_SHOP_NAME = 12;
+    private static final int FONT_SIZE_SHOP_STAT = 10;
+    private static final int FONT_SIZE_LVL = 10;
+    private static final int FONT_SIZE_INFO = 11;
+    private static final int HUD_TEXT_Y = 25;
+    private static final int HUD_TEXT_X_HP = 20;
+    private static final int HUD_TEXT_X_COINS = 140;
+    private static final int HUD_TEXT_X_SCORE = 260;
+    private static final int HUD_TEXT_X_WAVE = 400;
+    private static final int HUD_SUBTEXT_Y = 55;
+    private static final int SECONDS_DIVISOR = 60;
+    private static final int SHADOW_OFFSET_X = 10;
+    private static final int SHADOW_OFFSET_Y = 40;
+    private static final int SHADOW_W = 30;
+    private static final int SHADOW_H = 15;
+    private static final int SPRITE_SIZE = 50;
+    private static final int SPRITE_OFFSET = 25;
+    private static final int SPRITE_TOWER_Y_OFFSET = 35;
+    private static final int LVL_OFFSET_X = 10;
+    private static final int LVL_OFFSET_Y = 20;
+    private static final int HEALTH_BAR_WIDTH = 30;
+    private static final int HEALTH_BAR_HEIGHT = 4;
+    private static final int HEALTH_BAR_X_OFFSET = 10;
+    private static final int HEALTH_BAR_Y_OFFSET = 5;
+    private static final int PROJ_SIZE_DEFAULT = 8;
+    private static final int PROJ_SIZE_SNIPER = 12;
+    private static final int PROJ_SIZE_ICE = 10;
+    private static final int PROJ_SIZE_RAPID = 6;
+    private static final int DECORATION_PAD = 5;
+    private static final int DECORATION_SIZE = 40;
+    private static final int HOVER_RANGE_MULTIPLIER = 40;
+    private static final int HOVER_CICRLE_OFFSET = 25;
+    private static final int HOVER_COST_OFFSET_X = 10;
+    private static final int HOVER_COST_OFFSET_Y = 4;
+    private static final int HOVER_UP_OFFSET_Y = 16;
+    private static final int HOVER_SELL_OFFEST_Y = 4;
+    private static final int COST_HALF_DIVISOR = 2;
+    private static final int SHOP_PANEL_PAFFING = 10;
+    private static final int SHOP_PANEL_EXTRA_W = 20;
+    private static final int SHOP_PANEL_EXTRA_H = 90;
+    private static final int SHOP_PANEL_ROUND = 15;
+    private static final int HIT_FLASH_OFFSET = 10;
+    private static final int HIT_FLASH_SIZE = 30;
+    private static final int TOWER_SHADOW_W = 40;
+    private static final int TOWER_SHADOW_H = 20;
+    private static final int TOWER_SHADOW_X_OFFSET = 20;
+    private static final int TOWER_SHADOW_Y_OFFSET = 10;
+    private static final int GRID_SPOT_PAD = 4;
+    private static final int GRID_SPOT_RECT_SIZE = 42;
+    private static final float GRID_DASH_LENGTH = 5.0f;
+    private static final float GRID_METER_LIMIT = 10.0f;
+
     private static final Color C_UI = new Color(20, 15, 10, 210);
     private static final Color C_GOLD = new Color(255, 215, 0);
+    private static final Color C_MAP_GRASS = new Color(60, 130, 50);
+    private static final Color C_MAP_PATH = new Color(180, 160, 120);
+    private static final Color C_SPOT_BG = new Color(0, 0, 0, 40);
+    private static final Color C_SPOT_BORDER = new Color(255, 255, 255, 80);
+    private static final Color C_HOVER = new Color(255, 255, 255, 60);
+    private static final Color C_RANGE_FILL = new Color(255, 255, 255, 30);
+    private static final Color C_RANGE_BORDER = new Color(255, 255, 255, 100);
+    private static final Color C_RANGE_FILL_OCC = new Color(255, 255, 255, 20);
+    private static final Color C_RANGE_BORDER_OCC = new Color(255, 255, 255, 80);
+    private static final Color C_SHADOW = new Color(0, 0, 0, 80);
+    private static final Color C_HIT_FLASH = new Color(255, 255, 255, 150);
+    private static final Color C_HUD_LINE = new Color(60, 50, 40);
+    private static final Color C_WAVE_TEXT = new Color(200, 200, 255);
+    private static final Color C_ENEMY_SHADOW = new Color(0, 0, 0, 80);
+    private static final Color C_SHOP_BG = new Color(0, 0, 0, 100);
+    private static final Color C_SHOP_SELECTED = new Color(80, 150, 255);
+    private static final Color C_SHOP_CARD_BG = new Color(40, 35, 30);
+    private static final Color C_SHOP_CARD_BORDE_COLOR = new Color(80, 70, 60);
     private static final String FONT_SANSSERIF = "SansSerif";
 
     private GameModel model;
@@ -81,8 +165,8 @@ public class GamePanel extends JPanel {
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(final MouseEvent e) {
-                final int col = e.getX() / 50;
-                final int row = e.getY() / 50;
+                final int col = e.getX() / CELL_SIZE;
+                final int row = e.getY() / CELL_SIZE;
                 hoverSpot = model.getMap().getSpotAt(col, row);
                 repaint();
             }
@@ -103,15 +187,14 @@ public class GamePanel extends JPanel {
                 }
 
                 final TowerType[] types = TowerType.values();
-                final int cw = 100;
-                final int gap = 8;
-                final int total = types.length * (cw + gap) - gap;
-                final int sx = (getWidth() - total) / 2;
-                final int sy = getHeight() - 70 - 12;
+    
+                final int total = types.length * (SHOP_CARD_WIDTH + SHOP_GAP) - SHOP_GAP;
+                final int shopX = (getWidth() - total) / 2;
+                final int shopY = getHeight() - SHOP_CARD_HEIGHT - SHOP_MARGIN;
 
                 for (int i = 0; i < types.length; i++) {
-                    final int cx = sx + i * (cw + gap);
-                    if(e.getX() >= cx && e.getX() <= cx + cw && e.getY() >= sy && e.getY() <= sy + 70) {
+                    final int cx = shopX + i * (SHOP_CARD_WIDTH + SHOP_GAP);
+                    if(e.getX() >= shopY && e.getX() <= cx + SHOP_CARD_WIDTH && e.getY() >= sy && e.getY() <= shopY + SHOP_CARD_HEIGHT) {
                         shopController.setSelectedTowerType(types[i]);
                         repaint();
                         return;
@@ -126,6 +209,7 @@ public class GamePanel extends JPanel {
         });
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
@@ -145,15 +229,15 @@ public class GamePanel extends JPanel {
     }
 
     private void drawMap(final Graphics2D g2) {
-        g2.setColor(new Color(60, 130, 50));
+        g2.setColor(C_MAP_GRASS);
         g2.fillRect(0, 0, getWidth(), getHeight());
 
         final int[][] grid = model.getMap().getGrid();
-        g2.setColor(new Color(180, 160, 120));
+        g2.setColor(C_MAP_PATH);
         for (int r = 0; r < grid.length; r++) {
             for ( int c = 0; c < grid[0].length; c++) {
                 if (grid[r][c] == 1) {
-                    g2.fillRect(c * 50, r * 50, 50, 50);
+                    g2.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                 }
             }
         }
@@ -165,19 +249,27 @@ public class GamePanel extends JPanel {
             final int col = (int) dec[0];
             final int row = (int) dec[1];
             final int type = (int) dec[2];
-            final int px = col * 50;
-            final int py = row *50;
+            final int px = col * CELL_SIZE;
+            final int py = row * CELL_SIZE;
 
             Image img=null;
             switch (type){
-                case 0: img = ImageLoader.getImgTree(); break;
-                case 1: img = ImageLoader.getImgBush(); break;
-                case 2: img = ImageLoader.getImgRock(); break;
-                case 3: img = ImageLoader.getImgRockBush(); break;
+                case 0:
+                    img = ImageLoader.getImgTree();
+                    break;
+                case 1:
+                    img = ImageLoader.getImgBush();
+                    break;
+                case 2:
+                    img = ImageLoader.getImgRock();
+                    break;
+                case 3:
+                    img = ImageLoader.getImgRockBush();
+                    break;
             }
 
             if(img != null){
-                g2.drawImage(img, px + 5, py + 5, 40, 40, null);
+                g2.drawImage(img, px + DECORATION_PAD, py + DECORATION_PAD, DECORATION_SIZE, DECORATION_SIZE, null);
             }
 
         }
@@ -186,57 +278,71 @@ public class GamePanel extends JPanel {
     private void drawGridAndSpots(final Graphics2D g2) {
         final List<BuildingSpot> spots = model.getMap().getBuildingSpots();
         for (final BuildingSpot s : spots) {
-            final int px = s.getCol() * 50;
-            final int py = s.getRow() * 50;
+            final int px = s.getCol() * CELL_SIZE;
+            final int py = s.getRow() * CELL_SIZE;
 
-            g2.setColor(new Color(0, 0, 0, 40));
-            g2.fillRect(px, py, 50, 50);
+            g2.setColor(C_SPOT_BG);
+            g2.fillRect(px, py, CELL_SIZE, CELL_SIZE);
 
             if (!s.isOccupied()) {
-                g2.setColor(new Color(255, 255, 255, 80));
-                g2.setStroke(new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, new float[]{5.0f}, 0.0f));
-                g2.drawRect(px + 4, py + 4, 42, 42);
+                g2.setColor(C_SPOT_BORDER);
+                g2.setStroke(new BasicStroke(2, BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER, GRID_METER_LIMIT,
+                        new float[]{GRID_DASH_LENGTH}, 0.0f));
+                g2.drawRect(px + GRID_SPOT_PAD, py + GRID_SPOT_PAD,
+                        GRID_SPOT_RECT_SIZE, GRID_SPOT_RECT_SIZE);
                 g2.setStroke(new BasicStroke(1));
             }
         }
 
         if (hoverSpot != null) {
-            final int hx = hoverSpot.getCol() * 50;
-            final int hy = hoverSpot.getRow() * 50;
-            final TowerType selected = shopController.getSelectedTowerType();
 
-            g2.setColor(new Color(255, 255, 255, 60));
-            g2.fillRect(hx, hy, 50, 50);
-            g2.setColor(Color.WHITE);
-            g2.drawRect(hx, hy, 50, 50);
+            drawHoverSpot(g2);
+        }
+    }
 
-            if (!hoverSpot.isOccupied() && selected != null) {
-                final int rPx = selected.getRange() * 40;
-                g2.setColor(new Color(255, 255, 255, 30));
-                g2.fillOval(hx +  25 - rPx, hy + 25 - rPx, rPx * 2, rPx *2);
-                g2.setColor(new Color(255, 255, 255, 100));
-                g2.drawOval(hx + 25 - rPx, hy + 25 - rPx, rPx * 2, rPx *2);
+    private void drawHoverSpot(final Graphics2D g2) {
+        final int hx = hoverSpot.getCol() * CELL_SIZE;
+        final int hy = hoverSpot.getRow() * CELL_SIZE;
+        final TowerType selected = shopController.getSelectedTowerType();
+        g2.setColor(C_HOVER);
+        g2.fillRect(hx, hy, CELL_SIZE, CELL_SIZE);
+        g2.setColor(Color.WHITE);
+        g2.drawRect(hx, hy, CELL_SIZE, CELL_SIZE);
+
+        if (!hoverSpot.isOccupied() && selected != null) {
+                final int rPx = selected.getRange() * HOVER_RANGE_MULTIPLIER;
+                g2.setColor(C_RANGE_FILL);
+                g2.fillOval(hx +  HOVER_CICRLE_OFFSET - rPx,
+                        hy + HOVER_CICRLE_OFFSET - rPx, rPx * 2, rPx *2);
+                g2.setColor(C_RANGE_BORDER);
+                g2.drawOval(hx + HOVER_CICRLE_OFFSET - rPx,
+                        hy + HOVER_CICRLE_OFFSET - rPx, rPx * 2, rPx *2);
 
                 g2.setColor(Color.WHITE);
-                g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, 12));
-                g2.drawString(selected.getCost() + "g", hx + 10, hy - 5);
+                g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, FONT_SIZE_SHOP_NAME));
+                g2.drawString(selected.getCost() + "g",
+                        hx + HOVER_COST_OFFSET_X, hy - HOVER_COST_OFFSET_Y);
             } else if (hoverSpot.isOccupied()) {
-                final Tower t = hoverSpot.getTower();
-                final int rPx = t.getRange() * 40;
-                g2.setColor(new Color(255, 255, 255, 20));
-                g2.fillOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx, rPx * 2, rPx * 2);
-                g2.setColor(new Color(255, 255, 255, 80));
-                g2.drawOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx, rPx * 2, rPx * 2);
-
-                final int upCost = t.getType().getCost() / 2;
-                final int sellCost = t.getType().getCost() / 2;
-                g2.setColor(Color.GREEN);
-                g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, 11));
-                g2.drawString("Up: " + upCost, hx, hy - 16);
-                g2.setColor(Color.RED);
-                g2.drawString("Sell: " + sellCost, hx, hy - 4);
+                drawOccupiedHover(g2, hx, hy);
             }
         }
+        
+    private void drawOccupiedHover(final Graphics2D g2, final int hx, final int hy) {
+        final Tower t = hoverSpot.getTower();
+        final int rPx = t.getRange() * 40;
+        g2.setColor(new Color(255, 255, 255, 20));
+        g2.fillOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx, rPx * 2, rPx * 2);
+        g2.setColor(new Color(255, 255, 255, 80));
+        g2.drawOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx, rPx * 2, rPx * 2);
+
+        final int upCost = t.getType().getCost() / 2;
+        final int sellCost = t.getType().getCost() / 2;
+        g2.setColor(Color.GREEN);
+        g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, 11));
+        g2.drawString("Up: " + upCost, hx, hy - 16);
+        g2.setColor(Color.RED);
+        g2.drawString("Sell: " + sellCost, hx, hy - 4);
     }
 
     private void drawTowers(final Graphics2D g2) {

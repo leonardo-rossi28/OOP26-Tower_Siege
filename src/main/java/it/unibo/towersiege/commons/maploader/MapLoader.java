@@ -59,10 +59,10 @@ public class MapLoader {
                LOGGER.severe("Resource not found on classpath:" + resourcePath);
                 return null;
             }
-            final String content = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))
-                .lines()
-                .collect(Collectors.joining("\n"));
-            return parseJson(content);
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+                final String content = reader.lines().collect(Collectors.joining("n"));
+                return parseJson(content);
+            }
         } catch (final IOException e) {
             LOGGER.severe("Error reading classpath resource: " + e.getMessage());
             return null;

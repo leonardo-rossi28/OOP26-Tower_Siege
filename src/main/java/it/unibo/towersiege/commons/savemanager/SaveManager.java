@@ -120,8 +120,10 @@ public final class SaveManager {
      * Delets the save file (reset progress).
      */
     public static void deleteSave(){
-
-        new File(DEFAULT_SAVE_PATH).delete();
+        final File file = new File(DEFAULT_SAVE_PATH);
+        if (file.exists() && !file.delete()) {
+            LOGGER.warning("Impossibile eliminare il salvataggio");
+        }
     }
 
 
