@@ -69,6 +69,7 @@ public final class GameControllerImpl implements GameController {
         if (!gameLoop.isRunning()) {
             gameLoop.start();
         }
+        gameLoop.stop();
     }
 
     /**
