@@ -39,10 +39,14 @@ public interface GameView {
      * Renders the current game state onto the game frame.
      * Creates the frame on the first call.
      * 
-     * @param model     the game model to read state from
-     * @param controller the controller to wire input actions to.
+     * @param model the game model to read state from
+     * @param gc the game controller
+     * @param mapC the map controller
+     * @param sc the shop controller
+     * @param ac the ability controller
      */
-    void displayGameState(GameModel model, GameController gc, MapController mapC, ShopController sc, AbilityController ac);
+    void displayGameState(GameModel model, GameController gc,
+            MapController mapC, ShopController sc, AbilityController ac);
 
     /**
      * Displays the end-game overlay (victory or defeat)
@@ -54,7 +58,8 @@ public interface GameView {
     /**
      * Shows the pause menu dialog
      * 
-     * @param controller the controller to wire pause-menu actions to
+     * @param mc the main controller
+     * @param gc the game controller
      */
     void showPauseMenu(MainController mc, GameController gc);
 
