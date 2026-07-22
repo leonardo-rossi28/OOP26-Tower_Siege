@@ -1,4 +1,4 @@
-package it.unibo.towersiege;
+package it.unibo.towersiege.application;
 
 import org.junit.jupiter.api.Test;
 
