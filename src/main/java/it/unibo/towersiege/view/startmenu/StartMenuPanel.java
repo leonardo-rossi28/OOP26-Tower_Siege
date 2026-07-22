@@ -22,7 +22,9 @@ import java.awt.Graphics2D;
  * Main panel shown at the start of the game
  */
 
-public class StartMenuPanel extends JPanel {
+public final class StartMenuPanel extends JPanel {
+
+    private static final long serialVersionUID = 1L;
 
     private static final Color C_GOLD = new Color(255, 215, 0);
 
@@ -32,6 +34,31 @@ public class StartMenuPanel extends JPanel {
     private static final int BUTTON_FONT_SIZE= 18;
     private static final int BUTTON_HEIGHT=50;
     private static final int BUTTON_WIDTH=250;
+    private static final int BORDER_V = 30;
+    private static final int BORDER_H = 50;
+    private static final int SPACING_SM = 4;
+    private static final int SPACING_MD = 10;
+    private static final int SPACING_LG = 12;
+    private static final int SPACING_XL = 22;
+    private static final int GRADIENT_R1 = 25;
+    private static final int GRADIENT_G1 = 18;
+    private static final int GRADIENT_B1 = 12;
+    private static final int GRADIENT_R2 = 50;
+    private static final int GRADIENT_G2 = 35;
+    private static final int GRADIENT_B2 = 20;
+    private static final int SUB_COLOR_R = 220;
+    private static final int SUB_COLOR_G = 200;
+    private static final int SUB_COLOR_B = 160;
+    private static final int INFO_COLOR_V = 180;
+    private static final int BTN_START_G = 150;
+    private static final int BTN_START_B = 80;
+    private static final int BTN_RULES_R = 50;
+    private static final int BTN_RULES_G = 90;
+    private static final int BTN_RULES_B = 170;
+    private static final int BTN_EXIT_R = 170;
+    private static final int BTN_EXIT_G = 45;
+    private static final int BTN_EXIT_B = 45;
+    private static final String FONT_SERIF = "Serif";
 
     /**
      * Creates the start menu panel.
@@ -42,48 +69,66 @@ public class StartMenuPanel extends JPanel {
 
     public StartMenuPanel(final MainController controller, final JFrame parentFrame) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
+        setBorder(BorderFactory.createEmptyBorder(BORDER_V, BORDER_H, BORDER_V, BORDER_H));
 
-        final JLabel title = mkLabel("TOWERSIEGE", new Font("Serif", Font.BOLD, TITLE_SIZE), C_GOLD);
-        final JLabel sub = mkLabel("Difendi la base dalle ondate nemiche!", new Font("Serif", Font.ITALIC, SUBTITLE_SIZE),
-                new Color(220, 200, 160));
-        final JLabel i1 = mkLabel("Click sx = piazza/potenzia | Click dx = vendi torre", new Font("Serif", Font.PLAIN,INFO_SIZE),
-                new Color(180, 180, 180));
-        final JLabel i2 = mkLabel("W = ondata | F = Fuoco | G = Gelo | ESC = Pausa", new Font("Serif", Font.PLAIN,INFO_SIZE),
-                new Color(180, 180, 180));
+        final JLabel title = mkLabel("TOWERSIEGE",
+                new Font(FONT_SERIF, Font.BOLD, TITLE_SIZE), C_GOLD);
+        final JLabel sub = mkLabel("Difendi la base dalle ondate nemiche!",
+                new Font(FONT_SERIF, Font.ITALIC, SUBTITLE_SIZE),
+                new Color(SUB_COLOR_R, SUB_COLOR_G, SUB_COLOR_B));
+        final JLabel i1 = mkLabel("Click sx = piazza/potenzia | Click dx = vendi torre",
+                new Font(FONT_SERIF, Font.PLAIN,INFO_SIZE),
+                new Color(INFO_COLOR_V, INFO_COLOR_V, INFO_COLOR_V));
+        final JLabel i2 = mkLabel("W = ondata | F = Fuoco | G = Gelo | ESC = Pausa",
+                new Font(FONT_SERIF, Font.PLAIN,INFO_SIZE),
+                new Color(INFO_COLOR_V, INFO_COLOR_V, INFO_COLOR_V));
 
-        final JButton start = btn("INIZIA PARTITA", new Color(30, 150, 80));
+        final JButton start = btn("INIZIA PARTITA",
+                new Color(BORDER_V, BTN_START_G, BTN_START_B));
         start.addActionListener(e -> controller.beginGame());
 
-        final JButton rules = btn("REGOLAMENTO", new Color(50, 90, 170));
+        final JButton rules = btn("REGOLAMENTO",
+                new Color(BTN_RULES_R, BTN_RULES_G, BTN_RULES_B));
         rules.addActionListener(e -> new RulesDialog(parentFrame).show());
 
-        final JButton exit = btn("ESCI", new Color(170, 45, 45));
-        exit.addActionListener(e -> System.exit(0));
+        final JButton exit = btn("ESCI",
+                new Color(BTN_EXIT_R, BTN_EXIT_G, BTN_EXIT_B));
+        exit.addActionListener(e -> exitGame());
 
+        init(title, sub, i1, i2, start, rules, exit);
+    }
+
+    private void exitGame() {
+        System.exit(0);
+    }
+
+    private void init(final JLabel title, final JLabel sub,
+            final JLabel i1, final JLabel i2,
+            final JButton start, final JButton rules, final JButton exit) {
         add(title);
-        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(Box.createRigidArea(new Dimension(0, SPACING_MD)));
         add(sub);
-        add(Box.createRigidArea(new Dimension(0, 12)));
+        add(Box.createRigidArea(new Dimension(0, SPACING_LG)));
         add(i1);
-        add(Box.createRigidArea(new Dimension(0, 4)));
+        add(Box.createRigidArea(new Dimension(0, SPACING_SM)));
         add(i2);
-        add(Box.createRigidArea(new Dimension(0, 22)));
+        add(Box.createRigidArea(new Dimension(0, SPACING_XL)));
         add(start);
-        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(Box.createRigidArea(new Dimension(0, SPACING_MD)));
         add(rules);
-        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(Box.createRigidArea(new Dimension(0, SPACING_MD)));
         add(exit);
     }
 
-    /**
-     * {@InheritDoc}
-    */
+    /** {@InheritDoc}*/
     @Override
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2 = (Graphics2D) g;
-        g2.setPaint(new GradientPaint(0, 0, new Color(25, 18, 12), 0, getHeight(), new Color(50, 35, 20)));
+        g2.setPaint(new GradientPaint(0, 0,
+                new Color(GRADIENT_R1, GRADIENT_G1, GRADIENT_B1),
+                0, getHeight(),
+                new Color(GRADIENT_R2, GRADIENT_G2, GRADIENT_B2)));
         g2.fillRect(0, 0, getWidth(), getHeight());
     }
 
@@ -91,7 +136,7 @@ public class StartMenuPanel extends JPanel {
         final JLabel l = new JLabel(text);
         l.setFont(f);
         l.setForeground(c);
-        l.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+        l.setAlignmentX(CENTER_ALIGNMENT);
         return l;
     }
 
@@ -101,7 +146,7 @@ public class StartMenuPanel extends JPanel {
         b.setForeground(Color.WHITE);
         b.setBackground(bg);
         b.setFocusPainted(false);
-        b.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+        b.setAlignmentX(CENTER_ALIGNMENT);
         b.setMaximumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         return b;
     }
