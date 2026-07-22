@@ -1,24 +1,29 @@
 package it.unibo.towersiege.view.utils;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.InputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+
 /*
-* Utility class designed for loading and managing the game image assets
+* Utility class to load and hold images/sprites
  */
 public final class ImageLoader {
     
-    private static final int DEFAULT_SIZE = 128;
-    private static final float TINT_ALPHA = 0.5f;
+    private static final Logger LOGGER = Logger.getLogger(ImageLoader.class.getName());
     private static final int TINT_RED = 100;
-    private static final int TINT_GREEN = 180;
+    private static final int TINT_GREEN = 200;
     private static final int TINT_BLUE = 255;
-    private static final int TINT_ALPHA_VALUE = 120;
+    private static final int TINT_ALPHA_VALUE = 255;
+    private static final int PIXEL_MASK_ALPHA = 0xFF000000;
+    private static final int PIXEL_MASK_RGB = 0x00FFFFFF;
 
+    private static boolean loaded;
 
     private static Image spTowerBasic;
     private static Image spTowerSniper;
@@ -27,162 +32,201 @@ public final class ImageLoader {
     private static Image spEnemyBasic;
     private static Image spEnemyFast;
     private static Image spEnemyTank;
+
     private static Image imgTree;
     private static Image imgBush;
     private static Image imgRock;
     private static Image imgRockBush;
-    
-    private static boolean loaded = false;
 
     private ImageLoader(){
     }
-    /*
-    * Loads all the game images 
+
+     /**
+     * Returns the basic tower sprite.
+     * 
+     * @return the basic tower image
+     */
+    public static Image getSpTowerBasic() {
+         return spTowerBasic; 
+    }
+
+     /**
+     * Returns the sniper tower sprite.
+     * 
+     * @return the sniper tower image
+     */
+    public static Image getSpTowerSniper() { 
+        return spTowerSniper; 
+    }
+
+     /**
+     * Returns the rapid tower sprite.
+     * 
+     * @return the basic tower image
+     */
+    public static Image getSpTowerRapid() {
+         return spTowerRapid; 
+    }
+
+    /**
+     * Returns the ice tower sprite.
+     * 
+     * @return the ice tower image
+     */
+    public static Image getSpTowerIce() { 
+        return spTowerIce; 
+    }
+
+    /**
+     * Returns the basic enemy sprite.
+     * 
+     * @return the basic enemy image
+     */
+    public static Image getSpEnemyBasic() { 
+        return spEnemyBasic; 
+    }
+
+    /**
+     * Returns the fast enemy sprite.
+     * 
+     * @return the fast enemy image
+     */
+    public static Image getSpEnemyFast() {
+         return spEnemyFast; 
+    }
+
+    /**
+     * Returns the tank enemy sprite.
+     * 
+     * @return the tank enemy image
+     */
+    public static Image getSpEnemyTank() { 
+        return spEnemyTank; 
+    }
+
+    /**
+     * Returns the tree decoration image.
+     * 
+     * @return the tree image
+     */
+    public static Image getImgTree() {
+         return imgTree; 
+    }
+
+    /**
+     * Returns the bush decoration image.
+     * 
+     * @return the bush image
+     */
+    public static Image getImgBush() { 
+        return imgBush; 
+    }
+
+    /**
+     * Returns the rock decoration image.
+     * 
+     * @return the rock image
+     */
+    public static Image getImgRock() {
+         return imgRock;
+    }
+
+    /**
+     * Returns the rock-bush decoration image.
+     * 
+     * @return the rock-bush image
+     */
+    public static Image getImgRockBush() {
+         return imgRockBush; 
+    }
+
+    /**
+     * Loads all game images once.
      */
     public static void loadAll() {
         if (loaded) {
             return;
         }
         try {
-            final ClassLoader c1 = ImageLoader.class.getClassLoader();
-            final String b = "Images/Images pack/Assets/";
+            final ClassLoader cl = ImageLoader.class.getClassLoader();
+            final String basePath = "Images/Images pack/Assets/";
 
-            spTowerBasic = loadImg(c1, b + "Structures/Towers/magic_crystal_tower.png");
-            spTowerSniper = loadImg(c1,b + "Characters/Heroes/knight_hero.png");
-            spTowerRapid = loadImg(c1, b + "Characters/Heroes/mage_hero.png");
-            spTowerIce = tintImg(spTowerBasic, new Color(TINT_RED, TINT_GREEN, TINT_BLUE, TINT_ALPHA_VALUE));
+            spTowerBasic = loadImg(cl, basePath + "Structures/Towers/magic_crystal_tower.png");
+            spTowerSniper = loadImg(cl, basePath + "Characters/Heroes/knight_hero.png");
+            spTowerRapid = loadImg(cl, basePath + "Characters/Heroes/mage_hero.png");
+            spTowerIce = tintImg(loadImg(cl, basePath + "Structures/Towers/magic_crystal_tower.png"),
+                    new Color(TINT_RED, TINT_GREEN, TINT_BLUE, TINT_ALPHA_VALUE));
 
-            spEnemyBasic = loadImg(c1, b + "Enemies/Orcs/orc_brute.png");
-            spEnemyFast = loadImg(c1, b + "Enemies/Orcs/orc_raider.png");
-            spEnemyTank = loadImg(c1, b + "Enemies/Orcs/orc_brute.png");
+            spEnemyBasic = loadImg(cl, basePath + "Enemies/Orcs/orc_brute.png");
+            spEnemyFast = loadImg(cl, basePath + "Enemies/Orcs/orc_raider.png");
+            spEnemyTank = loadImg(cl, basePath + "Enemies/Orcs/orc_brute.png");
 
-            imgTree = loadImg(c1, b + "Props/Nature/pine_tree.png");
-            imgBush = loadImg(c1, b + "Props/Nature/bush_round.png");
-            imgRock = loadImg(c1, b + "Props/Nature/rock_bush_cluster.png");
-            imgRockBush = loadImg(c1, b + "Props/Nature/rock_bush_cluster.png");
+            imgTree = loadImg(cl, basePath + "Props/Nature/pine_tree.png");
+            imgBush = loadImg(cl, basePath + "Props/Nature/bush_round.png");
+            imgRock = loadImg(cl, basePath + "Props/Nature/rock_bush_cluster.png");
+            imgRockBush = loadImg(cl, basePath + "Props/Nature/rock_bush_cluster.png");
             loaded = true;
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (final IllegalArgumentException e) {
+            LOGGER.log(Level.SEVERE, "Failed to load game images", e);
         }
     }
 
     /**
-     * @param c1 classloader
-     * @param path file path
+     * Loads an image from the classpath.
+     * 
+     * @param cl class loader
+     * @param path resource path
      * @return the loaded image
      */
-    public static Image loadImg(final ClassLoader c1, final String path) {
-        try {
-            final java.io.InputStream is = c1.getResourceAsStream(path);
-            if (is != null) {
-                return javax.imageio.ImageIO.read(is);
-            }
-        } catch (Exception ignored) {
+    public static Image loadImg(final ClassLoader cl, final String path) {
+        final URL url = cl.getResource(path);
+        if (url == null) {
+            throw new IllegalArgumentException("Image not found: " + path);
         }
-        return null;
+        try {
+            return ImageIO.read(url);
+        } catch (final IOException ex) {
+            throw new IllegalArgumentException("Cannot read image: " + path, ex);
+        }
     }
+    
     /**
-     * Applies a tint to an image
+     * Tints an image with a specified color.
+     * 
      * @param src source image
      * @param tint tint color 
      * @return tinted image
      */
     public static Image tintImg(final Image src, final Color tint) {
-        if (src == null) {
-            return null;
-        }
         int w = src.getWidth(null);
         int h = src.getHeight(null);
-
-        if (w <= 0 || h <= 0) {
-            w = DEFAULT_SIZE;
-            h = DEFAULT_SIZE;
-        }
-        final BufferedImage t = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-        final Graphics2D g = t.createGraphics();
-        g.drawImage(src, 0, 0, w, h, null);
-        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, TINT_ALPHA));
-        g.setColor(tint);
-        g.fillRect(0, 0, w, h);
+        final BufferedImage bi = new BufferedImage(
+               w > 0 ? w : 16, h > 0 ? h : 16, BufferedImage.TYPE_INT_ARGB);
+        final Graphics2D g = bi.createGraphics();
+        g.drawImage(src, 0, 0, null);
         g.dispose();
-        return t;
-    }
 
-    /** @return 
-     * basic tower image 
-    */
-    public static Image getSpTowerBasic() {
-         return spTowerBasic; 
-    }
+        for(int y = 0; y < bi.getHeight(); y++) {
+            for (int x = 0; x < bi.getWidth(); x++) {
+                final int rgb = bi.getRGB(x, y);
+                final int a = rgb & PIXEL_MASK_ALPHA;
+                if (a == 0) {
+                    continue;
+                }
+                final int r = (rgb >> 16) & 0xFF;
+                final int gComponent = (rgb >> 8) & 0xFF;
+                final int b = rgb & 0xFF;
+                
+                final int tr = r * tint.getRed() / 255;
+                final int tg = gComponent * tint.getGreen() / 255;
+                final int tb = b * tint.getBlue() / 255;
 
-    /** 
-     * @return sniper tower image 
-     * */
-    public static Image getSpTowerSniper() { 
-        return spTowerSniper; 
+                bi.setRGB(x, y, a | (tr << 16) | (tg << 8) | tb);
+            }
+        }
+        
+        return bi;
     }
-
-    /** 
-     * @return rapid tower image
-    */
-    public static Image getSpTowerRapid() {
-         return spTowerRapid; 
-    }
-
-    /** 
-     * @return ice tower image
-    */
-    public static Image getSpTowerIce() { 
-        return spTowerIce; 
-    }
-    /**
-     *  @return basic enemy image 
-    */
-    public static Image getSpEnemyBasic() { 
-        return spEnemyBasic; 
-    }
-
-    /**
-     *  @return fast enemy image 
-     * */
-    public static Image getSpEnemyFast() {
-         return spEnemyFast; 
-    }
-
-    /** 
-     * @return tank enemy image 
-     * */
-    public static Image getSpEnemyTank() { 
-        return spEnemyTank; 
-    }
-
-    /** 
-     * @return tree image 
-    */
-    public static Image getImgTree() {
-         return imgTree; 
-    }
-
-    /** 
-     * @return bush image 
-    */
-    public static Image getImgBush() { 
-        return imgBush; 
-    }
-
-    /** 
-     * @return rock image 
-    */
-    public static Image getImgRock() {
-         return imgRock;
-    }
-
-    /** 
-     * @return rock bush image
-    */
-    public static Image getImgRockBush() {
-         return imgRockBush; 
-    }
-    
 }
+
