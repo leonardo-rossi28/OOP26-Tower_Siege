@@ -25,7 +25,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("it.unibo.TowerSiege.application.TowerSiege")
+    mainClass.set("it.unibo.towersiege.application.TowerSiege")
 }
 
 tasks.test {
