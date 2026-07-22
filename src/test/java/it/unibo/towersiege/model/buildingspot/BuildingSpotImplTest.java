@@ -20,7 +20,7 @@ public class BuildingSpotImplTest {
     private BuildingSpot spot;
 
     @BeforeEach
-    void setup() {
+    void setUp() {
         spot = new BuildingSpotImpl(2, 3);
     }
 
