@@ -330,19 +330,19 @@ public class GamePanel extends JPanel {
         
     private void drawOccupiedHover(final Graphics2D g2, final int hx, final int hy) {
         final Tower t = hoverSpot.getTower();
-        final int rPx = t.getRange() * 40;
-        g2.setColor(new Color(255, 255, 255, 20));
+        final int rPx = t.getRange() * HOVER_RANGE_MULTIPLIER;
+        g2.setColor(C_RANGE_FILL_OCC);
         g2.fillOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx, rPx * 2, rPx * 2);
-        g2.setColor(new Color(255, 255, 255, 80));
+        g2.setColor(C_RANGE_BORDER_OCC);
         g2.drawOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx, rPx * 2, rPx * 2);
 
-        final int upCost = t.getType().getCost() / 2;
-        final int sellCost = t.getType().getCost() / 2;
+        final int upCost = t.getType().getCost() / COST_HALF_DIVISOR;
+        final int sellCost = t.getType().getCost() / COST_HALF_DIVISOR;
         g2.setColor(Color.GREEN);
-        g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, 11));
-        g2.drawString("Up: " + upCost, hx, hy - 16);
+        g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, FONT_SIZE_INFO));
+        g2.drawString("Up: " + upCost, hx, hy - HOVER_UP_OFFSET_Y);
         g2.setColor(Color.RED);
-        g2.drawString("Sell: " + sellCost, hx, hy - 4);
+        g2.drawString("Sell: " + sellCost, hx, hy - HOVER_SELL_OFFEST_Y);
     }
 
     private void drawTowers(final Graphics2D g2) {
