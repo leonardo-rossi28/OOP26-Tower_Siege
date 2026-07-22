@@ -25,23 +25,38 @@ import javax.swing.ImageIcon;
 /**
  * Dialog shown when the game is paused
  */
-public class PauseMenuDialog {
+public final class PauseMenuDialog {
     
-    private final static int DIALOG_WIDTH = 340;
-    private final static int DIALOG_HEIGHT = 530;
-    private final static int TITLE_SIZE = 36;
-    private final static int SPACING_TOP = 15;
-    private final static int SPACING_MIDDLE = 20;
-    private final static int BUTTON_WIDTH = 200;
-    private final static int SPACING_SMALL = 15;
-    private final static int BUTTON_HEIGHT = 40;
-    private final static int BUTTON_FONT_SIZE = 14;
-    private final static int LOGO_WIDTH = 300;
+    private static final int DIALOG_WIDTH = 340;
+    private static final int DIALOG_HEIGHT = 530;
+    private static final int TITLE_SIZE = 36;
+    private static final int SPACING_TOP = 15;
+    private static final int SPACING_MIDDLE = 20;
+    private static final int BUTTON_WIDTH = 200;
+    private static final int SPACING_SMALL = 15;
+    private static final int BUTTON_HEIGHT = 40;
+    private static final int BUTTON_FONT_SIZE = 14;
+    private static final int LOGO_WIDTH = 300;
+    private static final int BG_DARK = 20;
+    private static final int BG_ALPHA = 240;
+    private static final int BORDER_GRAY = 150;
+    private static final int BORDER_WIDTH = 2;
+    private static final int BTN_RESUME_G = 160;
+    private static final int BTN_RESUME_B = 60;
+    private static final int BTN_RESTART_R = 180;
+    private static final int BTN_RESTART_G = 100;
+    private static final int BTN_RESTART_B = 30;
+    private static final int BTN_MENU_R = 180;
+    private static final int BTN_MENU_G = 40;
+    private static final int BTN_MENU_B = 40;
+    private static final int GOLD_R = 255;
+    private static final int GOLD_G = 215;
 
     private final JDialog dialog;
 
     /**
      * Creates the pause dialog.
+     * 
      * @param parentFrame parent frame
      * @param mc main controller
      * @param gc game controller
@@ -53,9 +68,10 @@ public class PauseMenuDialog {
         dialog.setLocationRelativeTo(parentFrame);
 
         final JPanel p = new JPanel();
-        p.setBackground(new Color(20, 20, 20, 240));
+        p.setBackground(new Color(BG_DARK, BG_DARK, BG_DARK, BG_ALPHA));
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-        p.setBorder(BorderFactory.createLineBorder(new Color(150, 150, 150), 2));
+        p.setBorder(BorderFactory.createLineBorder(
+                new Color(BORDER_GRAY, BORDER_GRAY, BORDER_GRAY), BORDER_WIDTH));
         
         //Load and display the TowerSiege logo image
         final JLabel logoLabel = loadLogoLabel();
@@ -67,16 +83,19 @@ public class PauseMenuDialog {
 
         final JLabel title = new JLabel("PAUSA");
         title.setFont(new Font("Serif", Font.BOLD, TITLE_SIZE));
-        title.setForeground(new Color(255, 255, 0));
+        title.setForeground(new Color(GOLD_G, GOLD_R, 0));
         title.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
 
-        final JButton btnResume = createBtn("RIPRENDI", new Color(40, 160, 60));
+        final JButton btnResume = createBtn("RIPRENDI",
+                new Color(BUTTON_HEIGHT, BTN_RESUME_G, BTN_RESUME_B));
         btnResume.addActionListener(e -> gc.togglePause());
 
-        final JButton btnRestart = createBtn("RIAVVIA LIVELLO", new Color(180, 100, 30));
+        final JButton btnRestart = createBtn("RIAVVIA LIVELLO",
+                new Color(BTN_RESTART_R, BTN_RESTART_G, BTN_RESTART_B));
         btnRestart.addActionListener(e -> gc.restartGame());
 
-        final JButton btnMenu = createBtn("TORNA AL MENU", new Color(180, 40, 40));
+        final JButton btnMenu = createBtn("TORNA AL MENU",
+                new Color(BTN_MENU_R, BTN_MENU_G, BTN_MENU_B));
         btnMenu.addActionListener(e -> mc.backToMenu());
 
         p.add(Box.createRigidArea(new Dimension(0, SPACING_TOP)));
@@ -90,8 +109,8 @@ public class PauseMenuDialog {
         dialog.add(p);
     }
 
-    private JLabel loadLogoLabel() {
-        try (InputStream is = getClass().getResourceAsStream("/images/towersiege_logo.jpg")) {
+    private static JLabel loadLogoLabel() {
+        try (InputStream is = PauseMenuDialog.class.getResourceAsStream("/images/towersiege_logo.jpg")) {
             if(is != null) {
                 final Image original = ImageIO.read(is);
                 final int origWidth = original.getWidth(null);
@@ -101,7 +120,8 @@ public class PauseMenuDialog {
                 return new JLabel(new ImageIcon(scaled));
             }
         } catch (final IOException e) {
-            //Image not found, skip logo display
+            java.util.logging.Logger.getLogger(PauseMenuDialog.class.getName())
+                    .log(java.util.logging.Level.WARNING, "Logo non trovato", e);
         }
         return null;
     }
