@@ -36,7 +36,7 @@ public class GameModelImpl implements GameModel {
     private static final int FIRE_RAIN_DAMAGE = 50;
     private static final int ANIMATION_DURATION = 60;
     private static final int FREEZE_DURATION = 180;
-    private static final double FREEZE_SLOW_FACTOR = 0.3;
+    private static final double FREEZE_SLOW_MULTIPLIER = 0.3;
 
     private GameState state;
     private GameMap map;
@@ -205,9 +205,18 @@ public class GameModelImpl implements GameModel {
 
         // Fire towers
         for (final Tower tower : map.getTowers()) {
-            final Projectile proj = tower.updateAndTarget(activeEnemies);
-            if (proj != null){
-                projectiles.add(proj);
+            tower.tick();
+            Projectile proj = null;
+            for (final Enemy enemy : activeEnemies) {
+                if (tower.isEnemyInRange(enemy)) {
+                    proj = tower.attack(enemy);
+                    if (proj != null) {
+                        break;
+                    }
+                }
+            }
+        if (proj != null) {
+            projectiles.add(proj);
             }
         }
 
@@ -216,7 +225,7 @@ public class GameModelImpl implements GameModel {
             if (!enemy.isAlive() && !enemy.isReachedEnd() && !enemy.isCoinAwarded()) {
                 enemy.setCoinAwarded(true);
                 player.addCoins(enemy.getReward());
-                score.addKilledEnemy(enemy.getType());
+                score.addPoints(enemy.getReward() * 10);
                 SoundManager.playEnemyKilled();
             }
         }
@@ -226,7 +235,7 @@ public class GameModelImpl implements GameModel {
 
         // Check lose condition
         if(player.getBaseHealth() <= 0){
-            state=  GameState.GAME_OVER;
+            state = GameState.DEFEAT;
             SoundManager.playDefeat();
             return;
         }
@@ -237,9 +246,9 @@ public class GameModelImpl implements GameModel {
             if(currentWaveIndex >= wave.getTotalWaves()){
                 state= GameState.VICTORY;
                 SoundManager.playVictory();
-                score.setBaseHealthRemaining(player.getBaseHealth());
-                score.setCoinsRemaining(player.getCoins());
-                final int levelScore = score.calculateTotalScore();
+                score.addPoints(player.getBaseHealth() * 10);
+                score.addPoints(player.getCoins());
+                final int levelScore = score.getTotal();
                 SaveManager.save(currentLevel + 1, levelScore);
                 this.maxUnlockedLevel = SaveManager.loadMaxLevel();
                 victoryDelayTicks = 50;
@@ -321,7 +330,9 @@ public class GameModelImpl implements GameModel {
      */
     @Override
     public void castGlobalFreeze() {
-        if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { return;}
+        if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { 
+            return;
+        }
         for (final Enemy e : activeEnemies) {
             e.applySlow(FREEZE_SLOW_MULTIPLIER, FREEZE_DURATION);
         }
