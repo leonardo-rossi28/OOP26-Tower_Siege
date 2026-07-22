@@ -13,6 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class GameModelImplTest {
     
+    private static final int INITIAL_COINS = 250;
+    private static final int FIRE_CD_MAX = 900;
+    private static final int FREEZE_CD_MAX = 480;
+    private static final int FIRE_CD_TICK = 899;
+    private static final int FREEZE_CD_TICK = 479;
+
     private GameModel  model;
 
     @BeforeEach
@@ -37,7 +43,7 @@ public class GameModelImplTest {
         assertEquals(0, model.getCurrentWave());
         assertFalse(model.isWaveInProgress());
         assertEquals(0, model.getActiveEnemies().size());
-        assertEquals(250, model.getPlayer().getCoins()); //starting coins
+        assertEquals(INITIAL_COINS, model.getPlayer().getCoins()); //starting coins
     }
     @Test
     void testStateTransitions() {
@@ -60,15 +66,15 @@ public class GameModelImplTest {
 
         assertEquals(0, model.getFireCooldown());
         model.castRainOfFire();
-        assertEquals(900, model.getFireCooldown());
+        assertEquals(FIRE_CD_MAX, model.getFireCooldown());
 
         assertEquals(0, model.getFreezeCooldown());
         model.castGlobalFreeze();
-        assertEquals(480, model.getFreezeCooldown());
+        assertEquals(FREEZE_CD_MAX, model.getFreezeCooldown());
 
         //Cooldown ticks decrement
         model.update();
-        assertEquals(899, model.getFireCooldown());
-        assertEquals(479, model.getFreezeCooldown());
+        assertEquals(FIRE_CD_TICK, model.getFireCooldown());
+        assertEquals(FREEZE_CD_TICK, model.getFreezeCooldown());
     }
 }
