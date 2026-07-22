@@ -38,7 +38,9 @@ public class GamePanel extends JPanel {
     private static final int SHOP_CARD_HEIGHT = 70;
     private static final int SHOP_GAP = 8;
     private static final int SHOP_MARGIN = 12;
+    private static final int SHOP_ROUND_OUTER = 10;
     private static final int SHOP_ROUND_INNER = 8;
+    private static final int SHOP_SELECTION_PADDING = 2;
     private static final int SHOP_SELECTION_EXTRA = 4;
     private static final int SHOP_TEXT_Y_NAME = 18;
     private static final int SHOP_TEXT_Y_COST = 36;
@@ -83,7 +85,7 @@ public class GamePanel extends JPanel {
     private static final int HOVER_UP_OFFSET_Y = 16;
     private static final int HOVER_SELL_OFFEST_Y = 4;
     private static final int COST_HALF_DIVISOR = 2;
-    private static final int SHOP_PANEL_PAFFING = 10;
+    private static final int SHOP_PANEL_PADDING = 10;
     private static final int SHOP_PANEL_EXTRA_W = 20;
     private static final int SHOP_PANEL_EXTRA_H = 90;
     private static final int SHOP_PANEL_ROUND = 15;
@@ -117,7 +119,7 @@ public class GamePanel extends JPanel {
     private static final Color C_SHOP_BG = new Color(0, 0, 0, 100);
     private static final Color C_SHOP_SELECTED = new Color(80, 150, 255);
     private static final Color C_SHOP_CARD_BG = new Color(40, 35, 30);
-    private static final Color C_SHOP_CARD_BORDE_COLOR = new Color(80, 70, 60);
+    private static final Color C_SHOP_CARD_BORDER = new Color(80, 70, 60);
     private static final String FONT_SANSSERIF = "SansSerif";
 
     private GameModel model;
@@ -194,7 +196,8 @@ public class GamePanel extends JPanel {
 
                 for (int i = 0; i < types.length; i++) {
                     final int cx = shopX + i * (SHOP_CARD_WIDTH + SHOP_GAP);
-                    if(e.getX() >= shopY && e.getX() <= cx + SHOP_CARD_WIDTH && e.getY() >= sy && e.getY() <= shopY + SHOP_CARD_HEIGHT) {
+                    if(e.getX() >= shopY && e.getX() <= cx + SHOP_CARD_WIDTH
+                            && e.getY() >= shopY && e.getY() <= shopY + SHOP_CARD_HEIGHT) {
                         shopController.setSelectedTowerType(types[i]);
                         repaint();
                         return;
@@ -332,9 +335,11 @@ public class GamePanel extends JPanel {
         final Tower t = hoverSpot.getTower();
         final int rPx = t.getRange() * HOVER_RANGE_MULTIPLIER;
         g2.setColor(C_RANGE_FILL_OCC);
-        g2.fillOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx, rPx * 2, rPx * 2);
+        g2.fillOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx,
+                rPx * 2, rPx * 2);
         g2.setColor(C_RANGE_BORDER_OCC);
-        g2.drawOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx, rPx * 2, rPx * 2);
+        g2.drawOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx,
+                rPx * 2, rPx * 2);
 
         final int upCost = t.getType().getCost() / COST_HALF_DIVISOR;
         final int sellCost = t.getType().getCost() / COST_HALF_DIVISOR;
@@ -350,27 +355,38 @@ public class GamePanel extends JPanel {
             final int cx = (int) t.getPixelX();
             final int cy = (int) t.getPixelY();
 
-            g2.setColor(new Color(0, 0, 0, 80));
-            g2.fillOval(cx -20, cy -10, 40, 20);
+            g2.setColor(C_SHADOW);
+            g2.fillOval(cx - TOWER_SHADOW_X_OFFSET, cy - TOWER_SHADOW_Y_OFFSET,
+                    TOWER_SHADOW_W, TOWER_SHADOW_H);
 
             Image img = ImageLoader.getSpTowerBasic();
             switch (t.getType()) {
-                case SNIPER: img = ImageLoader.getSpTowerSniper(); break;
-                case RAPID: img = ImageLoader.getSpTowerRapid(); break;
-                case ICE: img = ImageLoader.getSpTowerIce(); break;
-                default: break;
+                case SNIPER:
+                    img = ImageLoader.getSpTowerSniper();
+                    break;
+                case RAPID:
+                    img = ImageLoader.getSpTowerRapid();
+                break;
+                case ICE:
+                    img = ImageLoader.getSpTowerIce();
+                    break;
+                default:
+                 break;
             }
 
             if (img != null) {
-                g2.drawImage(img, cx - 25, cy- 35, 50, 50, null);
+                g2.drawImage(img, cx - SPRITE_OFFSET, cy- SPRITE_TOWER_Y_OFFSET,
+                        SPRITE_SIZE, SPRITE_SIZE, null);
             } else {
                 g2.setColor(Color.BLUE);
-                g2.fillRect(cx - 15, cy - 15, 30, 30);
+                g2.fillRect(cx - SHOP_PANEL_PADDING -SHOP_TEXT_X_OFFSET,
+                        cy - SHOP_PANEL_PADDING - SHOP_TEXT_X_OFFSET,
+                        HEALTH_BAR_WIDTH, HEALTH_BAR_WIDTH);
             }        
 
             g2.setColor(Color.WHITE);
-            g2.setFont(new Font("SansSerif", Font.BOLD, 10));
-            g2.drawString("Lv" + t.getLevel(), cx - 10, cy + 20);
+            g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, FONT_SIZE_LVL));
+            g2.drawString("Lv" + t.getLevel(), cx - LVL_OFFSET_X, cy + LVL_OFFSET_Y);
         }
     }
 
@@ -378,59 +394,72 @@ public class GamePanel extends JPanel {
         final List<Enemy> enemies = model.getActiveEnemies();
 
         for (final Enemy e : enemies) {
-            final int ex = (int) e.getPixelX() - 25;
-            final int ey = (int) e.getPixelY() -25;
+            final int ex = (int) e.getPixelX() - SPRITE_OFFSET;
+            final int ey = (int) e.getPixelY() - SPRITE_OFFSET;
 
-            g2.setColor(new Color(0, 0, 0, 80));
-            g2.fillOval(ex + 10, ey + 40, 30, 15);
+            g2.setColor(C_ENEMY_SHADOW);
+            g2.fillOval(ex + SHADOW_OFFSET_X, ey + SHADOW_OFFSET_Y, SHADOW_W, SHADOW_H);
 
             Image img = ImageLoader.getSpEnemyBasic();
             switch (e.getType()) {
-                case FAST: img = ImageLoader.getSpEnemyFast(); break;
-                case TANK: img = ImageLoader.getSpEnemyTank(); break;
-                default: break;
+                case FAST:
+                    img = ImageLoader.getSpEnemyFast();
+                    break;
+                case TANK:
+                img = ImageLoader.getSpEnemyTank();
+                    break;
+                default:
+                    break;
             }
 
             if (img != null) {
-                g2.drawImage(img, ex, ey, 50, 50, null);
+                g2.drawImage(img, ex, ey, SPRITE_SIZE, SPRITE_SIZE, null);
             } else {
                 g2.setColor(Color.RED);
-                g2.fillOval(ex, ey, 50, 50);
+                g2.fillOval(ex, ey, SPRITE_SIZE, SPRITE_SIZE);
             }
 
             if (e.getHitFlashTicks() > 0) {
-                g2.setColor(new Color(255, 255, 255, 150));
-                g2.fillOval(ex + 10, ey + 10, 30, 30);
+                g2.setColor(C_HIT_FLASH);
+                g2.fillOval(ex + HIT_FLASH_OFFSET, ey + HIT_FLASH_OFFSET,
+                        HIT_FLASH_SIZE, HIT_FLASH_SIZE);
             }
 
+            drawEnemyHealthBar(g2, e, ex, ey);
+        }
+    }
+    private void drawEnemyHealthBar(final Graphics2D g2, final Enemy e,
+            final int ex, final int ey) {
             final int maxH = e.getMaxHealth();
             final int curH = e.getHealth();
-            final int bw = 30;
-            final int bh = 4;
-            final int bx = ex + 10;
-            final int by = ey -5;
+            final int bx = ex + HEALTH_BAR_X_OFFSET;
+            final int by = ey -HEALTH_BAR_Y_OFFSET;
             g2.setColor(Color.RED);
-            g2.fillRect(bx, by, bw, bh);
+            g2.fillRect(bx, by, HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);
             g2.setColor(Color.GREEN);
-            g2.fillRect(bx, by, (int) (bw * ((double) curH /maxH)), bh);
+            g2.fillRect(bx, by,
+                    (int) (HEALTH_BAR_WIDTH * ((double) curH / maxH)), HEALTH_BAR_HEIGHT);
             g2.setColor(Color.BLACK);
-            g2.drawRect(bx, by, bw, bh);    
-        }
+            g2.drawRect(bx, by, HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);    
     }
 
     private void drawProjectiles(final Graphics2D g2) {
         for (final Projectile p : model.getProjectiles()) {
             Color pc = Color.YELLOW;
-            int size = 8;
+            int size = PROJ_SIZE_DEFAULT;
             if (p.getSourceTowerType() == TowerType.SNIPER) {
-                pc = Color.RED; size = 12;
+                pc = Color.RED;
+                size = PROJ_SIZE_SNIPER;
             } else if (p.getSourceTowerType() == TowerType.ICE) {
-                pc = Color.CYAN; size = 10;
+                pc = Color.CYAN;
+                size = PROJ_SIZE_ICE;
             } else if (p.getSourceTowerType() == TowerType.RAPID) {
-                pc = Color.ORANGE; size = 6;
+                pc = Color.ORANGE;
+                size = PROJ_SIZE_RAPID;
             }
             g2.setColor(pc);
-            g2.fillOval((int) p.getX() - size / 2, (int) p.getY() - size / 2, size, size);
+            g2.fillOval((int) p.getX() - size / 2, (int) p.getY() - size / 2,
+                    size, size);
         }
     }
 
@@ -463,61 +492,82 @@ public class GamePanel extends JPanel {
         final Player p = model.getPlayer();
 
         g2.setColor(C_UI);
-        g2.fillRect(0, 0, getWidth(), 40);
-        g2.setColor(new Color(60, 50, 40));
-        g2.drawLine(0, 40, getWidth(), 40);
+        g2.fillRect(0, 0, getWidth(), HUD_BAR_HEIGHT);
+        g2.setColor(C_HUD_LINE);
+        g2.drawLine(0, HUD_BAR_HEIGHT, getWidth(), HUD_BAR_HEIGHT);
 
-        g2.setFont(new Font("SansSerif", Font.BOLD, 16));
+        g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, FONT_SIZE_HUD));
         g2.setColor(Color.WHITE);
-        g2.drawString("Base HP: " + p.getBaseHealth(), 20, 25);
+        g2.drawString("Base HP: " + p.getBaseHealth(), HUD_TEXT_X_HP, HUD_TEXT_Y);
         g2.setColor(C_GOLD);
-        g2.drawString("Coins: " + p.getCoins(), 140, 25);
+        g2.drawString("Coins: " + p.getCoins(), HUD_TEXT_X_COINS, HUD_TEXT_Y);
         g2.setColor(Color.CYAN);
-        g2.drawString("Score: " + model.getScore().getTotal(), 260, 25);
-        g2.setColor(new Color(200, 200, 255));
+        g2.drawString("Score: " + model.getScore().getTotal(),
+                HUD_TEXT_X_SCORE, HUD_TEXT_Y);
+        g2.setColor(C_WAVE_TEXT);
 
         final String wTxt = model.isWaveInProgress() ? "In corso" : "Attesa";
-        g2.drawString("Ondata: " + model.getCurrentWave() + "/" + model.getTotalWaves() + " ("+ wTxt + ")", 400, 25);
+        g2.drawString("Ondata: " + model.getCurrentWave() + "/"
+                + model.getTotalWaves() + " ("+ wTxt + ")",
+                HUD_TEXT_X_WAVE, HUD_TEXT_Y);
 
-        g2.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        g2.setFont(new Font(FONT_SANSSERIF, Font.PLAIN, FONT_SIZE_SHOP_NAME));
         g2.setColor(Color.LIGHT_GRAY);
-        g2.drawString("W=Avvia Ondata | F=Fuoco (" + (model.getFireCooldown() / 60) + "s) | G=Gelo (" + (model.getFreezeCooldown() / 60) + "s) | ESC=Pausa", 20, 55);
-        
+        g2.drawString("W=Avvia Ondata | F=Fuoco ("
+                + (model.getFireCooldown() / SECONDS_DIVISOR)
+                + "s) | G=Gelo ("
+                + (model.getFreezeCooldown() / SECONDS_DIVISOR)
+                + "s) | ESC=Pausa",
+                HUD_TEXT_X_HP, HUD_SUBTEXT_Y);
+
+        drawShopPanel(g2, p);
+    }
+
+    private void drawShopPanel(final Graphics2D g2, final Player p) {
         // Shop
         final TowerType[] types = TowerType.values();
-        final int cw = 100;
-        final int gap = 8;
-        final int total = types.length * (cw + gap) - gap;
+        final int total = types.length * (SHOP_CARD_WIDTH + SHOP_GAP) - SHOP_GAP;
         final int sx = (getWidth() - total) / 2;
-        final int sy = getHeight() -70 -12;
+        final int sy = getHeight() - SHOP_CARD_HEIGHT - SHOP_MARGIN;
 
-        g2.setColor(new Color(0, 0, 0, 100));
-        g2.fillRoundRect(sx - 10, sy - 10, total + 20, 90, 15, 15);
+        g2.setColor(C_SHOP_BG);
+        g2.fillRoundRect(sx - SHOP_PANEL_PADDING, sy - SHOP_PANEL_PADDING,
+                total + SHOP_PANEL_EXTRA_W, SHOP_PANEL_EXTRA_H,
+                SHOP_PANEL_ROUND, SHOP_PANEL_ROUND);
 
         for (int i = 0; i < types.length; i++) {
             final TowerType t = types[i];
-            final int cx = sx + i * (cw + gap);
+            final int cx = sx + i * (SHOP_CARD_WIDTH + SHOP_GAP);
             
             if (shopController.getSelectedTowerType() == t) {
-                g2.setColor(new Color(80, 150, 255));
-                g2.fillRoundRect(cx - 2, sy - 2, cw + 4, 74, 10, 10);
+                g2.setColor(C_SHOP_SELECTED);
+                g2.fillRoundRect(cx - SHOP_SELECTION_PADDING,
+                        sy - SHOP_SELECTION_PADDING,
+                        SHOP_CARD_WIDTH + SHOP_SELECTION_EXTRA,
+                        SHOP_CARD_HEIGHT + SHOP_SELECTION_EXTRA,
+                        SHOP_ROUND_OUTER, SHOP_ROUND_OUTER);
             }
 
-            g2.setColor(new Color(40, 35, 30));
-            g2.fillRoundRect(cx, sy, cw, 70, 8, 8);
-            g2.setColor(new Color(80, 70, 60));
-            g2.drawRoundRect(cx, sy, cw, 70, 8, 8);
+            g2.setColor(C_SHOP_BG);
+            g2.fillRoundRect(cx, sy, SHOP_CARD_WIDTH, SHOP_CARD_HEIGHT,
+                    SHOP_ROUND_INNER, SHOP_ROUND_INNER);
+            g2.setColor(C_SHOP_CARD_BORDER);
+            g2.drawRoundRect(cx, sy, SHOP_CARD_WIDTH, SHOP_CARD_HEIGHT,
+                    SHOP_ROUND_INNER, SHOP_ROUND_INNER);
 
             g2.setColor(p.getCoins() >= t.getCost() ? Color.WHITE : Color.GRAY);
-            g2.setFont(new Font("SansSerif", Font.BOLD, 12));
-            g2.drawString(t.name(), cx + 5, sy + 18);
+            g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, FONT_SIZE_SHOP_NAME));
+            g2.drawString(t.name(), cx + SHOP_TEXT_X_OFFSET, sy + SHOP_TEXT_Y_NAME);
             g2.setColor(C_GOLD);
-            g2.drawString(t.getCost() + "g", cx + 5, sy + 36);
+            g2.drawString(t.getCost() + "g",
+                    cx + SHOP_TEXT_X_OFFSET, sy + SHOP_TEXT_Y_COST);
 
-            g2.setFont(new Font("SansSerif", Font.PLAIN, 10));
+            g2.setFont(new Font(FONT_SANSSERIF, Font.PLAIN, FONT_SIZE_SHOP_STAT));
             g2.setColor(Color.LIGHT_GRAY);
-            g2.drawString("Dmg: " + t.getDamage(), cx + 5, sy + 50);
-            g2.drawString("Rng: " + t.getRange(), cx + 5, sy + 62);
+            g2.drawString("Dmg: " + t.getDamage(),
+                    cx + SHOP_TEXT_X_OFFSET, sy + SHOP_TEXT_Y_DMG);
+            g2.drawString("Rng: " + t.getRange(),
+                    cx + SHOP_TEXT_X_OFFSET, sy + SHOP_TEXT_Y_RNG);
         }
     }
 }
