@@ -27,7 +27,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 /**
- * Main panel used to draw the game scene and handle UI interactions
+ * Main panel used to draw the game scene and handle UI interactions.
  */
 public class GamePanel extends JPanel {
 
@@ -142,7 +142,8 @@ public class GamePanel extends JPanel {
     }
     
     /**
-     * Sets the game model
+     * 
+     * Sets the game model.
      * 
      * @param m the game model
      */
@@ -151,14 +152,21 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     * Sets the map controller
+     * 
+     * Sets the map controller.
      * 
      * @param c the map controller
      */
-    public void setShopController(final ShopController c){
+    public void setShopController(final ShopController c) {
         this.shopController = c;
     }
 
+    /**
+     * 
+     * Sets the controller for map management.
+     * 
+     * @param c the map controller to be assigned
+     */
     public void setMapController(final MapController c) {
         this.mapController = c;
     }
@@ -180,23 +188,22 @@ public class GamePanel extends JPanel {
                 final int col = e.getX() / 50;
                 final int row = e.getY() / 50;
 
-                if(e.getButton() == MouseEvent.BUTTON3) {
+                if (e.getButton() == MouseEvent.BUTTON3) {
                     final BuildingSpot spot = model.getMap().getSpotAt(col, row);
-                    if(spot != null) {
+                    if (spot != null) {
                         mapController.sellTowerAtSpot(spot);
                     }
                     return;
                 }
 
                 final TowerType[] types = TowerType.values();
-    
                 final int total = types.length * (SHOP_CARD_WIDTH + SHOP_GAP) - SHOP_GAP;
                 final int shopX = (getWidth() - total) / 2;
                 final int shopY = getHeight() - SHOP_CARD_HEIGHT - SHOP_MARGIN;
 
                 for (int i = 0; i < types.length; i++) {
                     final int cx = shopX + i * (SHOP_CARD_WIDTH + SHOP_GAP);
-                    if(e.getX() >= shopY && e.getX() <= cx + SHOP_CARD_WIDTH
+                    if (e.getX() >= shopY && e.getX() <= cx + SHOP_CARD_WIDTH
                             && e.getY() >= shopY && e.getY() <= shopY + SHOP_CARD_HEIGHT) {
                         shopController.setSelectedTowerType(types[i]);
                         repaint();
@@ -226,9 +233,6 @@ public class GamePanel extends JPanel {
         drawProjectiles(g2);
         drawVisualEffects(g2);
         drawHUD(g2);
-
-        if (model.getState() == GameState.DEFEAT || model.getState() == GameState.VICTORY) {
-        }
     }
 
     private void drawMap(final Graphics2D g2) {
@@ -244,19 +248,21 @@ public class GamePanel extends JPanel {
                 }
             }
         }
+
+        drawDecoration(g2);
     }
 
-    private void drawDecoration(final Graphics g2){
+    private void drawDecoration(final Graphics g2) {
         final List<double[]> decorations=model.getMap().getDecorations();
-        for(final double[] dec : decorations){
+        for(final double[] dec : decorations) {
             final int col = (int) dec[0];
             final int row = (int) dec[1];
             final int type = (int) dec[2];
             final int px = col * CELL_SIZE;
             final int py = row * CELL_SIZE;
 
-            Image img=null;
-            switch (type){
+            Image img = null;
+            switch (type) {
                 case 0:
                     img = ImageLoader.getImgTree();
                     break;
@@ -271,7 +277,7 @@ public class GamePanel extends JPanel {
                     break;
             }
 
-            if(img != null){
+            if(img != null) {
                 g2.drawImage(img, px + DECORATION_PAD, py + DECORATION_PAD, DECORATION_SIZE, DECORATION_SIZE, null);
             }
 
@@ -316,17 +322,17 @@ public class GamePanel extends JPanel {
         if (!hoverSpot.isOccupied() && selected != null) {
                 final int rPx = selected.getRange() * HOVER_RANGE_MULTIPLIER;
                 g2.setColor(C_RANGE_FILL);
-                g2.fillOval(hx +  HOVER_CICRLE_OFFSET - rPx,
-                        hy + HOVER_CICRLE_OFFSET - rPx, rPx * 2, rPx *2);
+                g2.fillOval(hx + HOVER_CICRLE_OFFSET - rPx,
+                        hy + HOVER_CICRLE_OFFSET - rPx, rPx * 2, rPx * 2);
                 g2.setColor(C_RANGE_BORDER);
                 g2.drawOval(hx + HOVER_CICRLE_OFFSET - rPx,
-                        hy + HOVER_CICRLE_OFFSET - rPx, rPx * 2, rPx *2);
-
+                        hy + HOVER_CICRLE_OFFSET - rPx, rPx * 2, rPx * 2);
                 g2.setColor(Color.WHITE);
                 g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, FONT_SIZE_SHOP_NAME));
                 g2.drawString(selected.getCost() + "g",
                         hx + HOVER_COST_OFFSET_X, hy - HOVER_COST_OFFSET_Y);
-            } else if (hoverSpot.isOccupied()) {
+            } 
+            else if (hoverSpot.isOccupied()) {
                 drawOccupiedHover(g2, hx, hy);
             }
         }
@@ -335,10 +341,10 @@ public class GamePanel extends JPanel {
         final Tower t = hoverSpot.getTower();
         final int rPx = t.getRange() * HOVER_RANGE_MULTIPLIER;
         g2.setColor(C_RANGE_FILL_OCC);
-        g2.fillOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx,
+        g2.fillOval((int) t.getPixelX() - rPx, (int) t.getPixelY() - rPx,
                 rPx * 2, rPx * 2);
         g2.setColor(C_RANGE_BORDER_OCC);
-        g2.drawOval((int) t.getPixelX() -rPx, (int) t.getPixelY() - rPx,
+        g2.drawOval((int) t.getPixelX() - rPx, (int) t.getPixelY() - rPx,
                 rPx * 2, rPx * 2);
 
         final int upCost = t.getType().getCost() / COST_HALF_DIVISOR;
@@ -465,7 +471,6 @@ public class GamePanel extends JPanel {
 
     private void drawVisualEffects(final Graphics2D g2) {
         final int fAnim = model.getFireAnimTicks();
-
         if (fAnim > 0) {
             g2.setColor(new Color(255, 100, 0, (fAnim * 255 / 60) / 2));
             g2.fillRect(0, 0, getWidth(), getHeight());

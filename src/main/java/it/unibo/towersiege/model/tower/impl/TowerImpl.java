@@ -9,7 +9,7 @@ import it.unibo.towersiege.model.tower.api.Tower;
 
 
 
-public class TowerImpl implements Tower{
+public class TowerImpl implements Tower {
     
     private final TowerType type;
     private double pixelX;
@@ -42,8 +42,8 @@ public class TowerImpl implements Tower{
      * {@inheritDoc}
      */
     @Override
-    public void tick(){  
-        if(cooldownTicks > 0){
+    public void tick() {  
+        if (cooldownTicks > 0) {
             cooldownTicks--;
         }
     }
@@ -53,10 +53,10 @@ public class TowerImpl implements Tower{
      */
     @Override
     public boolean isEnemyInRange(Enemy enemy){
-        double dx= enemy.getPixelX()-pixelX;
-        double dy= enemy.getPixelY() - pixelY;
-        double distSq= dx*dx + dy*dy;
-        double rangePx= type.getRange() * 40;
+        double dx = enemy.getPixelX() - pixelX;
+        double dy = enemy.getPixelY() - pixelY;
+        double distSq = dx * dx + dy * dy;
+        double rangePx = type.getRange() * 40;
         return distSq <= (rangePx * rangePx);
     }
 
@@ -64,7 +64,7 @@ public class TowerImpl implements Tower{
      * {@inheritDoc}
      */
     @Override
-    public void upgrade(){
+    public void upgrade() {
         this.level++;
     }
 
@@ -72,7 +72,7 @@ public class TowerImpl implements Tower{
      * {@inheritDoc}
      */
     @Override
-    public TowerType getType(){
+    public TowerType getType() {
         return type;
     }
 
@@ -80,14 +80,14 @@ public class TowerImpl implements Tower{
      * {@inheritDoc}
      */
     @Override
-    public double getPixelX(){
+    public double getPixelX() {
         return pixelX;
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public double getPixelY(){
+    public double getPixelY() {
         return pixelY;
     }
 
@@ -95,14 +95,14 @@ public class TowerImpl implements Tower{
      * {@inheritDoc}
      */
     @Override
-    public int getLevel(){
+    public int getLevel() {
         return level;
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean isAlive(){
+    public boolean isAlive() {
         return alive;
     }
 
@@ -110,7 +110,7 @@ public class TowerImpl implements Tower{
      * {@inheritDoc}
      */
     @Override
-    public int getRange(){
+    public int getRange() {
         return type.getRange();
     }
     
@@ -118,21 +118,21 @@ public class TowerImpl implements Tower{
      * {@inheritDoc}
      */
     @Override
-     public int getDamage(){
-        return type.getDamage() + (level -1) * 2;
+     public int getDamage() {
+        return type.getDamage() + (level - 1) * 2;
      }
     
     /**
       * {@inheritDoc}
     */
      @Override
-     public Projectile attack(final Enemy enemy){
-        if(!alive || cooldownTicks > 0){
+     public Projectile attack(final Enemy enemy) {
+        if (!alive || cooldownTicks > 0) {
             return null;
         }
-        if(isEnemyInRange(enemy)){
-            cooldownTicks=type.getCooldown();
-            return new ProjectileImpl(this,enemy);
+        if (isEnemyInRange(enemy)){
+            cooldownTicks = type.getCooldown();
+            return new ProjectileImpl(this, enemy);
         }
         return null;
      }
