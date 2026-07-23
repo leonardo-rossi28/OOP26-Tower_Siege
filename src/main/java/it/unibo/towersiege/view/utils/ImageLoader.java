@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-/*
+/**
  * Utility class to load and hold images/sprites.
  */
 public final class ImageLoader {
