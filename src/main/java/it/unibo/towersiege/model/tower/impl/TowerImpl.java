@@ -26,7 +26,7 @@ public class TowerImpl implements Tower {
      * 
      * @param type the tower type.
      */
-    public TowerImpl(final TowerType type) {  
+    public TowerImpl(final TowerType type) {
         this.type = type;
         this.level = 1;
         this.alive = true;
@@ -37,7 +37,7 @@ public class TowerImpl implements Tower {
      * {@inheritDoc}
      */
     @Override
-    public void setPosition(final double x,final double y) {
+    public void setPosition(final double x, final double y) {
         this.pixelX = x;
         this.pixelY = y;
     }
@@ -87,6 +87,7 @@ public class TowerImpl implements Tower {
     public double getPixelX() {
         return pixelX;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -102,6 +103,7 @@ public class TowerImpl implements Tower {
     public int getLevel() {
         return level;
     }
+
     /**
      * {@inheritDoc}
      */

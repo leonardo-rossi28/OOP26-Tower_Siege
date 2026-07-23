@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /*
-* Utility class to load and hold images/sprites.
+ * Utility class to load and hold images/sprites.
  */
 public final class ImageLoader {
 

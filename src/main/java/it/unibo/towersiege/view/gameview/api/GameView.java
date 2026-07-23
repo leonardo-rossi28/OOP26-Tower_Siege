@@ -15,7 +15,7 @@ import it.unibo.towersiege.model.gamestate.GameState;
 public interface GameView {
 
     /**
-     * Displays the welcome / splash behaviour (may be a no-op)
+     * Displays the welcome / splash behaviour (may be a no-op).
      */
     void displayWelcome();
 

@@ -21,5 +21,5 @@ public interface Wave {
      * @param waveNumber number of the wave
      * @return list of the spawn of the enemies
      */
-    List<Enemy> generateWave(final int waveNumber);
+    List<Enemy> generateWave(int waveNumber);
 }

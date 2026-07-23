@@ -311,7 +311,7 @@ public final class GamePanel extends JPanel {
                 g2.setColor(C_SPOT_BORDER);
                 g2.setStroke(new BasicStroke(2, BasicStroke.CAP_BUTT,
                         BasicStroke.JOIN_MITER, GRID_METER_LIMIT,
-                        new float[] { GRID_DASH_LENGTH }, 0.0f));
+                        new float[] {GRID_DASH_LENGTH}, 0.0f));
                 g2.drawRect(px + GRID_SPOT_PAD, py + GRID_SPOT_PAD,
                         GRID_SPOT_RECT_SIZE, GRID_SPOT_RECT_SIZE);
                 g2.setStroke(new BasicStroke(1));

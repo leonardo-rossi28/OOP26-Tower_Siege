@@ -17,7 +17,7 @@ import it.unibo.towersiege.controller.maincontroller.api.MainController;
 import it.unibo.towersiege.model.gamemodel.api.GameModel;
 
 /**
- * Overplay panel swhown when the game reaches a terminal state
+ * Overplay panel swhown when the game reaches a terminal state.
  */
 public final class GameOverPanel extends JPanel {
 
@@ -50,7 +50,7 @@ public final class GameOverPanel extends JPanel {
      * 
      * @param state the terminal game state
      * @param mc    the main controller
-     * @param the   game model
+     * @param model   game model
      */
     public GameOverPanel(final GameState state, final MainController mc, final GameModel model) {
         this.state = state;

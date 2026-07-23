@@ -10,7 +10,9 @@ public final class ScoreImpl implements Score {
 
     private int total;
 
-    // Creates a new ScoreImpl starting at zero.
+    /**
+     * Constructs the ScoreImpl class
+     */
     public ScoreImpl() {
         this.total = 0;
     }

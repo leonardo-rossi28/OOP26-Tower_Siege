@@ -26,8 +26,8 @@ public final class ProjectileImpl implements Projectile {
     /**
      * Construct a new projectile fired from a source tower at a targe enemy.
      * 
-     * @param source
-     * @param target
+     * @param source the source
+     * @param target the target
      */
     public ProjectileImpl(final Tower source, final Enemy target) {
         this.source = source;

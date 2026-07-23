@@ -58,7 +58,7 @@ public interface Tower {
     double getPixelX();
 
     /**
-     * Returns the pixel y
+     * Returns the pixel y.
      * 
      * @return pixel y
      */
