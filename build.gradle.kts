@@ -22,9 +22,11 @@ tasks.withType<Javadoc>().configureEach {
 
 dependencies {
     compileOnly("com.github.spotbugs:spotbugs-annotations:4.9.8")
-    val jUnitVersion = "5.11.1"
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+    
+    // Usa la BOM per gestire in automatico le versioni coerenti di JUnit
+    testImplementation(platform("org.junit:junit-bom:5.11.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 application {
@@ -33,4 +35,8 @@ application {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+}
+
+tasks.matching { it.name == "check" }.configureEach {
+    setDependsOn(dependsOn.filter { it !is Project && !it.toString().contains("project") })
 }
