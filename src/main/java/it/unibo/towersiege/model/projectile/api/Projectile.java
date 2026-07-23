@@ -5,7 +5,7 @@ import it.unibo.towersiege.model.tower.TowerType;
 public interface Projectile {
 
     /**
-     * advance the projectile or applies damage on impact.
+     * Advance the projectile or applies damage on impact.
      */
     void update();
 
@@ -30,7 +30,6 @@ public interface Projectile {
      */
     TowerType getSourceTowerType();
 
-
     /**
      * Check if the projectile is still active in the game.
      * 
@@ -39,3 +38,4 @@ public interface Projectile {
     boolean isAlive();
     
 }
+

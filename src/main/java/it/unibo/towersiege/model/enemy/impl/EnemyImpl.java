@@ -9,7 +9,7 @@ import it.unibo.towersiege.model.enemy.api.Enemy;
  * Enemy with waypoint movement.
  */
 public class EnemyImpl implements Enemy {
-    
+
     private final EnemyType type;
     private int maxHealth;
     private int health;
@@ -33,7 +33,7 @@ public class EnemyImpl implements Enemy {
      * @param type enemy type
      * @param waveNumber number of the current wave
      */
-    public EnemyImpl(EnemyType type, int waveNumber) {
+    public EnemyImpl(final EnemyType type, final int waveNumber) {
         this.type = type;
         this.maxHealth = type.getHealth() + (waveNumber * 8);
         this.health = this.maxHealth;
@@ -55,8 +55,8 @@ public class EnemyImpl implements Enemy {
     public void takeDamage(final int damage) {
         this.health -= damage;
         this.hitFlashTicks = 8;
-        if(this.health <= 0) {
-            this.health=0;
+        if (this.health <= 0) {
+            this.health = 0;
             this.alive = false;
         }
     }
@@ -75,9 +75,11 @@ public class EnemyImpl implements Enemy {
      */
     @Override
     public void updateStatus() {
-        if(slowDurationTicks > 0) {
+        if (slowDurationTicks > 0) {
             slowDurationTicks--;
-            if (slowDurationTicks == 0) slowMultiplier = 1.0;
+            if (slowDurationTicks == 0) {
+                slowMultiplier = 1.0;
+            }
         }
     }
 

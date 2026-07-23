@@ -1,5 +1,8 @@
 package it.unibo.towersiege.model.player.api;
 
+/**
+ * Represent the player in the game, managing coins and base health.
+ */
 public interface Player {
 
     /**
@@ -25,10 +28,8 @@ public interface Player {
     void takeBaseDamage(int damage);
 
     /**
-    * Resets base health and coins to the starting value.
-    *
-    * @return the current base health
-    */
+     * Resets base health and coins to the starting value.
+     */
     void reset();
 
     /**
@@ -46,7 +47,7 @@ public interface Player {
     int getBaseHealth();
 
     /**
-     * Check if the player base is still alive
+     * Check if the player base is still alive.
      * 
      * @return true if the base health is greater than zero , false otherwise
      */

@@ -4,20 +4,22 @@ import it.unibo.towersiege.commons.gameconstants.GameConstants;
 import it.unibo.towersiege.model.player.api.Player;
 
 /**
- * it represents the player state: coins and base health
+ * Represents the player state: coins and base health.
  */
-public class PlayerImpl implements Player {
+public final class PlayerImpl implements Player {
 
     private int coins;
     private int baseHealth;
 
-    /** a new PlayerImpl and resets to starting values **/
-    public PlayerImpl(){
+    /**
+     * New PlayerImpl and resets to starting values.
+     */
+    public PlayerImpl() {
         reset();
     }
 
     @Override
-    public final void reset(){
+    public final void reset() {
         this.coins = GameConstants.STARTING_COINS;
         this.baseHealth = GameConstants.BASE_HEALTH;
     }
@@ -27,14 +29,13 @@ public class PlayerImpl implements Player {
      * 
      */
     @Override
-    public void addCoins(final int amount){
+    public void addCoins(final int amount) {
         this.coins += amount;
     }
 
-
     @Override
-    public boolean spendCoins( final int amount ) {
-        if (this.coins >= amount){
+    public boolean spendCoins(final int amount) {
+        if (this.coins >= amount) {
             this.coins -= amount;
             return true;
         }
@@ -44,7 +45,6 @@ public class PlayerImpl implements Player {
 
     @Override
     public void takeBaseDamage(final int damage) {
-
         this.baseHealth -= damage;
     }
 

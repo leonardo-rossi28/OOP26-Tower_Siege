@@ -6,8 +6,14 @@ import it.unibo.towersiege.model.projectile.impl.ProjectileImpl;
 import it.unibo.towersiege.model.tower.TowerType;
 import it.unibo.towersiege.model.tower.api.Tower;
 
+/**
+ * Implementation of the Tower interface.
+ * Represent a physical tower palcedd in the map.
+ */
 public class TowerImpl implements Tower {
-    
+
+    private static final int PIXEL_PER_CELL = 40;
+
     private final TowerType type;
     private double pixelX;
     private double pixelY;
@@ -18,18 +24,18 @@ public class TowerImpl implements Tower {
     /**
      * @param type
      */
-    public TowerImpl(TowerType type) {  
+    public TowerImpl(final TowerType type) {  
         this.type = type;
-        this.level = 1;  
+        this.level = 1;
         this.alive = true;
-        this.cooldownTicks = 0; 
+        this.cooldownTicks = 0;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setPosition(double x, double y) {
+    public void setPosition(final double x,final double y) {
         this.pixelX = x;
         this.pixelY = y;
     }
@@ -38,7 +44,7 @@ public class TowerImpl implements Tower {
      * {@inheritDoc}
      */
     @Override
-    public void tick() {  
+    public void tick() {
         if (cooldownTicks > 0) {
             cooldownTicks--;
         }
@@ -48,11 +54,11 @@ public class TowerImpl implements Tower {
      * {@inheritDoc}
      */
     @Override
-    public boolean isEnemyInRange(Enemy enemy) {
+    public boolean isEnemyInRange(final Enemy enemy) {
         final double dx = enemy.getPixelX() - pixelX;
         final double dy = enemy.getPixelY() - pixelY;
         final double distSq = dx * dx + dy * dy;
-        double rangePx = type.getRange() * 40;
+        final double rangePx = type.getRange() * PIXEL_PER_CELL;
         return distSq <= (rangePx * rangePx);
     }
 
@@ -121,8 +127,8 @@ public class TowerImpl implements Tower {
     /**
     * {@inheritDoc}
     */
-     @Override
-     public Projectile attack(final Enemy enemy) {
+    @Override
+    public Projectile attack(final Enemy enemy) {
         if (!alive || cooldownTicks > 0) {
             return null;
         }

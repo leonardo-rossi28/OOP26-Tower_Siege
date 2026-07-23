@@ -10,7 +10,7 @@ import it.unibo.towersiege.model.tower.api.Tower;
  * The projectile hit if the enemy is in the same pixel otherwise the 
  * projectile continues to move.
  */
-public class ProjectileImpl implements Projectile{
+public final class ProjectileImpl implements Projectile {
 
     private static final double SPEED = 15.0;
     private static final double OFFSET = 20.0;
@@ -21,9 +21,10 @@ public class ProjectileImpl implements Projectile{
     private final Enemy target;
     private double x;
     private double y;
-    private boolean alive=true;
+    private boolean alive = true;
 
     /**
+     * Construct a new projectile  fired from a source tower at a targe enemy.
      * 
      * @param source
      * @param target
@@ -41,7 +42,7 @@ public class ProjectileImpl implements Projectile{
     @Override
     public void update() {
         if (!target.isAlive()) {
-            this.alive=false;
+            this.alive = false;
             return;
         }
 
@@ -57,8 +58,7 @@ public class ProjectileImpl implements Projectile{
                 target.applySlow(SLOW_FACTOR, SLOW_DURATION);
             }
             this.alive = false;
-        }
-        else {
+        } else {
             this.x += dx / dist * SPEED;
             this.y += dy / dist * SPEED;
         }
@@ -71,7 +71,7 @@ public class ProjectileImpl implements Projectile{
     public double getX() {
         return x;
     }
-    
+
     /**
      * {@inheritDoc}
      */

@@ -1,5 +1,8 @@
 package it.unibo.towersiege.model.enemy;
 
+/**
+ * Represents the different types of enemies in the game.
+ */
 public enum EnemyType {
     BASIC(80, 1, 10, "Basic Ogre"),
     FAST(45, 2, 15, "Fast Goblin"),
@@ -49,7 +52,7 @@ public enum EnemyType {
      * 
      * @return description
      */
-    public String StringDescription() {
+    public String stringDescription() {
         return description;
     }
 }

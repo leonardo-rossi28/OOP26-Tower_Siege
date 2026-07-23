@@ -90,7 +90,7 @@ public class GameModelImpl implements GameModel {
      * {@inheritDoc}
      */
     @Override
-    public final void loadLevel(final int levelNum){
+    public final void loadLevel(final int levelNum) {
         this.currentLevel = levelNum;
         final MapLoader loader = new MapLoader();
         MapData data = loader.loadFromClasspath("maps/level" + levelNum + ".json");
@@ -106,8 +106,7 @@ public class GameModelImpl implements GameModel {
                 data.getWaypoints(),
                 data.getBuildingSpots(),
                 data.getDecorations());
-            } 
-            else {
+            } else {
                 final List<double[]> wp = new ArrayList<>();
                 wp.add(new double[]{0, DEFAULT_WAYPOINT_Y});
                 wp.add(new double[]{DEFAULT_MAP_WIDTH, DEFAULT_WAYPOINT_Y});
@@ -120,7 +119,7 @@ public class GameModelImpl implements GameModel {
      * {@inheritDoc}
      */
     @Override
-    public void start(){
+    public void start() {
         this.state = GameState.PLAYING;
         this.currentWaveIndex = 0;
         this.activeEnemies.clear();
@@ -145,14 +144,14 @@ public class GameModelImpl implements GameModel {
             waveInProgress = true;
             spawnCooldownTicks = INITIAL_SPAWN_COOLDOWN;
         }
-    
+
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void update(){
+    public void update() {
         //Victory/defeat countdown runs even when not PLAYING
         if (victoryDelayTicks > 0) {
             victoryDelayTicks--;
@@ -178,7 +177,7 @@ public class GameModelImpl implements GameModel {
         // Gradual spawn: one enemy per second
         if (spawnCooldownTicks > 0) {
             spawnCooldownTicks--;
-        } 
+        }
         else if (!spawnQueue.isEmpty()) {
             final Enemy newEnemy = spawnQueue.remove(0);
             if (!map.getWaypoints().isEmpty()) {
@@ -205,7 +204,10 @@ public class GameModelImpl implements GameModel {
         }
 
         // Update projectiles
-        projectiles.removeIf(p -> { p.update(); return !p.isAlive();});
+        projectiles.removeIf(p -> {
+            p.update();
+            return !p.isAlive();
+        });
 
         // Fire towers
         for (final Tower tower : map.getTowers()) {
@@ -238,7 +240,7 @@ public class GameModelImpl implements GameModel {
         activeEnemies.removeIf(e -> !e.isAlive());
 
         // Check lose condition
-        if(player.getBaseHealth() <= 0){
+        if (player.getBaseHealth() <= 0) {
             state = GameState.DEFEAT;
             SoundManager.playDefeat();
             return;
@@ -314,7 +316,7 @@ public class GameModelImpl implements GameModel {
         final int refund = tower.getType().getCost() / 2;
         player.addCoins(refund);
         map.removeTowerFromSpot(spot);
-        return true;  
+        return true;
     }
 
     /**
@@ -349,111 +351,146 @@ public class GameModelImpl implements GameModel {
         freezeAnimTicks = ANIMATION_DURATION;
     }
 
-
     @Override
     public List<Projectile> getProjectiles() { 
         return new ArrayList<>(projectiles);
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Enemy> getActiveEnemies() {
         return new ArrayList<>(activeEnemies);
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getCurrentWave() {
         return currentWaveIndex;
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc} 
+     */
     @Override
     public int getTotalWaves() {
         return wave.getTotalWaves();
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc} 
+     */
     @Override
     public boolean isWaveInProgress() {
         return waveInProgress;
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc} 
+     */
     @Override
     public int getFireCooldown() {
         return fireCooldownTicks;
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc} 
+     */
     @Override
     public int getFreezeCooldown() {
         return freezeCooldownTicks;
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getFireAnimTicks() {
         return fireAnimTicks;
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getFreezeAnimTicks() {
         return freezeAnimTicks;
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override public GameState getState() {
         return state;
     }
 
-    /**{@inheritDoc} */
-    @Override public void setState(final GameState s ) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override public void setState(final GameState s) {
         this.state=s;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override public GameMap getMap() {
         return map;
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override public void pause(){ 
         if (state == GameState.PLAYING) {
             state = GameState.PAUSED;
         }
     }
 
-    /**{@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override public void resume() {
         if (state == GameState.PAUSED) {
             state = GameState.PLAYING;
         }
     }
 
-     /**{@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override 
     public Score getScore() {
         return score;
     }
 
-     /**{@inheritDoc} */
+     /**
+      * {@inheritDoc}
+      */
     @Override public Player getPlayer() {
         return player;
     }
 
-    /** {@inheritDoc} */
+    /** 
+     * {@inheritDoc} 
+     */
     @Override public boolean isVictoryRedirectReady() {
         return state == GameState.VICTORY && victoryDelayTicks == 0;
     }
 
-    /** {@inheritDoc} */
+    /** 
+     * {@inheritDoc} 
+     */
     @Override public int getCurrentLevel() {
         return currentLevel;
     }
 
-    /** {@inheritDoc} */
+    /** 
+     * {@inheritDoc}
+     */
     @Override public int getMaxUnlockedLevel() {
         return maxUnlockedLevel;
     }

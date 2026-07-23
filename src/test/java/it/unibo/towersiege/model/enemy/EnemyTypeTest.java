@@ -20,7 +20,7 @@ public class EnemyTypeTest {
         assertEquals(BASIC_HEALTH, EnemyType.BASIC.getHealth());
         assertEquals(BASIC_SPEED, EnemyType.BASIC.getSpeed());
         assertEquals(BASIC_REWARD, EnemyType.BASIC.getReward());
-        assertEquals("Orco Raider", EnemyType.BASIC.StringDescription());
+        assertEquals("Orco Raider", EnemyType.BASIC.stringDescription());
 
         assertEquals(FAST_HEALTH, EnemyType.FAST.getHealth());
         assertEquals(FAST_SPEED, EnemyType.FAST.getSpeed());

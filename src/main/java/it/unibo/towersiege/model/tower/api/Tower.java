@@ -4,13 +4,16 @@ import it.unibo.towersiege.model.enemy.api.Enemy;
 import it.unibo.towersiege.model.projectile.api.Projectile;
 import it.unibo.towersiege.model.tower.TowerType;
 
+/**
+ * Represent a defense tower.
+ */
 public interface Tower {
 
     /**
      * @param x the pixel x coordinate
      * @param y the pixel y coordinate
      */
-    void setPosition(double x,double y);
+    void setPosition(double x, double y);
 
     /**
      * Update the internal state of the tower.
@@ -34,7 +37,7 @@ public interface Tower {
     Projectile attack(Enemy enemy);
 
     /** 
-     * upgrade tower
+     * Upgrade tower.
      */
     void upgrade();
 

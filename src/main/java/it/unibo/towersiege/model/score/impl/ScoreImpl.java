@@ -1,4 +1,5 @@
 package it.unibo.towersiege.model.score.impl;
+
 import it.unibo.towersiege.model.score.api.Score;
 
 /**
