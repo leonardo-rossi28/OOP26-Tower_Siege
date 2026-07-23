@@ -52,7 +52,7 @@ public class GameMapImpl implements GameMap {
         this.decorations = decorationCoords != null ? new ArrayList<>(decorationCoords) : new ArrayList<>();
 
         if (pathGridCoords != null) {
-            for (double[] coord : pathGridCoords) {
+            for (final double[] coord : pathGridCoords) {
                 int col = (int) coord[0];
                 int row = (int) coord[1];
 
@@ -67,7 +67,7 @@ public class GameMapImpl implements GameMap {
         }
 
         if (spotGridCoords != null) {
-            for (double[] coord : spotGridCoords) {
+            for (final double[] coord : spotGridCoords) {
                 int col = (int) coord[0];
                 int row = (int) coord[1];
 
@@ -79,39 +79,39 @@ public class GameMapImpl implements GameMap {
         }
     }
 
-    /** {@inheritDOc} */
+    /** {@inheritDoc} */
     @Override
     public int getWidth() {
         return width;
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
     public int getHeight() {
         return height;
     }
 
-    /** {@inheritDOc} */
+    /** {@inheritDoc} */
     @Override
     public String getBackgroundPath() {
         return backgroundPath;
     }
 
-    /** {@inheritDOc} */
+    /** {@inheritDoc} */
     @Override
     public List<double[]> getWaypoints() {
         return pixelWaypoints;
     }
 
-    /** {@inheritDOc} */
+    /** {@inheritDoc} */
     @Override
     public List<BuildingSpot> getBuildingSpots() {
         return buildingSpots;
     }
 
-    /** {@inheritDOc} */
+    /** {@inheritDoc} */
     @Override
     public int[][] getGrid() {
         final int[][] copy = new int[grid.length][];
@@ -122,7 +122,7 @@ public class GameMapImpl implements GameMap {
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
     public List<Tower> getTowers() {
@@ -133,10 +133,10 @@ public class GameMapImpl implements GameMap {
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
-    public BuildingSpot getSpotAt(int col, int row) {
+    public BuildingSpot getSpotAt(final int col, final int row) {
         if (col < 0 || col >= GameConstants.COLS || row < 0 || row >= GameConstants.ROWS) {
             return null;
         }
@@ -149,10 +149,10 @@ public class GameMapImpl implements GameMap {
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
-    public boolean addTowerToSpot(Tower tower, BuildingSpot spot) {
+    public boolean addTowerToSpot(final Tower tower, final BuildingSpot spot) {
         if (!spot.isOccupied()) {
             spot.setTower(tower);
             return true;
@@ -161,7 +161,7 @@ public class GameMapImpl implements GameMap {
     }
 
     /**
-     * {@inheritDOc}
+     * {@inheritDoc}
      */
     @Override
     public void removeTowerFromSpot(final BuildingSpot spot) {
