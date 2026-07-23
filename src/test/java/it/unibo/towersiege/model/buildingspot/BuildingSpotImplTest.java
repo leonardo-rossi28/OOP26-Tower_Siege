@@ -17,6 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 class BuildingSpotImplTest {
+
+    private static final int COL = 2;
+    private static final int ROW = 3;
+    private static final double  HALF_DIV = 2.0;
+
     private BuildingSpot spot;
 
     @BeforeEach
@@ -26,11 +31,11 @@ class BuildingSpotImplTest {
 
     @Test
     void testInitialState() {
-        assertEquals(2, spot.getCol());
-        assertEquals(3, spot.getRow());
+        assertEquals(COL, spot.getCol());
+        assertEquals(ROW, spot.getRow());
 
-        double expectedX = (2 * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 2.0);
-        double expectedY = (3 * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 3.0);
+        double expectedX = (COL * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / HALF_DIV);
+        double expectedY = (ROW * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / HALF_DIV);
 
         assertEquals(expectedX, spot.getPixelCenterX());
         assertEquals(expectedY, spot.getPixelCenterY());
@@ -41,7 +46,7 @@ class BuildingSpotImplTest {
 
     @Test
     void testSetTower() {
-        Tower tower = new TowerImpl(TowerType.BASIC);
+        final Tower tower = new TowerImpl(TowerType.BASIC);
 
         spot.setTower(tower);
         assertTrue(spot.isOccupied());
