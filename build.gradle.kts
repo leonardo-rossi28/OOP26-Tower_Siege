@@ -10,6 +10,8 @@ plugins {
     id("org.danilopianini.unibo-oop-gradle-plugin") version "2.0.22"
 }
 
+java { toolchain { languageVersion.set(JavaLanguageVersion.of(21)) } }
+
 repositories { // Where to search for dipendencies
     mavenCentral()
 }
