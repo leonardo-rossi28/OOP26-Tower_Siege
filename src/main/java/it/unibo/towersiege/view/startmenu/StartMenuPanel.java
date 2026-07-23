@@ -22,7 +22,7 @@ import it.unibo.towersiege.controller.maincontroller.api.MainController;
 import it.unibo.towersiege.view.rules.RulesDialog;
 
 /**
- * Main panel shown at the start of the game
+ * Main panel shown at the start of the game.
  */
 
 public final class StartMenuPanel extends JPanel {
@@ -135,7 +135,7 @@ public final class StartMenuPanel extends JPanel {
     }
 
     /**
-     * {@InheritDoc}
+     * {@inheritDoc}
      */
     @Override
     protected void paintComponent(final Graphics g) {
