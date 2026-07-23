@@ -165,7 +165,7 @@ public final class LevelSelectPanel extends JPanel {
         final int h = getHeight();
 
         drawBackGround(g2, w, h);
-        drawDecoration(g2, w, h);
+        drawDecorations(g2, w, h);
         drawPaths(g2);
         drawTitle(g2);
         drawLevelNodes(g2);
@@ -188,7 +188,7 @@ public final class LevelSelectPanel extends JPanel {
         }
     }
     
-    private void drawDecoration(final Graphics2D g2, final int w, final int h) {
+    private void drawDecorations(final Graphics2D g2, final int w, final int h) {
         ImageLoader.loadAll();
         // skip the random state used by background
         for (int i = 0; i < BG_CIRCLE_COUNT; i++) {

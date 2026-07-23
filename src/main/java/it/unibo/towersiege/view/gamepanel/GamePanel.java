@@ -203,7 +203,7 @@ public class GamePanel extends JPanel {
 
                 for (int i = 0; i < types.length; i++) {
                     final int cx = shopX + i * (SHOP_CARD_WIDTH + SHOP_GAP);
-                    if (e.getX() >= shopY && e.getX() <= cx + SHOP_CARD_WIDTH
+                    if (e.getX() >= cx && e.getX() <= cx + SHOP_CARD_WIDTH
                             && e.getY() >= shopY && e.getY() <= shopY + SHOP_CARD_HEIGHT) {
                         shopController.setSelectedTowerType(types[i]);
                         repaint();
@@ -249,10 +249,10 @@ public class GamePanel extends JPanel {
             }
         }
 
-        drawDecoration(g2);
+        drawDecorations(g2);
     }
 
-    private void drawDecoration(final Graphics g2) {
+    private void drawDecorations(final Graphics g2) {
         final List<double[]> decorations=model.getMap().getDecorations();
         for(final double[] dec : decorations) {
             final int col = (int) dec[0];

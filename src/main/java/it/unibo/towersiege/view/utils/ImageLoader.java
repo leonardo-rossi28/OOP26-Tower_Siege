@@ -162,7 +162,7 @@ public final class ImageLoader {
 
             imgTree = loadImg(cl, basePath + "Props/Nature/pine_tree.png");
             imgBush = loadImg(cl, basePath + "Props/Nature/bush_round.png");
-            imgRock = loadImg(cl, basePath + "Props/Nature/rock_bush_cluster.png");
+            imgRock = loadImg(cl, basePath + "Props/Nature/rock_cluster.png");
             imgRockBush = loadImg(cl, basePath + "Props/Nature/rock_bush_cluster.png");
             loaded = true;
 
