@@ -7,6 +7,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.KeyStroke;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 
 import it.unibo.towersiege.controller.abilitycontroller.api.AbilityController;
 import it.unibo.towersiege.controller.gamecontroller.api.GameController;
@@ -22,14 +24,10 @@ import it.unibo.towersiege.view.levelselect.LevelSelectPanel;
 import it.unibo.towersiege.view.pausemenu.PauseMenuDialog;
 import it.unibo.towersiege.view.startmenu.StartMenuPanel;
 
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-
 /**
  * Implementation of the GameView interface.
  * Manages the Swing UI frames and panels for the game.
  */
-
 public final class GameViewImpl implements GameView{
 
     private static final int WIDTH = 800;
@@ -85,7 +83,7 @@ public final class GameViewImpl implements GameView{
 
     /** {@inheritDoc} */
     @Override
-    public void displayGameState(final GameModel model,
+    public void displayGameState(final GameModel model, final MainController mc,
             final GameController gc, final MapController mapC,
             final ShopController sc, final AbilityController ac) {
         if (gameFrame == null) {
@@ -99,10 +97,11 @@ public final class GameViewImpl implements GameView{
             if (model.getState() == GameState.DEFEAT
                     || model.getState() == GameState.VICTORY) {
                 if (gameOverPanel == null) {
-                    displayEndGame(model.getState());
+                    displayEndGame(model.getState(), mc, model);
                 }
                 gameOverPanel.repaint();
-            } else if (gameOverPanel != null) {
+            }
+            else if (gameOverPanel != null) {
                 // If restarted, remove game over panel
                 gameFrame.getLayeredPane().remove(gameOverPanel);
                 gameOverPanel = null;
@@ -157,11 +156,11 @@ public final class GameViewImpl implements GameView{
 
     /** {@inheritDoc} */
     @Override
-    public void displayEndGame(final GameState state) {
+    public void displayEndGame(final GameState state, final MainController mc, final GameModel model) {
         if (gameFrame == null || gameOverPanel != null) {
             return;
         }
-        gameOverPanel = new GameOverPanel(state);
+        gameOverPanel = new GameOverPanel(state, mc, model);
         gameOverPanel.setBounds(0, 0, WIDTH, HEIGHT);
         gameFrame.getLayeredPane().add(gameOverPanel, JLayeredPane.PALETTE_LAYER);
         gameFrame.getLayeredPane().repaint();

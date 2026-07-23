@@ -40,18 +40,11 @@ public final class GameControllerImpl implements GameController {
         this.mainController = mainController;
 
         this.gameLoop = new Timer(TICK_DELAY_MS, e -> {
-            final Timer currentLoop = (Timer) e.getSource();
             if (model.getState() == GameState.PLAYING || model.getState() == GameState.VICTORY) {
                 model.update();
             }
-            view.displayGameState(model, this, mapController, shopController, abilityController);
+            view.displayGameState(model, mainController, this, mapController, shopController, abilityController);
 
-            if (model.isVictoryRedirectReady()) {
-                currentLoop.stop();
-                view.closeGameFrame();
-                model.setState(GameState.LEVEL_SELECT);
-                view.showLevelSelect(mainController, model);
-            }
         });
     }
 

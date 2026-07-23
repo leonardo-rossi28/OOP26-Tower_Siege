@@ -61,12 +61,12 @@ class MainControllerImplTest {
         public void showLevelSelect(final MainController c, final GameModel model) { }
 
         @Override
-        public void displayGameState(final GameModel model, final GameController gc,
+        public void displayGameState(final GameModel model, final MainController mc, final GameController gc,
                 final MapController mapC, final ShopController sc,
                 final AbilityController ac) { }
 
         @Override
-        public void displayEndGame(final GameState state) { }
+        public void displayEndGame(final GameState state, final MainController mc, final GameModel model) { }
 
         @Override
         public void showPauseMenu(final MainController mc, final GameController gc) { }

@@ -33,21 +33,21 @@ class GameControllerImplTest {
         public void displayWelcome() { }
 
         @Override 
-        public void showStartMenu(MainController c) { }
+        public void showStartMenu(final MainController c) { }
 
         @Override 
-        public void showLevelSelect(MainController c, GameModel model) { }
+        public void showLevelSelect(final MainController c, final GameModel model) { }
         
         @Override 
-        public void displayGameState(GameModel model, GameController gc, 
-                MapController mapC, ShopController sc, 
-                AbilityController ac) { }
+        public void displayGameState(final GameModel model, final MainController mc, final GameController gc,
+                final MapController mapC, final ShopController sc, 
+                final AbilityController ac) { }
         
         @Override 
-        public void displayEndGame(GameState state) { }
+        public void displayEndGame(final GameState state, final MainController mc, GameModel model) { }
         
         @Override 
-        public void showPauseMenu(MainController mc, GameController gc) { }
+        public void showPauseMenu(final MainController mc, final GameController gc) { }
         
         @Override 
         public void hidePauseMenu() { }
@@ -65,7 +65,7 @@ class GameControllerImplTest {
         public void beginGame() { }
         
         @Override 
-        public void startLevel(int level) { }
+        public void startLevel(final int level) { }
         
         @Override 
         public void backToMenu() { }

@@ -12,7 +12,6 @@ import it.unibo.towersiege.model.gamestate.GameState;
  * Interface representing the game view.
  * Responsible for all user-interface rendering and event wiring.
  */
-
 public interface GameView {
 
     /**
@@ -40,23 +39,26 @@ public interface GameView {
      * Creates the frame on the first call.
      * 
      * @param model the game model to read state from
+     * @param mc the main controller
      * @param gc the game controller
      * @param mapC the map controller
      * @param sc the shop controller
      * @param ac the ability controller
      */
-    void displayGameState(GameModel model, GameController gc,
+    void displayGameState(GameModel model, MainController mc, GameController gc,
             MapController mapC, ShopController sc, AbilityController ac);
 
     /**
-     * Displays the end-game overlay (victory or defeat)
+     * Displays the end-game overlay (victory or defeat).
      * 
      * @param state the final game state
+     * @param mc the main controller
+     * @param model the game model
      */
-    void displayEndGame(GameState state);
+    void displayEndGame(GameState state, MainController mc, GameModel model);
 
     /**
-     * Shows the pause menu dialog
+     * Shows the pause menu dialog.
      * 
      * @param mc the main controller
      * @param gc the game controller
