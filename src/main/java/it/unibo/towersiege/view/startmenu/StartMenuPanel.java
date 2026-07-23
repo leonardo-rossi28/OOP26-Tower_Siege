@@ -25,7 +25,7 @@ import it.unibo.towersiege.view.rules.RulesDialog;
  * Main panel shown at the start of the game
  */
 
-public final class StartMenuPanel extends JPanel {
+public final class StartMenuPanel extends JPanel {     
 
     private static final long serialVersionUID = 1L;
 
@@ -62,7 +62,8 @@ public final class StartMenuPanel extends JPanel {
     private static final int BTN_EXIT_B = 45;
     private static final String FONT_SERIF = "Serif";
     private static final int OVERLAY_ALPHA = 80;
-    
+
+    private Image backgroundImage;
 
     /**
      * Creates the start menu panel.
@@ -70,13 +71,22 @@ public final class StartMenuPanel extends JPanel {
      * @param controller main controller
      * @param parentFrame parent frame
      */
-
     public StartMenuPanel(final MainController controller, final JFrame parentFrame) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder(BORDER_V, BORDER_H, BORDER_V, BORDER_H));
 
-        final JLabel title = mkLabel("TOWERSIEGE",
-                new Font(FONT_SERIF, Font.BOLD, TITLE_SIZE), C_GOLD);
+        //Load background image from classpath
+        try {
+            final InputStream is = getClass().getClassLoader()
+                .getResourceAsStream("images/sfondo iniziale.png");
+            if ( is != null) {
+                backgroundImage = ImageIO.read(is);
+                is.close();
+            }
+        } catch (final IOException e) {
+                backgroundImage = null;
+        }
+
         final JLabel sub = mkLabel("Difendi la base dalle ondate nemiche!",
                 new Font(FONT_SERIF, Font.ITALIC, SUBTITLE_SIZE),
                 new Color(SUB_COLOR_R, SUB_COLOR_G, SUB_COLOR_B));
@@ -99,17 +109,18 @@ public final class StartMenuPanel extends JPanel {
                 new Color(BTN_EXIT_R, BTN_EXIT_G, BTN_EXIT_B));
         exit.addActionListener(e -> exitGame());
 
-        init(title, sub, i1, i2, start, rules, exit);
+        init(sub, i1, i2, start, rules, exit);
     }
 
     private void exitGame() {
         System.exit(0);
     }
 
-    private void init(final JLabel title, final JLabel sub,
+    private void init(final JLabel sub,
             final JLabel i1, final JLabel i2,
             final JButton start, final JButton rules, final JButton exit) {
-        add(title);
+        add(Box.createHorizontalGlue());
+        add(Box.createRigidArea(new Dimension(0, LOGO_TOP_RATIO)));
         add(Box.createRigidArea(new Dimension(0, SPACING_MD)));
         add(sub);
         add(Box.createRigidArea(new Dimension(0, SPACING_LG)));
@@ -124,16 +135,27 @@ public final class StartMenuPanel extends JPanel {
         add(exit);
     }
 
-    /** {@InheritDoc}*/
+    /** 
+     * {@InheritDoc}
+     */
     @Override
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
         final Graphics2D g2 = (Graphics2D) g;
-        g2.setPaint(new GradientPaint(0, 0,
+        if (backgroundImage != null) {
+            //Draw background image scaled to fill the panel
+            g2.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            //Semi trasparent overlay 
+            g2.setColor(new Color(0, 0, 0, OVERLAY_ALPHA));
+            g2.fillRect(0, 0, getWidth(), getHeight());
+        }
+        else {
+            g2.setPaint(new GradientPaint(0, 0,
                 new Color(GRADIENT_R1, GRADIENT_G1, GRADIENT_B1),
                 0, getHeight(),
                 new Color(GRADIENT_R2, GRADIENT_G2, GRADIENT_B2)));
-        g2.fillRect(0, 0, getWidth(), getHeight());
+            g2.fillRect(0, 0, getWidth(), getHeight());
+        }
     }
 
     private JLabel mkLabel(final String text, final Font f, final Color c) {
