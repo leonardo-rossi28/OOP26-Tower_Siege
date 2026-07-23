@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 /*
  * Utility class to load and hold images/sprites.
-*/
+ */
 public final class ImageLoader {
 
     private static final Logger LOGGER = Logger.getLogger(ImageLoader.class.getName());

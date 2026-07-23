@@ -95,7 +95,7 @@ public final class GameModelImpl implements GameModel {
      * {@inheritDoc}
      */
     @Override
-    public void loadLevel(int levelNum) {
+    public void loadLevel(final int levelNum) {
         this.currentLevel = levelNum;
         final MapLoader loader = new MapLoader();
         MapData data = loader.loadFromClasspath("maps/level" + levelNum + ".json");
