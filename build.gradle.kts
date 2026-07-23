@@ -29,6 +29,6 @@ application {
     mainClass.set("it.unibo.towersiege.application.TowerSiege")
 }
 
-tasks.test {
+tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
