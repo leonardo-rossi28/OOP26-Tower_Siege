@@ -5,8 +5,8 @@ plugins {
     //Apply the application plugin to add support foe building a CLI application
     application
 
-    id("com.gradleup.shadow") version "9.4.3"
-    id("org.danilopianini.gradle-java-qa") version "1.164.0"
+    id("com.gradleup.shadow") version "9.4.2"
+    id("org.danilopianini.gradle-java-qa") version "1.180.0"
     id("org.danilopianini.unibo-oop-gradle-plugin") version "2.0.22"
 }
 
