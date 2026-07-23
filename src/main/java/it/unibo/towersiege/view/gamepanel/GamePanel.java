@@ -266,7 +266,7 @@ public class GamePanel extends JPanel {
 
     private void drawDecorations(final Graphics g2) {
         final List<double[]> decorations=model.getMap().getDecorations();
-        for(final double[] dec : decorations) {
+        for (final double[] dec : decorations) {
             final int col = (int) dec[0];
             final int row = (int) dec[1];
             final int type = (int) dec[2];
@@ -289,7 +289,7 @@ public class GamePanel extends JPanel {
                     break;
             }
 
-            if(img != null) {
+            if (img != null) {
                 g2.drawImage(img, px + DECORATION_PAD, py + DECORATION_PAD, DECORATION_SIZE, DECORATION_SIZE, null);
             }
 
@@ -389,13 +389,14 @@ public class GamePanel extends JPanel {
                     img = ImageLoader.getSpTowerIce();
                     break;
                 default:
-                 break;
+                break;
             }
 
             if (img != null) {
                 g2.drawImage(img, cx - SPRITE_OFFSET, cy- SPRITE_TOWER_Y_OFFSET,
                         SPRITE_SIZE, SPRITE_SIZE, null);
-            } else {
+            } 
+            else {
                 g2.setColor(Color.BLUE);
                 g2.fillRect(cx - SHOP_PANEL_PADDING -SHOP_TEXT_X_OFFSET,
                         cy - SHOP_PANEL_PADDING - SHOP_TEXT_X_OFFSET,
@@ -451,7 +452,7 @@ public class GamePanel extends JPanel {
             final int maxH = e.getMaxHealth();
             final int curH = e.getHealth();
             final int bx = ex + HEALTH_BAR_X_OFFSET;
-            final int by = ey -HEALTH_BAR_Y_OFFSET;
+            final int by = ey - HEALTH_BAR_Y_OFFSET;
             g2.setColor(Color.RED);
             g2.fillRect(bx, by, HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);
             g2.setColor(Color.GREEN);
