@@ -20,7 +20,6 @@ import it.unibo.towersiege.commons.mapdata.MapData;
 /**
  * Loader for custom JSON map format with waypoints and building spots
  */
-
 public class MapLoader {
 
     private static final Logger LOGGER = Logger.getLogger(MapLoader.class.getName());
@@ -34,7 +33,7 @@ public class MapLoader {
     }
 
     /**
-     * Loads a map from a file path
+     * Loads a map from a file path.
      * 
      * @param filePath the path to the map file
      * @return the parsed map data
@@ -47,7 +46,7 @@ public class MapLoader {
     }
 
     /**
-     * Loads a map from the classpath
+     * Loads a map from the classpath.
      * 
      * @param resourcePath the path to the resource
      * @return the parsed map data, or null if not found
@@ -78,6 +77,7 @@ public class MapLoader {
         mapData.setWaypoints(extractDoubleArray2D(content, "waypoints"));
         mapData.setBuildingSpots(extractDoubleArray2D(content, "buildingSpots"));
         mapData.setDecorations(extractDoubleArray2D(content,"decorations"));
+        
         return mapData;
     }
 
@@ -111,16 +111,24 @@ public class MapLoader {
             return result;
         }
 
-        //Extract [ x, y ]
-        final Pattern pairPattern = Pattern.compile("\\[\\s*([\\d.]+)\\s*,\\s*([\\d.]+)\\s*\\]");
-        final Matcher pairMatcher = pairPattern.matcher(arrayContent);
+        //Extract [ x, y ] or [X, Y, type]
+        final Pattern tuplePattern = Pattern.compile("\\[\\s*([\\d.]+)\\s*,\\s*([\\d.]+)\\s*\\]");
+        final Matcher tupleMatcher = tuplePattern.matcher(arrayContent);
 
-        while (pairMatcher.find()) {
+        while (tupleMatcher.find()) {
             try {
-                final double x = Double.parseDouble(pairMatcher.group(1));
-                final double y = Double.parseDouble(pairMatcher.group(2));
-                result.add(new double[]{x, y});
-            }   catch (final NumberFormatException ignored) {}
+                final double x = Double.parseDouble(tupleMatcher.group(1));
+                final double y = Double.parseDouble(tupleMatcher.group(2));
+                if (tupleMatcher.group(3) != null) {
+                    final double z = Double.parseDouble(tupleMatcher.group(3));
+                    result.add(new double[]{x, y, z});
+                }
+                else {
+                    result.add(new double[]{x, y});
+                }
+            }   catch (final NumberFormatException ignored) {
+                //Ignore parse errors
+            }
         }
         return result;
     }

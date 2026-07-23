@@ -7,16 +7,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import it.unibo.towersiege.controller.maincontroller.api.MainController;
-import it.unibo.towersiege.view.rules.RulesDialog;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
+
+import it.unibo.towersiege.controller.maincontroller.api.MainController;
+import it.unibo.towersiege.view.rules.RulesDialog;
 
 /** 
  * Main panel shown at the start of the game
@@ -26,8 +29,7 @@ public final class StartMenuPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    private static final Color C_GOLD = new Color(255, 215, 0);
-
+    private static final int LOGO_TOP_RATIO = 55;
     private static final int TITLE_SIZE=52;
     private static final int SUBTITLE_SIZE=18;
     private static final int INFO_SIZE= 13;
@@ -59,6 +61,8 @@ public final class StartMenuPanel extends JPanel {
     private static final int BTN_EXIT_G = 45;
     private static final int BTN_EXIT_B = 45;
     private static final String FONT_SERIF = "Serif";
+    private static final int OVERLAY_ALPHA = 80;
+    
 
     /**
      * Creates the start menu panel.

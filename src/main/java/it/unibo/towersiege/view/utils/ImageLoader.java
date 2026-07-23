@@ -21,6 +21,7 @@ public final class ImageLoader {
     private static final int TINT_BLUE = 255;
     private static final int TINT_ALPHA_VALUE = 255;
     private static final int PIXEL_MASK_ALPHA = 0xFF000000;
+
     private static boolean loaded;
 
     private static Image spTowerBasic;
@@ -36,7 +37,7 @@ public final class ImageLoader {
     private static Image imgRock;
     private static Image imgRockBush;
 
-    private ImageLoader(){
+    private ImageLoader() {
     }
 
      /**
@@ -197,8 +198,8 @@ public final class ImageLoader {
      * @return tinted image
      */
     public static Image tintImg(final Image src, final Color tint) {
-        int w = src.getWidth(null);
-        int h = src.getHeight(null);
+        final int w = src.getWidth(null);
+        final int h = src.getHeight(null);
         final BufferedImage bi = new BufferedImage(
                w > 0 ? w : 16, h > 0 ? h : 16, BufferedImage.TYPE_INT_ARGB);
         final Graphics2D g = bi.createGraphics();
