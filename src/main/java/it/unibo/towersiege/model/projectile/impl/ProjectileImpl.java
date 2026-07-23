@@ -40,7 +40,7 @@ public class ProjectileImpl implements Projectile{
      */
     @Override
     public void update() {
-        if(!target.isAlive()) {
+        if (!target.isAlive()) {
             this.alive=false;
             return;
         }
@@ -51,18 +51,17 @@ public class ProjectileImpl implements Projectile{
         final double dy = ty - y;
         final double dist = Math.sqrt(dx * dx + dy * dy);
 
-        if( dist <= SPEED){
+        if (dist <= SPEED) {
             target.takeDamage(source.getDamage());
-            if(source.getType() == TowerType.ICE){
+            if (source.getType() == TowerType.ICE) {
                 target.applySlow(SLOW_FACTOR, SLOW_DURATION);
             }
             this.alive = false;
-        }else{
+        }
+        else {
             this.x += dx / dist * SPEED;
             this.y += dy / dist * SPEED;
         }
-        
-        
     }
 
     /**

@@ -4,20 +4,21 @@ import it.unibo.towersiege.model.enemy.api.Enemy;
 import it.unibo.towersiege.model.projectile.api.Projectile;
 import it.unibo.towersiege.model.tower.TowerType;
 
-
-
-
 public interface Tower {
 
     /**
-     * @param x
-     * @param y
+     * @param x the pixel x coordinate
+     * @param y the pixel y coordinate
      */
     void setPosition(double x,double y);
 
+    /**
+     * Update the internal state of the tower.
+     */
     void tick();
 
     /**
+     * Check if the specified enemy is within the tower attack range.
      * 
      * @param enemy enemy to check
      * @return true if enemy is in range
@@ -31,7 +32,6 @@ public interface Tower {
      * @return Projectile or null if on cooldown or out of range
      */
     Projectile attack(Enemy enemy);
-
 
     /** 
      * upgrade tower
