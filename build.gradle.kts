@@ -37,3 +37,7 @@ tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
 
+tasks.matching { it.name == "check" }.configureEach {
+    setDependsOn(dependsOn.filter { it !is Project && !it.toString().contains("project") })
+}
+
