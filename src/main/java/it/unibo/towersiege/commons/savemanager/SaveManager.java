@@ -137,7 +137,7 @@ public final class SaveManager {
                 }
                 line = reader.readLine();
             }
-        } catch (final IOException | NumberFormatException e) {
+        } catch (final IOException | NumberFormatException | IndexOutOfBoundsException e) {
             LOGGER.severe("SaveManager: errore lettura campo " + field + " - " + e.getMessage());
         }
 
