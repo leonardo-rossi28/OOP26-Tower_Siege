@@ -6,7 +6,6 @@ import it.unibo.towersiege.model.player.api.Player;
 /**
  * it represents the player state: coins and base health
  */
-
 public class PlayerImpl implements Player {
 
     private int coins;
@@ -17,7 +16,6 @@ public class PlayerImpl implements Player {
         reset();
     }
 
-
     @Override
     public final void reset(){
         this.coins = GameConstants.STARTING_COINS;
@@ -27,7 +25,7 @@ public class PlayerImpl implements Player {
     /**
      * {@inheritDoc}
      * 
-     **/
+     */
     @Override
     public void addCoins(final int amount){
         this.coins += amount;
@@ -35,41 +33,35 @@ public class PlayerImpl implements Player {
 
 
     @Override
-    public boolean spendCoins( final int amount ){
+    public boolean spendCoins( final int amount ) {
         if (this.coins >= amount){
             this.coins -= amount;
             return true;
-
         }
 
         return false;
     }
 
-
     @Override
-    public void takeBaseDamage(final int damage){
+    public void takeBaseDamage(final int damage) {
 
         this.baseHealth -= damage;
     }
 
-
-
-
     @Override
-    public int getCoins(){
+    public int getCoins() {
         return coins;
     }
 
     @Override
-    public int getBaseHealth(){
+    public int getBaseHealth() {
         return baseHealth;
 
     }
 
     @Override
-    public boolean isBaseAlive(){
+    public boolean isBaseAlive() {
 
         return baseHealth > 0;
     }
-
 }
