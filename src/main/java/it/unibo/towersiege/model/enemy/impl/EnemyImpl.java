@@ -88,7 +88,7 @@ public class EnemyImpl implements Enemy {
      */
     @Override
     public void tickVisuals() {
-        if( hitFlashTicks > 0) {
+        if (hitFlashTicks > 0) {
             hitFlashTicks--;
         }
     }
@@ -107,7 +107,7 @@ public class EnemyImpl implements Enemy {
      */
     @Override
     public boolean moveAlongPath(final List<double[]> waypoints) {
-        if(waypoints == null || waypoints.isEmpty() || currentWaypointIndex >= waypoints.size()) {
+        if (waypoints == null || waypoints.isEmpty() || currentWaypointIndex >= waypoints.size()) {
             return true;
         }
         final double[] target = waypoints.get(currentWaypointIndex);
