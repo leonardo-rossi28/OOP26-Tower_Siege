@@ -40,7 +40,7 @@ public final class ImageLoader {
     private ImageLoader() {
     }
 
-     /**
+    /**
      * Returns the basic tower sprite.
      * 
      * @return the basic tower image
@@ -49,7 +49,7 @@ public final class ImageLoader {
          return spTowerBasic; 
     }
 
-     /**
+    /**
      * Returns the sniper tower sprite.
      * 
      * @return the sniper tower image
@@ -58,7 +58,7 @@ public final class ImageLoader {
         return spTowerSniper; 
     }
 
-     /**
+    /**
      * Returns the rapid tower sprite.
      * 
      * @return the basic tower image
@@ -206,7 +206,7 @@ public final class ImageLoader {
         g.drawImage(src, 0, 0, null);
         g.dispose();
 
-        for(int y = 0; y < bi.getHeight(); y++) {
+        for (int y = 0; y < bi.getHeight(); y++) {
             for (int x = 0; x < bi.getWidth(); x++) {
                 final int rgb = bi.getRGB(x, y);
                 final int a = rgb & PIXEL_MASK_ALPHA;
@@ -216,7 +216,7 @@ public final class ImageLoader {
                 final int r = (rgb >> 16) & 0xFF;
                 final int gComponent = (rgb >> 8) & 0xFF;
                 final int b = rgb & 0xFF;
-                
+
                 final int tr = r * tint.getRed() / 255;
                 final int tg = gComponent * tint.getGreen() / 255;
                 final int tb = b * tint.getBlue() / 255;
@@ -224,7 +224,7 @@ public final class ImageLoader {
                 bi.setRGB(x, y, a | (tr << 16) | (tg << 8) | tb);
             }
         }
-        
+
         return bi;
     }
 }

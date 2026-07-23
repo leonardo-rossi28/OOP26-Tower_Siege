@@ -30,12 +30,12 @@ public final class StartMenuPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private static final int LOGO_TOP_RATIO = 55;
-    private static final int TITLE_SIZE=52;
-    private static final int SUBTITLE_SIZE=18;
-    private static final int INFO_SIZE= 13;
-    private static final int BUTTON_FONT_SIZE= 18;
-    private static final int BUTTON_HEIGHT=50;
-    private static final int BUTTON_WIDTH=250;
+    private static final int TITLE_SIZE = 52;
+    private static final int SUBTITLE_SIZE = 18;
+    private static final int INFO_SIZE = 13;
+    private static final int BUTTON_FONT_SIZE = 18;
+    private static final int BUTTON_HEIGHT = 50;
+    private static final int BUTTON_WIDTH = 250;
     private static final int BORDER_V = 30;
     private static final int BORDER_H = 50;
     private static final int SPACING_SM = 4;
@@ -79,7 +79,7 @@ public final class StartMenuPanel extends JPanel {
         try {
             final InputStream is = getClass().getClassLoader()
                 .getResourceAsStream("images/sfondo iniziale.png");
-            if ( is != null) {
+            if (is != null) {
                 backgroundImage = ImageIO.read(is);
                 is.close();
             }
@@ -91,10 +91,10 @@ public final class StartMenuPanel extends JPanel {
                 new Font(FONT_SERIF, Font.ITALIC, SUBTITLE_SIZE),
                 new Color(SUB_COLOR_R, SUB_COLOR_G, SUB_COLOR_B));
         final JLabel i1 = mkLabel("Click sx = piazza/potenzia | Click dx = vendi torre",
-                new Font(FONT_SERIF, Font.PLAIN,INFO_SIZE),
+                new Font(FONT_SERIF, Font.PLAIN, INFO_SIZE),
                 new Color(INFO_COLOR_V, INFO_COLOR_V, INFO_COLOR_V));
         final JLabel i2 = mkLabel("W = ondata | F = Fuoco | G = Gelo | ESC = Pausa",
-                new Font(FONT_SERIF, Font.PLAIN,INFO_SIZE),
+                new Font(FONT_SERIF, Font.PLAIN, INFO_SIZE),
                 new Color(INFO_COLOR_V, INFO_COLOR_V, INFO_COLOR_V));
 
         final JButton start = btn("INIZIA PARTITA",
@@ -135,7 +135,7 @@ public final class StartMenuPanel extends JPanel {
         add(exit);
     }
 
-    /** 
+    /**
      * {@InheritDoc}
      */
     @Override
@@ -148,8 +148,7 @@ public final class StartMenuPanel extends JPanel {
             //Semi trasparent overlay 
             g2.setColor(new Color(0, 0, 0, OVERLAY_ALPHA));
             g2.fillRect(0, 0, getWidth(), getHeight());
-        }
-        else {
+        } else {
             g2.setPaint(new GradientPaint(0, 0,
                 new Color(GRADIENT_R1, GRADIENT_G1, GRADIENT_B1),
                 0, getHeight(),

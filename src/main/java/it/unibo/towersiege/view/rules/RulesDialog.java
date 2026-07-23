@@ -30,6 +30,7 @@ public class RulesDialog {
 
     /**
      * Creates the rules dialog.
+     * 
      * @param parent parent frame
      */
     public RulesDialog(final JFrame parent) {
@@ -46,15 +47,15 @@ public class RulesDialog {
         t.setForeground(new Color(TEXT_AREA_FG_RED, TEXT_AREA_FG_GREEN, TEXT_AREA_FG_BLUE));
         t.setMargin(new Insets(TEXT_MARGIN, TEXT_MARGIN, TEXT_MARGIN, TEXT_MARGIN));
         t.setText("=== REGOLE === \n\nOBIETTIVO:\n"
-                +" Piazza torri sui ounti di costruzione per fermare i nemici!\n\n"
-                +"TORRI:\n Cristallo (50g) - Danno medio\n"
-                +" Cavaliere (120g) - Alto danno, lento\n"
-                +" Mago(80g) -Rapido fuoco\n"
+                + " Piazza torri sui ounti di costruzione per fermare i nemici!\n\n"
+                + "TORRI:\n Cristallo (50g) - Danno medio\n"
+                + " Cavaliere (120g) - Alto danno, lento\n"
+                + " Mago(80g) -Rapido fuoco\n"
                 + "Ghiaccio (90g) - Rallenta\n\n"
-                +"NEMICI:\n Orco (standard) | Goblin (veloce, verde) | Bruto (lento, grosso)\n\n"
-                +"CONTROLLI:\n Click sinistro = piazza/potenzia torre\n"
-                +" Click destro = vendi torre (rimborso 50%)\n"
-                +" W = ondata | F = fuoco (15s CD) | G = gelo (8s CD) | ESC = pausa");
+                + "NEMICI:\n Orco (standard) | Goblin (veloce, verde) | Bruto (lento, grosso)\n\n"
+                + "CONTROLLI:\n Click sinistro = piazza/potenzia torre\n"
+                + " Click destro = vendi torre (rimborso 50%)\n"
+                + " W = ondata | F = fuoco (15s CD) | G = gelo (8s CD) | ESC = pausa");
 
         final JButton cb = new JButton("Chiudi");
         cb.addActionListener(e -> dialog.dispose());
@@ -70,5 +71,5 @@ public class RulesDialog {
     public void show() {
         dialog.setVisible(true);
     }
-    
+ 
 }

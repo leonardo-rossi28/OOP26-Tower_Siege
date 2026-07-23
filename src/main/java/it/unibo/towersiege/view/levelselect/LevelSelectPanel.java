@@ -100,7 +100,7 @@ public final class LevelSelectPanel extends JPanel {
     private static final int NODE_GLOW_ALPHA = 40;
     private static final int NODE_NUM_FONT_SIZE = 36;
     private static final int NODE_NUM_Y_OFFSET = 12;
-    private static final int NODE_NAME_FONT_SIZE= 14;
+    private static final int NODE_NAME_FONT_SIZE = 14;
     private static final int NODE_NAME_Y_OFFSET = 52;
     private static final int NODE_DIFF_FONT_SIZE = 11;
     private static final int NODE_DIFF_Y_OFFSET = 66;
@@ -125,11 +125,11 @@ public final class LevelSelectPanel extends JPanel {
     private final Random random = new Random(RANDOM_SEED);
 
     private final int[][] lvlPos = {
-        { LVL1_X, LVL1_Y },
-        { LVL2_X, LVL2_Y },
-        { LVL3_X, LVL3_Y }
+        {LVL1_X, LVL1_Y},
+        {LVL2_X, LVL2_Y},
+        {LVL3_X, LVL3_Y}
     };
-    
+
     /**
      * Creates the level selection panel.
      * 
@@ -154,7 +154,7 @@ public final class LevelSelectPanel extends JPanel {
             }
         });
     }
-    
+
     /** {@inheritDoc} */
     @Override
     protected void paintComponent(final Graphics g) {
@@ -187,7 +187,7 @@ public final class LevelSelectPanel extends JPanel {
             g2.fillOval(random.nextInt(w), random.nextInt(h), size, size);
         }
     }
-    
+
     private void drawDecorations(final Graphics2D g2, final int w, final int h) {
         ImageLoader.loadAll();
         // skip the random state used by background
@@ -226,7 +226,7 @@ public final class LevelSelectPanel extends JPanel {
         drawPathLines(g2);
         g2.setStroke(new BasicStroke(1));
     }
-    
+
     private void drawTitle(final Graphics2D g2) {
         g2.setFont(new Font(FONT_SERIF, Font.BOLD, TILE_FONT_SIZE));
         g2.setColor(new Color(0, 0, 0, TILE_SHADOW_ALPHA));
@@ -253,10 +253,10 @@ public final class LevelSelectPanel extends JPanel {
                     NODE_OUTER_R, NODE_OUTER_R);
 
             g2.setColor(new Color(0, 0, 0, NODE_SHADOW_ALPHA));
-            g2.fillOval( cx - NODE_SHADOW_R, cy - NODE_SHADOW_R + NODE_SHADOW_DY,
+            g2.fillOval(cx - NODE_SHADOW_R, cy - NODE_SHADOW_R + NODE_SHADOW_DY,
                     NODE_SHADOW_W, NODE_SHADOW_H);
             g2.setColor(new Color(NODE_BG_R, NODE_BG_G, NODE_BG_B));
-            g2.fillOval( cx - NODE_INNER_R, cy - NODE_INNER_R,
+            g2.fillOval(cx - NODE_INNER_R, cy - NODE_INNER_R,
                     NODE_INNER_D, NODE_INNER_D);
             g2.setColor(cols[i]);
             g2.setStroke(new BasicStroke(NODE_STROKE));
@@ -297,7 +297,7 @@ public final class LevelSelectPanel extends JPanel {
         g2.drawLine(PATH_P1_X, PATH_P1_Y, PATH_P2_X, PATH_P2_Y);
         g2.drawLine(PATH_P2_X, PATH_P2_Y, PATH_P3_X, PATH_P3_Y);
         g2.drawLine(PATH_P3_X, PATH_P3_Y, lvlPos[1][0], lvlPos[1][1]);
-        g2.drawLine(lvlPos[1][0], lvlPos[1][1], 480, 270);
+        g2.drawLine(lvlPos[1][0], lvlPos[1][1], PATH_P4_X, PATH_P4_Y);
         g2.drawLine(PATH_P4_X, PATH_P4_Y, PATH_P5_X, PATH_P5_Y);
         g2.drawLine(PATH_P5_X, PATH_P5_Y, PATH_P6_X, PATH_P6_Y);
         g2.drawLine(PATH_P6_X, PATH_P6_Y, lvlPos[2][0], lvlPos[2][1]);

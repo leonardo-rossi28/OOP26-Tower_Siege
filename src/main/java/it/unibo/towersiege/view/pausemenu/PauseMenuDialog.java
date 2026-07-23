@@ -23,10 +23,10 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 
 /**
- * Dialog shown when the game is paused
+ * Dialog shown when the game is paused.
  */
 public final class PauseMenuDialog {
-    
+
     private static final int DIALOG_WIDTH = 340;
     private static final int DIALOG_HEIGHT = 530;
     private static final int TITLE_SIZE = 36;
@@ -61,7 +61,7 @@ public final class PauseMenuDialog {
      * @param mc main controller
      * @param gc game controller
      */
-    public PauseMenuDialog(JFrame parentFrame, final MainController mc, final GameController gc){
+    public PauseMenuDialog(final JFrame parentFrame, final MainController mc, final GameController gc) {
         dialog = new JDialog(parentFrame, "Pausa", true);
         dialog.setUndecorated(true);
         dialog.setSize(DIALOG_WIDTH, DIALOG_HEIGHT);
@@ -72,7 +72,7 @@ public final class PauseMenuDialog {
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.setBorder(BorderFactory.createLineBorder(
                 new Color(BORDER_GRAY, BORDER_GRAY, BORDER_GRAY), BORDER_WIDTH));
-        
+
         //Load and display the TowerSiege logo image
         final JLabel logoLabel = loadLogoLabel();
         if (logoLabel != null) {
@@ -111,7 +111,7 @@ public final class PauseMenuDialog {
 
     private static JLabel loadLogoLabel() {
         try (InputStream is = PauseMenuDialog.class.getResourceAsStream("/images/towersiege_logo.jpg")) {
-            if(is != null) {
+            if (is != null) {
                 final Image original = ImageIO.read(is);
                 final int origWidth = original.getWidth(null);
                 final int origHeight = original.getHeight(null);
@@ -140,14 +140,14 @@ public final class PauseMenuDialog {
     /**
      * Shhows the dialog.
      */
-    public void show(){
+    public void show() {
         dialog.setVisible(true);
     }
 
     /**
      * Hides the dialog.
      */
-    public void hide(){
+    public void hide() {
         dialog.dispose();
     }
 }
