@@ -19,19 +19,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MapControllerImplTest {
     
-    private GameModel model;
     private ShopController shopController;
     private MapController mapController;
     private BuildingSpot spot;
 
     @BeforeEach
     void setUp() {
-        model = new GameModelImpl();
+        final GameModel model = new GameModelImpl();
         model.start(); // PLAYING
         shopController = new ShopControllerImpl();
         mapController = new MapControllerImpl(model, shopController);
 
-        //Find a valid building spot
         if (!model.getMap().getBuildingSpots().isEmpty()) {
             spot = model.getMap().getBuildingSpots().get(0);
         }
@@ -39,7 +37,9 @@ class MapControllerImplTest {
 
     @Test
     void testInteractWithSpotBuildTower() {
-        if (spot == null) return;
+        if (spot == null) {
+            return;
+        }
 
         shopController.setSelectedTowerType(TowerType.BASIC);
 
@@ -53,8 +53,26 @@ class MapControllerImplTest {
     }
 
     @Test
+    void testInteractWithSpotUpgradeTower() {
+        if (spot == null) {
+            return;
+        }
+
+        shopController.setSelectedTowerType(TowerType.BASIC);
+        mapController.interactWithSpot(spot); //build
+
+        assertEquals(1, spot.getTower().getLevel());
+
+        mapController.interactWithSpot(spot); //upgrade
+
+        assertEquals(2, spot.getTower().getLevel());
+    }
+
+    @Test
     void testSellTowerAtSpot() {
-        if (spot == null)  return;
+        if (spot == null) {
+            return;
+        }
 
         shopController.setSelectedTowerType(TowerType.BASIC);
         mapController.interactWithSpot(spot); // Build
