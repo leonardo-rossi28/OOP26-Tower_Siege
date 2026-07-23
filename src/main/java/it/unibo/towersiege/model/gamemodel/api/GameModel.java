@@ -11,6 +11,9 @@ import it.unibo.towersiege.model.projectile.api.Projectile;
 import it.unibo.towersiege.model.score.api.Score;
 import it.unibo.towersiege.model.tower.api.Tower;
 
+/**
+ * GameModel interface
+ */
 public interface GameModel {
 
     /**
@@ -41,8 +44,8 @@ public interface GameModel {
      * Attempts to build the given tower on the given spot.
      * Deducts cost from player coins on success.
      * 
-     * @param tower
-     * @param spot
+     * @param tower the tower
+     * @param spot the spot
      * @return true if the tower was placed successfully
      */
     boolean buildTowerOnSpot(Tower tower, BuildingSpot spot);
@@ -77,12 +80,12 @@ public interface GameModel {
     void castGlobalFreeze();
 
     /**
-     * Pause the game (only from PLYING state)
+     * Pause the game (only from PLYING state).
      */
     void pause();
 
     /**
-     * Resumes the game(only from PAUSED state)
+     * Resumes the game(only from PAUSED state).
      */
     void resume();
 
@@ -109,6 +112,8 @@ public interface GameModel {
 
     /**
      * Return the total wave.
+     * 
+     * @return the total number of waves
      */
     int getTotalWaves();
 
@@ -169,7 +174,7 @@ public interface GameModel {
     Score getScore();
 
     /**
-     * Returns the Player
+     * Returns the Player.
      * 
      * @return player
      */

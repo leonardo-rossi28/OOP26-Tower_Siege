@@ -19,7 +19,7 @@ public final class PlayerImpl implements Player {
     }
 
     @Override
-    public final void reset() {
+    public void reset() {
         this.coins = GameConstants.STARTING_COINS;
         this.baseHealth = GameConstants.BASE_HEALTH;
     }

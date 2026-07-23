@@ -52,7 +52,7 @@ public final class MapData {
     /**
      * Sets the height.
      * 
-     * @param newheight the height
+     * @param newHeight the height
      */
     public void setheight(final int newHeight) {
         this.height = newHeight;

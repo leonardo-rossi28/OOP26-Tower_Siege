@@ -2,7 +2,7 @@ package it.unibo.towersiege.controller.maincontroller.api;
 
 /**
  * Interface for the main application controller. 
-*/
+ */
 public interface MainController {
 
     /** 
