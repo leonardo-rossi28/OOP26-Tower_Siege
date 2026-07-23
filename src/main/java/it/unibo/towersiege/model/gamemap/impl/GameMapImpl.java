@@ -60,7 +60,7 @@ public class GameMapImpl implements GameMap {
                     grid[row][col] = 1;
                     pixelWaypoints.add(new double[] {
                             (col * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 2.0),
-                            (row * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 2.0),
+                            (row * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 2.0)
                     });
                 }
             }
