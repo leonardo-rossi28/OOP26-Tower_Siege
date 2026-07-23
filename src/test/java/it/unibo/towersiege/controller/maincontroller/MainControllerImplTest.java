@@ -16,27 +16,14 @@ import it.unibo.towersiege.view.gameview.api.GameView;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.beans.Transient;
-
 class MainControllerImplTest {
     private GameModel model;
     private MainController mainController;
 
-    private static class DummyGameView implements GameView {
-        @Override public void displayWelcome() {}
-        @Override public void showStartMenu(MainController c) {}
-        @Override public void showLevelSelect(MainController c, GameModel model) {}
-        @Override public void displayGameState(GameModel model, GameController gc, MapController mapC, ShopController sc, AbilityController ac) {}
-        @Override public void displayEndGame(GameState state) {}
-        @Override public void showPauseMenu(MainController mc, GameController gc) {}
-        @Override public void hidePauseMenu() {}
-        @Override public void closeGameFrame() {}
-    }
-
     @BeforeEach
     void setUp() {
         model = new GameModelImpl();
-        GameView view = new DummyGameView();
+        final GameView view = new DummyGameView();
         mainController = new MainControllerImpl(model, view);
     }
     
@@ -55,10 +42,39 @@ class MainControllerImplTest {
 
     @Test
     void testBackToLevelSelect() {
-        mainController.startLevel(1); // Set to PLAYING
+        mainController.startLevel(1);
         assertEquals(GameState.PLAYING, model.getState());
 
         mainController.backToLevelSelect();
         assertEquals(GameState.LEVEL_SELECT, model.getState());
+    }
+
+    private static final class DummyGameView implements GameView {
+
+        @Override
+        public void displayWelcome() { }
+
+        @Override
+        public void showStartMenu(final MainController c) { }
+
+        @Override
+        public void showLevelSelect(final MainController c, final GameModel model) { }
+
+        @Override
+        public void displayGameState(final GameModel model, final GameController gc,
+                final MapController mapC, final ShopController sc,
+                final AbilityController ac) { }
+
+        @Override
+        public void displayEndGame(final GameState state) { }
+
+        @Override
+        public void showPauseMenu(final MainController mc, final GameController gc) { }
+
+        @Override
+        public void hidePauseMenu() { }
+
+        @Override
+        public  void closeGameFrame() { }
     }
 }
