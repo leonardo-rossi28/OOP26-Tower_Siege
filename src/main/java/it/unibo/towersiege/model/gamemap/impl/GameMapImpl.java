@@ -127,8 +127,8 @@ public class GameMapImpl implements GameMap {
     @Override
     public List<Tower> getTowers() {
         return buildingSpots.stream()
-                .filter(BuildingSpot::isOccupied)
-                .map(BuildingSpot::getTower)
+                .filter((final BuildingSpot spot) -> spot.isOccupied())
+                .map((final BuildingSpot spot) -> spot.getTower())
                 .collect(Collectors.toList());
     }
 
