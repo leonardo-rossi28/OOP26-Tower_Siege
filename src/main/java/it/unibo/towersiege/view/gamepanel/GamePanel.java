@@ -7,7 +7,6 @@ import it.unibo.towersiege.controller.shopcontroller.api.ShopController;
 import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
 import it.unibo.towersiege.model.enemy.api.Enemy;
 import it.unibo.towersiege.model.gamemodel.api.GameModel;
-import it.unibo.towersiege.model.gamestate.GameState;
 import it.unibo.towersiege.model.player.api.Player;
 import it.unibo.towersiege.model.projectile.api.Projectile;
 import it.unibo.towersiege.model.tower.TowerType;
@@ -99,6 +98,19 @@ public class GamePanel extends JPanel {
     private static final int GRID_SPOT_RECT_SIZE = 42;
     private static final float GRID_DASH_LENGTH = 5.0f;
     private static final float GRID_METER_LIMIT = 10.0f;
+    private static final int FIRE_OVERLAY_R = 255;
+    private static final int FIRE_OVERLAY_G = 100;
+    private static final int FIRE_TEXT_G = 200;
+    private static final int FREEZE_OVERLAY_G = 200;
+    private static final int FREEZE_OVERLAY_B = 255;
+    private static final int FREEZE_TEXT_R = 200;
+    private static final int ANIM_MAX_TICKS = 60;
+    private static final int ANIM_ALPHA_DIVISOR = 2;
+    private static final int EFFECT_FONT_SIZE = 48;
+    private static final int ALPHA_MAX = 255;
+    private static final String FONT_SERIF = "Serif";
+    private static final String FIRE_TEXT = "PIOGGIA DI FUOCO!";
+    private static final String FREEZE_TEXT = "GELO GLOBALE!";
 
     private static final Color C_UI = new Color(20, 15, 10, 210);
     private static final Color C_GOLD = new Color(255, 215, 0);
@@ -128,6 +140,7 @@ public class GamePanel extends JPanel {
     private BuildingSpot hoverSpot;
 
     /**
+     * Constructs a new GamePanel.
      * 
      * @param m the game model
      * @param mapC the map controller
@@ -142,7 +155,6 @@ public class GamePanel extends JPanel {
     }
     
     /**
-     * 
      * Sets the game model.
      * 
      * @param m the game model
@@ -152,7 +164,6 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     * 
      * Sets the map controller.
      * 
      * @param c the map controller
@@ -162,7 +173,6 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     * 
      * Sets the controller for map management.
      * 
      * @param c the map controller to be assigned
@@ -219,7 +229,9 @@ public class GamePanel extends JPanel {
         });
     }
 
-    /** {@inheritDoc} */
+    /** 
+     * {@inheritDoc} 
+     */
     @Override
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
@@ -242,7 +254,7 @@ public class GamePanel extends JPanel {
         final int[][] grid = model.getMap().getGrid();
         g2.setColor(C_MAP_PATH);
         for (int r = 0; r < grid.length; r++) {
-            for ( int c = 0; c < grid[0].length; c++) {
+            for (int c = 0; c < grid[0].length; c++) {
                 if (grid[r][c] == 1) {
                     g2.fillRect(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                 }
@@ -472,24 +484,24 @@ public class GamePanel extends JPanel {
     private void drawVisualEffects(final Graphics2D g2) {
         final int fAnim = model.getFireAnimTicks();
         if (fAnim > 0) {
-            g2.setColor(new Color(255, 100, 0, (fAnim * 255 / 60) / 2));
+            final int alpha = fAnim * ALPHA_MAX / ANIM_MAX_TICKS;
+            g2.setColor(new Color(FIRE_OVERLAY_R, FIRE_OVERLAY_G, 0, alpha / ANIM_ALPHA_DIVISOR));
             g2.fillRect(0, 0, getWidth(), getHeight());
-            g2.setColor(new Color(255, 200, 0, fAnim * 255 / 60));
-            g2.setFont(new Font("Serif", Font.BOLD, 48));
-            final String m = "PIOGGIA DI FUOCO!";
+            g2.setColor(new Color(FIRE_OVERLAY_R, FIRE_TEXT_G, 0, alpha / ANIM_ALPHA_DIVISOR));
+            g2.setFont(new Font(FONT_SERIF, Font.BOLD, EFFECT_FONT_SIZE));
             final FontMetrics fm = g2.getFontMetrics();
-            g2.drawString(m, (getWidth() - fm.stringWidth(m)) / 2, getHeight() / 2);
+            g2.drawString(FIRE_TEXT, (getWidth() - fm.stringWidth(FIRE_TEXT)) / 2, getHeight() / 2);
         }
 
         final int frAnim = model.getFreezeAnimTicks();
         if (frAnim > 0) {
-            g2.setColor(new Color(0, 200, 255, (frAnim * 255 / 60) / 2));
+            final int alpha = frAnim * ALPHA_MAX / ANIM_MAX_TICKS;
+            g2.setColor(new Color(0, FREEZE_OVERLAY_G, FREEZE_OVERLAY_B, alpha / ANIM_ALPHA_DIVISOR));
             g2.fillRect(0, 0, getWidth(), getHeight());
-            g2.setColor(new Color(200, 255, 255, frAnim * 255 / 60));
-            g2.setFont(new Font("Serif", Font.BOLD, 48));
-            final String m = "GELO GLOBALE!";
+            g2.setColor(new Color(FREEZE_TEXT_R, FREEZE_OVERLAY_B, FREEZE_OVERLAY_B, alpha));
+            g2.setFont(new Font(FONT_SERIF, Font.BOLD, EFFECT_FONT_SIZE));
             final FontMetrics fm = g2.getFontMetrics();
-            g2.drawString(m, (getWidth() - fm.stringWidth(m)) / 2, getHeight() / 2);
+            g2.drawString(FREEZE_TEXT, (getWidth() - fm.stringWidth(FREEZE_TEXT)) / 2, getHeight() / 2);
         }
     }
 
@@ -529,7 +541,6 @@ public class GamePanel extends JPanel {
     }
 
     private void drawShopPanel(final Graphics2D g2, final Player p) {
-        // Shop
         final TowerType[] types = TowerType.values();
         final int total = types.length * (SHOP_CARD_WIDTH + SHOP_GAP) - SHOP_GAP;
         final int sx = (getWidth() - total) / 2;
@@ -553,7 +564,7 @@ public class GamePanel extends JPanel {
                         SHOP_ROUND_OUTER, SHOP_ROUND_OUTER);
             }
 
-            g2.setColor(C_SHOP_BG);
+            g2.setColor(C_SHOP_CARD_BG);
             g2.fillRoundRect(cx, sy, SHOP_CARD_WIDTH, SHOP_CARD_HEIGHT,
                     SHOP_ROUND_INNER, SHOP_ROUND_INNER);
             g2.setColor(C_SHOP_CARD_BORDER);

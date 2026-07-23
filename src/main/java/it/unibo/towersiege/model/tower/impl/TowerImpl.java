@@ -49,9 +49,9 @@ public class TowerImpl implements Tower {
      */
     @Override
     public boolean isEnemyInRange(Enemy enemy) {
-        double dx = enemy.getPixelX() - pixelX;
-        double dy = enemy.getPixelY() - pixelY;
-        double distSq = dx * dx + dy * dy;
+        final double dx = enemy.getPixelX() - pixelX;
+        final double dy = enemy.getPixelY() - pixelY;
+        final double distSq = dx * dx + dy * dy;
         double rangePx = type.getRange() * 40;
         return distSq <= (rangePx * rangePx);
     }
@@ -109,17 +109,17 @@ public class TowerImpl implements Tower {
     public int getRange() {
         return type.getRange();
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
      public int getDamage() {
         return type.getDamage() + (level - 1) * 2;
-     }
-    
+    }
+
     /**
-      * {@inheritDoc}
+    * {@inheritDoc}
     */
      @Override
      public Projectile attack(final Enemy enemy) {
@@ -131,9 +131,5 @@ public class TowerImpl implements Tower {
             return new ProjectileImpl(this, enemy);
         }
         return null;
-     }
-
-
-
-
+    }
 }

@@ -1,2 +1,2 @@
-maxLevel=1
-bestScore=7850
+maxLevel=2
+bestScore=8360
