@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Tests the EnemyType class.
+ * Tests the EnemyType class
  */
 public class EnemyTypeTest {
 
@@ -24,7 +24,7 @@ public class EnemyTypeTest {
         assertEquals(BASIC_HEALTH, EnemyType.BASIC.getHealth());
         assertEquals(BASIC_SPEED, EnemyType.BASIC.getSpeed());
         assertEquals(BASIC_REWARD, EnemyType.BASIC.getReward());
-        assertEquals("Orco Raider", EnemyType.BASIC.stringDescription());
+        assertEquals("Basic Ogre", EnemyType.BASIC.stringDescription());
 
         assertEquals(FAST_HEALTH, EnemyType.FAST.getHealth());
         assertEquals(FAST_SPEED, EnemyType.FAST.getSpeed());
