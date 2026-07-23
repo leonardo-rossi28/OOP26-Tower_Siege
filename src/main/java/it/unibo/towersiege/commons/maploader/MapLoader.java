@@ -112,7 +112,7 @@ public class MapLoader {
         }
 
         //Extract [ x, y ] or [X, Y, type]
-        final Pattern tuplePattern = Pattern.compile("\\[\\s*([\\d.]+)\\s*,\\s*([\\d.]+)\\s*\\]");
+        final Pattern tuplePattern = Pattern.compile("\\[\\s*([\\d.]+)\\s*,\\s*([\\d.]+)(?:\\s*,\\s*([\\d.]+))?\\s*\\]");
         final Matcher tupleMatcher = tuplePattern.matcher(arrayContent);
 
         while (tupleMatcher.find()) {
