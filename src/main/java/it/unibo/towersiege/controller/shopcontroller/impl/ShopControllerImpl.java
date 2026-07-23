@@ -16,6 +16,7 @@ public final class ShopControllerImpl implements ShopController {
      * Sets the selected Tower given its type.
      * 
      * {@inheritDoc}
+     * 
      * @param type type the type of tower to select.
      */
     @Override
@@ -29,6 +30,7 @@ public final class ShopControllerImpl implements ShopController {
      * Gets the selected tower type.
      * 
      * {@inheritDoc}
+     * 
      * @return selectedTowerType
      */
     @Override

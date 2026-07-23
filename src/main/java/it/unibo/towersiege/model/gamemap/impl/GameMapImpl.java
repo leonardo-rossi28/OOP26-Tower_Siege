@@ -11,8 +11,8 @@ import it.unibo.towersiege.model.gamemap.api.GameMap;
 import it.unibo.towersiege.model.tower.api.Tower;
 
 /**
- * Represents the grid-based game map containing the enemy path,
- * building spots and placed towers
+ * Represents the grid-based game map containing the enemy path.
+ * building spots and placed towers.
  */
 
 public class GameMapImpl implements GameMap {
@@ -53,14 +53,14 @@ public class GameMapImpl implements GameMap {
 
         if (pathGridCoords != null) {
             for (final double[] coord : pathGridCoords) {
-                int col = (int) coord[0];
-                int row = (int) coord[1];
+                final int col = (int) coord[0];
+                final int row = (int) coord[1];
 
                 if (col >= 0 && col < GameConstants.COLS && row >= 0 && row < GameConstants.ROWS) {
                     grid[row][col] = 1;
                     pixelWaypoints.add(new double[] {
                             (col * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 2.0),
-                            (row * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 2.0)
+                            (row * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / 2.0),
                     });
                 }
             }
@@ -68,8 +68,8 @@ public class GameMapImpl implements GameMap {
 
         if (spotGridCoords != null) {
             for (final double[] coord : spotGridCoords) {
-                int col = (int) coord[0];
-                int row = (int) coord[1];
+                final int col = (int) coord[0];
+                final int row = (int) coord[1];
 
                 if (col >= 0 && col < GameConstants.COLS && row >= 0 && row < GameConstants.ROWS) {
                     grid[row][col] = 2;

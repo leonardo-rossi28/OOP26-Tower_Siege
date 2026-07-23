@@ -22,7 +22,12 @@ import it.unibo.towersiege.model.tower.api.Tower;
 import it.unibo.towersiege.model.wave.api.Wave;
 import it.unibo.towersiege.model.wave.impl.WaveImpl;
 
-public class GameModelImpl implements GameModel {
+/**
+ * Implementation of the GameModel interface.
+ * Manages the main game logic, including players, enemies, towers, waves.
+ * map state, score and game progression.
+ */
+public final class GameModelImpl implements GameModel {
 
     private static final int BASE_DAMAGE_PER_ENEMY = 10;
     private static final int SPAWN_DELAY_TICKS = 60; // 1 second at 60fps
@@ -108,8 +113,8 @@ public class GameModelImpl implements GameModel {
                     data.getDecorations());
         } else {
             final List<double[]> wp = new ArrayList<>();
-            wp.add(new double[] { 0, DEFAULT_WAYPOINT_Y });
-            wp.add(new double[] { DEFAULT_MAP_WIDTH, DEFAULT_WAYPOINT_Y });
+            wp.add(new double[] {0, DEFAULT_WAYPOINT_Y});
+            wp.add(new double[] {DEFAULT_MAP_WIDTH, DEFAULT_WAYPOINT_Y});
             this.map = new GameMapImpl(DEFAULT_MAP_WIDTH, DEFAULT_MAP_HEIGHT, "", wp, new ArrayList<>(),
                     new ArrayList<>());
 
