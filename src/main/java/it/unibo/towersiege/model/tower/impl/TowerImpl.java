@@ -6,9 +6,6 @@ import it.unibo.towersiege.model.projectile.impl.ProjectileImpl;
 import it.unibo.towersiege.model.tower.TowerType;
 import it.unibo.towersiege.model.tower.api.Tower;
 
-
-
-
 public class TowerImpl implements Tower {
     
     private final TowerType type;
@@ -18,24 +15,23 @@ public class TowerImpl implements Tower {
     private final boolean alive;
     private int cooldownTicks; 
 
-
     /**
      * @param type
-    */
+     */
     public TowerImpl(TowerType type) {  
-        this.type=type;
-        this.level=1;  
-        this.alive=true;
-        this.cooldownTicks=0; 
+        this.type = type;
+        this.level = 1;  
+        this.alive = true;
+        this.cooldownTicks = 0; 
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setPosition(double x, double y){
-        this.pixelX=x;
-        this.pixelY=y;
+    public void setPosition(double x, double y) {
+        this.pixelX = x;
+        this.pixelY = y;
     }
 
     /**
@@ -52,7 +48,7 @@ public class TowerImpl implements Tower {
      * {@inheritDoc}
      */
     @Override
-    public boolean isEnemyInRange(Enemy enemy){
+    public boolean isEnemyInRange(Enemy enemy) {
         double dx = enemy.getPixelX() - pixelX;
         double dy = enemy.getPixelY() - pixelY;
         double distSq = dx * dx + dy * dy;
@@ -130,7 +126,7 @@ public class TowerImpl implements Tower {
         if (!alive || cooldownTicks > 0) {
             return null;
         }
-        if (isEnemyInRange(enemy)){
+        if (isEnemyInRange(enemy)) {
             cooldownTicks = type.getCooldown();
             return new ProjectileImpl(this, enemy);
         }

@@ -2,10 +2,10 @@ package it.unibo.towersiege.model.tower;
 
 public enum TowerType {
 
-    BASIC(50,5, 3, 60,"Torre Cristallo"),
-    SNIPER(120, 15, 5, 120,"Cavaliere"),
-    RAPID(80,2,3,20,"Mago"),
-    ICE(90,3,3,60,"Torre Ghiaccio");
+    BASIC(50, 5, 3, 60, "Torre Cristallo"),
+    SNIPER(120, 15, 5, 120, "Cavaliere"),
+    RAPID(80, 2, 3, 20, "Mago"),
+    ICE(90, 3, 3, 60, "Torre Ghiaccio");
 
     private final int cost;
     private final int damage;
@@ -13,7 +13,7 @@ public enum TowerType {
     private final int cooldown;
     private final String description;
 
-    TowerType(final int  cost, final int damage, final int range, final int cooldown, final String description){
+    TowerType(final int cost, final int damage, final int range, final int cooldown, final String description) {
         this.cost = cost;
         this.damage = damage;
         this.range = range;
@@ -24,7 +24,7 @@ public enum TowerType {
     /**
      * Return the cost of the tower.
      * 
-     * @return
+     * @return the cost of the tower
      */
     public int getCost() {
         return cost;
@@ -33,7 +33,7 @@ public enum TowerType {
     /**
      * Return the damage per attack.
      * 
-     * @return
+     * @return the damage for attack
      */
     public int getDamage() {
         return damage;
@@ -42,7 +42,7 @@ public enum TowerType {
     /**
      * Return the attack range.
      * 
-     * @return
+     * @return the attack range
      */
     public int getRange() {
         return range;
@@ -51,7 +51,7 @@ public enum TowerType {
     /**
      * Return the cooldown in ticks.
      * 
-     * @return
+     * @return the cooldown in ticks
      */
     public int getCooldown() {
         return cooldown;
@@ -60,7 +60,7 @@ public enum TowerType {
     /**
      * Return the description of the tower.
      * 
-     * @return
+     * @return the description of the tower 
      */
     public String getDescription() {
         return description;
