@@ -59,7 +59,7 @@ public class MapLoader {
                 return null;
             }
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
-                final String content = reader.lines().collect(Collectors.joining("n"));
+                final String content = reader.lines().collect(Collectors.joining("\n"));
                 return parseJson(content);
             }
         } catch (final IOException e) {

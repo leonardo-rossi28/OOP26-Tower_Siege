@@ -148,7 +148,7 @@ public final class ImageLoader {
         }
         try {
             final ClassLoader cl = ImageLoader.class.getClassLoader();
-            final String basePath = "Images/Images pack/Assets/";
+            final String basePath = "images/Images pack/Assets/";
 
             spTowerBasic = loadImg(cl, basePath + "Structures/Towers/magic_crystal_tower.png");
             spTowerSniper = loadImg(cl, basePath + "Characters/Heroes/knight_hero.png");
