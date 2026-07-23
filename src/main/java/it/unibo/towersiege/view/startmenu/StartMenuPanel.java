@@ -21,11 +21,11 @@ import javax.imageio.ImageIO;
 import it.unibo.towersiege.controller.maincontroller.api.MainController;
 import it.unibo.towersiege.view.rules.RulesDialog;
 
-/** 
+/**
  * Main panel shown at the start of the game
  */
 
-public final class StartMenuPanel extends JPanel {     
+public final class StartMenuPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -67,23 +67,23 @@ public final class StartMenuPanel extends JPanel {
     /**
      * Creates the start menu panel.
      * 
-     * @param controller main controller
+     * @param controller  main controller
      * @param parentFrame parent frame
      */
     public StartMenuPanel(final MainController controller, final JFrame parentFrame) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder(BORDER_V, BORDER_H, BORDER_V, BORDER_H));
 
-        //Load background image from classpath
+        // Load background image from classpath
         try {
             final InputStream is = getClass().getClassLoader()
-                .getResourceAsStream("images/sfondo iniziale.png");
+                    .getResourceAsStream("images/sfondo iniziale.png");
             if (is != null) {
                 backgroundImage = ImageIO.read(is);
                 is.close();
             }
         } catch (final IOException e) {
-                backgroundImage = null;
+            backgroundImage = null;
         }
 
         final JLabel sub = mkLabel("Difendi la base dalle ondate nemiche!",
@@ -142,16 +142,16 @@ public final class StartMenuPanel extends JPanel {
         super.paintComponent(g);
         final Graphics2D g2 = (Graphics2D) g;
         if (backgroundImage != null) {
-            //Draw background image scaled to fill the panel
+            // Draw background image scaled to fill the panel
             g2.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-            //Semi trasparent overlay 
+            // Semi trasparent overlay
             g2.setColor(new Color(0, 0, 0, OVERLAY_ALPHA));
             g2.fillRect(0, 0, getWidth(), getHeight());
         } else {
             g2.setPaint(new GradientPaint(0, 0,
-                new Color(GRADIENT_R1, GRADIENT_G1, GRADIENT_B1),
-                0, getHeight(),
-                new Color(GRADIENT_R2, GRADIENT_G2, GRADIENT_B2)));
+                    new Color(GRADIENT_R1, GRADIENT_G1, GRADIENT_B1),
+                    0, getHeight(),
+                    new Color(GRADIENT_R2, GRADIENT_G2, GRADIENT_B2)));
             g2.fillRect(0, 0, getWidth(), getHeight());
         }
     }

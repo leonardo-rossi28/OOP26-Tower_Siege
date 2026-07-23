@@ -26,7 +26,7 @@ class MainControllerImplTest {
         final GameView view = new DummyGameView();
         mainController = new MainControllerImpl(model, view);
     }
-    
+
     @Test
     void testBeginGame() {
         mainController.beginGame();
@@ -52,29 +52,37 @@ class MainControllerImplTest {
     private static final class DummyGameView implements GameView {
 
         @Override
-        public void displayWelcome() { }
+        public void displayWelcome() {
+        }
 
         @Override
-        public void showStartMenu(final MainController c) { }
+        public void showStartMenu(final MainController c) {
+        }
 
         @Override
-        public void showLevelSelect(final MainController c, final GameModel model) { }
+        public void showLevelSelect(final MainController c, final GameModel model) {
+        }
 
         @Override
         public void displayGameState(final GameModel model, final MainController mc, final GameController gc,
                 final MapController mapC, final ShopController sc,
-                final AbilityController ac) { }
+                final AbilityController ac) {
+        }
 
         @Override
-        public void displayEndGame(final GameState state, final MainController mc, final GameModel model) { }
+        public void displayEndGame(final GameState state, final MainController mc, final GameModel model) {
+        }
 
         @Override
-        public void showPauseMenu(final MainController mc, final GameController gc) { }
+        public void showPauseMenu(final MainController mc, final GameController gc) {
+        }
 
         @Override
-        public void hidePauseMenu() { }
+        public void hidePauseMenu() {
+        }
 
         @Override
-        public  void closeGameFrame() { }
+        public void closeGameFrame() {
+        }
     }
 }

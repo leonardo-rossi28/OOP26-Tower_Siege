@@ -5,7 +5,7 @@ package it.unibo.towersiege.model.score.api;
  * Increments points whenever an enemy is defeated.
  */
 public interface Score {
-    /** 
+    /**
      * Increments the total score.
      * 
      * @param points the number of points to add (must be positive)

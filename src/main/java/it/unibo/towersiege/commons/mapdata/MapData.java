@@ -6,7 +6,7 @@ import java.util.*;
  * MapData
  */
 public final class MapData {
-    
+
     private int width;
     private int height;
     private String background;
@@ -17,8 +17,8 @@ public final class MapData {
     /**
      * Default Constructor for MapData.
      */
-    public MapData() { 
-        //Default constructor for deserialization
+    public MapData() {
+        // Default constructor for deserialization
     }
 
     /**
@@ -35,16 +35,16 @@ public final class MapData {
      * 
      * @param width the width
      */
-    public void setWidth(final int width){
+    public void setWidth(final int width) {
         this.width = width;
     }
 
     /**
      * Gets the height.
      * 
-     * @return the height 
+     * @return the height
      */
-    public int getHeight(){
+    public int getHeight() {
         return height;
     }
 
@@ -53,7 +53,7 @@ public final class MapData {
      * 
      * @param height the height
      */
-    public void setheight(final int height){
+    public void setheight(final int height) {
         this.height = height;
     }
 
@@ -62,7 +62,7 @@ public final class MapData {
      * 
      * @return the background
      */
-    public String getBackground(){
+    public String getBackground() {
         return background;
     }
 
@@ -71,7 +71,7 @@ public final class MapData {
      * 
      * @param background the backgound
      */
-    public void setBackground(final String background){
+    public void setBackground(final String background) {
         this.background = background;
     }
 
@@ -89,7 +89,7 @@ public final class MapData {
      * 
      * @param waypoints the waypoints
      */
-    public void setWaypoints(final List<double[]> waypoints){
+    public void setWaypoints(final List<double[]> waypoints) {
         this.waypoints = new ArrayList<>(waypoints);
     }
 
@@ -107,7 +107,7 @@ public final class MapData {
      * 
      * @param buildingSpots the building spots
      */
-    public void setBuildingSpots(final List<double[]> buildingSpots){
+    public void setBuildingSpots(final List<double[]> buildingSpots) {
         this.buildingSpots = new ArrayList<>(buildingSpots);
     }
 
@@ -116,7 +116,7 @@ public final class MapData {
      * 
      * @return the decorations
      */
-    public List<double[]> getDecorations(){ 
+    public List<double[]> getDecorations() {
         return new ArrayList<>(this.decorations);
     }
 
@@ -125,7 +125,7 @@ public final class MapData {
      * 
      * @param decorations the decorations
      */
-    public void setDecorations(final List<double[]> decorations){
+    public void setDecorations(final List<double[]> decorations) {
         this.decorations = new ArrayList<>(decorations);
     }
 }

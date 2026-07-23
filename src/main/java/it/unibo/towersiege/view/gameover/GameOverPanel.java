@@ -1,9 +1,5 @@
 package it.unibo.towersiege.view.gameover;
 
-import it.unibo.towersiege.model.gamestate.GameState;
-import it.unibo.towersiege.controller.maincontroller.api.MainController;
-import it.unibo.towersiege.model.gamemodel.api.GameModel;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -12,14 +8,19 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import it.unibo.towersiege.model.gamestate.GameState;
+import it.unibo.towersiege.controller.maincontroller.api.MainController;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
 
 /**
  * Overplay panel swhown when the game reaches a terminal state
  */
 public final class GameOverPanel extends JPanel {
-    
+
     private static final long serialVersionUID = 1L;
     private static final int TITLE_SIZE = 72;
     private static final int SUBTITLE_SIZE = 24;
@@ -38,17 +39,18 @@ public final class GameOverPanel extends JPanel {
     private static final int BTN_FONT_SIZE = 18;
 
     private static final String FONT_SANSSERIF = "SansSerif";
+    private static final String FONT_SERIF = "Serif";
     private static final String BTN_VICTORY_TEXT = "Torna alla mappa dei livelli";
     private static final String BTN_DEFEAT_TEXT = "Torna al menu";
-    
+
     private final GameState state;
 
     /**
      * Constructor a new GameOverPanel.
      * 
      * @param state the terminal game state
-     * @param mc the main controller
-     * @param the game model
+     * @param mc    the main controller
+     * @param the   game model
      */
     public GameOverPanel(final GameState state, final MainController mc, final GameModel model) {
         this.state = state;
@@ -65,8 +67,7 @@ public final class GameOverPanel extends JPanel {
             btn.addActionListener((final ActionEvent e) -> {
                 if (state == GameState.VICTORY) {
                     mc.backToLevelSelect();
-                }
-                else {
+                } else {
                     mc.backToMenu();
                 }
             });
@@ -75,6 +76,9 @@ public final class GameOverPanel extends JPanel {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
@@ -88,9 +92,9 @@ public final class GameOverPanel extends JPanel {
             g2.setColor(new Color(0, 0, 0, OVERLAY_ALPHA));
             g2.fillRect(0, 0, w, h);
 
-            g2.setFont(new Font("Serif", Font.BOLD, TITLE_SIZE));
+            g2.setFont(new Font(FONT_SERIF, Font.BOLD, TITLE_SIZE));
             final String msg = state == GameState.VICTORY ? "VITTORIA!" : "SCONFITTA!";
-            g2.setColor(state == GameState.VICTORY ? new Color(GOLD, GOLDISH, 0): new Color(RED, RED_DARK, RED_DARK));
+            g2.setColor(state == GameState.VICTORY ? new Color(GOLD, GOLDISH, 0) : new Color(RED, RED_DARK, RED_DARK));
 
             final FontMetrics fm = g2.getFontMetrics();
             final int mx = (w - fm.stringWidth(msg)) / 2;
@@ -98,7 +102,8 @@ public final class GameOverPanel extends JPanel {
 
             g2.setFont(new Font("Serif", Font.PLAIN, SUBTITLE_SIZE));
             g2.setColor(Color.WHITE);
-            final String sub = state == GameState.VICTORY ? "Preparazione al prossimo livello..." : "La base e' caduta.";
+            final String sub = state == GameState.VICTORY ? "Preparazione al prossimo livello..."
+                    : "La base e' caduta.";
             final FontMetrics fms = g2.getFontMetrics();
             g2.drawString(sub, (w - fms.stringWidth(sub)) / 2, h / 2 + SUBTITLE_Y_OFFSET);
         }

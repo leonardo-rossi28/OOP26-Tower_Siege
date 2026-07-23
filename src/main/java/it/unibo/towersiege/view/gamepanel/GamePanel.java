@@ -1,5 +1,17 @@
 package it.unibo.towersiege.view.gamepanel;
 
+import java.awt.Color;
+import java.awt.BasicStroke;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
+
 import javax.swing.JPanel;
 
 import it.unibo.towersiege.controller.mapcontroller.api.MapController;
@@ -12,18 +24,6 @@ import it.unibo.towersiege.model.projectile.api.Projectile;
 import it.unibo.towersiege.model.tower.TowerType;
 import it.unibo.towersiege.model.tower.api.Tower;
 import it.unibo.towersiege.view.utils.ImageLoader;
-
-import java.awt.Color;
-import java.awt.BasicStroke;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.List;
 
 /**
  * Main panel used to draw the game scene and handle UI interactions.
@@ -78,11 +78,11 @@ public class GamePanel extends JPanel {
     private static final int DECORATION_PAD = 5;
     private static final int DECORATION_SIZE = 40;
     private static final int HOVER_RANGE_MULTIPLIER = 40;
-    private static final int HOVER_CICRLE_OFFSET = 25;
+    private static final int HOVER_CIRCLE_OFFSET = 25;
     private static final int HOVER_COST_OFFSET_X = 10;
     private static final int HOVER_COST_OFFSET_Y = 4;
     private static final int HOVER_UP_OFFSET_Y = 16;
-    private static final int HOVER_SELL_OFFEST_Y = 4;
+    private static final int HOVER_SELL_OFFSET_Y = 4;
     private static final int COST_HALF_DIVISOR = 2;
     private static final int SHOP_PANEL_PADDING = 10;
     private static final int SHOP_PANEL_EXTRA_W = 20;
@@ -142,8 +142,8 @@ public class GamePanel extends JPanel {
     /**
      * Constructs a new GamePanel.
      * 
-     * @param m the game model
-     * @param mapC the map controller
+     * @param m     the game model
+     * @param mapC  the map controller
      * @param shopC the shop controller
      */
     public GamePanel(final GameModel m, final MapController mapC, final ShopController shopC) {
@@ -153,7 +153,7 @@ public class GamePanel extends JPanel {
         ImageLoader.loadAll();
         setupMouse();
     }
-    
+
     /**
      * Sets the game model.
      * 
@@ -195,8 +195,8 @@ public class GamePanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(final MouseEvent e) {
-                final int col = e.getX() / 50;
-                final int row = e.getY() / 50;
+                final int col = e.getX() / CELL_SIZE;
+                final int row = e.getY() / CELL_SIZE;
 
                 if (e.getButton() == MouseEvent.BUTTON3) {
                     final BuildingSpot spot = model.getMap().getSpotAt(col, row);
@@ -229,8 +229,8 @@ public class GamePanel extends JPanel {
         });
     }
 
-    /** 
-     * {@inheritDoc} 
+    /**
+     * {@inheritDoc}
      */
     @Override
     protected void paintComponent(final Graphics g) {
@@ -265,7 +265,7 @@ public class GamePanel extends JPanel {
     }
 
     private void drawDecorations(final Graphics g2) {
-        final List<double[]> decorations=model.getMap().getDecorations();
+        final List<double[]> decorations = model.getMap().getDecorations();
         for (final double[] dec : decorations) {
             final int col = (int) dec[0];
             final int row = (int) dec[1];
@@ -286,6 +286,8 @@ public class GamePanel extends JPanel {
                     break;
                 case 3:
                     img = ImageLoader.getImgRockBush();
+                    break;
+                default:
                     break;
             }
 
@@ -309,7 +311,7 @@ public class GamePanel extends JPanel {
                 g2.setColor(C_SPOT_BORDER);
                 g2.setStroke(new BasicStroke(2, BasicStroke.CAP_BUTT,
                         BasicStroke.JOIN_MITER, GRID_METER_LIMIT,
-                        new float[]{GRID_DASH_LENGTH}, 0.0f));
+                        new float[] { GRID_DASH_LENGTH }, 0.0f));
                 g2.drawRect(px + GRID_SPOT_PAD, py + GRID_SPOT_PAD,
                         GRID_SPOT_RECT_SIZE, GRID_SPOT_RECT_SIZE);
                 g2.setStroke(new BasicStroke(1));
@@ -332,23 +334,22 @@ public class GamePanel extends JPanel {
         g2.drawRect(hx, hy, CELL_SIZE, CELL_SIZE);
 
         if (!hoverSpot.isOccupied() && selected != null) {
-                final int rPx = selected.getRange() * HOVER_RANGE_MULTIPLIER;
-                g2.setColor(C_RANGE_FILL);
-                g2.fillOval(hx + HOVER_CICRLE_OFFSET - rPx,
-                        hy + HOVER_CICRLE_OFFSET - rPx, rPx * 2, rPx * 2);
-                g2.setColor(C_RANGE_BORDER);
-                g2.drawOval(hx + HOVER_CICRLE_OFFSET - rPx,
-                        hy + HOVER_CICRLE_OFFSET - rPx, rPx * 2, rPx * 2);
-                g2.setColor(Color.WHITE);
-                g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, FONT_SIZE_SHOP_NAME));
-                g2.drawString(selected.getCost() + "g",
-                        hx + HOVER_COST_OFFSET_X, hy - HOVER_COST_OFFSET_Y);
-            } 
-            else if (hoverSpot.isOccupied()) {
-                drawOccupiedHover(g2, hx, hy);
-            }
+            final int rPx = selected.getRange() * HOVER_RANGE_MULTIPLIER;
+            g2.setColor(C_RANGE_FILL);
+            g2.fillOval(hx + HOVER_CIRCLE_OFFSET - rPx,
+                    hy + HOVER_CIRCLE_OFFSET - rPx, rPx * 2, rPx * 2);
+            g2.setColor(C_RANGE_BORDER);
+            g2.drawOval(hx + HOVER_CIRCLE_OFFSET - rPx,
+                    hy + HOVER_CIRCLE_OFFSET - rPx, rPx * 2, rPx * 2);
+            g2.setColor(Color.WHITE);
+            g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, FONT_SIZE_SHOP_NAME));
+            g2.drawString(selected.getCost() + "g",
+                    hx + HOVER_COST_OFFSET_X, hy - HOVER_COST_OFFSET_Y);
+        } else if (hoverSpot.isOccupied()) {
+            drawOccupiedHover(g2, hx, hy);
         }
-        
+    }
+
     private void drawOccupiedHover(final Graphics2D g2, final int hx, final int hy) {
         final Tower t = hoverSpot.getTower();
         final int rPx = t.getRange() * HOVER_RANGE_MULTIPLIER;
@@ -365,7 +366,7 @@ public class GamePanel extends JPanel {
         g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, FONT_SIZE_INFO));
         g2.drawString("Up: " + upCost, hx, hy - HOVER_UP_OFFSET_Y);
         g2.setColor(Color.RED);
-        g2.drawString("Sell: " + sellCost, hx, hy - HOVER_SELL_OFFEST_Y);
+        g2.drawString("Sell: " + sellCost, hx, hy - HOVER_SELL_OFFSET_Y);
     }
 
     private void drawTowers(final Graphics2D g2) {
@@ -384,24 +385,23 @@ public class GamePanel extends JPanel {
                     break;
                 case RAPID:
                     img = ImageLoader.getSpTowerRapid();
-                break;
+                    break;
                 case ICE:
                     img = ImageLoader.getSpTowerIce();
                     break;
                 default:
-                break;
+                    break;
             }
 
             if (img != null) {
-                g2.drawImage(img, cx - SPRITE_OFFSET, cy- SPRITE_TOWER_Y_OFFSET,
+                g2.drawImage(img, cx - SPRITE_OFFSET, cy - SPRITE_TOWER_Y_OFFSET,
                         SPRITE_SIZE, SPRITE_SIZE, null);
-            } 
-            else {
+            } else {
                 g2.setColor(Color.BLUE);
-                g2.fillRect(cx - SHOP_PANEL_PADDING -SHOP_TEXT_X_OFFSET,
+                g2.fillRect(cx - SHOP_PANEL_PADDING - SHOP_TEXT_X_OFFSET,
                         cy - SHOP_PANEL_PADDING - SHOP_TEXT_X_OFFSET,
                         HEALTH_BAR_WIDTH, HEALTH_BAR_WIDTH);
-            }        
+            }
 
             g2.setColor(Color.WHITE);
             g2.setFont(new Font(FONT_SANSSERIF, Font.BOLD, FONT_SIZE_LVL));
@@ -425,7 +425,7 @@ public class GamePanel extends JPanel {
                     img = ImageLoader.getSpEnemyFast();
                     break;
                 case TANK:
-                img = ImageLoader.getSpEnemyTank();
+                    img = ImageLoader.getSpEnemyTank();
                     break;
                 default:
                     break;
@@ -447,19 +447,20 @@ public class GamePanel extends JPanel {
             drawEnemyHealthBar(g2, e, ex, ey);
         }
     }
+
     private void drawEnemyHealthBar(final Graphics2D g2, final Enemy e,
             final int ex, final int ey) {
-            final int maxH = e.getMaxHealth();
-            final int curH = e.getHealth();
-            final int bx = ex + HEALTH_BAR_X_OFFSET;
-            final int by = ey - HEALTH_BAR_Y_OFFSET;
-            g2.setColor(Color.RED);
-            g2.fillRect(bx, by, HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);
-            g2.setColor(Color.GREEN);
-            g2.fillRect(bx, by,
-                    (int) (HEALTH_BAR_WIDTH * ((double) curH / maxH)), HEALTH_BAR_HEIGHT);
-            g2.setColor(Color.BLACK);
-            g2.drawRect(bx, by, HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);    
+        final int maxH = e.getMaxHealth();
+        final int curH = e.getHealth();
+        final int bx = ex + HEALTH_BAR_X_OFFSET;
+        final int by = ey - HEALTH_BAR_Y_OFFSET;
+        g2.setColor(Color.RED);
+        g2.fillRect(bx, by, HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);
+        g2.setColor(Color.GREEN);
+        g2.fillRect(bx, by,
+                (int) (HEALTH_BAR_WIDTH * ((double) curH / maxH)), HEALTH_BAR_HEIGHT);
+        g2.setColor(Color.BLACK);
+        g2.drawRect(bx, by, HEALTH_BAR_WIDTH, HEALTH_BAR_HEIGHT);
     }
 
     private void drawProjectiles(final Graphics2D g2) {
@@ -526,7 +527,7 @@ public class GamePanel extends JPanel {
 
         final String wTxt = model.isWaveInProgress() ? "In corso" : "Attesa";
         g2.drawString("Ondata: " + model.getCurrentWave() + "/"
-                + model.getTotalWaves() + " ("+ wTxt + ")",
+                + model.getTotalWaves() + " (" + wTxt + ")",
                 HUD_TEXT_X_WAVE, HUD_TEXT_Y);
 
         g2.setFont(new Font(FONT_SANSSERIF, Font.PLAIN, FONT_SIZE_SHOP_NAME));
@@ -555,7 +556,7 @@ public class GamePanel extends JPanel {
         for (int i = 0; i < types.length; i++) {
             final TowerType t = types[i];
             final int cx = sx + i * (SHOP_CARD_WIDTH + SHOP_GAP);
-            
+
             if (shopController.getSelectedTowerType() == t) {
                 g2.setColor(C_SHOP_SELECTED);
                 g2.fillRoundRect(cx - SHOP_SELECTION_PADDING,

@@ -22,7 +22,9 @@ public class TowerImpl implements Tower {
     private int cooldownTicks; 
 
     /**
-     * @param type
+     * Constructs a new tower with the specified type.
+     * 
+     * @param type the tower type.
      */
     public TowerImpl(final TowerType type) {  
         this.type = type;
@@ -125,8 +127,8 @@ public class TowerImpl implements Tower {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public Projectile attack(final Enemy enemy) {
         if (!alive || cooldownTicks > 0) {

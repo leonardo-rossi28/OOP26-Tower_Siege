@@ -11,7 +11,7 @@ public interface ShopController {
      * @param type the tower type
      */
     void setSelectedTowerType(TowerType type);
-    
+
     /**
      * Gets the selected tower type.
      * 

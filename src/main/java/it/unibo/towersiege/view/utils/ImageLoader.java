@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 * Utility class to load and hold images/sprites
  */
 public final class ImageLoader {
-    
+
     private static final Logger LOGGER = Logger.getLogger(ImageLoader.class.getName());
     private static final int TINT_RED = 100;
     private static final int TINT_GREEN = 200;
@@ -46,7 +46,7 @@ public final class ImageLoader {
      * @return the basic tower image
      */
     public static Image getSpTowerBasic() {
-         return spTowerBasic; 
+        return spTowerBasic;
     }
 
     /**
@@ -54,8 +54,8 @@ public final class ImageLoader {
      * 
      * @return the sniper tower image
      */
-    public static Image getSpTowerSniper() { 
-        return spTowerSniper; 
+    public static Image getSpTowerSniper() {
+        return spTowerSniper;
     }
 
     /**
@@ -64,7 +64,7 @@ public final class ImageLoader {
      * @return the basic tower image
      */
     public static Image getSpTowerRapid() {
-         return spTowerRapid; 
+        return spTowerRapid;
     }
 
     /**
@@ -72,8 +72,8 @@ public final class ImageLoader {
      * 
      * @return the ice tower image
      */
-    public static Image getSpTowerIce() { 
-        return spTowerIce; 
+    public static Image getSpTowerIce() {
+        return spTowerIce;
     }
 
     /**
@@ -81,8 +81,8 @@ public final class ImageLoader {
      * 
      * @return the basic enemy image
      */
-    public static Image getSpEnemyBasic() { 
-        return spEnemyBasic; 
+    public static Image getSpEnemyBasic() {
+        return spEnemyBasic;
     }
 
     /**
@@ -91,7 +91,7 @@ public final class ImageLoader {
      * @return the fast enemy image
      */
     public static Image getSpEnemyFast() {
-         return spEnemyFast; 
+        return spEnemyFast;
     }
 
     /**
@@ -99,8 +99,8 @@ public final class ImageLoader {
      * 
      * @return the tank enemy image
      */
-    public static Image getSpEnemyTank() { 
-        return spEnemyTank; 
+    public static Image getSpEnemyTank() {
+        return spEnemyTank;
     }
 
     /**
@@ -109,7 +109,7 @@ public final class ImageLoader {
      * @return the tree image
      */
     public static Image getImgTree() {
-         return imgTree; 
+        return imgTree;
     }
 
     /**
@@ -117,8 +117,8 @@ public final class ImageLoader {
      * 
      * @return the bush image
      */
-    public static Image getImgBush() { 
-        return imgBush; 
+    public static Image getImgBush() {
+        return imgBush;
     }
 
     /**
@@ -127,7 +127,7 @@ public final class ImageLoader {
      * @return the rock image
      */
     public static Image getImgRock() {
-         return imgRock;
+        return imgRock;
     }
 
     /**
@@ -136,7 +136,7 @@ public final class ImageLoader {
      * @return the rock-bush image
      */
     public static Image getImgRockBush() {
-         return imgRockBush; 
+        return imgRockBush;
     }
 
     /**
@@ -174,7 +174,7 @@ public final class ImageLoader {
     /**
      * Loads an image from the classpath.
      * 
-     * @param cl class loader
+     * @param cl   class loader
      * @param path resource path
      * @return the loaded image
      */
@@ -189,19 +189,19 @@ public final class ImageLoader {
             throw new IllegalArgumentException("Cannot read image: " + path, ex);
         }
     }
-    
+
     /**
      * Tints an image with a specified color.
      * 
-     * @param src source image
-     * @param tint tint color 
+     * @param src  source image
+     * @param tint tint color
      * @return tinted image
      */
     public static Image tintImg(final Image src, final Color tint) {
         final int w = src.getWidth(null);
         final int h = src.getHeight(null);
         final BufferedImage bi = new BufferedImage(
-               w > 0 ? w : 16, h > 0 ? h : 16, BufferedImage.TYPE_INT_ARGB);
+                w > 0 ? w : 16, h > 0 ? h : 16, BufferedImage.TYPE_INT_ARGB);
         final Graphics2D g = bi.createGraphics();
         g.drawImage(src, 0, 0, null);
         g.dispose();
@@ -228,4 +228,3 @@ public final class ImageLoader {
         return bi;
     }
 }
-

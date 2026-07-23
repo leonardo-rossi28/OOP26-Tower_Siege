@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * Utility Class for managing and playing sound effects.
  */
 public final class SoundManager {
-    
+
     private static final Logger LOGGER = Logger.getLogger(SoundManager.class.getName());
     private static final float DEFAULT_VOLUME = 0.5f;
     private static float volume = DEFAULT_VOLUME;
@@ -52,7 +52,7 @@ public final class SoundManager {
     }
 
     /**
-     * Plays the enemy killed sound effect. 
+     * Plays the enemy killed sound effect.
      */
     public static void playEnemyKilled() {
         playSound("sounds/enemy_killed.wav");
@@ -78,7 +78,7 @@ public final class SoundManager {
      * @param vol volume level between 0.0 and 1.0
      */
     public static void setVolume(final float vol) {
-        if ( vol >= 0.0f && vol <= 1.0f) {
+        if (vol >= 0.0f && vol <= 1.0f) {
             volume = vol;
         }
     }

@@ -15,4 +15,3 @@ public interface GameController {
      */
     void restartGame();
 }
-

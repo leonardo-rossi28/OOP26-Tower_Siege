@@ -7,7 +7,7 @@ import it.unibo.towersiege.model.tower.TowerType;
 public final class ShopControllerImpl implements ShopController {
     private TowerType selectedTowerType = TowerType.BASIC;
 
-    /**Constructs a new ShopControllerImpl. */
+    /** Constructs a new ShopControllerImpl. */
     public ShopControllerImpl() {
         // Default constructror
     }
@@ -16,11 +16,12 @@ public final class ShopControllerImpl implements ShopController {
      * Sets the selected Tower given its type.
      * 
      * {@inheritDoc}
+     * 
      * @param type
      */
     @Override
     public void setSelectedTowerType(TowerType type) {
-        if(type != null){
+        if (type != null) {
             this.selectedTowerType = type;
         }
     }
@@ -29,6 +30,7 @@ public final class ShopControllerImpl implements ShopController {
      * Gets the selected tower type.
      * 
      * {@inheritDoc}
+     * 
      * @return selectedTowerType
      */
     @Override

@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ProjectileImplTest {
-    
+
     private static final int TARGET_X = 30;
     private static final int MAX_TICKS = 20;
     private static final int FATAL_DAMAGE = 1000;
@@ -32,7 +32,7 @@ class ProjectileImplTest {
         source.setPosition(0, 0);
 
         target = new EnemyImpl(EnemyType.BASIC, 1);
-        target.setPosition(TARGET_X, 0); //Speed is 15.0, distance is 30.0 + 20.0 offset
+        target.setPosition(TARGET_X, 0); // Speed is 15.0, distance is 30.0 + 20.0 offset
 
         projectile = new ProjectileImpl(source, target);
     }

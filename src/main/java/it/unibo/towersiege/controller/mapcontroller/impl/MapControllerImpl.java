@@ -9,37 +9,35 @@ import it.unibo.towersiege.model.tower.api.Tower;
 import it.unibo.towersiege.model.tower.impl.TowerImpl;
 
 /** Implementation of the map controller. */
-public final class MapControllerImpl implements MapController{
+public final class MapControllerImpl implements MapController {
     private final GameModel model;
     private final ShopController shopController;
-    
+
     /**
      * Constructs a new MapControllerImpl.
      * 
-     * @param model the game model
+     * @param model          the game model
      * @param shopController the gshop controller
      */
-    public MapControllerImpl(final GameModel model, final ShopController shopController){
+    public MapControllerImpl(final GameModel model, final ShopController shopController) {
         this.model = model;
         this.shopController = shopController;
     }
-    
+
     /**
      * Interacts with a given spot.
      * 
      * @param spot the spot
      */
     @Override
-    public void interactWithSpot(final BuildingSpot spot){
-        if (model.getState() != GameState.PLAYING || spot == null) { 
-            return; 
+    public void interactWithSpot(final BuildingSpot spot) {
+        if (model.getState() != GameState.PLAYING || spot == null) {
+            return;
         }
         if (!spot.isOccupied()) {
             final Tower t = new TowerImpl(shopController.getSelectedTowerType());
             model.buildTowerOnSpot(t, spot);
-        }  
-        else
-        {
+        } else {
             model.upgradeTower(spot.getTower());
         }
     }
@@ -50,7 +48,7 @@ public final class MapControllerImpl implements MapController{
      * @param spot the spot
      */
     @Override
-    public void sellTowerAtSpot(final BuildingSpot spot){
+    public void sellTowerAtSpot(final BuildingSpot spot) {
         if (model.getState() != GameState.PLAYING || spot == null) {
             return;
         }

@@ -21,7 +21,8 @@ public interface GameModel {
     void loadLevel(int levelNum);
 
     /**
-     * Starts(or restarts) the game: resets all entities and begins in PLAYING state.
+     * Starts(or restarts) the game: resets all entities and begins in PLAYING
+     * state.
      */
     void start();
 
@@ -89,14 +90,14 @@ public interface GameModel {
      * Return a copy of currently active enemies.
      * 
      * @return list of active enemies
-    */
+     */
     List<Enemy> getActiveEnemies();
 
-    /** 
+    /**
      * Returns a snapshot of currently active enemies.
      * 
-     * @return list of active projectiles 
-    */
+     * @return list of active projectiles
+     */
     List<Projectile> getProjectiles();
 
     /**
@@ -119,7 +120,7 @@ public interface GameModel {
     boolean isWaveInProgress();
 
     /**
-     * Returns the remaining ticks of fire ability. 
+     * Returns the remaining ticks of fire ability.
      * 
      * @return fire cooldown ticks
      */
@@ -182,7 +183,8 @@ public interface GameModel {
     GameMap getMap();
 
     /**
-     * Returns true when the game is VICTORY state and redirect countdown has expired.
+     * Returns true when the game is VICTORY state and redirect countdown has
+     * expired.
      * 
      * @return true if victory redirect ready
      */

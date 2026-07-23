@@ -10,13 +10,13 @@ public final class ScoreImpl implements Score {
 
     private int total;
 
-    //Creates a new ScoreImpl starting at zero.
+    // Creates a new ScoreImpl starting at zero.
     public ScoreImpl() {
         this.total = 0;
     }
 
     /**
-     * {@inheritDoc} 
+     * {@inheritDoc}
      */
     @Override
     public void addPoints(final int points) {
@@ -38,6 +38,7 @@ public final class ScoreImpl implements Score {
     public void reset() {
         this.total = 0;
     }
+
     /**
      * {@inheritDoc}
      */

@@ -6,7 +6,8 @@ import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
 import it.unibo.towersiege.model.tower.api.Tower;
 
 /**
- * Represents the main game map, managing dimensions, building spots, and entities.
+ * Represents the main game map, managing dimensions, building spots, and
+ * entities.
  */
 public interface GameMap {
 
@@ -17,14 +18,14 @@ public interface GameMap {
      */
     int getWidth();
 
-    /** 
+    /**
      * Returns map height.
      * 
      * @return pixel height
      */
     int getHeight();
 
-    /** 
+    /**
      * Returns the background image path.
      * 
      * @return background path
@@ -48,7 +49,8 @@ public interface GameMap {
 
     /**
      * Returns the list of all decorations on this map.
-     * @return decorations list 
+     * 
+     * @return decorations list
      */
     List<double[]> getDecorations();
 
@@ -79,7 +81,7 @@ public interface GameMap {
      * Places tower on the spot.
      * 
      * @param tower the tower to place
-     * @param spot the building spot where to place the tower
+     * @param spot  the building spot where to place the tower
      * @return true if placed successfully
      */
     boolean addTowerToSpot(Tower tower, BuildingSpot spot);
@@ -91,4 +93,3 @@ public interface GameMap {
      */
     void removeTowerFromSpot(BuildingSpot spot);
 }
-

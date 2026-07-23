@@ -71,5 +71,5 @@ public class RulesDialog {
     public void show() {
         dialog.setVisible(true);
     }
- 
+
 }

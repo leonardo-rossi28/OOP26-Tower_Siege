@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class TowerImplTest {
-    
+
     private static final int INITIAL_POS_X = 100;
     private static final int INITIAL_POS_Y = 100;
     private static final int INITIAL_LEVEL = 1;

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WaveImplTest {
-    
+
     private static final int TOTAL_WAVES = 5;
     private static final int WAVE_1 = 1;
     private static final int WAVE_3 = 3;

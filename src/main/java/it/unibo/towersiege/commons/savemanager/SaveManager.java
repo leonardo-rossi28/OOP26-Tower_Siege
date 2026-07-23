@@ -11,16 +11,16 @@ import java.util.logging.Logger;
 
 /**
  * Manages the persistence of core game progression data into a text-based file.
- * This class is responsible for tracking the highest level unlocked and the top score achieved.
+ * This class is responsible for tracking the highest level unlocked and the top
+ * score achieved.
  */
-
 
 public final class SaveManager {
 
     private static final Logger LOGGER = Logger.getLogger(SaveManager.class.getName());
     private static final String DEFAULT_SAVE_PATH = "save.txt";
 
-    private SaveManager(){
+    private SaveManager() {
 
     }
 
@@ -31,27 +31,26 @@ public final class SaveManager {
      * @param bestScore        the highest record score obtained by the player
      */
 
-    public static void save(final int maxUnlockedLevel, final int bestScore){
+    public static void save(final int maxUnlockedLevel, final int bestScore) {
         save(maxUnlockedLevel, bestScore, DEFAULT_SAVE_PATH);
     }
-
 
     /**
      * Saves to a custom path (useful for testing).
      * 
      * @param maxUnlockedLevel the max unlocked level
-     * @param bestScore the best score
-     * @param path the path to save 
+     * @param bestScore        the best score
+     * @param path             the path to save
      */
 
-    public static void save(final int maxUnlockedLevel, final int bestScore, final String path){
+    public static void save(final int maxUnlockedLevel, final int bestScore, final String path) {
 
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(path), StandardCharsets.UTF_8)) {
             writer.write("maxLevel=" + maxUnlockedLevel);
             writer.newLine();
             writer.write("bestScore=" + bestScore);
             writer.newLine();
-        } catch (final IOException e){
+        } catch (final IOException e) {
             LOGGER.severe("SaveManager: impossibile  salvare - " + e.getMessage());
         }
     }
@@ -62,7 +61,7 @@ public final class SaveManager {
      * 
      * @return the max unlocked level
      */
-    public static int loadMaxLevel(){
+    public static int loadMaxLevel() {
         return loadMaxLevel(DEFAULT_SAVE_PATH);
     }
 
@@ -72,7 +71,7 @@ public final class SaveManager {
      * @param path the path to load from
      * @return the max unlocked level
      */
-    public static int loadMaxLevel(final String path){
+    public static int loadMaxLevel(final String path) {
 
         return readField(path, "maxLevel", 1);
     }
@@ -83,7 +82,7 @@ public final class SaveManager {
      * 
      * @return the best score
      */
-    public static int loadBestScore(){
+    public static int loadBestScore() {
         return loadBestScore(DEFAULT_SAVE_PATH);
     }
 
@@ -93,7 +92,7 @@ public final class SaveManager {
      * @param path the path to load from
      * @return the best score
      */
-    public static int loadBestScore(final String path){
+    public static int loadBestScore(final String path) {
         return readField(path, "bestScore", 0);
     }
 
@@ -102,7 +101,7 @@ public final class SaveManager {
      * 
      * @return true if save exists
      */
-    public static boolean saveExists(){
+    public static boolean saveExists() {
         return saveExists(DEFAULT_SAVE_PATH);
     }
 
@@ -112,34 +111,33 @@ public final class SaveManager {
      * @param path the path
      * @return true if save file exists
      */
-    public static  boolean saveExists(final String path){
+    public static boolean saveExists(final String path) {
         return new File(path).exists();
     }
 
     /**
      * Delets the save file (reset progress).
      */
-    public static void deleteSave(){
+    public static void deleteSave() {
         final File file = new File(DEFAULT_SAVE_PATH);
         if (file.exists() && !file.delete()) {
             LOGGER.warning("Impossibile eliminare il salvataggio");
         }
     }
 
-
-    private static int readField(final String path, final String field, final int fallback){
+    private static int readField(final String path, final String field, final int fallback) {
         if (!saveExists(path)) {
             return fallback;
         }
-        try (BufferedReader reader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8)){
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(path), StandardCharsets.UTF_8)) {
             String line = reader.readLine();
-            while (line != null){
-                if (line.startsWith(field + "=")){
+            while (line != null) {
+                if (line.startsWith(field + "=")) {
                     return Integer.parseInt(line.split("=")[1].trim());
                 }
                 line = reader.readLine();
             }
-        }catch (final IOException | NumberFormatException e){
+        } catch (final IOException | NumberFormatException e) {
             LOGGER.severe("SaveManager: errore lettura campo " + field + " - " + e.getMessage());
         }
 

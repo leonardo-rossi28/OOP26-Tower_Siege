@@ -7,7 +7,7 @@ import it.unibo.towersiege.model.tower.api.Tower;
 
 /**
  * This class represent a projectile that moves towards the target
- * The projectile hit if the enemy is in the same pixel otherwise the 
+ * The projectile hit if the enemy is in the same pixel otherwise the
  * projectile continues to move.
  */
 public final class ProjectileImpl implements Projectile {
@@ -24,7 +24,7 @@ public final class ProjectileImpl implements Projectile {
     private boolean alive = true;
 
     /**
-     * Construct a new projectile  fired from a source tower at a targe enemy.
+     * Construct a new projectile fired from a source tower at a targe enemy.
      * 
      * @param source
      * @param target
@@ -95,5 +95,4 @@ public final class ProjectileImpl implements Projectile {
     public boolean isAlive() {
         return alive;
     }
-
 }

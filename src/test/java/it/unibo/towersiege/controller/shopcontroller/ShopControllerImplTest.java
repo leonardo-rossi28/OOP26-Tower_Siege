@@ -10,7 +10,7 @@ import it.unibo.towersiege.model.tower.TowerType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShopControllerImplTest {
-    
+
     private ShopController shopController;
 
     @BeforeEach

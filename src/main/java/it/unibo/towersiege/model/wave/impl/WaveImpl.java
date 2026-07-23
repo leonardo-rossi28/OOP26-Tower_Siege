@@ -8,10 +8,16 @@ import it.unibo.towersiege.model.enemy.api.Enemy;
 import it.unibo.towersiege.model.enemy.impl.EnemyImpl;
 import it.unibo.towersiege.model.wave.api.Wave;
 
+/**
+ * Implementation of the Wave interface for managing enemy wave generation.
+ */
 public class WaveImpl implements Wave {
 
     private static final int TOTAL_WAVES = 5;
 
+    /**
+     * Constructs a new WaveImpl instance.
+     */
     public WaveImpl() {
         // Default constructor
     }
@@ -25,20 +31,20 @@ public class WaveImpl implements Wave {
     }
 
     /**
-     * {@inheriteDoc}
-     * The first wave have basic enemies , in the second appear fast enemies
-     * and the tank from the third wave 
+     * {@inheritDoc}
+     * The first wave have basic enemies, in the second appear fast enemies
+     * and the tank from the third wave.
      */
     @Override
-    public List<Enemy> generateWave(int waveNumber) {
+    public List<Enemy> generateWave(final int waveNumber) {
         final List<Enemy> enemies = new ArrayList<>();
         final int numEnemies = 4 + waveNumber * 3;
         for (int i = 0; i < numEnemies; i++) {
             EnemyType type = EnemyType.BASIC;
-            if(waveNumber >= 2 && i % 3 == 0) {
+            if (waveNumber >= 2 && i % 3 == 0) {
                 type = EnemyType.FAST;
             }
-            if(waveNumber >= 3 && i % 4 == 0) { 
+            if (waveNumber >= 3 && i % 4 == 0) {
                 type = EnemyType.TANK;
             }
             enemies.add(new EnemyImpl(type, waveNumber));

@@ -20,7 +20,7 @@ class BuildingSpotImplTest {
 
     private static final int COL = 2;
     private static final int ROW = 3;
-    private static final double  HALF_DIV = 2.0;
+    private static final double HALF_DIV = 2.0;
 
     private BuildingSpot spot;
 
@@ -52,7 +52,7 @@ class BuildingSpotImplTest {
         assertTrue(spot.isOccupied());
         assertSame(tower, spot.getTower());
 
-        //Ensure tower position wass updated to match the spot
+        // Ensure tower position wass updated to match the spot
         assertEquals(spot.getPixelCenterX(), tower.getPixelX());
         assertEquals(spot.getPixelCenterY(), tower.getPixelY());
 

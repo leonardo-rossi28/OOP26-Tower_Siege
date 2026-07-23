@@ -22,56 +22,69 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GameControllerImplTest {
 
     private static final int EXPECTED_INITIAL_COINS = 250;
-    
+
     private GameModel model;
     private GameController gameController;
 
-    //Dummy view and MainController for testing
+    // Dummy view and MainController for testing
     private static class DummyGameView implements GameView {
 
-        @Override 
-        public void displayWelcome() { }
+        @Override
+        public void displayWelcome() {
+        }
 
-        @Override 
-        public void showStartMenu(final MainController c) { }
+        @Override
+        public void showStartMenu(final MainController c) {
+        }
 
-        @Override 
-        public void showLevelSelect(final MainController c, final GameModel model) { }
-        
-        @Override 
+        @Override
+        public void showLevelSelect(final MainController c, final GameModel model) {
+        }
+
+        @Override
         public void displayGameState(final GameModel model, final MainController mc, final GameController gc,
-                final MapController mapC, final ShopController sc, 
-                final AbilityController ac) { }
-        
-        @Override 
-        public void displayEndGame(final GameState state, final MainController mc, GameModel model) { }
-        
-        @Override 
-        public void showPauseMenu(final MainController mc, final GameController gc) { }
-        
-        @Override 
-        public void hidePauseMenu() { }
-        
-        @Override 
-        public void closeGameFrame() { }
+                final MapController mapC, final ShopController sc,
+                final AbilityController ac) {
+        }
+
+        @Override
+        public void displayEndGame(final GameState state, final MainController mc, GameModel model) {
+        }
+
+        @Override
+        public void showPauseMenu(final MainController mc, final GameController gc) {
+        }
+
+        @Override
+        public void hidePauseMenu() {
+        }
+
+        @Override
+        public void closeGameFrame() {
+        }
     }
 
     private static class DummyMainController implements MainController {
 
-        @Override 
-        public void start() { }
-        
-        @Override 
-        public void beginGame() { }
-        
-        @Override 
-        public void startLevel(final int level) { }
-        
-        @Override 
-        public void backToMenu() { }
-        
-        @Override 
-        public void backToLevelSelect() { }
+        @Override
+        public void start() {
+        }
+
+        @Override
+        public void beginGame() {
+        }
+
+        @Override
+        public void startLevel(final int level) {
+        }
+
+        @Override
+        public void backToMenu() {
+        }
+
+        @Override
+        public void backToLevelSelect() {
+        }
     }
 
     @BeforeEach
@@ -85,7 +98,7 @@ class GameControllerImplTest {
         final MapController mapController = new MapControllerImpl(model, shopController);
         final AbilityController abilityController = new AbilityControllerImpl(model);
 
-        gameController = new GameControllerImpl(model, view, mainController, 
+        gameController = new GameControllerImpl(model, view, mainController,
                 mapController, shopController, abilityController);
     }
 

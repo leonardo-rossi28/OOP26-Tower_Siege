@@ -9,11 +9,11 @@ import it.unibo.towersiege.model.score.impl.ScoreImpl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScoreImplTest {
-    
+
     private static final int PTS_10 = 10;
     private static final int PTS_NEG_5 = -5;
     private static final int PTS_50 = 50;
-    
+
     private Score score;
 
     @BeforeEach

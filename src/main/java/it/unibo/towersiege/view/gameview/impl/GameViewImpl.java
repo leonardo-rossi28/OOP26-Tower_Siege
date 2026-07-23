@@ -28,7 +28,7 @@ import it.unibo.towersiege.view.startmenu.StartMenuPanel;
  * Implementation of the GameView interface.
  * Manages the Swing UI frames and panels for the game.
  */
-public final class GameViewImpl implements GameView{
+public final class GameViewImpl implements GameView {
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
@@ -44,7 +44,7 @@ public final class GameViewImpl implements GameView{
     /** {@inheritDoc} */
     @Override
     public void displayWelcome() {
-        //Optional startup effect
+        // Optional startup effect
     }
 
     /** {@inheritDoc} */
@@ -73,7 +73,7 @@ public final class GameViewImpl implements GameView{
         levelFrame = new JFrame("Mappa dei Livelli");
         levelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         levelFrame.setResizable(false);
-        
+
         final LevelSelectPanel panel = new LevelSelectPanel(c, model);
         levelFrame.add(panel);
         levelFrame.pack();
@@ -89,7 +89,7 @@ public final class GameViewImpl implements GameView{
         if (gameFrame == null) {
             initGui(model, gc, mapC, sc, ac);
         } else {
-            gamePanel.setModel(model); 
+            gamePanel.setModel(model);
             gamePanel.setMapController(mapC);
             gamePanel.setShopController(sc);
             gamePanel.repaint();
@@ -100,8 +100,7 @@ public final class GameViewImpl implements GameView{
                     displayEndGame(model.getState(), mc, model);
                 }
                 gameOverPanel.repaint();
-            }
-            else if (gameOverPanel != null) {
+            } else if (gameOverPanel != null) {
                 // If restarted, remove game over panel
                 gameFrame.getLayeredPane().remove(gameOverPanel);
                 gameOverPanel = null;
@@ -111,8 +110,8 @@ public final class GameViewImpl implements GameView{
     }
 
     private void initGui(final GameModel model, final GameController gc,
-        final MapController mapC, final ShopController sc,
-        final AbilityController ac) {
+            final MapController mapC, final ShopController sc,
+            final AbilityController ac) {
         gameFrame = new JFrame("TowerSiege - Livello " + model.getCurrentLevel());
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameFrame.setResizable(false);

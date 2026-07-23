@@ -31,7 +31,7 @@ class EnemyImplTest {
     private static final int SLOW_TICKS = 10;
     private static final double EXPECTED_X_SLOW = 0.5;
     private static final double EXPECTED_X_REC = 1.5;
-    private static final double BASE_SPEED_BASIC= 1.0;
+    private static final double BASE_SPEED_BASIC = 1.0;
 
     private Enemy enemy;
 
@@ -66,8 +66,8 @@ class EnemyImplTest {
         enemy.setPosition(WP0_X, WP0_Y);
 
         final List<double[]> waypoints = new ArrayList<>();
-        waypoints.add(new double[]{WP0_X, WP0_Y});
-        waypoints.add(new double[]{WP1_X, WP1_Y});
+        waypoints.add(new double[] { WP0_X, WP0_Y });
+        waypoints.add(new double[] { WP1_X, WP1_Y });
 
         final boolean reached = enemy.moveAlongPath(waypoints);
         assertFalse(reached);
@@ -82,8 +82,8 @@ class EnemyImplTest {
         enemy.applySlow(SLOW_MUL, SLOW_TICKS);
 
         final List<double[]> waypoints = new ArrayList<>();
-        waypoints.add(new double[]{WP0_X, WP0_Y});
-        waypoints.add(new double[]{WP1_X, WP1_X});
+        waypoints.add(new double[] { WP0_X, WP0_Y });
+        waypoints.add(new double[] { WP1_X, WP1_X });
 
         enemy.moveAlongPath(waypoints);
 
@@ -93,7 +93,7 @@ class EnemyImplTest {
             enemy.updateStatus();
         }
 
-        //Slow should be over
+        // Slow should be over
         enemy.moveAlongPath(waypoints);
         assertEquals(EXPECTED_X_REC, enemy.getPixelX(), DELTA);
     }

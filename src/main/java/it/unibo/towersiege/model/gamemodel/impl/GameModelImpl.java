@@ -25,8 +25,8 @@ import it.unibo.towersiege.model.wave.impl.WaveImpl;
 public class GameModelImpl implements GameModel {
 
     private static final int BASE_DAMAGE_PER_ENEMY = 10;
-    private static final int SPAWN_DELAY_TICKS = 60; //1 second at 60fps
-    private static final int FIRE_COOLDOWN = 900; //15 seconds
+    private static final int SPAWN_DELAY_TICKS = 60; // 1 second at 60fps
+    private static final int FIRE_COOLDOWN = 900; // 15 seconds
     private static final int FREEZE_COOLDOWN = 480; // 8 SECONDS
     private static final int DEFAULT_MAP_WIDTH = 800;
     private static final int DEFAULT_MAP_HEIGHT = 600;
@@ -48,7 +48,7 @@ public class GameModelImpl implements GameModel {
     private final List<Enemy> spawnQueue;
     private final List<Projectile> projectiles;
 
-    private int  spawnCooldownTicks;
+    private int spawnCooldownTicks;
     private int currentWaveIndex;
     private boolean waveInProgress;
 
@@ -56,7 +56,7 @@ public class GameModelImpl implements GameModel {
     private int freezeCooldownTicks;
     private int fireAnimTicks;
     private int freezeAnimTicks;
-    private int victoryDelayTicks=-1;
+    private int victoryDelayTicks = -1;
 
     private int currentLevel;
     private int maxUnlockedLevel;
@@ -64,7 +64,7 @@ public class GameModelImpl implements GameModel {
     private final Score score;
 
     /** Creates a GameModelImpl with no preset map path. */
-    public GameModelImpl(){
+    public GameModelImpl() {
         this(null);
     }
 
@@ -74,7 +74,7 @@ public class GameModelImpl implements GameModel {
      * @param mapPath optional filesystem path to a custtom map JSON (may be null)
      */
 
-    public GameModelImpl(final String mapPath){
+    public GameModelImpl(final String mapPath) {
         this.player = new PlayerImpl();
         this.wave = new WaveImpl();
         this.score = new ScoreImpl();
@@ -100,20 +100,21 @@ public class GameModelImpl implements GameModel {
 
         if (data != null) {
             this.map = new GameMapImpl(
-                data.getWidth(),
-                data.getHeight(),
-                data.getBackground(),
-                data.getWaypoints(),
-                data.getBuildingSpots(),
-                data.getDecorations());
-            } else {
-                final List<double[]> wp = new ArrayList<>();
-                wp.add(new double[]{0, DEFAULT_WAYPOINT_Y});
-                wp.add(new double[]{DEFAULT_MAP_WIDTH, DEFAULT_WAYPOINT_Y});
-                this.map = new GameMapImpl(DEFAULT_MAP_WIDTH, DEFAULT_MAP_HEIGHT, "", wp, new ArrayList<>(), new ArrayList<>());
+                    data.getWidth(),
+                    data.getHeight(),
+                    data.getBackground(),
+                    data.getWaypoints(),
+                    data.getBuildingSpots(),
+                    data.getDecorations());
+        } else {
+            final List<double[]> wp = new ArrayList<>();
+            wp.add(new double[] { 0, DEFAULT_WAYPOINT_Y });
+            wp.add(new double[] { DEFAULT_MAP_WIDTH, DEFAULT_WAYPOINT_Y });
+            this.map = new GameMapImpl(DEFAULT_MAP_WIDTH, DEFAULT_MAP_HEIGHT, "", wp, new ArrayList<>(),
+                    new ArrayList<>());
 
-            }
         }
+    }
 
     /**
      * {@inheritDoc}
@@ -152,7 +153,7 @@ public class GameModelImpl implements GameModel {
      */
     @Override
     public void update() {
-        //Victory/defeat countdown runs even when not PLAYING
+        // Victory/defeat countdown runs even when not PLAYING
         if (victoryDelayTicks > 0) {
             victoryDelayTicks--;
             return;
@@ -162,7 +163,7 @@ public class GameModelImpl implements GameModel {
         }
 
         if (fireCooldownTicks > 0) {
-            fireCooldownTicks--; 
+            fireCooldownTicks--;
         }
         if (freezeCooldownTicks > 0) {
             freezeCooldownTicks--;
@@ -177,8 +178,7 @@ public class GameModelImpl implements GameModel {
         // Gradual spawn: one enemy per second
         if (spawnCooldownTicks > 0) {
             spawnCooldownTicks--;
-        }
-        else if (!spawnQueue.isEmpty()) {
+        } else if (!spawnQueue.isEmpty()) {
             final Enemy newEnemy = spawnQueue.remove(0);
             if (!map.getWaypoints().isEmpty()) {
                 final double[] start = map.getWaypoints().get(0);
@@ -190,8 +190,8 @@ public class GameModelImpl implements GameModel {
 
         // Move Enemies
         for (final Enemy enemy : activeEnemies) {
-            if (!enemy.isAlive()) { 
-                continue; 
+            if (!enemy.isAlive()) {
+                continue;
             }
             enemy.tickVisuals();
             enemy.updateStatus();
@@ -221,8 +221,8 @@ public class GameModelImpl implements GameModel {
                     }
                 }
             }
-        if (proj != null) {
-            projectiles.add(proj);
+            if (proj != null) {
+                projectiles.add(proj);
             }
         }
 
@@ -341,7 +341,7 @@ public class GameModelImpl implements GameModel {
      */
     @Override
     public void castGlobalFreeze() {
-        if (freezeCooldownTicks > 0 || state != GameState.PLAYING) { 
+        if (freezeCooldownTicks > 0 || state != GameState.PLAYING) {
             return;
         }
         for (final Enemy e : activeEnemies) {
@@ -352,7 +352,7 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public List<Projectile> getProjectiles() { 
+    public List<Projectile> getProjectiles() {
         return new ArrayList<>(projectiles);
     }
 
@@ -373,7 +373,7 @@ public class GameModelImpl implements GameModel {
     }
 
     /**
-     * {@inheritDoc} 
+     * {@inheritDoc}
      */
     @Override
     public int getTotalWaves() {
@@ -381,7 +381,7 @@ public class GameModelImpl implements GameModel {
     }
 
     /**
-     * {@inheritDoc} 
+     * {@inheritDoc}
      */
     @Override
     public boolean isWaveInProgress() {
@@ -389,7 +389,7 @@ public class GameModelImpl implements GameModel {
     }
 
     /**
-     * {@inheritDoc} 
+     * {@inheritDoc}
      */
     @Override
     public int getFireCooldown() {
@@ -397,7 +397,7 @@ public class GameModelImpl implements GameModel {
     }
 
     /**
-     * {@inheritDoc} 
+     * {@inheritDoc}
      */
     @Override
     public int getFreezeCooldown() {
@@ -423,28 +423,32 @@ public class GameModelImpl implements GameModel {
     /**
      * {@inheritDoc}
      */
-    @Override public GameState getState() {
+    @Override
+    public GameState getState() {
         return state;
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override public void setState(final GameState s) {
-        this.state=s;
+    @Override
+    public void setState(final GameState s) {
+        this.state = s;
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override public GameMap getMap() {
+    @Override
+    public GameMap getMap() {
         return map;
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override public void pause(){ 
+    @Override
+    public void pause() {
         if (state == GameState.PLAYING) {
             state = GameState.PAUSED;
         }
@@ -453,7 +457,8 @@ public class GameModelImpl implements GameModel {
     /**
      * {@inheritDoc}
      */
-    @Override public void resume() {
+    @Override
+    public void resume() {
         if (state == GameState.PAUSED) {
             state = GameState.PLAYING;
         }
@@ -462,36 +467,40 @@ public class GameModelImpl implements GameModel {
     /**
      * {@inheritDoc}
      */
-    @Override 
+    @Override
     public Score getScore() {
         return score;
     }
 
-     /**
-      * {@inheritDoc}
-      */
-    @Override public Player getPlayer() {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Player getPlayer() {
         return player;
     }
 
-    /** 
-     * {@inheritDoc} 
+    /**
+     * {@inheritDoc}
      */
-    @Override public boolean isVictoryRedirectReady() {
+    @Override
+    public boolean isVictoryRedirectReady() {
         return state == GameState.VICTORY && victoryDelayTicks == 0;
     }
 
-    /** 
-     * {@inheritDoc} 
+    /**
+     * {@inheritDoc}
      */
-    @Override public int getCurrentLevel() {
+    @Override
+    public int getCurrentLevel() {
         return currentLevel;
     }
 
-    /** 
+    /**
      * {@inheritDoc}
      */
-    @Override public int getMaxUnlockedLevel() {
+    @Override
+    public int getMaxUnlockedLevel() {
         return maxUnlockedLevel;
     }
 

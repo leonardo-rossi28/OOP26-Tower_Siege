@@ -10,6 +10,8 @@ import it.unibo.towersiege.model.tower.TowerType;
 public interface Tower {
 
     /**
+     * Sets position to the given coordinates.
+     * 
      * @param x the pixel x coordinate
      * @param y the pixel y coordinate
      */
@@ -31,47 +33,61 @@ public interface Tower {
     /**
      * Attempts to fire the enemy.
      * 
-     * @param enemy
+     * @param enemy the enemy
      * @return Projectile or null if on cooldown or out of range
      */
     Projectile attack(Enemy enemy);
 
-    /** 
+    /**
      * Upgrade tower.
      */
     void upgrade();
 
     /**
+     * Returns the tower type.
+     * 
      * @return tower type
      */
     TowerType getType();
 
     /**
+     * Returns the pixel x.
+     * 
      * @return pixel x
      */
     double getPixelX();
 
     /**
+     * Returns the pixel y
+     * 
      * @return pixel y
      */
     double getPixelY();
 
     /**
+     * Returns true if the enemy is alive.
+     * 
      * @return true if alive
      */
     boolean isAlive();
 
     /**
+     * Returns the range of the tower.
+     * 
      * @return range
      */
     int getRange();
 
     /**
+     * Returns the damage that the tower does.
+     * 
      * @return damage
      */
     int getDamage();
 
     /**
+     * Returns the current level.
+     * 
      * @return level
      */
     int getLevel();

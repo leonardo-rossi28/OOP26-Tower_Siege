@@ -13,11 +13,13 @@ public interface Player {
     void addCoins(int amount);
 
     /**
-     * Modifies the player's wallet balance by adding or deducting the specified amount of coins.
+     * Modifies the player's wallet balance by adding or deducting the specified
+     * amount of coins.
      * 
      * @param amount the amount of coins to spend
-     * @return true if the coins were successfully spent, false if there are insufficient funds
-    */
+     * @return true if the coins were successfully spent, false if there are
+     *         insufficient funds
+     */
     boolean spendCoins(int amount);
 
     /**

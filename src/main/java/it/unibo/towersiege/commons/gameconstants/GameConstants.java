@@ -7,8 +7,8 @@ public final class GameConstants {
 
     public static final int MAP_WIDTH = 800;
     public static final int MAP_HEIGHT = 600;
-        
-    //Grid definitions
+
+    // Grid definitions
     public static final int TILE_SIZE = 50;
     public static final int COLS = MAP_WIDTH / TILE_SIZE;
     public static final int ROWS = MAP_HEIGHT / TILE_SIZE;

@@ -14,11 +14,11 @@ import org.junit.jupiter.api.Test;
  * Test class for TowerSiege
  */
 class TowerSiegeTest {
-    
+
     @Test
     void testMain() {
-        //Simple test to make sure main method can be called withou exceptions
-        assertDoesNotThrow(() -> TowerSiege.main(new String[]{}));
+        // Simple test to make sure main method can be called withou exceptions
+        assertDoesNotThrow(() -> TowerSiege.main(new String[] {}));
     }
 
     @Test

@@ -125,16 +125,16 @@ public final class LevelSelectPanel extends JPanel {
     private final Random random = new Random(RANDOM_SEED);
 
     private final int[][] lvlPos = {
-        {LVL1_X, LVL1_Y},
-        {LVL2_X, LVL2_Y},
-        {LVL3_X, LVL3_Y}
+            { LVL1_X, LVL1_Y },
+            { LVL2_X, LVL2_Y },
+            { LVL3_X, LVL3_Y }
     };
 
     /**
      * Creates the level selection panel.
      * 
      * @param controller main controller
-     * @param model the game model
+     * @param model      the game model
      */
 
     public LevelSelectPanel(final MainController controller, final GameModel model) {
@@ -200,8 +200,8 @@ public final class LevelSelectPanel extends JPanel {
             random.nextInt();
         }
         final Image[] imgs = {
-            ImageLoader.getImgTree(), ImageLoader.getImgBush(),
-            ImageLoader.getImgRock(), ImageLoader.getImgRockBush(),
+                ImageLoader.getImgTree(), ImageLoader.getImgBush(),
+                ImageLoader.getImgRock(), ImageLoader.getImgRockBush(),
         };
         for (int i = 0; i < DECO_COUNT; i++) {
             final int dx = random.nextInt(w - DECO_MARGIN) + DECO_OFFSET;
@@ -237,12 +237,12 @@ public final class LevelSelectPanel extends JPanel {
     }
 
     private void drawLevelNodes(final Graphics2D g2) {
-        final String[] names = {"Foresta", "Pianura", "Montagna"};
-        final String[] diff = {"Facile", "Medio", "Difficile"};
+        final String[] names = { "Foresta", "Pianura", "Montagna" };
+        final String[] diff = { "Facile", "Medio", "Difficile" };
         final Color[] cols = {
-            new Color(GREEN_NODE_R, GREEN_NODE_G, GREEN_NODE_B),
-            new Color(YELLOW_NODE_R, YELLOW_NODE_G, YELLOW_NODE_B),
-            new Color(RED_NODE_R, RED_NODE_G, RED_NODE_B) };
+                new Color(GREEN_NODE_R, GREEN_NODE_G, GREEN_NODE_B),
+                new Color(YELLOW_NODE_R, YELLOW_NODE_G, YELLOW_NODE_B),
+                new Color(RED_NODE_R, RED_NODE_G, RED_NODE_B) };
         for (int i = 0; i < LEVEL_COUNT; i++) {
             final int cx = lvlPos[i][0];
             final int cy = lvlPos[i][1];

@@ -58,8 +58,8 @@ public final class PauseMenuDialog {
      * Creates the pause dialog.
      * 
      * @param parentFrame parent frame
-     * @param mc main controller
-     * @param gc game controller
+     * @param mc          main controller
+     * @param gc          game controller
      */
     public PauseMenuDialog(final JFrame parentFrame, final MainController mc, final GameController gc) {
         dialog = new JDialog(parentFrame, "Pausa", true);
@@ -73,7 +73,7 @@ public final class PauseMenuDialog {
         p.setBorder(BorderFactory.createLineBorder(
                 new Color(BORDER_GRAY, BORDER_GRAY, BORDER_GRAY), BORDER_WIDTH));
 
-        //Load and display the TowerSiege logo image
+        // Load and display the TowerSiege logo image
         final JLabel logoLabel = loadLogoLabel();
         if (logoLabel != null) {
             logoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);

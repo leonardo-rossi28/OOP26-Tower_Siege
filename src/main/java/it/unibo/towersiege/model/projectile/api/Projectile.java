@@ -36,6 +36,4 @@ public interface Projectile {
      * @return true if alive
      */
     boolean isAlive();
-    
 }
-

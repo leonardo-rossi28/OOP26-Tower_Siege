@@ -39,11 +39,11 @@ public interface GameView {
      * Creates the frame on the first call.
      * 
      * @param model the game model to read state from
-     * @param mc the main controller
-     * @param gc the game controller
-     * @param mapC the map controller
-     * @param sc the shop controller
-     * @param ac the ability controller
+     * @param mc    the main controller
+     * @param gc    the game controller
+     * @param mapC  the map controller
+     * @param sc    the shop controller
+     * @param ac    the ability controller
      */
     void displayGameState(GameModel model, MainController mc, GameController gc,
             MapController mapC, ShopController sc, AbilityController ac);
@@ -52,7 +52,7 @@ public interface GameView {
      * Displays the end-game overlay (victory or defeat).
      * 
      * @param state the final game state
-     * @param mc the main controller
+     * @param mc    the main controller
      * @param model the game model
      */
     void displayEndGame(GameState state, MainController mc, GameModel model);
@@ -74,5 +74,5 @@ public interface GameView {
      * Closes and disposes the main game frame (and level select frame if open).
      */
     void closeGameFrame();
-    
+
 }

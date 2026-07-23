@@ -17,7 +17,7 @@ public final class MainControllerImpl implements MainController {
 
     private final GameModel model;
     private final GameView view;
-    private final  GameControllerImpl gameControllerImpl;
+    private final GameControllerImpl gameControllerImpl;
     private final MapController mapController;
     private final ShopController shopController;
     private final AbilityController abilityController;
@@ -26,7 +26,7 @@ public final class MainControllerImpl implements MainController {
      * Constructs a new MainControllerImpl.
      * 
      * @param model the game model
-     * @param view the game view
+     * @param view  the game view
      */
     public MainControllerImpl(final GameModel model, final GameView view) {
         this.model = model;
@@ -34,7 +34,8 @@ public final class MainControllerImpl implements MainController {
         this.shopController = new ShopControllerImpl();
         this.mapController = new MapControllerImpl(model, shopController);
         this.abilityController = new AbilityControllerImpl(model);
-        this.gameControllerImpl = new GameControllerImpl(model, view, this, mapController, shopController, abilityController);
+        this.gameControllerImpl = new GameControllerImpl(model, view, this, mapController, shopController,
+                abilityController);
     }
 
     /**
@@ -55,6 +56,7 @@ public final class MainControllerImpl implements MainController {
         model.setState(GameState.LEVEL_SELECT);
         view.showLevelSelect(this, model);
     }
+
     /**
      * Starts the level
      */

@@ -12,18 +12,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class GameModelImplTest {
-    
+
     private static final int INITIAL_COINS = 250;
     private static final int FIRE_CD_MAX = 900;
     private static final int FREEZE_CD_MAX = 480;
     private static final int FIRE_CD_TICK = 899;
     private static final int FREEZE_CD_TICK = 479;
 
-    private GameModel  model;
+    private GameModel model;
 
     @BeforeEach
     void setUp() {
-        //Use the base costructor if not search the files
+        // Use the base costructor if not search the files
         model = new GameModelImpl();
     }
 
@@ -43,8 +43,9 @@ public class GameModelImplTest {
         assertEquals(0, model.getCurrentWave());
         assertFalse(model.isWaveInProgress());
         assertEquals(0, model.getActiveEnemies().size());
-        assertEquals(INITIAL_COINS, model.getPlayer().getCoins()); //starting coins
+        assertEquals(INITIAL_COINS, model.getPlayer().getCoins()); // starting coins
     }
+
     @Test
     void testStateTransitions() {
         model.start();
@@ -72,7 +73,7 @@ public class GameModelImplTest {
         model.castGlobalFreeze();
         assertEquals(FREEZE_CD_MAX, model.getFreezeCooldown());
 
-        //Cooldown ticks decrement
+        // Cooldown ticks decrement
         model.update();
         assertEquals(FIRE_CD_TICK, model.getFireCooldown());
         assertEquals(FREEZE_CD_TICK, model.getFreezeCooldown());

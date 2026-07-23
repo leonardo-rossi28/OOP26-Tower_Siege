@@ -4,7 +4,7 @@ import it.unibo.towersiege.commons.gameconstants.GameConstants;
 import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
 import it.unibo.towersiege.model.tower.api.Tower;
 
-public class BuildingSpotImpl implements BuildingSpot{
+public class BuildingSpotImpl implements BuildingSpot {
     private final int col;
     private final int row;
     private Tower tower;
@@ -15,7 +15,7 @@ public class BuildingSpotImpl implements BuildingSpot{
      * @param col
      * @param row
      */
-    public BuildingSpotImpl(int col, int row){
+    public BuildingSpotImpl(int col, int row) {
         this.col = col;
         this.row = row;
         this.tower = null;
@@ -29,7 +29,7 @@ public class BuildingSpotImpl implements BuildingSpot{
         return col;
     }
 
-     /**
+    /**
      * {@inheritDoc}
      */
     @Override

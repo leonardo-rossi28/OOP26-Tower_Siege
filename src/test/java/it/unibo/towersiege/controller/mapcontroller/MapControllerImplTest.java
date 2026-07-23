@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MapControllerImplTest {
-    
+
     private ShopController shopController;
     private MapController mapController;
     private BuildingSpot spot;
@@ -59,11 +59,11 @@ class MapControllerImplTest {
         }
 
         shopController.setSelectedTowerType(TowerType.BASIC);
-        mapController.interactWithSpot(spot); //build
+        mapController.interactWithSpot(spot); // build
 
         assertEquals(1, spot.getTower().getLevel());
 
-        mapController.interactWithSpot(spot); //upgrade
+        mapController.interactWithSpot(spot); // upgrade
 
         assertEquals(2, spot.getTower().getLevel());
     }

@@ -5,14 +5,14 @@ import java.util.List;
 import it.unibo.towersiege.model.enemy.EnemyType;
 
 public interface Enemy {
-    
+
     /**
      * @param damage amount of damage to inflict
      */
     void takeDamage(int damage);
 
     /**
-     * @param multiplier speed multiplier
+     * @param multiplier    speed multiplier
      * @param durationTicks number of game ticks the slow lasts
      */
     void applySlow(double multiplier, int durationTicks);

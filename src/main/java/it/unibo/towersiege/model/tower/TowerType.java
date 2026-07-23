@@ -1,5 +1,8 @@
 package it.unibo.towersiege.model.tower;
 
+/**
+ * Represents the available tower types in the game with their attributes.
+ */
 public enum TowerType {
 
     BASIC(50, 5, 3, 60, "Torre Cristallo"),
@@ -13,6 +16,15 @@ public enum TowerType {
     private final int cooldown;
     private final String description;
 
+    /**
+     * Constructs a new TowerType with the specified base attributes.
+     * 
+     * @param cost        the purchase cost of the tower
+     * @param damage      the base damage per attack
+     * @param range       the range attack of the towers
+     * @param cooldown    the cooldown beetwen attacks in ticks
+     * @param description description the display description of the tower
+     */
     TowerType(final int cost, final int damage, final int range, final int cooldown, final String description) {
         this.cost = cost;
         this.damage = damage;
@@ -22,7 +34,7 @@ public enum TowerType {
     }
 
     /**
-     * Return the cost of the tower.
+     * Returns the cost of the tower.
      * 
      * @return the cost of the tower
      */
@@ -31,7 +43,7 @@ public enum TowerType {
     }
 
     /**
-     * Return the damage per attack.
+     * Returns the damage per attack.
      * 
      * @return the damage for attack
      */
@@ -40,7 +52,7 @@ public enum TowerType {
     }
 
     /**
-     * Return the attack range.
+     * Returns the attack range.
      * 
      * @return the attack range
      */
@@ -49,7 +61,7 @@ public enum TowerType {
     }
 
     /**
-     * Return the cooldown in ticks.
+     * Returns the cooldown in ticks.
      * 
      * @return the cooldown in ticks
      */
@@ -58,9 +70,9 @@ public enum TowerType {
     }
 
     /**
-     * Return the description of the tower.
+     * Returns the description of the tower.
      * 
-     * @return the description of the tower 
+     * @return the description of the tower
      */
     public String getDescription() {
         return description;

@@ -15,6 +15,7 @@ public class EnemyTypeTest {
     private static final int TANK_HEALTH = 200;
     private static final int TANK_SPEED = 1;
     private static final int TANK_REWARD = 25;
+
     @Test
     void testEnemyTypeValues() {
         assertEquals(BASIC_HEALTH, EnemyType.BASIC.getHealth());
