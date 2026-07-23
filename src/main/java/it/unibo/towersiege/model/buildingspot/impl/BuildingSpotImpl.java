@@ -4,18 +4,21 @@ import it.unibo.towersiege.commons.gameconstants.GameConstants;
 import it.unibo.towersiege.model.buildingspot.api.BuildingSpot;
 import it.unibo.towersiege.model.tower.api.Tower;
 
+/**
+ * Implementation of the BuildingSpot interface.
+ */
 public class BuildingSpotImpl implements BuildingSpot {
     private final int col;
     private final int row;
     private Tower tower;
 
     /**
-     * Creates a new BuildingSpot at the given coordinate
+     * Creates a new BuildingSpot at the given coordinate.
      * 
-     * @param col
-     * @param row
+     * @param col the column coordinate.
+     * @param row the row coordinate.
      */
-    public BuildingSpotImpl(int col, int row) {
+    public BuildingSpotImpl(final int col, final int row) {
         this.col = col;
         this.row = row;
         this.tower = null;
@@ -73,7 +76,7 @@ public class BuildingSpotImpl implements BuildingSpot {
      * {@inheritDoc}
      */
     @Override
-    public void setTower(Tower tower) {
+    public void setTower(final Tower tower) {
         this.tower = tower;
         if (tower != null) {
             tower.setPosition(getPixelCenterX(), getPixelCenterY());

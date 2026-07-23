@@ -16,7 +16,7 @@ public final class TowerSiege {
    }
 
    /**
-    * Starts the game
+    * Starts the game.
     * 
     * @param args optional: path to a custom map JSON
     */

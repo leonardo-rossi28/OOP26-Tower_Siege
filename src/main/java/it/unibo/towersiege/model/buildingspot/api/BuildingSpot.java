@@ -2,45 +2,48 @@ package it.unibo.towersiege.model.buildingspot.api;
 
 import it.unibo.towersiege.model.tower.api.Tower;
 
+/**
+ * Interface representing a spot where a tower can be built.
+ */
 public interface BuildingSpot {
 
     /**
-     * Return grid column of this spot
+     * Return grid column of this spot.
      *
      * @return column index
      */
     int getCol();
 
     /**
-     * Return grid row of this spot
+     * Return grid row of this spot.
      *
      * @return row index
      */
     int getRow();
 
     /**
-     * Return the X pixel of the center of the spot
+     * Return the X pixel of the center of the spot.
      * 
      * @return pixel X center
      */
     double getPixelCenterX();
 
     /**
-     * Return the Y pixel of the center of the spot
+     * Return the Y pixel of the center of the spot.
      * 
      * @return pixel Y center
      */
     double getPixelCenterY();
 
     /**
-     * Return if tower is already occupied
+     * Return if tower is already occupied.
      * 
      * @return true if occupied
      */
     boolean isOccupied();
 
     /**
-     * Return the tower already in this spot, or null if empty
+     * Return the tower already in this spot, or null if empty.
      *
      * @return placed tower, or null
      */

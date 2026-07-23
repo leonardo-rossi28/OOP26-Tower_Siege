@@ -25,7 +25,7 @@ public final class SaveManager {
     }
 
     /**
-     * Saves the max unlocked level and best score to file
+     * Saves the max unlocked level and best score to file.
      * 
      * @param maxUnlockedLevel the furthest level the player has access to
      * @param bestScore        the highest record score obtained by the player

@@ -1,9 +1,10 @@
 package it.unibo.towersiege.commons.mapdata;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * MapData
+ * MapData.
  */
 public final class MapData {
 
@@ -51,10 +52,10 @@ public final class MapData {
     /**
      * Sets the height.
      * 
-     * @param height the height
+     * @param newheight the height
      */
-    public void setheight(final int height) {
-        this.height = height;
+    public void setheight(final int newHeight) {
+        this.height = newHeight;
     }
 
     /**
@@ -122,7 +123,7 @@ public final class MapData {
 
     /**
      * Sets the decoration.
-     * 
+     *
      * @param decorations the decorations
      */
     public void setDecorations(final List<double[]> decorations) {

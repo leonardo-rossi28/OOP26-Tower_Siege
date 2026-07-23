@@ -4,6 +4,9 @@ import java.util.List;
 
 import it.unibo.towersiege.model.enemy.EnemyType;
 
+/**
+ * Implement the Enemies.
+ */
 public interface Enemy {
 
     /**
@@ -18,10 +21,13 @@ public interface Enemy {
     void applySlow(double multiplier, int durationTicks);
 
     /**
-     * Update enemy state
+     * Update enemy state.
      */
     void updateStatus();
 
+    /**
+     * Updates the visual effects and animations of the enemy for the current tick.
+     */
     void tickVisuals();
 
     /**

@@ -1,12 +1,18 @@
 package it.unibo.towersiege.controller.maincontroller.api;
 
-/** Interface for the main application controller */
+/**
+ * Interface for the main application controller. 
+*/
 public interface MainController {
 
-    /** Starts the application. */
+    /** 
+     * Starts the application. 
+     */
     void start();
 
-    /** Begins the game. */
+    /** 
+     * Begins the game. 
+     */
     void beginGame();
 
     /**

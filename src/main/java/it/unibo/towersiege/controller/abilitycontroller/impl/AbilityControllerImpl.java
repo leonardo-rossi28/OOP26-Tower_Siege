@@ -4,6 +4,9 @@ import it.unibo.towersiege.controller.abilitycontroller.api.AbilityController;
 import it.unibo.towersiege.model.gamemodel.api.GameModel;
 import it.unibo.towersiege.model.gamestate.GameState;
 
+/**
+ * Implementation of the Abillty Controller interface.
+ */
 public final class AbilityControllerImpl implements AbilityController {
 
     private final GameModel model;

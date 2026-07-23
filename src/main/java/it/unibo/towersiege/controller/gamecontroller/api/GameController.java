@@ -11,7 +11,7 @@ public interface GameController {
     void togglePause();
 
     /**
-     * Restarts the game
+     * Restarts the game.
      */
     void restartGame();
 }

@@ -1,9 +1,12 @@
 package it.unibo.towersiege.commons.gameconstants;
 
 /**
- * GameConstants
+ * GameConstants.
  */
 public final class GameConstants {
+
+    private GameConstants() {
+}
 
     public static final int MAP_WIDTH = 800;
     public static final int MAP_HEIGHT = 600;

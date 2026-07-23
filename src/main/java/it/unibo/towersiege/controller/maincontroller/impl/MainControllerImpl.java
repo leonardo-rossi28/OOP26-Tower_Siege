@@ -48,7 +48,7 @@ public final class MainControllerImpl implements MainController {
     }
 
     /**
-     * Begins the game
+     * Begins the game.
      */
     @Override
     public void beginGame() {
@@ -58,10 +58,10 @@ public final class MainControllerImpl implements MainController {
     }
 
     /**
-     * Starts the level
+     * Starts the level.
      */
     @Override
-    public void startLevel(int level) {
+    public void startLevel(final int level) {
         model.loadLevel(level);
         model.start();
         view.closeGameFrame();

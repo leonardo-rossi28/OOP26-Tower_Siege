@@ -113,17 +113,17 @@ public class EnemyImpl implements Enemy {
         final double[] target = waypoints.get(currentWaypointIndex);
         final double dx = target[0] - pixelX;
         final double dy = target[1] - pixelY;
-        final double dist = Math.sqrt(dx*dx + dy*dy);
+        final double dist = Math.sqrt(dx * dx + dy * dy);
         final double step = getEffectiveSpeed();
 
-        if(dist <= step) {
+        if (dist <= step) {
             pixelX = target[0];
             pixelY = target[1];
             currentWaypointIndex++;
             return currentWaypointIndex >= waypoints.size();
         } else {
-            pixelX += dx/dist * step;
-            pixelY += dy/dist * step;
+            pixelX += dx / dist * step;
+            pixelY += dy / dist * step;
         }
         return false;
     }
@@ -137,7 +137,6 @@ public class EnemyImpl implements Enemy {
     }
 
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -150,7 +149,7 @@ public class EnemyImpl implements Enemy {
      */
     @Override
     public void setCoinAwarded(final boolean val) {
-        this.coinAwarded=val;
+        this.coinAwarded = val;
     }
 
     /**
@@ -173,37 +172,51 @@ public class EnemyImpl implements Enemy {
      * {@inheritDoc} 
      */
     @Override
-    public void setPosition(double x,double y) {
+    public void setPosition(final double x, final double y) {
         this.pixelX = x;
         this.pixelY = y;
     }
 
     /** {@inheritDoc} */
     @Override
-    public EnemyType getType() { return type; }
+    public EnemyType getType() {
+        return type;
+    }
 
     /** {@inheritDoc} */
     @Override
-    public int getMaxHealth() { return maxHealth; }
+    public int getMaxHealth() {
+        return maxHealth;
+    }
 
     /** {@inheritDoc} */
     @Override
-    public int getHealth() { return health; }
+    public int getHealth() {
+        return health;
+    }
 
     /** {@inheritDoc} */
     @Override
-    public int getReward() { return reward; }
+    public int getReward() {
+        return reward;
+    }
 
     /** {@inheritDoc} */
     @Override
-    public boolean isAlive() { return alive; }
+    public boolean isAlive() {
+        return alive;
+    }
 
     /** {@inheritDoc} */
     @Override
-    public double getPixelX() { return pixelX; }
+    public double getPixelX() {
+        return pixelX;
+    }
 
     /** {@inheritDoc} */
     @Override
-    public double getPixelY() { return pixelY; }
+    public double getPixelY() {
+        return pixelY;
+    }
 
 }

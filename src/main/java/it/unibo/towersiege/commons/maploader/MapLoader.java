@@ -18,7 +18,7 @@ import it.unibo.towersiege.commons.gameconstants.GameConstants;
 import it.unibo.towersiege.commons.mapdata.MapData;
 
 /**
- * Loader for custom JSON map format with waypoints and building spots
+ * Loader for custom JSON map format with waypoints and building spots.
  */
 public class MapLoader {
 
@@ -122,9 +122,9 @@ public class MapLoader {
                 final double y = Double.parseDouble(tupleMatcher.group(2));
                 if (tupleMatcher.group(3) != null) {
                     final double z = Double.parseDouble(tupleMatcher.group(3));
-                    result.add(new double[] { x, y, z });
+                    result.add(new double[]{ x, y, z });
                 } else {
-                    result.add(new double[] { x, y });
+                    result.add(new double[]{ x, y });
                 }
             } catch (final NumberFormatException ignored) {
                 // Ignore parse errors

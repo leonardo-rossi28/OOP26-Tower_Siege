@@ -73,7 +73,7 @@ public final class SoundManager {
     }
 
     /**
-     * Sets the master volume for sound effects-
+     * Sets the master volume for sound effects.
      * 
      * @param vol volume level between 0.0 and 1.0
      */
@@ -84,7 +84,7 @@ public final class SoundManager {
     }
 
     /**
-     * Returns the current master volume
+     * Returns the current master volume.
      * 
      * @return volume level between 0.0 and 1.0
      */
