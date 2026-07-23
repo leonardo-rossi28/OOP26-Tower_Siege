@@ -36,7 +36,7 @@ class WaveImplTest {
     @Test
     void testGenerateWave1() {
         final List<Enemy> enemies = wave.generateWave(WAVE_1);
-        assertEquals(4 + 3, enemies.size());
+        assertEquals(WAVE_1_SIZE, enemies.size());
 
         for (final Enemy e : enemies) {
             assertEquals(EnemyType.BASIC, e.getType());
