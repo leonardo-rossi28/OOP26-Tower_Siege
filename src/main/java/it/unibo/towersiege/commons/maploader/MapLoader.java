@@ -136,7 +136,7 @@ public class MapLoader {
             return null;
         }
         int depth = 0;
-        for (int i =start; i < json.length(); i++) {
+        for (int i = start; i < json.length(); i++) {
             final char c = json.charAt(i);
             if (c == '[') {
                 depth++;
