@@ -67,7 +67,7 @@ class TowerImplTest {
 
     @Test
     void testAttackAndCooldown() {
-        final Enemy enemy = new EnemyImpl(EnemyType.BASIC, 1);
+        final Enemy enemy = new EnemyImpl(EnemyType.BASIC, WAVE);
         enemy.setPosition(INITIAL_POS_X, ENEMY_IN_RANGE_Y);
 
         final Projectile proj = tower.attack(enemy);

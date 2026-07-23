@@ -1,5 +1,9 @@
 package it.unibo.towersiege.view.gameover;
 
+import it.unibo.towersiege.model.gamestate.GameState;
+import it.unibo.towersiege.controller.maincontroller.api.MainController;
+import it.unibo.towersiege.model.gamemodel.api.GameModel;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -7,16 +11,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Cursor;
-import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
-import java.net.FileNameMap;
-
 import javax.swing.JButton;
-
-
-import it.unibo.towersiege.model.gamestate.GameState;
-import it.unibo.towersiege.controller.maincontroller.api.MainController;
-import it.unibo.towersiege.model.gamemodel.api.GameModel;
+import javax.swing.JPanel;
 
 /**
  * Overplay panel swhown when the game reaches a terminal state

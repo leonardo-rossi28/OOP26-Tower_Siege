@@ -30,7 +30,6 @@ public final class StartMenuPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private static final int LOGO_TOP_RATIO = 55;
-    private static final int TITLE_SIZE = 52;
     private static final int SUBTITLE_SIZE = 18;
     private static final int INFO_SIZE = 13;
     private static final int BUTTON_FONT_SIZE = 18;
