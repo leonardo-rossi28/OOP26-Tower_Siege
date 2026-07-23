@@ -20,7 +20,7 @@ public final class ShopControllerImpl implements ShopController {
      * @param type type the type of tower to select.
      */
     @Override
-    public void setSelectedTowerType(TowerType type) {
+    public void setSelectedTowerType(final TowerType type) {
         if (type != null) {
             this.selectedTowerType = type;
         }

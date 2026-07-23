@@ -2,6 +2,9 @@ package it.unibo.towersiege.model.projectile.api;
 
 import it.unibo.towersiege.model.tower.TowerType;
 
+/**
+ * Represents the tower projectiles.
+ */
 public interface Projectile {
 
     /**

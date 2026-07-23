@@ -11,10 +11,10 @@ import it.unibo.towersiege.model.enemy.api.Enemy;
 public class EnemyImpl implements Enemy {
 
     private final EnemyType type;
-    private int maxHealth;
+    private final int maxHealth;
     private int health;
-    private double baseSpeed;
-    private int reward;
+    private final double baseSpeed;
+    private final int reward;
 
     private double pixelX;
     private double pixelY;

@@ -12,7 +12,7 @@ import it.unibo.towersiege.model.score.api.Score;
 import it.unibo.towersiege.model.tower.api.Tower;
 
 /**
- * GameModel interface
+ * GameModel interface.
  */
 public interface GameModel {
 

@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Tests the EnemyType class
+ * Tests the EnemyType class.
  */
-public class EnemyTypeTest {
+class EnemyTypeTest {
 
     private static final int BASIC_HEALTH = 80;
     private static final int BASIC_SPEED = 1;

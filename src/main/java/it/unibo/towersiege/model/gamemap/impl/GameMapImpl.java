@@ -140,7 +140,7 @@ public class GameMapImpl implements GameMap {
         if (col < 0 || col >= GameConstants.COLS || row < 0 || row >= GameConstants.ROWS) {
             return null;
         }
-        for (BuildingSpot spot : buildingSpots) {
+        for (final BuildingSpot spot : buildingSpots) {
             if (spot.getCol() == col && spot.getRow() == row) {
                 return spot;
             }
