@@ -40,8 +40,8 @@ class GameMapImplTest {
         pathCoords.add(new double[] {1, 0});
 
         final List<double[]> spotCoords = new ArrayList<>();
-        spotCoords.add(new double[] { COORD_2, COORD_2 });
-        spotCoords.add(new double[] { COORD_3, COORD_3 });
+        spotCoords.add(new double[] {COORD_2, COORD_2});
+        spotCoords.add(new double[] {COORD_3, COORD_3});
 
         map = new GameMapImpl(MAP_W, MAP_H, "bg.jpg", pathCoords, spotCoords, new ArrayList<>());
     }

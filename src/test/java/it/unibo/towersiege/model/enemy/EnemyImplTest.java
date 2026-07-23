@@ -82,8 +82,8 @@ class EnemyImplTest {
         enemy.applySlow(SLOW_MUL, SLOW_TICKS);
 
         final List<double[]> waypoints = new ArrayList<>();
-        waypoints.add(new double[] { WP0_X, WP0_Y });
-        waypoints.add(new double[] { WP1_X, WP1_X });
+        waypoints.add(new double[] {WP0_X, WP0_Y});
+        waypoints.add(new double[] {WP1_X, WP1_X});
 
         enemy.moveAlongPath(waypoints);
 
