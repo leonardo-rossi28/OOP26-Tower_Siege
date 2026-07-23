@@ -39,7 +39,7 @@ public class MapLoader {
      * @param filePath the path to the map file
      * @return the parsed map data
      * @throws IOException if an error occurs reading the file
-     */
+     */    
     public MapData loadMap(final String filePath) throws IOException {
         final String content = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
         return parseJson(content);
@@ -111,7 +111,7 @@ public class MapLoader {
         }
 
         //Extract [ x, y ] or [X, Y, type]
-        final Pattern tuplePattern = Pattern.compile("\\[\\s*([\\d.]+)\\s*,\\s*([\\d.]+)\\s*\\]");
+        final Pattern tuplePattern = Pattern.compile("\\[\\s*([\\d.]+)\\s*,\\s*([\\d.]+)(?:\\s*,\\s*([\\d.]+))?\\s*\\]");
         final Matcher tupleMatcher = tuplePattern.matcher(arrayContent);
 
         while (tupleMatcher.find()) {
@@ -136,7 +136,7 @@ public class MapLoader {
             return null;
         }
         int depth = 0;
-        for (int i = start; i < json.length(); i++) {
+        for (int i =start; i < json.length(); i++) {
             final char c = json.charAt(i);
             if (c == '[') {
                 depth++;
