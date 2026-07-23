@@ -84,7 +84,7 @@ public final class PauseMenuDialog {
         final JLabel title = new JLabel("PAUSA");
         title.setFont(new Font("Serif", Font.BOLD, TITLE_SIZE));
         title.setForeground(new Color(GOLD_G, GOLD_R, 0));
-        title.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         final JButton btnResume = createBtn("RIPRENDI",
                 new Color(BUTTON_HEIGHT, BTN_RESUME_G, BTN_RESUME_B));
@@ -132,7 +132,7 @@ public final class PauseMenuDialog {
         b.setForeground(Color.WHITE);
         b.setBackground(bg);
         b.setFocusPainted(false);
-        b.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+        b.setAlignmentX(Component.CENTER_ALIGNMENT);
         b.setMaximumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         return b;
     }
