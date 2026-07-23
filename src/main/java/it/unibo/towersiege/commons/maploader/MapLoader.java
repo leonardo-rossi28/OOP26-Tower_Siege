@@ -39,7 +39,7 @@ public class MapLoader {
      * @param filePath the path to the map file
      * @return the parsed map data
      * @throws IOException if an error occurs reading the file
-     */    
+     */
     public MapData loadMap(final String filePath) throws IOException {
         final String content = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
         return parseJson(content);
