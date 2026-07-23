@@ -36,8 +36,8 @@ class GameMapImplTest {
     @BeforeEach
     void setUp() {
         final List<double[]> pathCoords = new ArrayList<>();
-        pathCoords.add(new double[] { 0, 0 });
-        pathCoords.add(new double[] { 1, 0 });
+        pathCoords.add(new double[] {0, 0});
+        pathCoords.add(new double[] {1, 0});
 
         final List<double[]> spotCoords = new ArrayList<>();
         spotCoords.add(new double[] { COORD_2, COORD_2 });
@@ -59,7 +59,7 @@ class GameMapImplTest {
         assertEquals(PATH_VAL, grid[0][0]); // path
         assertEquals(PATH_VAL, grid[0][1]); // path
         assertEquals(SPOT_VAL, grid[2][2]); // spot
-        assertEquals(GRASS_VAL, grid[5][5]); // grass
+        assertEquals(GRASS_VAL, grid[COORD_5][COORD_5]); // grass
     }
 
     @Test

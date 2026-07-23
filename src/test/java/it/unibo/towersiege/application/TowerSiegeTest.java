@@ -11,7 +11,7 @@ import it.unibo.towersiege.model.gamestate.GameState;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test class for TowerSiege
+ * Test class for TowerSiege.
  */
 class TowerSiegeTest {
 

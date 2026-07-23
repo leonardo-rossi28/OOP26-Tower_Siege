@@ -34,8 +34,8 @@ class BuildingSpotImplTest {
         assertEquals(COL, spot.getCol());
         assertEquals(ROW, spot.getRow());
 
-        double expectedX = (COL * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / HALF_DIV);
-        double expectedY = (ROW * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / HALF_DIV);
+        final double expectedX = (COL * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / HALF_DIV);
+        final double expectedY = (ROW * GameConstants.TILE_SIZE) + (GameConstants.TILE_SIZE / HALF_DIV);
 
         assertEquals(expectedX, spot.getPixelCenterX());
         assertEquals(expectedY, spot.getPixelCenterY());

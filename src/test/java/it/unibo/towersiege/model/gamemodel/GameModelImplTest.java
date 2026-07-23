@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class GameModelImplTest {
+public final class GameModelImplTest {
 
     private static final int INITIAL_COINS = 250;
     private static final int FIRE_CD_MAX = 900;

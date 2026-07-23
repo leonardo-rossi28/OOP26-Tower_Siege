@@ -66,8 +66,8 @@ class EnemyImplTest {
         enemy.setPosition(WP0_X, WP0_Y);
 
         final List<double[]> waypoints = new ArrayList<>();
-        waypoints.add(new double[] { WP0_X, WP0_Y });
-        waypoints.add(new double[] { WP1_X, WP1_Y });
+        waypoints.add(new double[] {WP0_X, WP0_Y});
+        waypoints.add(new double[] {WP1_X, WP1_Y});
 
         final boolean reached = enemy.moveAlongPath(waypoints);
         assertFalse(reached);
