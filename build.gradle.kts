@@ -7,6 +7,7 @@ plugins {
 
     id("com.gradleup.shadow") version "9.4.3"
     id("org.danilopianini.gradle-java-qa") version "1.188.0"
+    id("org.danilopianini.unibo-oop-gradle-plugin") version "2.0.22"
 }
 
 repositories { // Where to search for dipendencies
