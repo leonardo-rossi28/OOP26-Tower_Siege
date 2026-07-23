@@ -20,42 +20,73 @@ import it.unibo.towersiege.view.gameview.api.GameView;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameControllerImplTest {
+
+    private static final int EXPECTED_INITIAL_COINS = 250;
     
     private GameModel model;
     private GameController gameController;
 
-    // Dummy View and MainController for testing
+    //Dummy view and MainController for testing
     private static class DummyGameView implements GameView {
-        @Override public void displayWelcome() {}
-        @Override public void showStartMenu(MainController c) {}
-        @Override public void showLevelSelect(MainController c, GameModel model) {}
-        @Override public void displayGameState(GameModel model, GameController gc, MapController mapC, ShopController sc, AbilityController ac) {}
-        @Override public void displayEndGame(GameState state) {}
-        @Override public void showPauseMenu(MainController mc, GameController gc) {}
-        @Override public void hidePauseMenu() {}
-        @Override public void closeGameFrame() {}
+
+        @Override 
+        public void displayWelcome() { }
+
+        @Override 
+        public void showStartMenu(MainController c) { }
+
+        @Override 
+        public void showLevelSelect(MainController c, GameModel model) { }
+        
+        @Override 
+        public void displayGameState(GameModel model, GameController gc, 
+                MapController mapC, ShopController sc, 
+                AbilityController ac) { }
+        
+        @Override 
+        public void displayEndGame(GameState state) { }
+        
+        @Override 
+        public void showPauseMenu(MainController mc, GameController gc) { }
+        
+        @Override 
+        public void hidePauseMenu() { }
+        
+        @Override 
+        public void closeGameFrame() { }
     }
 
     private static class DummyMainController implements MainController {
-        @Override public void start() {}
-        @Override public void beginGame() {}
-        @Override public void startLevel(int level) {}
-        @Override public void backToMenu() {}
-        @Override public void backToLevelSelect() {}
+
+        @Override 
+        public void start() { }
+        
+        @Override 
+        public void beginGame() { }
+        
+        @Override 
+        public void startLevel(int level) { }
+        
+        @Override 
+        public void backToMenu() { }
+        
+        @Override 
+        public void backToLevelSelect() { }
     }
 
     @BeforeEach
     void setUp() {
         model = new GameModelImpl();
-        model.start(); // Set to PLAYING
+        model.start();
 
-        GameView view = new DummyGameView();
-        MainController mainController = new DummyMainController();
-        ShopController shopController = new ShopControllerImpl();
-        MapController mapController = new MapControllerImpl(model, shopController);
-        AbilityController abilityController = new AbilityControllerImpl(model);
+        final GameView view = new DummyGameView();
+        final MainController mainController = new DummyMainController();
+        final ShopController shopController = new ShopControllerImpl();
+        final MapController mapController = new MapControllerImpl(model, shopController);
+        final AbilityController abilityController = new AbilityControllerImpl(model);
 
-        gameController = new GameControllerImpl(model, view, mainController, mapController, shopController, abilityController);
+        gameController = new GameControllerImpl(model, view, mainController, 
+                mapController, shopController, abilityController);
     }
 
     @Test
@@ -71,15 +102,14 @@ class GameControllerImplTest {
 
     @Test
     void testRestartGame() {
-        // Change state and model values
+
         model.pause();
         assertEquals(GameState.PAUSED, model.getState());
 
         gameController.restartGame();
 
-        // restartGame calls model.start()
         assertEquals(GameState.PLAYING, model.getState());
         assertEquals(0, model.getCurrentWave());
-        assertEquals(250, model.getPlayer().getCoins());
+        assertEquals(EXPECTED_INITIAL_COINS, model.getPlayer().getCoins());
     }
 }
