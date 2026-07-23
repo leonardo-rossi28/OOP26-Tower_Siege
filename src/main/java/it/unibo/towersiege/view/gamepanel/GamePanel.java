@@ -28,7 +28,7 @@ import it.unibo.towersiege.view.utils.ImageLoader;
 /**
  * Main panel used to draw the game scene and handle UI interactions.
  */
-public class GamePanel extends JPanel {
+public final class GamePanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private static final int CELL_SIZE = 50;
